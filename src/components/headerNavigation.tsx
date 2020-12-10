@@ -13,10 +13,10 @@ export default function headerNavigation( props:{} ){
                     <LinkContainer exact to="/"><Nav.Link>The Platform</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav>
-                    <LinkContainer to="/wishlist"><Nav.Link>Navigation</Nav.Link></LinkContainer>
-                    <LinkContainer to="/cart" className="ml-2">
-                        <Button variant="warning" block>My Profile</Button>
-                    </LinkContainer> 
+                    <LinkContainer to="/"><Nav.Link>Articles</Nav.Link></LinkContainer>
+                    <LinkContainer to="/"><Nav.Link>Organizations</Nav.Link></LinkContainer>
+                    <LinkContainer to="/"><Nav.Link>Series</Nav.Link></LinkContainer>
+                    <LinkContainer to="/"><Nav.Link>Profile</Nav.Link></LinkContainer>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
