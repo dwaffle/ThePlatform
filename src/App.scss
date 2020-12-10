@@ -1,2 +1,9 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
+.main {
+
+    min-height: 100%;
+    position: relative;
+    background-color: #FFF;
+    padding: 0 0;
+}

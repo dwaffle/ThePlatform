@@ -1,12 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import SignupPage from './components/pages/signup'
+import MainLayout from '../src/layouts/MainLayout'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
 
-function App() {
-  return (
-    SignupPage()
-  );
-}
 
-export default App;
+
+export default function ThePlatform( props:{} ){
+    
+    return (
+        <div>
+            
+            <BrowserRouter> 
+                <Switch>
+                    <Route path="/" component={MainLayout} />
+                </Switch>
+            </BrowserRouter>
+        </div>
+    );
+
+}
