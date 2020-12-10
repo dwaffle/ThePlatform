@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout from '../src/layouts/MainLayout'
+import HomePage from './components/pages/HomePage'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
 
@@ -12,7 +12,7 @@ export default function ThePlatform( props:{} ){
             
             <BrowserRouter> 
                 <Switch>
-                    <Route path="/" component={MainLayout} />
+                    <Route path="/" component={HomePage} />
                 </Switch>
             </BrowserRouter>
         </div>
