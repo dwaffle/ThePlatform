@@ -11,13 +11,11 @@ export default function MainLayout (props:PropsWithChildren <{}>){
     return (
     <>
 
-        <Container className="main">        
+        <Container>        
             <HeaderNavigation />
             <Row> 
                 <Col>  { props.children }</Col>
-            </Row>
-            
-            
+            </Row>     
         </Container>
 
     </>
