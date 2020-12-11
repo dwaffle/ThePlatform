@@ -14,7 +14,7 @@ export default function HeaderNavigation( props:{} ){
                 </Nav>
                 <Nav className="mr-auto">
                     <LinkContainer to="/"><Nav.Link>Articles</Nav.Link></LinkContainer>
-                    <LinkContainer to="/"><Nav.Link>Organizations</Nav.Link></LinkContainer>
+                    <LinkContainer to="/organization"><Nav.Link>Organizations</Nav.Link></LinkContainer>
                     <LinkContainer to="/"><Nav.Link>Series</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav>
