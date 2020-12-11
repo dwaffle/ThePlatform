@@ -1,8 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import "./style.scss"
-
 
 
 export default function HeaderNavigation( props:{} ){
@@ -11,11 +9,11 @@ export default function HeaderNavigation( props:{} ){
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="navbar-custom">
+                <Nav>
                     <LinkContainer exact to="/"><Nav.Link>The Platform</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
-                    <LinkContainer to="/Article"><Nav.Link>Articles</Nav.Link></LinkContainer>
+                    <LinkContainer to="/articles"><Nav.Link>Articles</Nav.Link></LinkContainer>
                     <LinkContainer to="/organization"><Nav.Link>Organizations</Nav.Link></LinkContainer>
                     <LinkContainer to="/series"><Nav.Link>Series</Nav.Link></LinkContainer>
                 </Nav>
