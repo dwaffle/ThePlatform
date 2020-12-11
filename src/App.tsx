@@ -7,7 +7,7 @@ import './App.scss';
 
 
 export default function ThePlatform( props:{} ){
-    //EIther path="/" needs to be exact, or it needs to come last.
+    //Either path="/" needs to be exact, or it needs to come last.  I've changed it to exact for now.
     return (
         <div>
             
