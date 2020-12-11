@@ -18,32 +18,13 @@ export function createNewArticle (){
         <Form>
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="name" placeholder="Price" />
-                </Form.Group>
-                <Form.Group className="FormRowSpacing">
                     <Form.Control type="Title" placeholder="Article Title" />
-                </Form.Group>
-                <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Rating" placeholder="Rating" />
-                </Form.Group>
-            </Form.Row>
-
-            <Form.Row>
-                <Form.Group className="FormRowSpacing" >
-                    <select>
-                        <option selected>Categories..</option>
-                        <option value="1">Rant</option>
-                        <option value="2">News</option>
-                        <option value="3">Fiction</option>
-                    </select>
                 </Form.Group>
                 <Form.Group className="FormRowSpacing">
                     <Form.Control type="Author" placeholder="Author" />
                 </Form.Group>
-                <Form.Group className="FormRowSpacing">
-                    <Form.Control type="PH" placeholder="Rate me PH" />
-                </Form.Group>
             </Form.Row>
+            
 
             <Form.Row>
                 <Form.Control as="textarea" placeholder= "Description" rows={3} />
@@ -54,9 +35,35 @@ export function createNewArticle (){
             </Form.Row>
 
             <Form.Row>
-                <Form.Group>
-                  <Form.Control type="Title" placeholder="Statistic PH" />
+                <Form.Group className="FormRowSpacing">
+                    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." />
+                    <label>All Members </label>
                 </Form.Group>
+
+                <Form.Group className="FormRowSpacing">
+                    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." />
+                    <label> Paid Members Only </label>
+                </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
+                <Form.Group>
+                    <Form.Control type="price" placeholder="Price" />
+                </Form.Group>
+            </Form.Row>
+
+            
+
+            <Form.Row>
+                <Form.Group>
+                    <select>
+                        <option selected>Categories..</option>
+                        <option value="1">Rant</option>
+                        <option value="2">News</option>
+                        <option value="3">Fiction</option>
+                    </select>
+                </Form.Group>
+
                 <Form.Group>
                     <select>
                         <option selected>Series...</option>
