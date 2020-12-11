@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+
 
 const Component = () => {
     const [fileSelected, setFileSelected] = React.useState<File>() // also tried <string | Blob>
