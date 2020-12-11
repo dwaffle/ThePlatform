@@ -1,0 +1,14 @@
+import React from 'react';
+import MainLayout from '../../layouts/MainLayout'
+
+import './style.scss'
+
+export default function HomePage( props:{} ){
+
+    return <MainLayout>
+        
+        Nothing
+
+    </MainLayout>;
+
+}
