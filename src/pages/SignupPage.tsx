@@ -1,11 +1,14 @@
 import React from 'react';
-import {Card, Form, Button, Row, Col} from 'react-bootstrap'
+import {Card, Form, Button, Row, Col, InputGroup} from 'react-bootstrap'
+import HeaderNavigation from '../components/headerNavigation'
 import './style.scss'
 
-export default function SignupPage(){
+export default function SignupPage(props:{}){
 
-
+    //If signed in, go to user profile else go to signup will go here.
     return (
+        <div>
+        <HeaderNavigation />
         <div className="signup-ctr">
             <Card className="signup">
                 <div className="signup-txt">
@@ -33,8 +36,14 @@ export default function SignupPage(){
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
+                <InputGroup>
+                    <InputGroup.Prepend>
+                        <InputGroup.Checkbox className="privacy"></InputGroup.Checkbox>Accept the Privacy Policy and Terms of Use Agreement
+                    </InputGroup.Prepend>
+                </InputGroup>
+                <Button variant="primary" type="submit" className="submit">Submit</Button>
             </Card>
         </div>
+    </div>
     )
 }
