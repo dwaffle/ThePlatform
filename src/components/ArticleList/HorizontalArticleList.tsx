@@ -9,7 +9,7 @@ import './style.scss'
 export default function Article( props:IArticle ){
 
     function onClickRoute() {
-        return function updateItemInCart(event:MouseEvent<HTMLButtonElement>)
+        return function reRoute(event:MouseEvent<HTMLButtonElement>)
         {
             const placeholder = 'do nothing'
         }
