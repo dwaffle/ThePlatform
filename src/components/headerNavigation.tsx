@@ -18,6 +18,7 @@ export default function HeaderNavigation( props:{} ){
                     <LinkContainer to="/"><Nav.Link>Series</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav>
+                    <LinkContainer to="/signup"><Nav.Link>Sign Up</Nav.Link></LinkContainer>
                     <LinkContainer to="/"><Nav.Link>Profile</Nav.Link></LinkContainer>
                 </Nav>
             </Navbar.Collapse>
