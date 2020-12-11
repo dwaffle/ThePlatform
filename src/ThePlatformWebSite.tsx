@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Organization from './pages/OrganizationPage';
+import IndividualArticle from './pages/articles/IndividualArticle'
 import SignupPage from './pages/SignupPage';
-
 import './App.scss';
 
 export default function ThePlatformWebsite( props:{} ){
@@ -14,6 +14,7 @@ export default function ThePlatformWebsite( props:{} ){
             <BrowserRouter>
                 <Switch>
                     <Route path="/organization" component={Organization} />
+                    <Route path="/Article" component={IndividualArticle} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/" component={HomePage} />
                 </Switch>

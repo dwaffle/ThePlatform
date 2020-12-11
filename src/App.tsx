@@ -1,7 +1,7 @@
 import React from 'react';
-import MainLayout from '../src/layouts/MainLayout'
+import HomePage from './pages/HomePage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import SignupPage from './pages/SignupPage'
+import SignupPage from './pages/SignupPage';
 import './App.scss';
 
 
@@ -14,8 +14,8 @@ export default function ThePlatform( props:{} ){
             <BrowserRouter> 
                 <Switch>
                     <Route path="/signup" component={SignupPage} />
-                    <Route path="/" exact component={MainLayout} />
-                    
+                    <Route path="/" exact component={HomePage} />
+
                 </Switch>
             </BrowserRouter>
         </div>
