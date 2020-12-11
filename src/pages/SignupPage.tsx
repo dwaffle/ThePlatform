@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Form, Button, Row, Col, InputGroup} from 'react-bootstrap'
-import HeaderNavigation from '../headerNavigation'
+import HeaderNavigation from '../components/headerNavigation'
 import './style.scss'
 
 export default function SignupPage(props:{}){

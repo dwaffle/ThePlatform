@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from '../src/layouts/MainLayout'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import SignupPage from './components/pages/signup'
+import SignupPage from './pages/SignupPage'
 import './App.scss';
 
 
