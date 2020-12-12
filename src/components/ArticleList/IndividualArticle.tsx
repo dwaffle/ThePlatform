@@ -8,7 +8,11 @@ import {Container, Row, Col } from 'react-bootstrap';
 
 
 export default function IndividualArticle () {
+
     const [rating1, setRating1] = useState(0);
+    
+    
+
 
     return <MainLayout>
 
@@ -22,7 +26,7 @@ export default function IndividualArticle () {
 
             <Row xs={1} md={4} lg={6}>
                 <Col> 
-                    <Rating initialRating={rating1} onClick={rate => setRating1(rate)} /> 
+                    <Rating  initialRating={rating1} onClick={rate => setRating1(rate)} /> 
                 </Col>
         
             </Row>

@@ -1,0 +1,14 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+.footer{
+    position: relative;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #363535;
+    border: 2px solid #da8d00;
+    // align-content: center;
+    bottom: 0;
+    width: 100%;
+    color: lightgray;
+  }
+
