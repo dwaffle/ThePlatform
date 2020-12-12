@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import SeriesPageScaffolding from '../components/profile/ProfilePage';
+import SeriesPageScaffolding from '../components/series/SeriesPage';
 import MainLayout from '../layouts/MainLayout';
 
-export default function ProfilePage( props:{} ){
+export default function SeriesPage( props:{} ){
 
     return <MainLayout>
         

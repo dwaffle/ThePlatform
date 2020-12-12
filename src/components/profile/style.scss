@@ -1,1 +1,9 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
+
+img {
+    max-width: 150px;
+    max-height: 150px;
+    // object-fit: cover;
+    padding: 10px;
+    margin: 0px;
+}
