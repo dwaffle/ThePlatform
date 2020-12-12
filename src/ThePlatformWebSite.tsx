@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import Organization from './pages/OrganizationPage';
+import Organization from './pages/Organization/OrganizationPage';
 import SignupPage from './pages/SignupPage';
 import {createNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
 import Article from './components/ArticleList/HorizontalArticleList'
