@@ -7,6 +7,7 @@ import Profile from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
 import {createNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
 import IndividualArticle from './components/ArticleList/IndividualArticle';
+import AdminSite from './pages/AdminPage';
 
 import './App.scss';
 
@@ -17,6 +18,7 @@ export default function ThePlatformWebsite( props:{} ){
     return (            
             <BrowserRouter>
                 <Switch>
+                    <Route path="/admin" component={AdminSite} />
                     <Route path="/organization" component={Organization} />
                     <Route path="/series" component={Series} />
                     <Route path="/profile" component={Profile} />
