@@ -1,4 +1,5 @@
 import React from 'react';
+import MainLayout from '../layouts/MainLayout'
 import {Card, Form, Button, Row, Col, InputGroup} from 'react-bootstrap'
 import HeaderNavigation from '../components/headerNavigation'
 import './style.scss'
@@ -7,8 +8,8 @@ export default function SignupPage(props:{}){
 
     //If signed in, go to user profile else go to signup will go here.
     return (
+        <MainLayout>
         <div>
-        <HeaderNavigation />
         <div className="signup-ctr">
             <Card className="signup">
                 <div className="signup-txt">
@@ -45,5 +46,6 @@ export default function SignupPage(props:{}){
             </Card>
         </div>
     </div>
+    </MainLayout>
     )
 }
