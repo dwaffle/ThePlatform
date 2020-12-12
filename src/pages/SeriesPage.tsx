@@ -1,13 +1,13 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import HomePageScaffolding from '../components/homePage/HomePage';
+import SeriesPageScaffolding from '../components/profile/ProfilePage';
 import MainLayout from '../layouts/MainLayout';
 
-export default function HomePage( props:{} ){
+export default function ProfilePage( props:{} ){
 
     return <MainLayout>
         
-            <HomePageScaffolding/>
+            <SeriesPageScaffolding/>
      
         
     </MainLayout>;
