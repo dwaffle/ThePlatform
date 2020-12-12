@@ -2,7 +2,7 @@
     margin-top: 10px;
     border: 2px solid rgba(0, 0, 0, 0.05);
     width: auto;
-    height: 900px;
+    height: 100%;
 }
 
 .articleDesc {
@@ -38,4 +38,24 @@
 
 .tags {
     border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.cardStyle {
+    width: 500px;
+    height: 300px;
+
+}
+
+.cardHeader {
+    height: 60px;
+    text-align:center;
+}
+
+.filter {
+    padding-top: 0px;
+}
+
+.cardspacing {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
