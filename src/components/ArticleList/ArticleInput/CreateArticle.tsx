@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router';
 import Form from 'react-bootstrap/Form'
 import MainLayout from '../../../layouts/MainLayout';
 import './style.scss'
-
+import "@pathofdev/react-tag-input/build/index.css";
 
 
 export function createNewArticle (){
@@ -11,6 +11,15 @@ export function createNewArticle (){
     // Tags will need to be changed eventually as <ReactTags>
     // Author needs to target the author
     // rating and rateme Needs to be visual placeholders? or removed
+
+    // const [tags, setTags] = React.useState([]);
+    
+    // const addTags = event => {
+    //     if (event.key === "Enter" && event.target.value !== "") {
+    //         setTags([...tags, event.target.value]);
+    //         event.target.value = "";
+    //     }
+    // };
 
 
     return <MainLayout>
@@ -72,7 +81,7 @@ export function createNewArticle (){
                     </select>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Control type="Title" placeholder="Tags" />
+                <input type="text" placeholder="Press enter to add tags" />
                 </Form.Group>
             </Form.Row>
             <button type="submit">Submit</button>
