@@ -3,7 +3,7 @@ import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 //import Faq from '../components/OrganizationPage';
 import './style.scss'
 
-export default function HomePageScaffolding( props:{} ){
+export default function HomePage( props:{} ){
  
 
     return <>
