@@ -1,0 +1,22 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+$paddingTop: 15px;
+
+.horizontal-organization-list {
+    padding-top: $paddingTop;
+}
+
+.search-filter {
+    padding-top: $paddingTop;
+}
+
+.trending-organization {
+    // border: 2px solid red;
+    padding-top: $paddingTop;
+
+    h3 {
+        padding-bottom:15px ;
+        text-align: center;
+    }
+    
+}
