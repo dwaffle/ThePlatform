@@ -1,0 +1,1 @@
+{"version":3,"file":"get.js","sourceRoot":"","sources":["../../../../src/routes/articles/article/get.ts"],"names":[],"mappings":";;;;;;;;;;;;AACA,qEAAmE;AAEnE,SAAgB,GAAG,CAAC,GAAO;IACvB,GAAG,CAAC,GAAG,CAAC,sBAAsB,EAAE,iCAAiB,EAAE,CAAM,OAAW,EAAE,QAAa,EAAE,EAAE;QACnF,MAAM,SAAS,GAAG,OAAO,CAAC,MAAM,CAAC,MAAM,CAAA;IAC3C,CAAC,CAAA,CAAC,CAAA;AACN,CAAC;AAJD,kBAIC"}
