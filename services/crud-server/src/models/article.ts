@@ -40,7 +40,8 @@ export const ArticleModel = {
 
     getById: async ( articleId:number ): Promise<any> => {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM article WHERE ${articleId} = article_id`, function(err:any, result: any){
+            
+            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {

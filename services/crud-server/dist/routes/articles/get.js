@@ -13,7 +13,7 @@ exports.get = void 0;
 const article_1 = require("../../models/article");
 const authenticator_1 = require("../../middleware/authenticator");
 function get(app) {
-    app.get("/articles/:", authenticator_1.authenticateToken, (request, response) => __awaiter(this, void 0, void 0, function* () {
+    app.get("/articles", authenticator_1.authenticateToken, (request, response) => __awaiter(this, void 0, void 0, function* () {
         const articles = yield article_1.ArticleModel.getAll();
         response.status(200).send(articles);
     }));

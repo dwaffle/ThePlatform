@@ -37,7 +37,7 @@ exports.ArticleModel = {
     }),
     getById: (articleId) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM article WHERE ${articleId} = article_id`, function (err, result) {
+            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function (err, result) {
                 if (err) {
                     reject(err);
                 }
