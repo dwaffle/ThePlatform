@@ -15,7 +15,6 @@ const authenticator_1 = require("../../../middleware/authenticator");
 function get(app) {
     app.get('/articles/:articleId', authenticator_1.authenticateToken, (request, response) => __awaiter(this, void 0, void 0, function* () {
         const articleId = request.params.articleId;
-        console.log(articleId);
         const foundArticle = yield article_1.ArticleModel.getById(articleId);
         if (foundArticle) {
             response.send(foundArticle);

@@ -47,16 +47,24 @@ exports.ArticleModel = {
             });
         });
     }),
-    updateFromJson: (task) => __awaiter(void 0, void 0, void 0, function* () {
+    updateFromJson: (article) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }),
-    update: (task) => __awaiter(void 0, void 0, void 0, function* () {
+    update: (article) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }),
-    create: (taskToCreate) => __awaiter(void 0, void 0, void 0, function* () {
-        return;
+    create: (articleToCreate) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("Article: " + articleToCreate);
+        connection.query(`INSERT INTO article (art_creationDate, art_price, user_author, artype_id, art_body) VALUES (SYSDATE(), ${articleToCreate.price}, ${articleToCreate.author}, ${articleToCreate.type}, '${articleToCreate.body}')`, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            else {
+                result;
+            }
+        });
     }),
-    delete: (task) => __awaiter(void 0, void 0, void 0, function* () {
+    delete: (article) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     })
 };

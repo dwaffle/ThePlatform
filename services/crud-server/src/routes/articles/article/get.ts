@@ -4,7 +4,6 @@ import {authenticateToken} from '../../../middleware/authenticator'
 export function get(app:any){
     app.get('/articles/:articleId', authenticateToken, async(request:any, response: any) => {
         const articleId = request.params.articleId;
-        console.log(articleId);
         const foundArticle = await ArticleModel.getById(articleId);
 
         if(foundArticle){

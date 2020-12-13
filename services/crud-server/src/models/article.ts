@@ -12,9 +12,9 @@ var connection = mysql.createConnection({
     database: 'mydb'
 })
 
+
+//Id and date of creation are generated for us by the SQL query.
 export interface IArticle {
-    _id: number,
-    creationDate: string,
     price: number,
     author: number,
     type: number,
@@ -51,24 +51,31 @@ export const ArticleModel = {
         })
     },
 
-    updateFromJson: async( task:IArticleStringId) => {
+    updateFromJson: async( article:IArticleStringId) => {
 
         return;
 
     },
     
-    update: async ( task:IArticle) => {
+    update: async ( article:IArticle) => {
 
         return;
 
     },
 
-    create: async( taskToCreate:Omit<IArticle, "_id"> ):Promise<IArticle> => {
-        
-        return;
+    create: async( articleToCreate:IArticle) => {
+            connection.query(`INSERT INTO article (art_creationDate, art_price, user_author, artype_id, art_body) VALUES (SYSDATE(), ${articleToCreate.price}, ${articleToCreate.author}, ${articleToCreate.type}, '${articleToCreate.body}')`,
+            function(err:any, result:any){
+                if(err)
+                {
+                    throw err;
+                } else {
+                    result;
+                }
+            });
     },
 
-    delete: async ( task:IArticle ) => {
+    delete: async ( article:IArticle ) => {
 
         return;
     }
