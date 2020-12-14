@@ -22,7 +22,14 @@ if (!fs_1.default.existsSync(file)) {
 }
 exports.UserModel = {
     getAll: () => {
-        const users = JSON.parse(fs_1.default.readFileSync(file, { encoding: 'utf-8' }));
+        const users = connection.query('SELECT * FROM user', function (err, result) {
+            if (err) {
+                throw err;
+            }
+            else {
+                return result;
+            }
+        });
         console.log('UserModel.getAll', users);
         return users;
     },
