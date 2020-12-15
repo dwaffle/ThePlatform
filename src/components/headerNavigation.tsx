@@ -1,21 +1,24 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import './style.scss'
+
 
 
 export default function HeaderNavigation( props:{} ){
 
     return <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar className="navbarBG" collapseOnSelect expand="lg">
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav>
+                <Nav className="navFont">
                     <LinkContainer exact to="/"><Nav.Link>The Platform</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav className="mr-auto">
                     <LinkContainer to="/articles"><Nav.Link>Articles</Nav.Link></LinkContainer>
                     <LinkContainer to="/organization"><Nav.Link>Organizations</Nav.Link></LinkContainer>
                     <LinkContainer to="/series"><Nav.Link>Series</Nav.Link></LinkContainer>
+                    <LinkContainer to="/editor"><Nav.Link>Editor</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav>
                     <input type="search" placeholder="Search" aria-label="Search"></input>
