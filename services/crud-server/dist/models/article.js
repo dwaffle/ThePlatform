@@ -47,14 +47,11 @@ exports.ArticleModel = {
             });
         });
     }),
-    updateFromJson: (article) => __awaiter(void 0, void 0, void 0, function* () {
-        return;
-    }),
     update: (article) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }),
     create: (articleToCreate) => __awaiter(void 0, void 0, void 0, function* () {
-        connection.query(`INSERT INTO article (art_creationDate, art_price, user_author, artype_id, art_body) VALUES (SYSDATE(), ${articleToCreate.price}, ${articleToCreate.author}, ${articleToCreate.type}, '${articleToCreate.body}')`, function (err, result) {
+        connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.title}', '${articleToCreate.author}', SYSDATE(), ${articleToCreate.price}, '${articleToCreate.description}', '${articleToCreate.body}', ${articleToCreate.type})`, function (err, result) {
             if (err) {
                 throw err;
             }
