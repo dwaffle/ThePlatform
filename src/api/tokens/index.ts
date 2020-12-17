@@ -9,7 +9,7 @@ interface ITokenPostRequest {
 export default {
 
     post: async ( body:ITokenPostRequest ) => {
-        return axios.post( `${HOSTNAME}/tokens`, body).then( response => {
+        return axios.post( `${HOSTNAME}/tokens`, body).then( (response:any) => {
             window.localStorage.setItem("token", response.data.token);
             return response.data;
         });
