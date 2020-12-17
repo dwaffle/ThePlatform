@@ -20,6 +20,8 @@ export function createNewArticle (){
     //         event.target.value = "";
     //     }
     // };
+    
+
 
 
     return <MainLayout>
@@ -44,22 +46,19 @@ export function createNewArticle (){
 
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." />
+                    <input type="radio" name="articleType" value="Yes" checked/>
                     <label>All Members </label>
                 </Form.Group>
 
                 <Form.Group className="FormRowSpacing">
-                    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." />
+                    <input type="radio" name="articleType" value="No"/>
                     <label> Paid Members Only </label>
                 </Form.Group>
-            </Form.Row>
 
-            <Form.Row>
-                <Form.Group>
-                    <Form.Control type="price" placeholder="Price" />
+                <Form.Group className="FormRowPrice">
+                    <input type="radio" name="articleType" value="Price" /> Price <input type="text" name="articleType" />
                 </Form.Group>
             </Form.Row>
-
             
 
             <Form.Row>
