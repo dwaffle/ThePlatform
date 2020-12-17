@@ -11,6 +11,7 @@ import AdminSite from './pages/AdminPage';
 import Article from './components/ArticleList/HorizontalArticleList';
 
 import './App.scss';
+import EditorPage from './components/EditorPage/EditorPage';
 
 
 export default function ThePlatformWebsite( props:{} ){
@@ -27,6 +28,7 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/organization" component={Organization} />
                     <Route path="/articles" component={Article} />
+                    <Route path="/editor" component={EditorPage} />
 
                     <Route path="/newArticle" component={createNewArticle} />
                     <Route path="/" component={HomePage} />
