@@ -3,9 +3,9 @@ import { UserModel } from '../../models/user';
 
 export function get( app:any ){
 
-    app.get("/users", authenticateToken, ( request:any, response:any ) => {
+    app.get("/users", authenticateToken, async ( request:any, response:any ) => {
 
-        const users = UserModel.getAllWithoutPassword();
+        const users =  await UserModel.getAll();
         response.status(200).send(users);
 
     });
