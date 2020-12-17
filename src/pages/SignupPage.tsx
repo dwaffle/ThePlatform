@@ -1,4 +1,5 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout'
 import {Card, Form, Button, Row, Col, InputGroup} from 'react-bootstrap'
 import api from '../api'
@@ -6,7 +7,7 @@ import './style.scss'
 
 
 export default function SignupPage(props:{}){
-
+    const history = useHistory();
     const [firstName, setFirstName] = useState<string>('')
     const [lastName, setLastName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
@@ -18,8 +19,8 @@ export default function SignupPage(props:{}){
     function onPrivacyTaskHandler(e:ChangeEvent<HTMLInputElement>) {
             setPrivacy(e.target.checked);
     }
+
     function onsubmit(){
-            console.log(firstName + " " + lastName + " " + email + " " + username + " " + password + " " + privacyIsChecked);
             if(!firstName || !lastName || !username || !password || !privacyIsChecked)
             {
               return;  
@@ -31,9 +32,9 @@ export default function SignupPage(props:{}){
                 user_userName:username,
                 user_password:password
             }
-            console.log(objectToSend);
             api.signup.post(objectToSend);
-            
+            history.push('/articles');
+            return;
     }
 
     function AllFormsFilledOut(){
