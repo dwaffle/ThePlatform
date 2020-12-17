@@ -1,4 +1,9 @@
 import fs from 'fs';
+import dotenv from 'dotenv';
+import { getAllByAltText } from '@testing-library/react';
+import { reject } from 'lodash';
+import { resolve } from 'path';
+dotenv.config();
 
 
 var mysql = require('mysql');
@@ -22,42 +27,80 @@ if(!fs.existsSync(file)){
 }
 
 export interface IUser {
-    username: string;
-    password: string;
-    fullName: string;
+    user_id:number,
+    user_type:number,
+    payout_id:number,
+    user_userName:string,
+    user_firstName:string,
+    user_lastName:string,
+    user_password:string,
+    user_email:string,
+    user_creation_date:string
 }
 
 export interface IUserNoPassword {
-    username: string;
-    fullName: string;
+    user_id:number,
+    user_type:number,
+    payout_id:number,
+    user_userName:string,
+    user_firstName:string,
+    user_lastName:string,
+    user_email:string,
+    user_creation_date:string
 }
+
 
 export const UserModel = {
 
-    getAll: ():IUser[] => {
-        const users = JSON.parse(fs.readFileSync(file, { encoding: 'utf-8' }));
-        console.log('UserModel.getAll', users);
-        return users;
+    getAll: ():Promise<IUser[]> => {
+        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user', function(err:any, result:any){
+            if(err){
+                reject(err);
+            } else {
+                console.log(result);
+                resolve(result);
+            }
+        })
+    })
     },
 
-    getAllWithoutPassword: ():IUserNoPassword[] => {
-        return UserModel.getAll().map(( user:IUser ) => {
-            delete user.password;
-            return user;
-        });
+    getAllWithoutPassword: ():any => {
+        return new Promise<any>((resolve, reject) => {connection.query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
+    , function(err:any, result:any){
+            if(err){
+                reject(err)
+            } else {
+                console.log(result);
+                resolve(result);
+            }
+        }
+    })
     },
 
-    setAll: ( users:IUser[] ) => {
-        fs.writeFileSync(file, JSON.stringify(users, null, 4), { encoding: 'utf-8' });
+    setAll: async (user:IUser) => {
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (1, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+        function(err:any, result:any){
+            if(err){
+                reject(err)
+            } else {
+                console.log(result)
+                resolve(result)
+            }
+        }
     },
 
-    getByUsername: ( username:string ): IUser|undefined => {
-
-        return UserModel.getAll().find( user => {
-            console.log(user, username);
-            return user.username === username;
-        });
-
+    getByUsername: async ( username:string ):Promise<IUser> => {
+        return new Promise<IUser>((resolve, reject) => {
+            
+            connection.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function(err:any, result: any){
+                if(err){
+                    reject(err);
+                } else {
+                    console.log(result);
+                    resolve(result);
+                }
+            })
+        })
+      
     }
-
 }

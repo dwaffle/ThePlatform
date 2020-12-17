@@ -6,10 +6,8 @@ const password_1 = require("../../models/password");
 function post(app) {
     app.post("/users", (request, response) => {
         const payload = request.body;
-        payload.password = password_1.PasswordModel.hash(payload.password);
-        const users = user_1.UserModel.getAll();
-        users.push(payload);
-        user_1.UserModel.setAll(users);
+        payload.user_password = password_1.PasswordModel.hash(payload.user_password);
+        user_1.UserModel.setAll(payload);
         response.status(201).send();
     });
 }

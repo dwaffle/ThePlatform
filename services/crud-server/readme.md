@@ -2,6 +2,16 @@ Using the CRUD server:
 
 ## User
 
+GET: Sending to /users gets all the users.
+POST: Send to /users to create a new user.
+Requests look like
+{
+    "user_userName": "Doug",
+    "user_firstName": "Doug",
+    "user_lastName": "Waffle",
+    "user_password": "hunter2",
+    "user_email": "dwaffle13154@alumni.focuscollege.com"
+}
 
 ## Article
 
