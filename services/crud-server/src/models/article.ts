@@ -18,11 +18,10 @@ export interface IArticle {
     price: number,
     author: number,
     type: number,
+    description: string,
+    title: string,
     body: string
 }
-    
-
-type IArticleStringId = Omit<IArticle, "_id"> & { _id: number };
 
 export const ArticleModel = {
 
@@ -51,11 +50,11 @@ export const ArticleModel = {
         })
     },
 
-    updateFromJson: async( article:IArticleStringId) => {
+    // updateFromJson: async( article:IArticleStringId) => {
 
-        return;
+    //     return;
 
-    },
+    // },
     
     update: async ( article:IArticle) => {
 
@@ -64,7 +63,7 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_creationDate, art_price, user_author, artype_id, art_body) VALUES (SYSDATE(), ${articleToCreate.price}, ${articleToCreate.author}, ${articleToCreate.type}, '${articleToCreate.body}')`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.title}', '${articleToCreate.author}', SYSDATE(), ${articleToCreate.price}, '${articleToCreate.description}', '${articleToCreate.body}', ${articleToCreate.type})`,
             function(err:any, result:any){
                 if(err)
                 {
