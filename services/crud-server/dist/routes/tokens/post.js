@@ -19,7 +19,6 @@ function post(app) {
         const password = request.body.user_password;
         const matchedUser = yield user_1.UserModel.getByUsername(username);
         const result = JSON.parse(JSON.stringify(matchedUser));
-        console.log(result);
         if (!matchedUser) {
             response.status(404).send({
                 message: `Cannot find user with username ${username}`
@@ -27,8 +26,6 @@ function post(app) {
             return;
         }
         const hashedPassword = password_1.PasswordModel.hash(`${password}`);
-        console.log(hashedPassword);
-        console.log(result.user_password);
         if (!(hashedPassword === result[0].user_password)) {
             response.status(401).send({
                 message: `Incorrect Password for user with username ${username}`

@@ -9,10 +9,12 @@ function LoginForm(){
     const authModel = useAuthentication();
     const [ username, setUsername ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
+    
 
     function handleLogin(e:any){
         e.preventDefault();
         authModel.login( username, password );
+        console.log(username, password)
     }
 
     return (
@@ -23,7 +25,7 @@ function LoginForm(){
                 <h1>Please Login</h1>
 
                 <Form>
-                <img src="/src/data/icon/login.jpeg" />
+                    <img src="/src/data/icon/login.jpeg" />
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Username</Form.Label>
                         <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e)=>setUsername(e.target.value)} />

@@ -10,9 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.get = void 0;
+const authenticator_1 = require("../../middleware/authenticator");
 const user_1 = require("../../models/user");
 function get(app) {
-    app.get("/users", (request, response) => __awaiter(this, void 0, void 0, function* () {
+    app.get("/users", authenticator_1.authenticateToken, (request, response) => __awaiter(this, void 0, void 0, function* () {
         const users = yield user_1.UserModel.getAll();
         response.status(200).send(users);
     }));
