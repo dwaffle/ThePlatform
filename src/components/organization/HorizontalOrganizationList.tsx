@@ -4,10 +4,10 @@ import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 import './style.scss'
 
 
-export interface IOrganization {
-    name: string;
-    description: string;
-}
+// export interface IOrganization {
+//     name: string;
+//     description: string;
+// }
 
 
 export default function HorizontalOrganizationList( props:{}){
