@@ -5,9 +5,10 @@ import Organization from './pages/Organization/OrganizationPage';
 import Series from './pages/SeriesPage';
 import Profile from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
-import {createNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
+import {CreateNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
 import IndividualArticle from './components/ArticleList/IndividualArticle';
 import Article from './components/ArticleList/HorizontalArticleList';
+import LoginPage from './pages/LoginPage'
 
 import './App.scss';
 import EditorPage from './components/EditorPage/EditorPage';
@@ -26,9 +27,9 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/organization" component={Organization} />
                     <Route path="/articles" component={Article} />
-                    <Route path="/editor" component={EditorPage} />
+                    <Route path="/editor" component={LoginPage} />
 
-                    <Route path="/newArticle" component={createNewArticle} />
+                    <Route path="/newArticle" component={CreateNewArticle} />
                     <Route path="/" component={HomePage} />
                 </Switch>
             </BrowserRouter>

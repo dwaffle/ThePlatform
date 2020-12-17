@@ -18,6 +18,7 @@
     "lodash": "^4.17.20",
     "material-ui-rating": "^4.2.0",
     "react": "^16.13.1",
+    "react-api": "^1.0.5",
     "react-bootstrap": "^1.4.0",
     "react-bootstrap-tagsinput": "^0.5.0",
     "react-dom": "^16.13.1",
@@ -29,6 +30,7 @@
     "react-star-rating": "^1.4.2",
     "react-star-ratings": "^2.3.0",
     "react-tagsinput": "^3.19.0",
+    "recoil": "^0.1.2",
     "typescript": "^3.8.3"
   },
   "scripts": {
@@ -60,6 +62,7 @@
     "@types/react-router-bootstrap": "^0.24.5",
     "@types/react-router-dom": "^5.1.5",
     "@types/webpack-env": "^1.15.2",
+    "axios": "^0.21.0",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
