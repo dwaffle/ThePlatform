@@ -8,7 +8,7 @@ import './style.scss'
 export default function HeaderNavigation( props:{} ){
 
     return <>
-        <Navbar className="navbarBG" collapseOnSelect expand="lg">
+        <Navbar  variant="dark" className="navbarBG" collapseOnSelect expand="lg">
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="navFont">

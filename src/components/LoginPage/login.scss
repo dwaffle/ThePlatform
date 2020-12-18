@@ -2,18 +2,22 @@
 
 .Container {
     position: relative;
-    top: 25%;
-    left: 25%;
+    // // top: 25%;
+    // left: 25%;
+    // padding-top: 15px;
+    
+    
+    // max-height:500px;
 
     Form {
         border: 1px solid #d47501;
         background-color: #e9e8e8;
         width: 50vh;
-        height: 50vh;
+        min-height: 50vh;
         font-size: 2.2rem;
         font-family:Georgia, 'Times New Roman', Times, serif;
         padding: 10px;
-        justify-content: center;
+        // justify-content: center;
     }
 
     Button {

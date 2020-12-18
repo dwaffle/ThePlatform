@@ -1,9 +1,9 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
-$paddingTop: 15px;
+ $paddingTop: 15px;
 
 .horizontal-organization-list {
-    padding-top: $paddingTop;
+    // padding-top: $paddingTop;
     Form {
         padding-top: 0px;
     }
@@ -16,6 +16,9 @@ $paddingTop: 15px;
 .trending-organization {
     // border: 2px solid red;
     padding-top: $paddingTop;
+    table {
+        margin-bottom: 0;
+    }
 
     h3 {
         padding-bottom:15px ;
