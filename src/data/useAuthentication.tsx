@@ -7,7 +7,7 @@ export function useAuthentication(){
     const history = useHistory();    
     
     function login( username:string, password:string ){
-        api.article.post({ username, password }).then(response => {
+        api.tokens.post({ username, password }).then(response => {
             history.push('/');
         });
     }

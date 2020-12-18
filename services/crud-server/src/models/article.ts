@@ -1,7 +1,5 @@
 //To be replaced with the code for retriving an article.
 import dotenv from 'dotenv';
-import { callbackify } from 'util';
-import { deserialize } from 'v8';
 dotenv.config();
 
 var mysql = require('mysql');
@@ -15,7 +13,7 @@ var connection = mysql.createConnection({
 
 //Id and date of creation are generated for us by the SQL query.
 export interface IArticle {
-    price: number,
+    price?: number,
     author: number,
     type: number,
     description: string,
@@ -40,7 +38,7 @@ export const ArticleModel = {
     getById: async ( articleId:number ): Promise<any> => {
         return new Promise((resolve, reject) => {
             
-            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function(err:any, result: any){
+            connection.query(`SELECT * FROM article WHERE art_id = ${articleId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {

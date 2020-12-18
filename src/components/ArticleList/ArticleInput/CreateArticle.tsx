@@ -1,78 +1,82 @@
-import React, { useState, ChangeEvent } from 'react';
-import { Route, Switch } from 'react-router';
+import React, { useState } from 'react';
+import { Switch } from 'react-router';
 import Form from 'react-bootstrap/Form'
 import MainLayout from '../../../layouts/MainLayout';
-import './style.scss'
-// import {articleListState, articleCreationComp} from './ArticleCreationComp'
+import {useHistory} from 'react-router-dom';
+import api from '../../../api';
+import './style.scss';
 
 
 export function CreateNewArticle (){
 
-    // function onSubmit(){
-    //     article( description:string ) => create( article );
-    //     setArticle("");
+    
+    const history = useHistory();
+    const [ price, setPrice ] = useState<number>()
+    const [ type, setType ] = useState()
+    const [ title, setTitle ] = useState<string>();
+    const [ author, setAuthor ] = useState<string>();
+    const [ description, setDescription ] = useState<string>();
+    const [ body, setBody ] = useState<string>();
+
+    function onSubmit(){
+        if(!title || !author || !description|| !body || !type || !price)
+        {
+        alert ("Failed to Submit")
+          return;  
+        } 
+        const objectToSend = {
+
+            price:price,
+            type: type,
+            art_title:title,
+            description:description,
+            user_author:author,
+            art_body:body,
+        }
+        api.article.post(objectToSend);
+        history.push('/article');
+        return;
+    }
+
+    // function articleType () {
+    //     if (!allMembers )
     // }
-
-    const [ submit, setSubmit ] = useState();
-    // const [ title, setTitle ] = useState<string>();
-    // const [ author, setAuthor ] = useState<string>();
-    // const [ description, setDescription ] = useState<string>();
-    // const [ body, setBody ] = useState<string>();
-
-    const [ article, setArticle ] = useState()
-
-    // function newTitle( event:ChangeEvent<HTMLTextAreaElement> ){
-    //     setTitle(event.target.value);
-    // }
-    // function newAuthor( event:ChangeEvent<HTMLTextAreaElement> ){
-    //     setAuthor(event.target.value);
-    // }
-    // function newDesc( event:ChangeEvent<HTMLTextAreaElement> ){
-    //     setDescription(event.target.value);
-    // }
-    // function newBody( event:ChangeEvent<HTMLTextAreaElement> ){
-    //     setBody(event.target.value);
-    // }
-
-
-
-
 
     return <MainLayout>
         <Switch>
         <Form method="Post">
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Title" placeholder="Article Title" value={article} />
+                    <Form.Control type="Title" placeholder="Article Title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                 </Form.Group>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" placeholder="This User" value={article}/>
+                    <Form.Control type="Author" placeholder="This User" value={author} onChange={(e)=>setAuthor(e.target.value)}/>
                 </Form.Group>
             </Form.Row>
             
     
 
             <Form.Row className="FormRowSpacing">
-                <Form.Control as="textarea" placeholder= "Description" rows={3} value={article}/>
+                <Form.Control as="textarea" placeholder= "Description" rows={3} value={description} onChange={(e)=>setDescription(e.target.value)} />
             </Form.Row>
 
             <Form.Row className="FormRowSpacing">
-                <Form.Control as="textarea" placeholder= "Body" rows={15} value={article} />
+                <Form.Control as="textarea" placeholder= "Body" rows={15} value={body} onChange={(e)=>setBody(e.target.value)}/>
             </Form.Row>
 
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <input type="radio" name="articleType" value="Yes" checked/>
+                    <input type="radio" name="articleType" value={type} onChange={(e)=>setType} checked/>
                     <label>All Members </label>
                 </Form.Group>
 
                 <Form.Group className="FormRowSpacing">
-                    <input type="radio" name="articleType" value="No"/>
+                    <input type="radio" name="articleType" value={type} onChange={(e)=>setType} />
                     <label> Paid Members Only </label>
                 </Form.Group>
 
                 <Form.Group className="FormRowPrice">
-                    <input type="radio" name="articleType" value="Price" /> Price <input type="text" name="articleType" />
+                    <input type="radio" name="articleType" value="Price" /> Price <input type="number" name="articleType" value={price} onChange={(e)=>setPrice} />
                 </Form.Group>
             </Form.Row>
             
@@ -99,7 +103,7 @@ export function CreateNewArticle (){
                 <input type="text" placeholder="Press enter to add tags" />
                 </Form.Group>
             </Form.Row>
-            <button type="submit">Submit</button>
+            <button type="submit" onClick={onSubmit} >Submit</button>
         </Form>
     </Switch>
     

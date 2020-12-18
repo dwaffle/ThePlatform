@@ -21,9 +21,6 @@ export default function HeaderNavigation( props:{} ){
                     <LinkContainer to="/editor"><Nav.Link>Editor</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav>
-                    <input type="search" placeholder="Search" aria-label="Search"></input>
-                    <button type="submit">Search</button>
-                    <LinkContainer to="/signup"><Nav.Link>Sign Up</Nav.Link></LinkContainer>
                     <LinkContainer to="/profile"><Nav.Link>Profile</Nav.Link></LinkContainer>
                 </Nav>
             </Navbar.Collapse>

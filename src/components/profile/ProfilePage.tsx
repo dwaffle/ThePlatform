@@ -18,7 +18,9 @@ export default function ProfilePage( props:{} ){
     
     // Simple Profile Management (name, email, phone) 
 
-
+    function onClickLogOut(){
+        window.localStorage.removeItem('token');
+    }
 
     return <>
 
@@ -48,6 +50,7 @@ export default function ProfilePage( props:{} ){
                 </Col>
             </Row>
             <Button  href="#">Edit</Button>
+            <Button variant="primary" type="submit" onClick={onClickLogOut}> Log Out</Button>
 
 
 

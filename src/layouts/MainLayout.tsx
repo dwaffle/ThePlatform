@@ -17,7 +17,7 @@ export default function MainLayout (props:PropsWithChildren <{}>){
             <Row> 
                 <Col>  { props.children }</Col>
             </Row>  
-            <Footer />   
+            {/* <Footer />    */}
         </Container>
 
     </>
