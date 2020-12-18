@@ -1,65 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Route, Switch } from 'react-router';
 import Form from 'react-bootstrap/Form'
 import MainLayout from '../../../layouts/MainLayout';
 import './style.scss'
 // import "@pathofdev/react-tag-input/build/index.css";
+// import {articleListState, articleCreationComp} from './ArticleCreationComp'
 
 
-export function createNewArticle (){
+export function CreateNewArticle (){
 
-    // Tags will need to be changed eventually as <ReactTags>
-    // Author needs to target the author
-    // rating and rateme Needs to be visual placeholders? or removed
+    // function onSubmit(){
+    //     article( description:string ) => create( article );
+    //     setArticle("");
+    // }
 
-    // const [tags, setTags] = React.useState([]);
-    
-    // const addTags = event => {
-    //     if (event.key === "Enter" && event.target.value !== "") {
-    //         setTags([...tags, event.target.value]);
-    //         event.target.value = "";
-    //     }
-    // };
+    const [ submit, setSubmit ] = useState();
+    // const [ title, setTitle ] = useState<string>();
+    // const [ author, setAuthor ] = useState<string>();
+    // const [ description, setDescription ] = useState<string>();
+    // const [ body, setBody ] = useState<string>();
+
+    const [ article, setArticle ] = useState()
+
+    // function newTitle( event:ChangeEvent<HTMLTextAreaElement> ){
+    //     setTitle(event.target.value);
+    // }
+    // function newAuthor( event:ChangeEvent<HTMLTextAreaElement> ){
+    //     setAuthor(event.target.value);
+    // }
+    // function newDesc( event:ChangeEvent<HTMLTextAreaElement> ){
+    //     setDescription(event.target.value);
+    // }
+    // function newBody( event:ChangeEvent<HTMLTextAreaElement> ){
+    //     setBody(event.target.value);
+    // }
+
+
+
 
 
     return <MainLayout>
         <Switch>
-        <Form>
+        <Form method="Post">
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Title" placeholder="Article Title" />
+                    <Form.Control type="Title" placeholder="Article Title" value={article} />
                 </Form.Group>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" placeholder="This User" />
+                    <Form.Control type="Author" placeholder="This User" value={article}/>
                 </Form.Group>
             </Form.Row>
+            
+    
 
-            <Form.Row>
-                <Form.Control as="textarea" placeholder= "Description" rows={3} />
+            <Form.Row className="FormRowSpacing">
+                <Form.Control as="textarea" placeholder= "Description" rows={3} value={article}/>
             </Form.Row>
 
-            <Form.Row>
-                <Form.Control as="textarea" placeholder= "Body" rows={15}  />
+            <Form.Row className="FormRowSpacing">
+                <Form.Control as="textarea" placeholder= "Body" rows={15} value={article} />
             </Form.Row>
 
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." />
+                    <input type="radio" name="articleType" value="Yes" checked/>
                     <label>All Members </label>
                 </Form.Group>
 
                 <Form.Group className="FormRowSpacing">
-                    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="..." />
+                    <input type="radio" name="articleType" value="No"/>
                     <label> Paid Members Only </label>
                 </Form.Group>
-            </Form.Row>
 
-            <Form.Row>
-                <Form.Group>
-                    <Form.Control type="price" placeholder="Price" />
+                <Form.Group className="FormRowPrice">
+                    <input type="radio" name="articleType" value="Price" /> Price <input type="text" name="articleType" />
                 </Form.Group>
             </Form.Row>
-
             
 
             <Form.Row>

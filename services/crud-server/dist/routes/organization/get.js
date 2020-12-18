@@ -10,20 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.get = void 0;
-const article_1 = require("../../../models/article");
+const authenticator_1 = require("../../middleware/authenticator");
+const organization_1 = require("../../models/organization");
 function get(app) {
-    app.get('/articles/:articleId', (request, response) => __awaiter(this, void 0, void 0, function* () {
-        const articleId = request.params.articleId;
-        const foundArticle = yield article_1.ArticleModel.getById(articleId);
-        if (foundArticle) {
-            response.send(foundArticle);
-        }
-        else {
-            response.status(404).send({
-                error: 404,
-                message: `Cannot find article with number ${articleId}`
-            });
-        }
+    app.get("/Organizations", authenticator_1.authenticateToken, (request, response) => __awaiter(this, void 0, void 0, function* () {
+        const orgs = yield organization_1.OrganizationModel.getAll;
+        response.status(200).send(orgs);
     }));
 }
 exports.get = get;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Component = () => {
+export const Component = () => {
     const [fileSelected, setFileSelected] = React.useState<File>() // also tried <string | Blob>
 
     const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {

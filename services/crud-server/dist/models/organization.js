@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArticleModel = void 0;
+exports.OrganizationModel = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 var mysql = require('mysql');
@@ -22,10 +22,10 @@ var connection = mysql.createConnection({
     password: process.env.MYSQL_PASSWORD,
     database: 'mydb'
 });
-exports.ArticleModel = {
+exports.OrganizationModel = {
     getAll: () => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM article', function (err, result) {
+            connection.query('SELECT * FROM organization', function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -35,9 +35,9 @@ exports.ArticleModel = {
             });
         });
     }),
-    getById: (articleId) => __awaiter(void 0, void 0, void 0, function* () {
+    getById: (OrganizationId) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM article WHERE art_id = ${articleId}`, function (err, result) {
+            connection.query(`SELECT * FROM organization WHERE article_id = ${OrganizationId}`, function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -47,11 +47,11 @@ exports.ArticleModel = {
             });
         });
     }),
-    update: (article) => __awaiter(void 0, void 0, void 0, function* () {
+    update: (organization) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }),
-    create: (articleToCreate) => __awaiter(void 0, void 0, void 0, function* () {
-        connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.title}', '${articleToCreate.author}', SYSDATE(), ${articleToCreate.price}, '${articleToCreate.description}', '${articleToCreate.body}', ${articleToCreate.type})`, function (err, result) {
+    create: (organization) => __awaiter(void 0, void 0, void 0, function* () {
+        connection.query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${organization.organization_id}', '${organization.organization_title}',${organization.organization_price}, '${organization.organization_type}')`, function (err, result) {
             if (err) {
                 throw err;
             }
@@ -60,8 +60,8 @@ exports.ArticleModel = {
             }
         });
     }),
-    delete: (article) => __awaiter(void 0, void 0, void 0, function* () {
+    delete: (organization) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     })
 };
-//# sourceMappingURL=article.js.map
+//# sourceMappingURL=organization.js.map
