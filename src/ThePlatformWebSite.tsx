@@ -6,6 +6,8 @@ import Series from './pages/SeriesPage';
 import Profile from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
 import {CreateNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
+import IndividualArticle from './components/ArticleList/IndividualArticle';
+import AdminSite from './pages/AdminPage';
 // import IndividualArticle from './components/ArticleList/IndividualArticle';
 import Article from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage'
@@ -27,6 +29,7 @@ export default function ThePlatformWebsite( props:{} ){
     return (            
             <BrowserRouter>
                 <Switch>
+                    <Route path="/admin" component={AdminSite} />
                     <Route path="/organization" component={Organization} />
                     <Route path="/series" component={Series} />
                     <Route path="/profile" component={Profile} />

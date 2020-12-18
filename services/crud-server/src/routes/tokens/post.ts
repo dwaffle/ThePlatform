@@ -33,7 +33,7 @@ export function post( app:any ){
         response.status(201).send({
             token: TokenModel.generateAccessToken({
                 username,
-                fullName: matchedUser.user_userName
+                fullName: matchedUser.user_firstName
             })
         });
 
