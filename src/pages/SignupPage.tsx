@@ -1,10 +1,49 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout'
 import {Card, Form, Button, Row, Col, InputGroup} from 'react-bootstrap'
-import HeaderNavigation from '../components/headerNavigation'
+import api from '../api'
 import './style.scss'
 
+
 export default function SignupPage(props:{}){
+    const history = useHistory();
+    const [firstName, setFirstName] = useState<string>('')
+    const [lastName, setLastName] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [username, setUsername] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [privacyIsChecked, setPrivacy] = useState<boolean>()
+
+
+    function onPrivacyTaskHandler(e:ChangeEvent<HTMLInputElement>) {
+            setPrivacy(e.target.checked);
+    }
+
+    function onsubmit(){
+            if(!firstName || !lastName || !username || !password || !privacyIsChecked)
+            {
+              return;  
+            } 
+            const objectToSend = {
+                user_firstName:firstName,
+                user_lastName:lastName,
+                user_email:email,
+                user_userName:username,
+                user_password:password
+            }
+            api.signup.post(objectToSend);
+            history.push('/articles');
+            return;
+    }
+
+    function AllFormsFilledOut(){
+        if(!firstName || !lastName || !email || !username || !password || !privacyIsChecked)
+            {
+              return <div>You must fill out all forms and accept the Terms and Conditions</div>  
+            } 
+            return null
+    }
 
     //If signed in, go to user profile else go to signup will go here.
     return (
@@ -20,29 +59,33 @@ export default function SignupPage(props:{}){
                 <Row >
                     <Col>
                         <Form.Label>First Name</Form.Label>
-                        <Form.Control type="firstname" placeholder="First Name" />
+                        <Form.Control className="firstname" type="firstname" placeholder="First Name" value={firstName} onChange={(e)=>setFirstName(e.target.value)}/>
                     </Col>
                     <Col>
-                        <Form.Label className="lastname">Last Name</Form.Label>
-                        <Form.Control type="lastname" placeholder="Last Name" />
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control className="lastname" type="lastname" placeholder="Last Name" value={lastName} onChange={(e)=>setLastName(e.target.value)} />
+                    </Col>
+                    <Col>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control className="email" type="email" placeholder="Email@example.com" value={email} onChange={(e)=>setEmail(e.target.value)}/>
                     </Col>
                 </Row>
                 </Form.Group>
-                <Form.Group className="username">
-                    
+                <Form.Group>
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control type="username" placeholder="Enter Username" />
+                    <Form.Control className="username" type="username" placeholder="Enter Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
                 </Form.Group>
-                <Form.Group className="password">
+                <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control className="password" type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                 </Form.Group>
                 <InputGroup>
                     <InputGroup.Prepend>
-                        <InputGroup.Checkbox className="privacy"></InputGroup.Checkbox>Accept the Privacy Policy and Terms of Use Agreement
+                        <InputGroup.Checkbox className="privacy" onChange={onPrivacyTaskHandler}></InputGroup.Checkbox>Accept the Privacy Policy and Terms of Use Agreement
                     </InputGroup.Prepend>
                 </InputGroup>
-                <Button variant="primary" type="submit" className="submit">Submit</Button>
+                {AllFormsFilledOut()}
+                <Button variant="primary" type="submit" className="submit-btn" onClick={onsubmit}>Submit</Button>
             </Card>
         </div>
     </div>
