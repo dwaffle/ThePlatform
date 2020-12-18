@@ -4,7 +4,8 @@ import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 import './style.scss'
 
 export default function HomePage( props:{} ){
- 
+
+  
 
     return <>
             
