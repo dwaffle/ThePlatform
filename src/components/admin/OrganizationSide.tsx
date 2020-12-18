@@ -30,8 +30,9 @@ let organization : IOrganization = {
 
 
 
-export default function OrganizationSide( props:{organization:IOrganization} ){
- 
+// export default function OrganizationSide( props:{organization:IOrganization} ){
+
+export default function OrganizationSide( props:{} ){
     return <>
 
             <Row>
@@ -48,12 +49,19 @@ export default function OrganizationSide( props:{organization:IOrganization} ){
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>Title</td>
+                                    <td>Type</td>
+                                    <td>Price</td>
+                                    <td>active</td>
+
+                                </tr>
+                                {/* <tr>
                                     <td>{ props.organization.organization_title }</td>
                                     <td>{ props.organization.organization_type}</td>
                                     <td>{ props.organization.organization_price}</td>
                                     <td>{ props.organization.organization_status}</td>
 
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </Table>
                     </Col>

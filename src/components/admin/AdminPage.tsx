@@ -15,7 +15,7 @@ export default function AdminPage( props:{} ){
         <h1>Admin page</h1>
             <Row>
                 <Col>
-                    {/* <Organization /> */}
+                    <Organization />
                 </Col>
                 <Col>
                      <Member />
