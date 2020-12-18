@@ -1,13 +1,5 @@
-
-
 .Container {
     position: relative;
-    // // top: 25%;
-    // left: 25%;
-    // padding-top: 15px;
-    
-    
-    // max-height:500px;
 
     Form {
         border: 1px solid #d47501;
@@ -17,18 +9,9 @@
         font-size: 2.2rem;
         font-family:Georgia, 'Times New Roman', Times, serif;
         padding: 10px;
-        // justify-content: center;
-    }
-
-    Button {
-        color:white;
-        background-color: rgb(36, 36, 36);
-        border: none;
-        margin-left: 240px;
     }
 
 }
-
 
 h1 {
     border-bottom: 1px solid black;
@@ -41,3 +24,10 @@ h1 {
 .RememberMe {
     font-size: 1rem;
 }
+
+// .ButtonSubmit {
+//     color:white;
+//     background-color: rgb(36, 36, 36);
+//     border: none;
+//     margin-left: 240px;
+// }

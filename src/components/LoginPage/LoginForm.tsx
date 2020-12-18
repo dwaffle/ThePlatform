@@ -21,6 +21,10 @@ function LoginForm(){
         history.push('/articles');
     }
 
+    function directToSignUp() {
+        history.push('/signup');
+    }
+
     return (<>
 
             <Row>
@@ -46,7 +50,8 @@ function LoginForm(){
                                 <input type="checkbox" id="vehicle1" /> Remember me 
                             </label>
                             <Button className="ButtonSubmit" variant="primary" type="submit" onClick={handleLogin}> Submit</Button>
-                            
+                            <label> Not on the Platform yet?</label>
+                            <Button className="ButtonSubmit" variant="primary" type="submit" onClick={directToSignUp}> Sign up</Button>
                             
                             
                             
