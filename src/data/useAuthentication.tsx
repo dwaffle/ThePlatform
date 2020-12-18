@@ -8,7 +8,7 @@ export function useAuthentication(){
     
     function login( username:string, password:string ){
         api.article.post({ username, password }).then(response => {
-            history.push('/tasks');
+            history.push('/');
         });
     }
 
