@@ -16,7 +16,7 @@ export default function IndividualArticle () {
 
     return <MainLayout>
 
-        <Container className="ContainerBody">
+        <Container className="ContainerPosition">
 
             <Row className="articleTitle" > Godzilla Strikes Again! </Row>
             <Row className="articleAuthor"> Author: Hubie Dubios </Row>

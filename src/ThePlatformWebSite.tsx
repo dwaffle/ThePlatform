@@ -8,16 +8,23 @@ import SignupPage from './pages/SignupPage';
 import {CreateNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
 import IndividualArticle from './components/ArticleList/IndividualArticle';
 import AdminSite from './pages/AdminPage';
+// import IndividualArticle from './components/ArticleList/IndividualArticle';
 import Article from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage'
 
 import './App.scss';
-import EditorPage from './components/EditorPage/EditorPage';
+// import EditorPage from './components/EditorPage/EditorPage';
 
 
 export default function ThePlatformWebsite( props:{} ){
 
 
+    const requireAuth = () => {
+        if(!localStorage.getItem('token')) {
+           return <Route path="/login" />
+        }
+        return <Route path="/" component={HomePage} />
+    }
 
     return (            
             <BrowserRouter>
@@ -32,6 +39,7 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/editor" component={LoginPage} />
 
                     <Route path="/newArticle" component={CreateNewArticle} />
+                    {/* <Route path="/" component={requireAuth}/> */}
                     <Route path="/" component={HomePage} />
                 </Switch>
             </BrowserRouter>

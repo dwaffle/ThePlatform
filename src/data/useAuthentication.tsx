@@ -7,8 +7,8 @@ export function useAuthentication(){
     const history = useHistory();    
     
     function login( username:string, password:string ){
-        api.article.post({ username, password }).then(response => {
-            history.push('/tasks');
+        api.tokens.post({ username, password }).then(response => {
+            history.push('/articles');
         });
     }
 
@@ -17,3 +17,5 @@ export function useAuthentication(){
     }
     
 }
+
+  
