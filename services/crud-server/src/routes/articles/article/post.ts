@@ -2,7 +2,7 @@ import {IArticle, ArticleModel} from '../../../models/article'
 import {authenticateToken} from '../../../middleware/authenticator'
 
 export function post(app:any){
-    app.post("/article", authenticateToken, async (request:any, response: any) => {
+    app.post("/articles", authenticateToken, async (request:any, response: any) => {
         try {
        const article:IArticle = request.body;
         ArticleModel.create({

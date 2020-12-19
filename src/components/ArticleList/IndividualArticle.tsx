@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MainLayout from '../../layouts/MainLayout';
 import {IArticle} from './Articles';
 import Rating from 'react-rating'
-
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 import './style.scss'
 import {Container, Row, Col } from 'react-bootstrap';
 
@@ -11,9 +11,6 @@ export default function IndividualArticle () {
 
     const [rating1, setRating1] = useState(0);
     
-    
-
-
     return <MainLayout>
 
         <Container className="ContainerPosition">
