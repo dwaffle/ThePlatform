@@ -1,5 +1,7 @@
 //To be replaced with the code for retriving an article.
 import dotenv from 'dotenv';
+import { callbackify } from 'util';
+import { deserialize } from 'v8';
 dotenv.config();
 
 var mysql = require('mysql');
@@ -12,20 +14,20 @@ var connection = mysql.createConnection({
 
 
 //Id and date of creation are generated for us by the SQL query.
-export interface IArticle {
-    price?: number,
-    author: number,
-    type: number,
-    description: string,
-    title: string,
-    body: string
+export interface IOrganization {
+    organization_id: number;
+    organization_title: string;
+    organization_price: number;
+    organization_type: number;
+    // organization_status: boolean;
+
 }
 
-export const ArticleModel = {
+export const OrganizationModel = {
 
     getAll: async ():Promise<any> => {
         return new Promise((resolve, reject) => {
-                connection.query('SELECT * FROM article', function(err:any, result:any){
+                connection.query('SELECT * FROM organization', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {
@@ -35,10 +37,10 @@ export const ArticleModel = {
             })
 },
 
-    getById: async ( articleId:number ): Promise<any> => {
+    getById: async ( OrganizationId:number ): Promise<any> => {
         return new Promise((resolve, reject) => {
             
-            connection.query(`SELECT * FROM article WHERE art_id = ${articleId}`, function(err:any, result: any){
+            connection.query(`SELECT * FROM organization WHERE article_id = ${OrganizationId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -48,20 +50,15 @@ export const ArticleModel = {
         })
     },
 
-    // updateFromJson: async( article:IArticleStringId) => {
-
-    //     return;
-
-    // },
-    
-    update: async ( article:IArticle) => {
+  
+    update: async ( organization:IOrganization) => {
 
         return;
 
     },
 
-    create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.title}', '${articleToCreate.author}', SYSDATE(), ${articleToCreate.price}, '${articleToCreate.description}', '${articleToCreate.body}', ${articleToCreate.type})`,
+    create: async( organization:IOrganization) => {
+            connection.query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${organization.organization_id}', '${organization.organization_title}',${organization.organization_price}, '${organization.organization_type}')`,
             function(err:any, result:any){
                 if(err)
                 {
@@ -72,7 +69,7 @@ export const ArticleModel = {
             });
     },
 
-    delete: async ( article:IArticle ) => {
+    delete: async ( organization:IOrganization ) => {
 
         return;
     }

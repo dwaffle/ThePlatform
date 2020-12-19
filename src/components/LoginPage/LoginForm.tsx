@@ -23,29 +23,50 @@ function LoginForm(){
         history.push('/articles');
     }
 
-    return (
-        
-        <Container className="Container">
-            <Form className="FormLogin">
-                <h1 className="LoginLabel">User Login</h1>
-                    
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
-                </Form.Group>
+    function directToSignUp() {
+        history.push('/signup');
+    }
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                </Form.Group>
+    return (<>
+
+            <Row>
+                <Col />
+                <Col> 
+
+                    <div className="Container">
+                        <Form className="FormLogin">
+                            <h1 className="LoginLabel">User Login</h1>
+                                
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                            </Form.Group>
+                            
+                            
+                            <label className="RememberMe" >  
+                                <input type="checkbox" id="vehicle1" /> Remember me 
+                            </label>
+                            <Button className="ButtonSubmit" variant="primary" type="submit" onClick={handleLogin}> Submit</Button>
+                            <label> Not on the Platform yet?</label>
+                            <Button className="ButtonSubmit" variant="primary" type="submit" onClick={directToSignUp}> Sign up</Button>
+                            
+                            
+                            
+                        </Form>
                 
-                <input type="checkbox" id="vehicle1" />
-                <label className="RememberMe" >  Remember me </label>
-                <Button className="ButtonSubmit" variant="primary" type="submit" onClick={handleLogin}> Submit</Button>
-            </Form>
-            
-        </Container>
-    );
+                    </div>
+                
+                </Col>
+                <Col />
+            </Row>
+        
+       
+   </> );
 
 }
 

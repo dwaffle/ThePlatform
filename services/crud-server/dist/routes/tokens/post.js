@@ -35,7 +35,7 @@ function post(app) {
         response.status(201).send({
             token: token_1.TokenModel.generateAccessToken({
                 username,
-                fullName: matchedUser.user_userName
+                fullName: matchedUser.user_firstName
             })
         });
     }));

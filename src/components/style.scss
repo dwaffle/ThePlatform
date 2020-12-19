@@ -1,13 +1,15 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
 .footer{
+    position:relative;
     margin-top: 1rem;
     padding: 1rem;
     background-color: #363535;
     border: 2px solid #d47501;
     // align-content: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
-    color: lightgray;
+    color:white;
   }
 
 .navbarBG{
@@ -15,9 +17,13 @@
   background-color: #363535;
   border: 2px solid #d47501;
   font-size: 1.1rem;
+  // padding-bottom: 15px;
+  color: lightgray;
+  margin-bottom: 1rem;
+
 }
 
 .navFont {
-  color:darkgrey;
+  color: lightgray;
 }
 

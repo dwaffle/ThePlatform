@@ -8,7 +8,7 @@ export function useAuthentication(){
     
     function login( username:string, password:string ){
         api.tokens.post({ username, password }).then(response => {
-            history.push('/articles');
+            history.push('/');
         });
     }
 
@@ -17,5 +17,3 @@ export function useAuthentication(){
     }
     
 }
-
-  
