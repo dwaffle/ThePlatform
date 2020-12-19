@@ -34,7 +34,7 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/organization" component={Organization} />
                     <Route path="/articles" component={Article} />
                     <Route path="/editor" component={EditorPage} />
-
+                    <Route path="/login" component={LoginPage} />
                     <Route path="/newArticle" component={CreateNewArticle} />
                     <Route path="/" component={requireAuth} />
                 </Switch>
