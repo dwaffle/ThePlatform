@@ -20,6 +20,16 @@ export default function ProfilePage( props:{} ){
 
     function onClickLogOut(){
         window.localStorage.removeItem('token');
+        window.localStorage.removeItem('user');
+    }
+
+    function displayUserName(){
+        if(window.localStorage.getItem('user'))
+        {
+            return <div>{window.localStorage.getItem('user')}</div>
+        } else {
+            return <div>Please sign in.</div>
+        }
     }
 
     return <>
@@ -28,7 +38,7 @@ export default function ProfilePage( props:{} ){
 
             <Row>
                 <Col>
-                    <h2>User Name</h2>
+                    <h2>{displayUserName()}</h2>
                 </Col>
                 <Col>
                     <h2>type of User</h2>

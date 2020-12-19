@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import ThePlatformWebsite from './ThePlatformWebSite'
+import {RecoilRoot }from 'recoil'
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThePlatformWebsite />
+    <RecoilRoot>
+      <ThePlatformWebsite />
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
