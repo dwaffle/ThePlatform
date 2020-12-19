@@ -24,7 +24,6 @@ export function CreateNewArticle (){
 
     const history = useHistory();
     const [ title, setTitle ] = useState<string>("");
-    const [ author, setAuthor ] = useState<number>();
     const [ description, setDescription ] = useState<string>("");
     const [ body, setBody ] = useState<string>("");
 
@@ -44,8 +43,28 @@ export function CreateNewArticle (){
         return;
     }
 
+    const [ author, setAuthor ] = useState<number>();
+
+    const userName = window.localStorage.getItem('username')
+   
     function getName() {
-        return localStorage.getItem("userName");
+        localStorage.getItem("username");
+        return "userName";
+    }
+
+    function displayUserName(){
+        if(window.localStorage.getItem('username'))
+        {
+            return <div>{window.localStorage.getItem('username')}</div>
+        } else {
+            return <div>Please sign in.</div>
+        }
+    }
+    
+    
+    function getUserID() {
+        localStorage.getItem("user_id");
+        return "user_id";
     }
     
     let loggedUserDetails = window.localStorage.getItem("user"); 
@@ -62,8 +81,8 @@ export function CreateNewArticle (){
                 </Form.Group>
                 {loggedUserDetails}
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" readOnly value="Author"
-                    onChange={(e)=>setAuthor(Number(e.target.value))}/>
+                    <Form.Control type="Author" readOnly value={getName()}
+                    />
                 </Form.Group>
             </Form.Row>
             
