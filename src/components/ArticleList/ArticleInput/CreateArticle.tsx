@@ -10,40 +10,36 @@ import './style.scss';
 
 export function CreateNewArticle (){
 
-    // const { createArticle, setCreateArticle, create} = NewArticle();
+   
     
     const history = useHistory();
     const [ price, setPrice ] = useState<number>(0);
     const [ type, setType ] = useState<number>();
     const [ title, setTitle ] = useState<string>("");
-    const [ author, setAuthor ] = useState<string>("");
+    const [ author, setAuthor ] = useState<number>();
     const [ description, setDescription ] = useState<string>("");
     const [ body, setBody ] = useState<string>("");
 
-    // function createNewArticle() {
-    //     ((price:number, title:string, type:number, author:number, description:string, body:string ) => create( price, type, title, author, description, body ));
-    //     setTitle("");
-    // }
-
     function onSubmit(e:any){
         e.preventDefault()
-        // if(!title || !author || !description|| !body || !type || !price)
-        // {
-        //     alert ("Failed to Submit") 
-        // } 
         let objectToSend = {
             price:1,
             type:1,
             title:title,
             description:description,
-            author:1,
+            author:author,
             body:body,
         }
         api.article.post(objectToSend);
+        alert ( "Succeeded! ")
         history.push('/');
         return;
     }
 
+    function displayUserName(){
+        (window.localStorage.getItem('user'))
+        return <div>{window.localStorage.getItem('user')}</div>
+    }
     // function articleType () {
     //     if (!allMembers )
     // }
@@ -55,10 +51,6 @@ export function CreateNewArticle (){
                 <Form.Group className="FormRowSpacing">
                     <Form.Control type="Title" placeholder="Article Title" value={title} 
                     onChange={(e)=>setTitle(e.target.value)}/>
-                </Form.Group>
-                <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" placeholder="This User" value={author} 
-                    onChange={(e)=>setAuthor((e.target.value))}/>
                 </Form.Group>
             </Form.Row>
             
@@ -121,3 +113,9 @@ export function CreateNewArticle (){
     </MainLayout>
     
 }
+
+
+{/* <Form.Group className="FormRowSpacing">
+                    <Form.Control type="Author" placeholder="This User" value={author} 
+                    onChange={(e)=>setAuthor(Number(e.target.value))}/>
+                </Form.Group> */}
