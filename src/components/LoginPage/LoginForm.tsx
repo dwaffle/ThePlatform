@@ -16,11 +16,10 @@ function LoginForm(){
 
         e.preventDefault();
         const objectToSend = {user_userName:username, user_password:password}
-        api.tokens.post( objectToSend );
+        api.tokens.post( objectToSend );     
         history.push('/articles')
         api.login.post({user_userName:username});
 }
-   
 
     function directToSignUp() {
         history.push('/signup');
