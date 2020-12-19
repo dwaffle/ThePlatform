@@ -17,11 +17,9 @@ function LoginForm(){
 
         e.preventDefault();
         const objectToSend = {user_userName:username, user_password:password}
-        let token = api.tokens.post( objectToSend );
-        if(token){
-            let response = await api.login.post({user_userName: username});
-            response.data.find((user:any) => {window.localStorage.setItem('user', user.user_userName)});
-        }
+        api.tokens.post( objectToSend );
+        // let response = await api.login.post({user_userName: username});
+        // response.data.find((user:any) => {window.localStorage.setItem('user', user.user_userName)});
         history.push('/articles');
     }
 

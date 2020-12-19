@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Switch } from 'react-router';
 import Form from 'react-bootstrap/Form'
 import MainLayout from '../../../layouts/MainLayout';
-import {NewArticle } from '../Articles';
 import {useHistory} from 'react-router-dom';
 import api from '../../../api';
 import './style.scss';
 
 
 export function CreateNewArticle (){
-
-   
     
-    const history = useHistory();
-    const [ price, setPrice ] = useState<number>(0);
     const [ type, setType ] = useState<number>();
+    const handleSelectChange = (event:any) => {
+        const value = event.target.value;
+        let valueAsNumber = parseInt(value)
+        setType(valueAsNumber);
+
+    };
+
+    const [ price, setPrice ] = useState();
+    const onChange = (e:any) => {
+        setPrice(e.target.value);
+    }
+
+    const history = useHistory();
     const [ title, setTitle ] = useState<string>("");
     const [ author, setAuthor ] = useState<number>();
     const [ description, setDescription ] = useState<string>("");
@@ -23,26 +31,36 @@ export function CreateNewArticle (){
     function onSubmit(e:any){
         e.preventDefault()
         let objectToSend = {
-            price:1,
-            type:1,
+            price:price,
+            type:type,
             title:title,
             description:description,
-            author:author,
+            author:1,
             body:body,
         }
         api.article.post(objectToSend);
-        alert ( "Succeeded! ")
+        alert ( "Success!")
         history.push('/');
         return;
     }
 
-    function displayUserName(){
-        (window.localStorage.getItem('user'))
-        return <div>{window.localStorage.getItem('user')}</div>
+    function AllFormsFilledOut(){
+        if(!type || !title || !description || !author || !body)
+            {
+              return <div>You must fill out all the Forms</div>  
+            } 
+            return null
     }
-    // function articleType () {
-    //     if (!allMembers )
-    // }
+
+    
+    function getName() {
+        return localStorage.getItem("userName");
+    }
+    
+    let loggedUserDetails = window.localStorage.getItem("user"); 
+    
+    
+
 
     return <MainLayout>
         <Switch>
@@ -51,6 +69,11 @@ export function CreateNewArticle (){
                 <Form.Group className="FormRowSpacing">
                     <Form.Control type="Title" placeholder="Article Title" value={title} 
                     onChange={(e)=>setTitle(e.target.value)}/>
+                </Form.Group>
+                {loggedUserDetails}
+                <Form.Group className="FormRowSpacing">
+                    <Form.Control type="Author" readOnly value="Author"
+                    onChange={(e)=>setAuthor(Number(e.target.value))}/>
                 </Form.Group>
             </Form.Row>
             
@@ -68,29 +91,31 @@ export function CreateNewArticle (){
 
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <input type="radio" name="articleType" value={type} onChange={(e)=>setType} checked/>
+                    <input type="radio" name="articleType" value="1" onChange={event => handleSelectChange(event)} />
                     <label>All Members </label>
                 </Form.Group>
 
                 <Form.Group className="FormRowSpacing">
-                    <input type="radio" name="articleType" value={type} onChange={(e)=>setType} />
+                    <input type="radio" name="articleType" value="2" onChange={event => handleSelectChange(event)} />
                     <label> Paid Members Only </label>
                 </Form.Group>
 
                 <Form.Group className="FormRowPrice">
-                    <input type="radio" name="articleType" value="Price" /> Price <input type="text" 
-                    name="articleType" value={price} onChange={(e)=>setPrice(Number(e.target.value))}/>
+                    <input type="radio" name="articleType" value="3" id="select" onChange={event => handleSelectChange(event)} 
+                /> 
+                    Price 
+                    <input type="text" pattern="[0-9]*" 
+                    name="articleType" id="text" value={price} onChange={onChange}  disabled/>
                 </Form.Group>
             </Form.Row>
-            
 
             <Form.Row>
                 <Form.Group>
                     <select>
-                        <option selected>Categories..</option>
-                        <option value="1">Rant</option>
-                        <option value="2">News</option>
-                        <option value="3">Fiction</option>
+                        <option selected>Category...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
                     </select>
                 </Form.Group>
 
@@ -113,9 +138,3 @@ export function CreateNewArticle (){
     </MainLayout>
     
 }
-
-
-{/* <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" placeholder="This User" value={author} 
-                    onChange={(e)=>setAuthor(Number(e.target.value))}/>
-                </Form.Group> */}
