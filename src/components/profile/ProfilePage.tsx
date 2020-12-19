@@ -3,6 +3,7 @@ import { Row, Col, CardDeck, Card, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 //import Faq from '../components/OrganizationPage';
 import './style.scss'
+import api from '../../api'
 import { useHistory } from 'react-router';
 import userAvatar from '../../data/icon/userAvatar.jpg';
 
@@ -23,10 +24,11 @@ export default function ProfilePage( props:{} ){
        history.push('/articles')
     }
 
+
     function displayUserName(){
-        if(localStorage.getItem('user'))
+        if(window.localStorage.getItem('username'))
         {
-            return <div>{window.localStorage.getItem('user')}</div>
+            return <div>{window.localStorage.getItem('username')}</div>
         } else {
             return <div>Please sign in.</div>
         }
@@ -41,7 +43,7 @@ export default function ProfilePage( props:{} ){
 
     function deleteAccount(){
         if(window.confirm("Are you sure?  This will delete your account!")){
-            alert('Deleted');
+            api.user.delete(localStorage.getItem('user'))
         }
     }
     return <>

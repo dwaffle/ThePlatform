@@ -12,13 +12,14 @@ function LoginForm(){
     const [ username, setUsername ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
     
-    async function handleLogin(e:any){
+    function handleLogin(e:any){
 
         e.preventDefault();
         const objectToSend = {user_userName:username, user_password:password}
-        api.tokens.post( objectToSend );     
-        history.push('/articles')
+        api.tokens.post( objectToSend );  
         api.login.post({user_userName:username});
+        history.push('/articles')
+        
 }
 
     function directToSignUp() {

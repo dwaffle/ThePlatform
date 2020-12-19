@@ -3,12 +3,11 @@ import {HOSTNAME} from '../config'
 
 export default {
     post: async ( body:any ) => {
-        axios.post(`${HOSTNAME}/user` , body).then((response) => {response.data.find((user:any) => {localStorage.setItem('user', user.user_userName)
-        localStorage.setItem('userId', user.user_id)
-        localStorage.setItem('email', user.user_email)
-        ;
-
-});
-    })
+        console.log(body);
+        axios.post(`${HOSTNAME}/user` , body).then((response) => {let data = JSON.parse(JSON.stringify(response.data))
+            console.log(data);
+        localStorage.setItem('user_id', data[0].user_id)
+        localStorage.setItem('username', data[0].user_userName)
+        localStorage.setItem('email', data[0].user_email)})
     }
 }
