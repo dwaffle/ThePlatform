@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useAuthentication } from '../../data/useAuthentication';
+import { userState} from './login.recoil'
+import {useRecoilState} from 'recoil'
 import { useHistory } from 'react-router';
+import {IUserNoPassword} from '../../../services/crud-server/src/models/user'
 import api from '../../api'
 // import data from '../../data/icon'
 import './login.scss'
 
 function LoginForm(){
-
     const history = useHistory();
-    const authModel = useAuthentication();
     const [ username, setUsername ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
-
     
-    function handleLogin(e:any){
+    async function handleLogin(e:any){
+
         e.preventDefault();
         const objectToSend = {user_userName:username, user_password:password}
-        api.tokens.post( objectToSend );
+        let token = api.tokens.post( objectToSend );
+        if(token){
+            let response = await api.login.post({user_userName: username});
+            response.data.find((user:any) => {window.localStorage.setItem('user', user.user_userName)});
+        }
         history.push('/articles');
     }
 

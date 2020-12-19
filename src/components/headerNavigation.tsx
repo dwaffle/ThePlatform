@@ -19,6 +19,7 @@ export default function HeaderNavigation( props:{} ){
                     <LinkContainer to="/organization"><Nav.Link>Organizations</Nav.Link></LinkContainer>
                     <LinkContainer to="/series"><Nav.Link>Series</Nav.Link></LinkContainer>
                     <LinkContainer to="/editor"><Nav.Link>Editor</Nav.Link></LinkContainer>
+                    <LinkContainer to="/login"><Nav.Link>Login</Nav.Link></LinkContainer>
                 </Nav>
                 <Nav>
                     <LinkContainer to="/profile"><Nav.Link>Profile</Nav.Link></LinkContainer>
