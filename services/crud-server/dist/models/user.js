@@ -85,6 +85,19 @@ exports.UserModel = {
                 }
             });
         });
+    }),
+    delete: (userId) => __awaiter(void 0, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    console.log(result);
+                    resolve(result);
+                }
+            });
+        });
     })
 };
 //# sourceMappingURL=user.js.map

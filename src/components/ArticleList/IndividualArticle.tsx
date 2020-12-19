@@ -1,17 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import MainLayout from '../../layouts/MainLayout';
 import {IArticle} from '../../../services/crud-server/src/models/article'
 import {useHistory} from 'react-router-dom';
 import Rating from 'react-rating'
 import api from '../../api'
+import {useArticleList} from './Articles'
 import './style.scss'
 import {Container, Row, Col } from 'react-bootstrap';
+
 
 
 export default function IndividualArticle (props: IArticle) {
 
     const [rating1, setRating1] = useState(0);
 
+    // const { articleList, setArticleList, loadRemoteTasks} = useArticleList();
+
+    // function getArticle( index:number ){
+    //     return function( event:ChangeEvent<HTMLInputElement> ){
+    //         const article = { ...articleList[index] };
+    //         const displayList = [ ...articleList ];
+
+
+    //         article.title = event.target.value;
+    //         article.author = event.target.value;
+    //         article.type = event.target.value;
+    //         article.body = event.target.value;
+    //         article.description = event.target.value;
+    //         displayList[index] = article;
+            
+    //         setArticleList( displayList );
+    //     }
+    // }
+  
     
     return <MainLayout>
 

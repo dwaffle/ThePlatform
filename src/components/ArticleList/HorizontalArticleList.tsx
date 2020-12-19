@@ -30,22 +30,7 @@ export default function Article( props:IArticle ){
     setArticle(articleList.find( _article => _article.title === params.id ));
   }, [params.id])
 
-//   function onSubmit(e:any){
-//     e.preventDefault()
-//     let objectToGet = {
-//         price:1,
-//         type:"free",
-//         title:"title",
-//         description:"desc",
-//         author:1,
-//         body:"body",
-//     }
-//     api.article.get(objectToGet);
-//     history.push('/');
-//     return;
-// }
 
- 
     return (
         <MainLayout>
 
@@ -75,12 +60,10 @@ export default function Article( props:IArticle ){
                     <Card.Body>
                       {/* <Card.Title>Primary Card Title</Card.Title> */}
                       <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content. 
-                        <br/>
-                        <a href=""> See more </a>
+                       {props.description} 
                       </Card.Text>
                     </Card.Body>
+                    <Card.Footer> By: {props.author} </Card.Footer>
                   </Card> 
                   <Card bg="Light"  style={{ width: '15rem' }}>
                     <Card.Header className="cardHeader">These will be sliders</Card.Header>
