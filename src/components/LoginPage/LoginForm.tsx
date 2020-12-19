@@ -20,7 +20,6 @@ function LoginForm(){
         api.tokens.post( objectToSend );
         let response = await api.login.post({user_userName: username});
         response.data.find((user:any) => {window.localStorage.setItem('user', user.user_userName)});
-        response.data.find((user:any) => {window.localStorage.setItem('user_id', user.user_id)});
         history.push('/articles')
     }
 
