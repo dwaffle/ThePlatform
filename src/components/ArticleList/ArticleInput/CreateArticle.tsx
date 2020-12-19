@@ -34,7 +34,7 @@ export function CreateNewArticle (){
             type:type,
             title:title,
             description:description,
-            author:1,
+            author:author,
             body:body,
         }
         api.article.post(objectToSend);
@@ -44,30 +44,16 @@ export function CreateNewArticle (){
     }
 
     const [ author, setAuthor ] = useState<number>();
+    
 
-    const userName = window.localStorage.getItem('username')
-   
-    function getName() {
-        localStorage.getItem("username");
-        return "userName";
+
+    function authorID () {
+       let ID = Number(localStorage.getItem("user_id"));
+       setAuthor(ID)
+       return;
     }
 
-    function displayUserName(){
-        if(window.localStorage.getItem('username'))
-        {
-            return <div>{window.localStorage.getItem('username')}</div>
-        } else {
-            return <div>Please sign in.</div>
-        }
-    }
-    
-    
-    function getUserID() {
-        localStorage.getItem("user_id");
-        return "user_id";
-    }
-    
-    let loggedUserDetails = window.localStorage.getItem("user"); 
+    let authorName:string = window.localStorage.getItem("username") || ''; 
 
 
 
@@ -79,10 +65,8 @@ export function CreateNewArticle (){
                     <Form.Control type="Title" placeholder="Article Title" value={title} 
                     onChange={(e)=>setTitle(e.target.value)}/>
                 </Form.Group>
-                {loggedUserDetails}
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" readOnly value={getName()}
-                    />
+                    <Form.Control type="Author" readOnly value={authorName} onChange={authorID} />
                 </Form.Group>
             </Form.Row>
             
