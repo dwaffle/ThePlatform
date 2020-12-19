@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MainLayout from '../../layouts/MainLayout';
-import {IArticle} from './Articles';
+import {IArticle} from '../../../services/crud-server/src/models/article'
 import {useHistory} from 'react-router-dom';
 import Rating from 'react-rating'
 import api from '../../api'

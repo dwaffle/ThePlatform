@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 import MainLayout from '../../layouts/MainLayout';
 import {IArticle} from '../../../services/crud-server/src/models/article'
 import {articleListState} from './Articles'
+import {useHistory} from 'react-router-dom';
+import api from '../../api'
 import './style.scss'
 import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
@@ -27,6 +29,21 @@ export default function Article( props:IArticle ){
   useEffect(() => {
     setArticle(articleList.find( _article => _article.title === params.id ));
   }, [params.id])
+
+//   function onSubmit(e:any){
+//     e.preventDefault()
+//     let objectToGet = {
+//         price:1,
+//         type:"free",
+//         title:"title",
+//         description:"desc",
+//         author:1,
+//         body:"body",
+//     }
+//     api.article.get(objectToGet);
+//     history.push('/');
+//     return;
+// }
 
  
     return (

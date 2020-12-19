@@ -49,8 +49,7 @@ export function CreateNewArticle (){
     }
     
     let loggedUserDetails = window.localStorage.getItem("user"); 
-    
-    
+
 
 
     return <MainLayout>
@@ -119,7 +118,7 @@ export function CreateNewArticle (){
                     </select>
                 </Form.Group>
                 <Form.Group>
-                <input type="text" placeholder="Press enter to add tags" />
+                    <input type="text" placeholder="Press enter to add tags" />
                 </Form.Group>
             </Form.Row>
             <button type="submit" onClick={onSubmit} >Submit</button>
