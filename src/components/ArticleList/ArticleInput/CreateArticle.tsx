@@ -31,7 +31,7 @@ export function CreateNewArticle (){
     function onSubmit(e:any){
         e.preventDefault()
         let objectToSend = {
-            price:price,
+            price:1,
             type:type,
             title:title,
             description:description,
@@ -44,15 +44,6 @@ export function CreateNewArticle (){
         return;
     }
 
-    function AllFormsFilledOut(){
-        if(!type || !title || !description || !author || !body)
-            {
-              return <div>You must fill out all the Forms</div>  
-            } 
-            return null
-    }
-
-    
     function getName() {
         return localStorage.getItem("userName");
     }
