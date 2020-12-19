@@ -38,6 +38,12 @@ export default function ProfilePage( props:{} ){
             return;
         }
     }
+
+    function deleteAccount(){
+        if(window.confirm("Are you sure?  This will delete your account!")){
+            alert('Deleted');
+        }
+    }
     return <>
 
             <h1>Profile page</h1>            
@@ -55,9 +61,6 @@ export default function ProfilePage( props:{} ){
                 <Col>
                     <h2>{displayEmail()}</h2>
                 </Col>
-                <Col>
-                    <h2>Phone</h2>
-                </Col>
             </Row>
 
             <Row>
@@ -67,6 +70,7 @@ export default function ProfilePage( props:{} ){
             </Row>
             <Button  href="#">Edit</Button>
             <Button variant="primary" type="submit" onClick={onClickLogOut}> Log Out</Button>
+            <Button variant="danger" className="delete-btn" onClick={deleteAccount}>Delete Account</Button>
 
 
 
