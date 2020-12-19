@@ -1,13 +1,34 @@
-import React, { MouseEvent } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil';
+import { useParams } from 'react-router';
 import MainLayout from '../../layouts/MainLayout';
-import {IArticle} from './Articles'
+import {IArticle} from '../../../services/crud-server/src/models/article'
+import {articleListState} from './Articles'
 import './style.scss'
 import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
 
+// export interface IArticle {
+//   price: number,
+//   author: number,
+//   type: number,
+//   description: string,
+//   title: string,
+//   body: string
+// }
+
+
 export default function Article( props:IArticle ){
 
+  const params = useParams<{ id: string }>();
+  const articleList = useRecoilValue<IArticle[]>(articleListState);
+  const [ article, setArticle ] = useState<IArticle>();
+
+  useEffect(() => {
+    setArticle(articleList.find( _article => _article.title === params.id ));
+  }, [params.id])
+
+ 
     return (
         <MainLayout>
 
@@ -33,7 +54,7 @@ export default function Article( props:IArticle ){
               <Col>                  
                 <CardDeck>
                   <Card bg="Light"  style={{ width: '15rem' }}>
-                    <Card.Header className="cardHeader" >These will be sliders</Card.Header>
+                    <Card.Header className="cardHeader" >{props.title}</Card.Header>
                     <Card.Body>
                       {/* <Card.Title>Primary Card Title</Card.Title> */}
                       <Card.Text>

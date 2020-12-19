@@ -1,22 +1,24 @@
 import React, { useState } from 'react'
 import MainLayout from '../../layouts/MainLayout';
 import {IArticle} from './Articles';
+import {useHistory} from 'react-router-dom';
 import Rating from 'react-rating'
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import api from '../../api'
 import './style.scss'
 import {Container, Row, Col } from 'react-bootstrap';
 
 
-export default function IndividualArticle () {
+export default function IndividualArticle (props: IArticle) {
 
     const [rating1, setRating1] = useState(0);
+
     
     return <MainLayout>
 
         <Container className="ContainerPosition">
 
-            <Row className="articleTitle" > Godzilla Strikes Again! </Row>
-            <Row className="articleAuthor"> Author: Hubie Dubios </Row>
+            <Row className="articleTitle" > {props.title} </Row>
+            <Row className="articleAuthor"> {props.author} </Row>
             <Row> 
                 <Col> Fiction </Col>
             </Row>

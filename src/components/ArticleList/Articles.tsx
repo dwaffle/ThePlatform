@@ -23,3 +23,7 @@ export interface ISearchFilter {
     category?: string;
 }
 
+export const articleListState = atom({
+    key: 'productList',
+    default: []
+});
