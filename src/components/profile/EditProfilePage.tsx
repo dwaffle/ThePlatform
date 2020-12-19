@@ -15,7 +15,7 @@ export interface Iprofile {
 }
 
 
-export default function ProfilePage( props:{} ){
+export default function EditProfilePage( props:{} ){
     const history = useHistory();
     // Simple Profile Management (name, email, phone) 
 
@@ -23,13 +23,7 @@ export default function ProfilePage( props:{} ){
        localStorage.clear();
        history.push('/articles')
     }
-    function checkLogin(){
-        if(window.localStorage.getItem('username')){
-            history.push('/EditProfilePage')
-        } else {
-            alert('Please log in first')
-        }
-    }
+
 
     function displayUserName(){
         if(window.localStorage.getItem('username'))
@@ -47,16 +41,18 @@ export default function ProfilePage( props:{} ){
         }
     }
 
+    function deleteAccount(){
+        if(window.confirm("Are you sure?  This will delete your account!")){
+            api.user.delete(localStorage.getItem('user'))
+        }
+    }
     return <>
 
-            <h1>Profile page</h1>            
+            <h1>Editing page</h1>            
 
             <Row>
                 <Col>
                     <h2>{displayUserName()}</h2>
-                </Col>
-                <Col>
-                    <h2>type of User</h2>
                 </Col>
             </Row>
 
@@ -71,8 +67,9 @@ export default function ProfilePage( props:{} ){
                     <Image src={ userAvatar } roundedCircle />
                 </Col>
             </Row>
-            <Button  onClick={checkLogin}>Edit</Button>
+            <Button  href="#">Edit</Button>
             <Button variant="primary" type="submit" onClick={onClickLogOut}> Log Out</Button>
+            <Button variant="danger" className="delete-btn" onClick={deleteAccount}>Delete Account</Button>
 
 
 
