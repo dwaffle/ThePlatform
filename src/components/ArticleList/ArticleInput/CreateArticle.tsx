@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Switch } from 'react-router';
 import Form from 'react-bootstrap/Form'
 import MainLayout from '../../../layouts/MainLayout';
+import {NewArticle } from '../Articles';
 import {useHistory} from 'react-router-dom';
 import api from '../../../api';
 import './style.scss';
@@ -9,32 +10,37 @@ import './style.scss';
 
 export function CreateNewArticle (){
 
+    // const { createArticle, setCreateArticle, create} = NewArticle();
     
     const history = useHistory();
-    const [ price, setPrice ] = useState<number>()
-    const [ type, setType ] = useState()
-    const [ title, setTitle ] = useState<string>();
-    const [ author, setAuthor ] = useState<string>();
-    const [ description, setDescription ] = useState<string>();
-    const [ body, setBody ] = useState<string>();
+    const [ price, setPrice ] = useState<number>(0);
+    const [ type, setType ] = useState<number>();
+    const [ title, setTitle ] = useState<string>("");
+    const [ author, setAuthor ] = useState<string>("");
+    const [ description, setDescription ] = useState<string>("");
+    const [ body, setBody ] = useState<string>("");
 
-    function onSubmit(){
-        if(!title || !author || !description|| !body || !type || !price)
-        {
-        alert ("Failed to Submit")
-          return;  
-        } 
-        const objectToSend = {
+    // function createNewArticle() {
+    //     ((price:number, title:string, type:number, author:number, description:string, body:string ) => create( price, type, title, author, description, body ));
+    //     setTitle("");
+    // }
 
-            price:price,
-            type: type,
-            art_title:title,
+    function onSubmit(e:any){
+        e.preventDefault()
+        // if(!title || !author || !description|| !body || !type || !price)
+        // {
+        //     alert ("Failed to Submit") 
+        // } 
+        let objectToSend = {
+            price:1,
+            type:1,
+            title:title,
             description:description,
-            user_author:author,
-            art_body:body,
+            author:1,
+            body:body,
         }
         api.article.post(objectToSend);
-        history.push('/article');
+        history.push('/');
         return;
     }
 
@@ -47,21 +53,25 @@ export function CreateNewArticle (){
         <Form method="Post">
             <Form.Row>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Title" placeholder="Article Title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+                    <Form.Control type="Title" placeholder="Article Title" value={title} 
+                    onChange={(e)=>setTitle(e.target.value)}/>
                 </Form.Group>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" placeholder="This User" value={author} onChange={(e)=>setAuthor(e.target.value)}/>
+                    <Form.Control type="Author" placeholder="This User" value={author} 
+                    onChange={(e)=>setAuthor((e.target.value))}/>
                 </Form.Group>
             </Form.Row>
             
     
 
             <Form.Row className="FormRowSpacing">
-                <Form.Control as="textarea" placeholder= "Description" rows={3} value={description} onChange={(e)=>setDescription(e.target.value)} />
+                <Form.Control as="textarea" placeholder= "Description" rows={3} 
+                value={description} onChange={(e)=>setDescription(e.target.value)} />
             </Form.Row>
 
             <Form.Row className="FormRowSpacing">
-                <Form.Control as="textarea" placeholder= "Body" rows={15} value={body} onChange={(e)=>setBody(e.target.value)}/>
+                <Form.Control as="textarea" placeholder= "Body" rows={15} 
+                value={body} onChange={(e)=>setBody(e.target.value)}/>
             </Form.Row>
 
             <Form.Row>
@@ -76,7 +86,8 @@ export function CreateNewArticle (){
                 </Form.Group>
 
                 <Form.Group className="FormRowPrice">
-                    <input type="radio" name="articleType" value="Price" /> Price <input type="number" name="articleType" value={price} onChange={(e)=>setPrice} />
+                    <input type="radio" name="articleType" value="Price" /> Price <input type="text" 
+                    name="articleType" value={price} onChange={(e)=>setPrice(Number(e.target.value))}/>
                 </Form.Group>
             </Form.Row>
             
