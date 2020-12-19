@@ -3,7 +3,6 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { userState} from './login.recoil'
 import {useRecoilState} from 'recoil'
 import { useHistory } from 'react-router';
-import {IUserNoPassword} from '../../../services/crud-server/src/models/user'
 import api from '../../api'
 // import data from '../../data/icon'
 import './login.scss'
@@ -18,10 +17,11 @@ function LoginForm(){
         e.preventDefault();
         const objectToSend = {user_userName:username, user_password:password}
         api.tokens.post( objectToSend );
-        let response = await api.login.post({user_userName: username});
-        response.data.find((user:any) => {window.localStorage.setItem('user', user.user_userName)});
+        
         history.push('/articles')
-    }
+        api.login.post({user_userName:username});
+}
+   
 
     function directToSignUp() {
         history.push('/signup');
