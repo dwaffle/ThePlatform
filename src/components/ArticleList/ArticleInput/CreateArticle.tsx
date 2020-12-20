@@ -8,7 +8,7 @@ import './style.scss';
 
 
 export function CreateNewArticle (){
-    
+
     const [ type, setType ] = useState<number>();
     const handleSelectChange = (event:any) => {
         const value = event.target.value;
@@ -34,7 +34,7 @@ export function CreateNewArticle (){
             type:type,
             title:title,
             description:description,
-            author:author,
+            author: Number(localStorage.getItem("user_id")),
             body:body,
         }
         api.article.post(objectToSend);
@@ -43,21 +43,14 @@ export function CreateNewArticle (){
         return;
     }
 
-    const [ author, setAuthor ] = useState<number>();
-    
-
-
-    function authorID () {
-       let ID = Number(localStorage.getItem("user_id"));
-       setAuthor(ID)
-       return;
-    }
-
     let authorName:string = window.localStorage.getItem("username") || ''; 
 
+    function onRadioClick (disabled:any) {
+        disabled = false;
+    }
 
 
-    return <MainLayout>
+     return <MainLayout>
         <Switch>
         <Form method="Post">
             <Form.Row>
@@ -66,7 +59,7 @@ export function CreateNewArticle (){
                     onChange={(e)=>setTitle(e.target.value)}/>
                 </Form.Group>
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" readOnly value={authorName} onChange={authorID} />
+                    <Form.Control type="Author" readOnly value={authorName} />
                 </Form.Group>
             </Form.Row>
             
@@ -94,13 +87,14 @@ export function CreateNewArticle (){
                 </Form.Group>
 
                 <Form.Group className="FormRowPrice">
-                    <input type="radio" name="articleType" value="3" id="select" onChange={event => handleSelectChange(event)} 
+                    <input type="radio" name="articleType" value="3" data-toggle="collapse" data-target="#div1" onChange={event => handleSelectChange(event)} 
                 /> 
                     Price 
                     <input type="text" pattern="[0-9]*" 
-                    name="articleType" id="text" value={price} onChange={onChange}  disabled/>
+                    name="articleType" id="div1" value={price} onChange={onChange} disabled/>
                 </Form.Group>
             </Form.Row>
+            
 
             <Form.Row>
                 <Form.Group>
