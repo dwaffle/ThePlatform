@@ -15,8 +15,8 @@ function LoginForm(){
     function handleLogin(e:any){
 
         e.preventDefault();
-        const objectToSend = {user_userName:username, user_password:password}
-        api.tokens.post( objectToSend );  
+        const loginRequest = {user_userName:username, user_password:password}
+        api.tokens.post( loginRequest );  
         api.login.post({user_userName:username});
         history.push('/articles')
         

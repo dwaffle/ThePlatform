@@ -8,6 +8,8 @@ export default {
             console.log(data);
         localStorage.setItem('user_id', data[0].user_id)
         localStorage.setItem('username', data[0].user_userName)
-        localStorage.setItem('email', data[0].user_email)})
+        localStorage.setItem('email', data[0].user_email)
+        localStorage.setItem('first_name', data[0].user_firstName)
+        localStorage.setItem('last_name', data[0].user_lastName)})
     }
 }
