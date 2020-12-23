@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil';
-import { useParams } from 'react-router';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import MainLayout from '../../layouts/MainLayout';
-import {IArticle} from '../../../services/crud-server/src/models/article'
-import {articleListState} from './Articles'
-import {useHistory} from 'react-router-dom';
-import api from '../../api'
 import './style.scss'
 import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
-import { Carousel } from 'react-bootstrap';
+import { useArticleList, articleList } from './article_data';
+import { IArticle } from '../../../services/crud-server/src/models/article';
 
 // export interface IArticle {
 //   price: number,
@@ -20,19 +16,54 @@ import { Carousel } from 'react-bootstrap';
 // }
 
 
-export default function Article( props:IArticle ){
+export default function Article( props: { rows: number }){
 
-  const params = useParams<{ id: string }>();
-  const articleList = useRecoilValue<IArticle[]>(articleListState);
-  const [ article, setArticle ] = useState<IArticle>();
+  // const articles = useRecoilValue<IArticle[]>(articleList)
+
+  // const { article, articles } = useArticleList();
+  const { article, setArticle } = useArticleList();
+  const [ articleRows, setArticleRows ] = useState<Array<IArticle[]>>([]);
+
+
+
+
+
 
   useEffect(() => {
-    setArticle(articleList.find( _article => _article.title === params.id ));
-  }, [params.id])
+
+    const innerProductList = [ ...article ].filter(( article ) => {
+
+      let found = true;
 
 
+       
+      return found;
+
+    });
+    const rows = [];
+
+    while( innerProductList.length && rows.length < (props.rows||1) ){
+        rows.push( innerProductList.splice(0,4));
+    }
+
+    setArticleRows( rows );
+
+}, [ props.rows ]);
+
+
+
+
+  
     return (
         <MainLayout>
+          <Row>
+          <div className="task-list">
+                { article.map(( task, index ) => <div key={index} style={{ textAlign: 'left' }}>
+                    <input type="textbox" value={task.title}/>
+                </div> )}
+            </div>
+          </Row>
+        
 
             <div className="filter">
                 <Form>
@@ -56,61 +87,7 @@ export default function Article( props:IArticle ){
               <Col>                  
                 <CardDeck>
                   <Card bg="Light"  style={{ width: '15rem' }}>
-                    <Card.Header className="cardHeader" >{props.title}</Card.Header>
-                    <Card.Body>
-                      {/* <Card.Title>Primary Card Title</Card.Title> */}
-                      <Card.Text>
-                       {props.description} 
-                      </Card.Text>
-                    </Card.Body>
-                    <Card.Footer> By: {props.author} </Card.Footer>
-                  </Card> 
-                  <Card bg="Light"  style={{ width: '15rem' }}>
-                    <Card.Header className="cardHeader">These will be sliders</Card.Header>
-                    <Card.Body>
-                      {/* <Card.Title>Primary Card Title</Card.Title> */}
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content. 
-                        <br/>
-                        <a href=""> See more </a>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card> 
-                  <Card bg="Light"  style={{ width: '15rem' }}>
-                    <Card.Header className="cardHeader" >These will be sliders</Card.Header>
-                    <Card.Body>
-                      {/* <Card.Title>Primary Card Title</Card.Title> */}
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content. 
-                        <br/>
-                        <a href=""> See more </a>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card> 
-                  <Card bg="Light"  style={{ width: '15rem' }}>
-                    <Card.Header className="cardHeader">These will be sliders</Card.Header>
-                    <Card.Body>
-                      {/* <Card.Title>Primary Card Title</Card.Title> */}
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content. 
-                        <br/>
-                        <a href=""> See more </a>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card> 
-             
-                </CardDeck>   
-              </Col>
-            </Row>
-
-            <Row className="cardspacing">
-              <Col>                  
-                <CardDeck>
-                  <Card bg="Light"  style={{ width: '15rem' }}>
-                    <Card.Header className="cardHeader" >These will be sliders</Card.Header>
+                    <Card.Header className="cardHeader" > title </Card.Header>
                     <Card.Body>
                       {/* <Card.Title>Primary Card Title</Card.Title> */}
                       <Card.Text>
@@ -194,7 +171,7 @@ export default function Article( props:IArticle ){
              
                 </CardDeck>   
               </Col>
-          </Row>
+          </Row>  
 
         </MainLayout>
     );

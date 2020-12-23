@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import userAvatar from '../../data/icon/userAvatar.jpg';
 import './style.scss'
 
 

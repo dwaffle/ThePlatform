@@ -10,31 +10,34 @@ export interface ISearchFilter {
     category?: string;
 }
 
-export const articleListState = atom({
+export const articleList = atom({
     key: 'productList',
     default: [] as IArticle[]
 });
 
-export const articleList = selector({
+export const getArticle = selector({
     key: 'remainingTaskList',
     get: ({ get }) => {
-        return get(articleListState).filter(title => !title.description)
+        return get(articleList).filter(article => article.id)
     }
 });
 
 export function useArticleList(){
 
-    const [ articleList, setArticleList ] = useRecoilState<IArticle[]>(articleListState);
-    // const remainingTaskList = useRecoilValue(articleList);
+    const [ article, setArticle ] = useRecoilState<IArticle[]>(articleList);
+    const articles = useRecoilValue(getArticle);
+
     
     const loadRemoteTasks = () => {
         api.article.get().then( response => {
-            setArticleList( response.data );
+            setArticle( response.data );
         });
     }
 
     return {
-        articleList,
+        articles,
+        article,
+        setArticle,
         loadRemoteTasks,
     }
 

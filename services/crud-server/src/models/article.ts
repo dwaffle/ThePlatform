@@ -13,6 +13,7 @@ var connection = mysql.createConnection({
 
 //Id and date of creation are generated for us by the SQL query.
 export interface IArticle {
+    id?: number,
     price: number,
     author: number,
     type: number,

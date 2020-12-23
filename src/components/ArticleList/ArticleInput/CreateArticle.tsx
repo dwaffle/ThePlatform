@@ -87,7 +87,7 @@ export function CreateNewArticle (){
                 </Form.Group>
 
                 <Form.Group className="FormRowPrice">
-                    <input type="radio" name="articleType" value="3" data-toggle="collapse" data-target="#div1" onChange={event => handleSelectChange(event)} 
+                    <input type="radio" name="articleType" value="3"  onChange={event => handleSelectChange(event)} 
                 /> 
                     Price 
                     <input type="text" pattern="[0-9]*" 

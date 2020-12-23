@@ -11,6 +11,7 @@ import Article from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage'
 import './App.scss';
 import EditorPage from './components/EditorPage/EditorPage';
+import IndividualArticle from './components/ArticleList/IndividualArticle';
 
 
 
@@ -36,6 +37,7 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/editor" component={EditorPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/newArticle" component={CreateNewArticle} />
+                    <Route path='/individualArticle' component={IndividualArticle} />
                     <Route path="/" component={requireAuth} />
                 </Switch>
             </BrowserRouter>
