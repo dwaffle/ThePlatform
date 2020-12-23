@@ -10,6 +10,7 @@ import AdminSite from './pages/AdminPage';
 import Article from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage'
 import './App.scss';
+import EditProfilePage from './pages/EditProfilePage'
 import EditorPage from './components/EditorPage/EditorPage';
 
 
@@ -36,6 +37,7 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/editor" component={EditorPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/newArticle" component={CreateNewArticle} />
+                    <Route path="/editProfilePage" component={EditProfilePage} />
                     <Route path="/" component={requireAuth} />
                 </Switch>
             </BrowserRouter>
