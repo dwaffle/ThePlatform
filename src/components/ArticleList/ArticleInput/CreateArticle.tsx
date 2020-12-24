@@ -8,7 +8,7 @@ import './style.scss';
 
 
 export function CreateNewArticle (){
-    
+
     const [ type, setType ] = useState<number>();
     const handleSelectChange = (event:any) => {
         const value = event.target.value;
@@ -24,18 +24,17 @@ export function CreateNewArticle (){
 
     const history = useHistory();
     const [ title, setTitle ] = useState<string>("");
-    const [ author, setAuthor ] = useState<number>();
     const [ description, setDescription ] = useState<string>("");
     const [ body, setBody ] = useState<string>("");
 
     function onSubmit(e:any){
         e.preventDefault()
         let objectToSend = {
-            price:price,
+            price:1,
             type:type,
             title:title,
             description:description,
-            author:1,
+            author: Number(localStorage.getItem("user_id")),
             body:body,
         }
         api.article.post(objectToSend);
@@ -44,25 +43,14 @@ export function CreateNewArticle (){
         return;
     }
 
-    function AllFormsFilledOut(){
-        if(!type || !title || !description || !author || !body)
-            {
-              return <div>You must fill out all the Forms</div>  
-            } 
-            return null
+    let authorName:string = window.localStorage.getItem("username") || ''; 
+
+    function onRadioClick (disabled:any) {
+        disabled = false;
     }
 
-    
-    function getName() {
-        return localStorage.getItem("userName");
-    }
-    
-    let loggedUserDetails = window.localStorage.getItem("user"); 
-    
-    
 
-
-    return <MainLayout>
+     return <MainLayout>
         <Switch>
         <Form method="Post">
             <Form.Row>
@@ -70,10 +58,8 @@ export function CreateNewArticle (){
                     <Form.Control type="Title" placeholder="Article Title" value={title} 
                     onChange={(e)=>setTitle(e.target.value)}/>
                 </Form.Group>
-                {loggedUserDetails}
                 <Form.Group className="FormRowSpacing">
-                    <Form.Control type="Author" readOnly value="Author"
-                    onChange={(e)=>setAuthor(Number(e.target.value))}/>
+                    <Form.Control type="Author" readOnly value={authorName} />
                 </Form.Group>
             </Form.Row>
             
@@ -101,13 +87,14 @@ export function CreateNewArticle (){
                 </Form.Group>
 
                 <Form.Group className="FormRowPrice">
-                    <input type="radio" name="articleType" value="3" id="select" onChange={event => handleSelectChange(event)} 
+                    <input type="radio" name="articleType" value="3"  onChange={event => handleSelectChange(event)} 
                 /> 
                     Price 
                     <input type="text" pattern="[0-9]*" 
-                    name="articleType" id="text" value={price} onChange={onChange}  disabled/>
+                    name="articleType" id="div1" value={price} onChange={onChange} disabled/>
                 </Form.Group>
             </Form.Row>
+            
 
             <Form.Row>
                 <Form.Group>
@@ -128,7 +115,7 @@ export function CreateNewArticle (){
                     </select>
                 </Form.Group>
                 <Form.Group>
-                <input type="text" placeholder="Press enter to add tags" />
+                    <input type="text" placeholder="Press enter to add tags" />
                 </Form.Group>
             </Form.Row>
             <button type="submit" onClick={onSubmit} >Submit</button>

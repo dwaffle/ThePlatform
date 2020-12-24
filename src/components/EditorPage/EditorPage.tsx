@@ -50,6 +50,7 @@ export default function EditorPage () {
                 <button className="selectArticle" type="submit">Select Article</button>
             </Col>
         </Row>
+        
 
     </MainLayout>
 }

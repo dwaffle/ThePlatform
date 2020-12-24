@@ -13,12 +13,13 @@ var connection = mysql.createConnection({
 
 //Id and date of creation are generated for us by the SQL query.
 export interface IArticle {
-    price: number,
-    author: number,
-    type: number,
+    art_id?: number,
+    art_price: number,
+    user_author: number,
+    artype_id: number,
     description: string,
-    title: string,
-    body: string
+    art_title: string,
+    art_body: string
 }
 
 export const ArticleModel = {
@@ -61,7 +62,7 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.title}', '${articleToCreate.author}', SYSDATE(), ${articleToCreate.price}, '${articleToCreate.description}', '${articleToCreate.body}', ${articleToCreate.type})`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), ${articleToCreate.art_price}, '${articleToCreate.description}', '${articleToCreate.art_body}', ${articleToCreate.artype_id})`,
             function(err:any, result:any){
                 if(err)
                 {

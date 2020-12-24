@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { userState} from './login.recoil'
 import {useRecoilState} from 'recoil'
 import { useHistory } from 'react-router';
 import api from '../../api'
@@ -31,7 +30,7 @@ function LoginForm(){
             <Row>
                 <Col />
                 <Col> 
-
+                    
                     <div className="Container">
                         <Form className="FormLogin">
                             <h1 className="LoginLabel">User Login</h1>

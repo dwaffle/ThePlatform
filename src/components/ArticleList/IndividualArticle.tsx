@@ -1,22 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MainLayout from '../../layouts/MainLayout';
-import {IArticle} from './Articles';
+import {IArticle} from '../../../services/crud-server/src/models/article'
+import {useHistory} from 'react-router-dom';
 import Rating from 'react-rating'
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import api from '../../api'
+// import {useArticleList} from './article_data'
 import './style.scss'
 import {Container, Row, Col } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
 
-export default function IndividualArticle () {
 
+export default function IndividualArticle (props: IArticle) {
+    const location = useLocation();
     const [rating1, setRating1] = useState(0);
+
+    const [ article, setArticle ] = useState<IArticle[]>();
+
+    useEffect(() => {
+        getArticle();
+      }, []);
+      
+    const getArticle = () => {
+        api.article.get().then((response) => {
+          const oneArticle = response.data;
+          console.log(oneArticle)
+          setArticle(oneArticle);
+        }).catch(error => console.error(`Error: ${error}`))
+    }
+
+  
     
     return <MainLayout>
-
+     
         <Container className="ContainerPosition">
 
-            <Row className="articleTitle" > Godzilla Strikes Again! </Row>
-            <Row className="articleAuthor"> Author: Hubie Dubios </Row>
+            <Row className="articleTitle" > {props.art_title} </Row>
+            <Row className="articleAuthor"> {props.user_author} </Row>
             <Row> 
                 <Col> Fiction </Col>
             </Row>
