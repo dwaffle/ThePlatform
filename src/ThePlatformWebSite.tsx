@@ -7,7 +7,7 @@ import Profile from './pages/ProfilePage';
 import SignupPage from './pages/SignupPage';
 import {CreateNewArticle} from './components/ArticleList/ArticleInput/CreateArticle';
 import AdminSite from './pages/AdminPage';
-import Article from './components/ArticleList/HorizontalArticleList';
+import HorizontalArticles from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage'
 import './App.scss';
 import EditorPage from './components/EditorPage/EditorPage';
@@ -33,11 +33,11 @@ export default function ThePlatformWebsite( props:{} ){
                     <Route path="/profile" component={Profile} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/organization" component={Organization} />
-                    <Route path="/articles" component={Article} />
+                    <Route path="/articles" component={HorizontalArticles} />
                     <Route path="/editor" component={EditorPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/newArticle" component={CreateNewArticle} />
-                    <Route path='/individualArticle' component={IndividualArticle} />
+                    <Route path='/articles/:articleID' component={IndividualArticle} />
                     <Route path="/" component={requireAuth} />
                 </Switch>
             </BrowserRouter>
