@@ -17,6 +17,7 @@ const fs_1 = __importDefault(require("fs"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const lodash_1 = require("lodash");
 const path_1 = require("path");
+const password_1 = require("./password");
 dotenv_1.default.config();
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -97,6 +98,36 @@ exports.UserModel = {
                     resolve(result);
                 }
             });
+        });
+    }),
+    patch: (userInfo) => __awaiter(void 0, void 0, void 0, function* () {
+        let queryParams = "";
+        if (!userInfo.user_id) {
+            console.log("No user id");
+            return;
+        }
+        if (userInfo.user_email) {
+            queryParams += `user_email = '${userInfo.user_email}', `;
+        }
+        if (userInfo.user_firstName) {
+            queryParams += `user_firstName = '${userInfo.user_firstName}', `;
+        }
+        if (userInfo.user_lastName) {
+            queryParams += `user_lastName = '${userInfo.user_lastName}', `;
+        }
+        if (userInfo.user_password) {
+            password_1.PasswordModel.hash(userInfo.user_password);
+            queryParams += `user_password = '${userInfo.user_password}', `;
+        }
+        queryParams = queryParams.slice(0, -2);
+        console.log("Query params: " + queryParams);
+        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
+            if (err) {
+                lodash_1.reject(err);
+            }
+            else {
+                console.log("Params from resolve:" + queryParams);
+            }
         });
     })
 };

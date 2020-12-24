@@ -9,10 +9,10 @@ import userAvatar from '../../data/icon/userAvatar.jpg';
 
 
 export interface IprofileChangeRequest {
+    user_id: number,
     first_name?: string;
     last_name?: string;
     email?: string;
-    phone?: string;
     password_entry?: string
 }
 
@@ -88,16 +88,17 @@ export default function EditProfilePage( props:{} ){
             alert("Passwords must match to be changed.")
             return;
         }
-        //If the phone number isn't empty, and isn't digits, don't submit.
-        if((phone != "" || null || undefined) &&!verifyPhoneNumber()){
-            alert("Phone numbers must be ten digits, and digits only.")
+        const user_id = Number(localStorage.getItem('user_id'))
+        //If somehow there is no user, do not send a change request.
+        if(user_id == null)
+        {
             return;
         }
         const changeRequest:IprofileChangeRequest = {
+            user_id: user_id,
             first_name: first_name,
             last_name: last_name,
             email: email,
-            phone: phone,
             password_entry: password_entry
         }
         api.user.patch(changeRequest);
@@ -133,9 +134,6 @@ export default function EditProfilePage( props:{} ){
                 </Col>
                 <Col>
                     Edit Last Name: <Form.Control placeholder={displayLastName()}  onChange={(e) => (setLastName(e.target.value))}/>
-                </Col>
-                <Col>
-                    Edit Phone Number: <Form.Control onChange={(e) => (setPhoneNumber(e.target.value))}></Form.Control>
                 </Col>
             </Row>
             <Row>
