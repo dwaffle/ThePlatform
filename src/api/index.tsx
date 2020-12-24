@@ -1,14 +1,13 @@
-import article from './article';
-import signup from './signup'
-import tokens from './tokens'
-import login from './login'
-import user from './user'
-
+import article from "./article";
+import signup from "./signup";
+import tokens from "./tokens";
+import login from "./login";
+import user from "./user";
 
 export default {
-    article,
-    signup,
-    tokens,
-    login,
-    user
-}
+  article,
+  signup,
+  tokens,
+  login,
+  user,
+};

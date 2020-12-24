@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { Col, Form, Row } from 'react-bootstrap';
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { Col, Form, Row } from "react-bootstrap";
 
 // export default function ProductFilter( props:{
 //     searchDispatch: ( searchFilter:ISearchFilter ) => void
@@ -9,12 +9,12 @@ import { Col, Form, Row } from 'react-bootstrap';
 //     // global state
 //     const categories = useRecoilValue<string[]>(categoriesState);
 //     const brands = useRecoilValue<string[]>(brandsState);
-    
+
 //     // local state
 //     const [ searchTitle, setSearchTitle ] = useState<string>("");
 //     const [ searchAuthor, setSearchAuthor] = useState<string>("");
 //     const [ searchType, setSearchType ] = useState<string>("");
-    
+
 //     // events
 //     const onChangeSearchTitle = (e:ChangeEvent<HTMLInputElement>) => {
 //         setSearchTitle(e.target.value);

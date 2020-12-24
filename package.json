@@ -37,7 +37,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write src/**/*/*/*.tsx"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -66,6 +67,7 @@
     "axios": "^0.21.0",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
+    "prettier": "2.2.1",
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
     "react-star-rating-component": "^1.4.1",
     "react-tag-input": "^6.5.2"
