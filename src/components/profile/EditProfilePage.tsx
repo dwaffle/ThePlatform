@@ -9,38 +9,28 @@ import userAvatar from '../../data/icon/userAvatar.jpg';
 
 
 export interface IprofileChangeRequest {
-    first_name?: string;
-    last_name?: string;
-    email?: string;
-    phone?: string;
-    password_entry?: string
+    user_id: number,
+    user_firstName: string;
+    user_lastName?: string;
+    user_email?: string;
+    user_password?: string
 }
 
 
 export default function EditProfilePage( props:{} ){
     const history = useHistory();
     
-    const [email, setEmail] = useState<string>()
-    const [first_name, setFirstName] = useState<string>()
-    const [last_name, setLastName] = useState<string>()
+    const [user_email, setEmail] = useState<string>()
+    const [user_firstName, setFirstName] = useState<string>()
+    const [user_lastName, setLastName] = useState<string>()
     const [password_entry, setPasswordEntry] = useState<string>()
     const [password_verify, setPasswordVerify] = useState<string>()
-    const [phone, setPhoneNumber] = useState<string>()
     
     function onClickLogOut(){
        localStorage.clear();
        history.push('/articles')
     }
 
-    function verifyPhoneNumber(){
-        if(phone == undefined || null || ""){
-            return;
-        }
-        if((phone.length !=  11) || Number(phone) == NaN){
-            return false;
-        }
-        return true;
-    }
     function displayUserName(){
         if(window.localStorage.getItem('username'))
         {
@@ -63,9 +53,9 @@ export default function EditProfilePage( props:{} ){
     }
 
     function displayFirstName(){
-        let firstName = localStorage.getItem('first_name')
-        if(firstName != null){
-            return firstName
+        let user_firstName = localStorage.getItem('first_name')
+        if(user_firstName != null){
+            return user_firstName
         } 
     }
 
@@ -88,17 +78,19 @@ export default function EditProfilePage( props:{} ){
             alert("Passwords must match to be changed.")
             return;
         }
-        //If the phone number isn't empty, and isn't digits, don't submit.
-        if((phone != "" || null || undefined) &&!verifyPhoneNumber()){
-            alert("Phone numbers must be ten digits, and digits only.")
+        const user_id = Number(localStorage.getItem('user_id'))
+        //If somehow there is no user, do not send a change request.
+        if(user_id == null || undefined)
+        {
             return;
         }
+        
         const changeRequest:IprofileChangeRequest = {
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            phone: phone,
-            password_entry: password_entry
+            user_id: user_id,
+            user_firstName: user_firstName ? user_firstName : "",
+            user_lastName: user_lastName,
+            user_email: user_email,
+            user_password: password_entry
         }
         api.user.patch(changeRequest);
     }
@@ -133,9 +125,6 @@ export default function EditProfilePage( props:{} ){
                 </Col>
                 <Col>
                     Edit Last Name: <Form.Control placeholder={displayLastName()}  onChange={(e) => (setLastName(e.target.value))}/>
-                </Col>
-                <Col>
-                    Edit Phone Number: <Form.Control onChange={(e) => (setPhoneNumber(e.target.value))}></Form.Control>
                 </Col>
             </Row>
             <Row>
