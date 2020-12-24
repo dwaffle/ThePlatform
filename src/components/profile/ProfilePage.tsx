@@ -3,6 +3,7 @@ import { Row, Col, CardDeck, Card, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 //import Faq from '../components/OrganizationPage';
 import './style.scss'
+import api from '../../api'
 import { useHistory } from 'react-router';
 import userAvatar from '../../data/icon/userAvatar.jpg';
 
@@ -22,11 +23,18 @@ export default function ProfilePage( props:{} ){
        localStorage.clear();
        history.push('/articles')
     }
+    function checkLogin(){
+        if(window.localStorage.getItem('username')){
+            history.push('/EditProfilePage')
+        } else {
+            alert('Please log in first')
+        }
+    }
 
     function displayUserName(){
-        if(localStorage.getItem('user'))
+        if(window.localStorage.getItem('username'))
         {
-            return <div>{window.localStorage.getItem('user')}</div>
+            return <div>{window.localStorage.getItem('username')}</div>
         } else {
             return <div>Please sign in.</div>
         }
@@ -38,6 +46,7 @@ export default function ProfilePage( props:{} ){
             return;
         }
     }
+
     return <>
 
             <h1>Profile page</h1>            
@@ -55,9 +64,6 @@ export default function ProfilePage( props:{} ){
                 <Col>
                     <h2>{displayEmail()}</h2>
                 </Col>
-                <Col>
-                    <h2>Phone</h2>
-                </Col>
             </Row>
 
             <Row>
@@ -65,7 +71,7 @@ export default function ProfilePage( props:{} ){
                     <Image src={ userAvatar } roundedCircle />
                 </Col>
             </Row>
-            <Button  href="#">Edit</Button>
+            <Button  onClick={checkLogin}>Edit</Button>
             <Button variant="primary" type="submit" onClick={onClickLogOut}> Log Out</Button>
 
 

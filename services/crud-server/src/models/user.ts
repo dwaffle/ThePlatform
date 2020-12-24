@@ -1,29 +1,16 @@
 import fs from 'fs';
 import dotenv from 'dotenv';
-import { getAllByAltText } from '@testing-library/react';
 import { reject } from 'lodash';
 import { resolve } from 'path';
+import { PasswordModel } from './password';
 dotenv.config();
 
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: process.env.MYSQL_CONNECTION_STRING,
-    user: 'admin',
-    password: process.env.MYSQL_PASSWORD,
-    database: 'mydb'
-})
-
-// read user
-const path = `${__dirname}/../data`;
-const file = `${path}/users.json`;
-
-if(!fs.existsSync(path)){
-    fs.mkdirSync(path);
-}
-
-if(!fs.existsSync(file)){
-    fs.writeFileSync(file, JSON.stringify([]), { encoding: 'utf-8' });
+interface IprofileChangeRequest {
+    user_id: number,
+    user_firstName?: string;
+    user_lastName?: string;
+    user_email?: string;
+    user_password?: string
 }
 
 export interface IUser {
@@ -48,6 +35,28 @@ export interface IUserNoPassword {
     user_email:string,
     user_creation_date:string
 }
+
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: process.env.MYSQL_CONNECTION_STRING,
+    user: 'admin',
+    password: process.env.MYSQL_PASSWORD,
+    database: 'mydb'
+})
+
+// read user
+const path = `${__dirname}/../data`;
+const file = `${path}/users.json`;
+
+if(!fs.existsSync(path)){
+    fs.mkdirSync(path);
+}
+
+if(!fs.existsSync(file)){
+    fs.writeFileSync(file, JSON.stringify([]), { encoding: 'utf-8' });
+}
+
+
 
 
 export const UserModel = {
@@ -102,5 +111,52 @@ export const UserModel = {
             })
         })
       
+    },
+
+    delete: async (userId:number) => {
+        return new Promise((resolve, reject) => {
+            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function(err:any, result:any){
+                if(err){
+                    reject(err)
+                } else {
+                    console.log(result);
+                    resolve(result);
+                }
+            })
+        })
+    },
+
+    patch: async(userInfo:IprofileChangeRequest) => {
+        let queryParams = "";
+        //Double check that a user id has come in with the user info.
+        if(!userInfo.user_id){
+            console.log("No user id")
+            return
+        }
+        //Need to figure out which items, and therefore how to structure the query.
+        if(userInfo.user_email){
+            queryParams += `user_email = '${userInfo.user_email}', `
+        }
+        if(userInfo.user_firstName){
+            queryParams += `user_firstName = '${userInfo.user_firstName}', ` 
+        }
+        if(userInfo.user_lastName){
+            queryParams += `user_lastName = '${userInfo.user_lastName}', `
+        }
+        if(userInfo.user_password){
+            PasswordModel.hash(userInfo.user_password);
+            queryParams += `user_password = '${userInfo.user_password}', `
+        }
+        //Take out the final ", " before actually sending the query
+        queryParams = queryParams.slice(0, -2)
+        console.log("Query params: " + queryParams)
+        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function(err:any, result:any){
+                if(err){
+                    reject(err);
+                } else
+                {
+                    console.log("Params from resolve:" + queryParams)
+                }
+            })
     }
 }
