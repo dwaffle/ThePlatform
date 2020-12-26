@@ -144,7 +144,6 @@ export const UserModel = {
             queryParams += `user_lastName = '${userInfo.user_lastName}', `
         }
         if(userInfo.user_password){
-            PasswordModel.hash(userInfo.user_password);
             queryParams += `user_password = '${userInfo.user_password}', `
         }
         //Take out the final ", " before actually sending the query
@@ -153,9 +152,6 @@ export const UserModel = {
         connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function(err:any, result:any){
                 if(err){
                     reject(err);
-                } else
-                {
-                    console.log("Params from resolve:" + queryParams)
                 }
             })
     }
