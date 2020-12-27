@@ -5,9 +5,12 @@ import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import api from "../../api";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 export default function HorizontalArticles(props: { rows: number }) {
   const [article, setArticle] = useState<IArticle[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     getArticle();
@@ -21,6 +24,16 @@ export default function HorizontalArticles(props: { rows: number }) {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
+
+  let isAuthor = (e:any) => {
+    e.preventDefault();
+    let userType = Number(localStorage.getItem("user_type"));
+    if (userType != 1) {
+      alert("You must be an author to create an article");
+    } else { 
+      return history.push("/newArticle");
+    }
+  }
 
   return (
     <MainLayout>
@@ -70,7 +83,7 @@ export default function HorizontalArticles(props: { rows: number }) {
             </Col>
             <Col>
               {" "}
-              <Button href="/newArticle">Create New</Button>
+              <Button onClick={isAuthor}>Create New</Button>
             </Col>
           </Row>
         </Form>
@@ -78,10 +91,11 @@ export default function HorizontalArticles(props: { rows: number }) {
 
       <div className="viewArticles">
         {article.map((art) => (
+          
           <Card className="Card">
             <Card.Header className="CardHeader">
               {" "}
-              <Link to="/articles/:articleId">{art.art_title}</Link>
+              <Link to={`/articles/${art.art_id}`}>{art.art_title}</Link>
               <div> Author:{art.user_author} </div>
             </Card.Header>
 
@@ -90,6 +104,8 @@ export default function HorizontalArticles(props: { rows: number }) {
             </Card.Body>
           </Card>
         ))}
+
+        
       </div>
     </MainLayout>
   );
