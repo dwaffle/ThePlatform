@@ -4,39 +4,36 @@ import { IArticle } from "../../../services/crud-server/src/models/article";
 import Rating from "react-rating";
 import api from "../../api";
 import "./style.scss";
+import { useParams } from "react-router";
 import { Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
 
-export default function IndividualArticle(props: IArticle) {
-  const location = useLocation();
-  const [rating1, setRating1] = useState(0);
-
+const IndividualArticle = () => {
   const [article, setArticle] = useState<IArticle[]>([]);
+  const [rating1, setRating1] = useState(0);
+  // const [unoArticle, setOneArticle] = useState<IArticle>();
+  const params = useParams<{ id: any }>();
+
+  let oneArticle = article.find((art) => art.art_id /*=== params.id*/);
 
   useEffect(() => {
-    allArticles();
-  }, []);
-
-  const allArticles = () => {
     api.article
       .get()
       .then((response) => {
         setArticle(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-  };
-
+  }, []);
 
   return (
     <MainLayout>
       <Container className="ContainerPosition">
-        <Row className="articleTitle"> Hi </Row>
-        <Row className="articleAuthor"> {props.user_author} </Row>
+        <Row className="articleTitle"> {oneArticle?.art_title} </Row>
+        <Row className="articleAuthor"> {oneArticle?.user_author} </Row>
         <Row>
           <Col> Fiction </Col>
         </Row>
 
-        <Row xs={1} md={4} lg={6}>
+        <Row>
           <Col>
             <Rating
               initialRating={rating1}
@@ -56,54 +53,14 @@ export default function IndividualArticle(props: IArticle) {
           <Col>Description</Col>
         </Row>
         <Row className=" articleDesc ">
-          <Col>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet
-            cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem,
-            sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam
-            faucibus in urna non tempus. Proin pretium massa quis felis tempor
-            dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus
-            interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis,
-            scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi
-            sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi
-            eros. Aenean porta diam vel interdum ullamcorper. Nullam ac
-            malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies,
-            commodo augue. Donec ullamcorper risus libero, ut convallis metus
-            rutrum a.
-          </Col>
+          <Col>{oneArticle?.description}</Col>
         </Row>
 
         <Row>
           <Col>Body</Col>
         </Row>
         <Row className="articleBody">
-          <Col>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet
-            cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem,
-            sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam
-            faucibus in urna non tempus. Proin pretium massa quis felis tempor
-            dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus
-            interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis,
-            scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi
-            sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi
-            eros. Aenean porta diam vel interdum ullamcorper. Nullam ac
-            malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies,
-            commodo augue. Donec ullamcorper risus libero, ut convallis metus
-            rutrum a. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Aliquam faucibus quis erat nec vehicula. Morbi aliquam vitae eros
-            sit amet cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo
-            lorem, sollicitudin sit amet tortor eget, iaculis finibus felis.
-            Aliquam faucibus in urna non tempus. Proin pretium massa quis felis
-            tempor dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus
-            interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis,
-            scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi
-            sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi
-            eros. Aenean porta diam vel interdum ullamcorper. Nullam ac
-            malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies,
-            commodo augue. Donec ullamcorper risus libero, ut convallis metus
-            rutrum a.
-          </Col>
+          <Col>{oneArticle?.art_body}</Col>
         </Row>
 
         <Row>
@@ -114,4 +71,6 @@ export default function IndividualArticle(props: IArticle) {
       </Container>
     </MainLayout>
   );
-}
+};
+
+export default IndividualArticle;

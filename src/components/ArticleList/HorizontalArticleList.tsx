@@ -4,36 +4,31 @@ import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import api from "../../api";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-
+import { Link, useHistory, useParams, Route, Switch } from "react-router-dom";
+import IndividualArticle from "./IndividualArticle";
 
 export default function HorizontalArticles(props: { rows: number }) {
   const [article, setArticle] = useState<IArticle[]>([]);
   const history = useHistory();
 
   useEffect(() => {
-    getArticle();
-  }, []);
-
-  const getArticle = () => {
     api.article
       .get()
       .then((response) => {
         setArticle(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-  };
+  }, []);
 
-  let isAuthor = (e:any) => {
+  let isAuthor = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem("user_type"));
     if (userType != 1) {
       alert("You must be an author to create an article");
-    } else { 
+    } else {
       return history.push("/newArticle");
     }
-  }
+  };
 
   return (
     <MainLayout>
@@ -90,22 +85,25 @@ export default function HorizontalArticles(props: { rows: number }) {
       </div>
 
       <div className="viewArticles">
-        {article.map((art) => (
-          
-          <Card className="Card">
-            <Card.Header className="CardHeader">
-              {" "}
-              <Link to={`/articles/${art.art_id}`}>{art.art_title}</Link>
-              <div> Author:{art.user_author} </div>
-            </Card.Header>
+        {article.map((art, index) => (
+          <div key={index}>
+            <Card className="Card">
+              <Card.Header className="CardHeader">
+                {" "}
+                <Link to={`/articles/${art.art_id}`}>{art.art_title}</Link>
+                <div> Author:{art.user_author} </div>
+              </Card.Header>
 
-            <Card.Body className="CardBody">
-              <Card.Text className="CardText">{art.description}</Card.Text>
-            </Card.Body>
-          </Card>
+              <Card.Body className="CardBody">
+                <Card.Text className="CardText">{art.description}</Card.Text>
+              </Card.Body>
+            </Card>
+
+            <Switch>
+              <Route path="arrticles/:id" children={<IndividualArticle />} />
+            </Switch>
+          </div>
         ))}
-
-        
       </div>
     </MainLayout>
   );
