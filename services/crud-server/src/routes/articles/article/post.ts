@@ -6,12 +6,12 @@ export function post(app:any){
         try {
        const article:IArticle = request.body;
         ArticleModel.create({
-            price: article.price,
-            type: article.type,
-            title: article.title,
+            art_price: article.art_price,
+            artype_id: article.artype_id,
+            art_title: article.art_title,
             description: article.description,
-            author: article.author,
-            body: article.body
+            user_author: article.user_author,
+            art_body: article.art_body
         });
         response.send(201);
     } catch {

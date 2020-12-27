@@ -1,21 +1,22 @@
-import React from 'react';
-
+import React from "react";
 
 export const Component = () => {
-    const [fileSelected, setFileSelected] = React.useState<File>() // also tried <string | Blob>
+  const [fileSelected, setFileSelected] = React.useState<File>(); // also tried <string | Blob>
 
-    const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
-        const fileList = e.target.files;
+  const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const fileList = e.target.files;
 
-        if (!fileList) return;
+    if (!fileList) return;
 
-        setFileSelected(fileList[0]);
-    };
+    setFileSelected(fileList[0]);
+  };
 
-    const uploadFile = function (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
-        if (fileSelected) {
-            const formData = new FormData();
-            formData.append("image", fileSelected, fileSelected.name);
-        }
-    };
-}
+  const uploadFile = function (
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) {
+    if (fileSelected) {
+      const formData = new FormData();
+      formData.append("image", fileSelected, fileSelected.name);
+    }
+  };
+};
