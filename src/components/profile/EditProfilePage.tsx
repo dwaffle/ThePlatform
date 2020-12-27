@@ -93,6 +93,10 @@ export default function EditProfilePage( props:{} ){
             user_password: password_entry
         }
         api.user.patch(changeRequest);
+        //Get the user's new info after a successful request.
+        const username = localStorage.getItem('username')
+        api.login.post({user_userName: username})
+        history.push('/profile')
     }
 
 
