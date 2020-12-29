@@ -22,7 +22,8 @@ function post(app) {
                 art_title: article.art_title,
                 description: article.description,
                 user_author: article.user_author,
-                art_body: article.art_body
+                art_body: article.art_body,
+                art_image: article.art_image
             });
             response.send(201);
         }
