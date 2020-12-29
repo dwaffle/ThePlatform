@@ -2,23 +2,14 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
 import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
-import { IArticle } from "../../../services/crud-server/src/models/article";
-import api from "../../api";
-import { Link, useHistory, useParams, Route, Switch } from "react-router-dom";
+import { Link, useHistory, Route, Switch } from "react-router-dom";
 import IndividualArticle from "./IndividualArticle";
+import {useArticleList} from './articleList'
 
 export default function HorizontalArticles(props: { rows: number }) {
-  const [article, setArticle] = useState<IArticle[]>([]);
-  const history = useHistory();
 
-  useEffect(() => {
-    api.article
-      .get()
-      .then((response) => {
-        setArticle(response.data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+  const { articleList, setArticleList } = useArticleList();
+  const history = useHistory();
 
   let isAuthor = (e: any) => {
     e.preventDefault();
@@ -85,7 +76,7 @@ export default function HorizontalArticles(props: { rows: number }) {
       </div>
 
       <div className="viewArticles">
-        {article.map((art, index) => (
+        {articleList.map((art, index) => (
           <div key={index}>
             <Card className="Card">
               <Card.Header className="CardHeader">

@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from "react";
+import { useRecoilValue } from 'recoil';
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import Rating from "react-rating";
-import api from "../../api";
 import "./style.scss";
 import { useParams } from "react-router";
 import { Container, Row, Col } from "react-bootstrap";
+import {useArticleList} from './articleList'
+
 
 const IndividualArticle = () => {
-  const [article, setArticle] = useState<IArticle[]>([]);
-  const [rating1, setRating1] = useState(0);
-  // const [unoArticle, setOneArticle] = useState<IArticle>();
+  // articleList holds the data from database
+  const { articleList, setArticleList } = useArticleList();
+  const [ article, setArticle ] = useState<IArticle>();
+  console.log(article)
   const params = useParams<{ id: any }>();
 
-  let oneArticle = article.find((art) => art.art_id /*=== params.id*/);
-
   useEffect(() => {
-    api.article
-      .get()
-      .then((response) => {
-        setArticle(response.data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+    setArticle(articleList.find( art => art.art_id === params.id ));
+  }, [params.id])
+
+
+  const [ rating1, setRating1 ] = useState(0);
+
+
 
   return (
     <MainLayout>
       <Container className="ContainerPosition">
-        <Row className="articleTitle"> {oneArticle?.art_title} </Row>
-        <Row className="articleAuthor"> {oneArticle?.user_author} </Row>
+        <Row className="articleTitle"> {article?.art_title} </Row>
+        <Row className="articleAuthor"> {article?.user_author} </Row>
         <Row>
           <Col> Fiction </Col>
         </Row>
@@ -53,14 +54,14 @@ const IndividualArticle = () => {
           <Col>Description</Col>
         </Row>
         <Row className=" articleDesc ">
-          <Col>{oneArticle?.description}</Col>
+          <Col>{article?.description}</Col>
         </Row>
 
         <Row>
           <Col>Body</Col>
         </Row>
         <Row className="articleBody">
-          <Col>{oneArticle?.art_body}</Col>
+          <Col>{article?.art_body}</Col>
         </Row>
 
         <Row>
