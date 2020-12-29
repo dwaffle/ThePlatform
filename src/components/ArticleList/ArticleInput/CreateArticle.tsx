@@ -27,12 +27,13 @@ export function CreateNewArticle() {
   function onSubmit(e: any) {
     e.preventDefault();
     let objectToSend = {
-      price: 1,
-      type: type,
-      title: title,
+      art_price: 1,
+      artype_id: type,
+      art_title: title,
       description: description,
-      author: Number(localStorage.getItem("user_id")),
-      body: body,
+      user_author: Number(localStorage.getItem("user_id")),
+      art_body: body,
+      art_image: image
     };
     api.article.post(objectToSend);
     alert("Success!");
@@ -45,6 +46,12 @@ export function CreateNewArticle() {
   function onRadioClick(disabled: any) {
     disabled = false;
   }
+
+  const [image, setImage] = useState<string>('');
+  const fileHandler = (e:any) => {
+    setImage(e.target.files[0]);
+  }
+
 
   return (
     <MainLayout>
@@ -62,6 +69,12 @@ export function CreateNewArticle() {
             <Form.Group className="FormRowSpacing">
               <Form.Control type="Author" readOnly value={authorName} />
             </Form.Group>
+          </Form.Row>
+
+          <Form.Row className="FormRowSpacing">
+            <input type="file" accept="image/*" onChange={fileHandler} />
+            <img src={image}/>
+            
           </Form.Row>
 
           <Form.Row className="FormRowSpacing">

@@ -4,14 +4,15 @@ import {authenticateToken} from '../../../middleware/authenticator'
 export function post(app:any){
     app.post("/articles", authenticateToken, async (request:any, response: any) => {
         try {
-       const article:IArticle = request.body;
+        const article:IArticle = request.body;
         ArticleModel.create({
             art_price: article.art_price,
             artype_id: article.artype_id,
             art_title: article.art_title,
             description: article.description,
             user_author: article.user_author,
-            art_body: article.art_body
+            art_body: article.art_body,
+            art_image: article.art_image
         });
         response.send(201);
     } catch {

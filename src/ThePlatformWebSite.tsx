@@ -27,7 +27,7 @@ export default function ThePlatformWebsite(props: {}) {
       <Switch>
         <Route path="/admin" component={AdminSite} />
         <Route path="/organization" component={Organization} />
-        <Route path="/series" component={Series} />
+        <Route path="/series" component={IndividualArticle} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />

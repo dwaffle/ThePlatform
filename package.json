@@ -12,8 +12,6 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.1",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
     "bootstrap": "^4.5.3",
     "lodash": "^4.17.20",
     "material-ui-rating": "^4.2.0",
@@ -26,10 +24,7 @@
     "react-router": "^5.2.0",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-star-rating": "^1.4.2",
-    "react-star-ratings": "^2.3.0",
-    "react-tagsinput": "^3.19.0",
+    "react-scripts": "^4.0.1",
     "recoil": "^0.1.2",
     "typescript": "^3.8.3"
   },
@@ -38,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write src/**/*/*/*.tsx"
+    "prettier": "prettier --write src/**/*/*.tsx"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,17 +54,17 @@
     "@types/lodash": "^4.14.152",
     "@types/node": "^12.12.42",
     "@types/node-sass": "^4.11.1",
+    "@types/query-string": "^6.3.0",
+    "@types/react": "^16.14.2",
+    "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.7",
     "@types/react-router-bootstrap": "^0.24.5",
-    "@types/react-router-dom": "^5.1.5",
+    "@types/react-router-dom": "^5.1.6",
     "@types/react-tag-input": "^6.1.2",
     "@types/webpack-env": "^1.15.2",
     "axios": "^0.21.0",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
-    "prettier": "2.2.1",
-    "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
-    "react-star-rating-component": "^1.4.1",
-    "react-tag-input": "^6.5.2"
+    "prettier": "2.2.1"
   }
 }

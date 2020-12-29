@@ -19,7 +19,8 @@ export interface IArticle {
     artype_id: number,
     description: string,
     art_title: string,
-    art_body: string
+    art_body: string,
+    art_image: string
 }
 
 export const ArticleModel = {
@@ -62,7 +63,7 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), ${articleToCreate.art_price}, '${articleToCreate.description}', '${articleToCreate.art_body}', ${articleToCreate.artype_id})`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}')`,
             function(err:any, result:any){
                 if(err)
                 {
