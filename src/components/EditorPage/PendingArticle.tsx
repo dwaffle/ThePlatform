@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -9,13 +9,48 @@ import {
   Card,
   CardDeck,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { IArticle } from "../../../services/crud-server/src/models/article";
+import api from "../../api";
 
 import "./style.scss";
 
-export default function PendingArticleList() {
+export default function PendingArticleList(props: { rows: number }) {
+
+    
+    const [article, setArticle] = useState<IArticle[]>([]);
+
+    useEffect(() => {
+      getArticle();
+    }, []);
+  
+    const getArticle = () => {
+      api.article
+        .get()
+        .then((response) => {
+          setArticle(response.data);
+        })
+        .catch((error) => console.error(`Error: ${error}`));
+    };
+
+    // const rows= [];
+
+    //     while( rows.length < (props.rows||1) ){
+    //         rows.push( article);
+    //     }
+
+    
+        
+    //     console.log(rows)
+
+    function ShowArticleOnClick (){
+        
+      }
+
     return ( <>
+
             <div className="PendingArticle">
-            {/* style={{ padding:"0 5px  0 10px" }} */}
                 <h5 >Articles pending approval : </h5>
                 <Row>
                     <Col>
@@ -24,41 +59,25 @@ export default function PendingArticleList() {
                                 <tr>
                                 <th>Articles</th>
                                 <th>Author</th>
-                                <th>State</th>
+                                {/* <th>State</th> */}
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Godzilla</td>
-                                    <td>Hubie Dubios</td>
-                                    <td>pending</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Mark</td>
-                                    <td>pending</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Frank</td>
-                                    <td>pending</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Author</td>
-                                    <td>pending</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Jacob</td>
-                                    <td>pending</td>
-                                </tr>   
+                                {article.map((art) => (
+                                    <tr onClick ={ ShowArticleOnClick } defaultValue= {art.art_id} >                            
+                                        <td  >{ art.art_title }</td>
+                                        <td>{ art.user_author }</td>
+                                        {/* <td> State</td> */}
+                                        {/* <td> <Link to="/articles/:articleId">{art.art_title}</Link></td> */}
+                                    </tr>
+                                ))}
+                                    
                             </tbody>
                         </Table>
         
                     </Col>
+
                 </Row>
-                
 
             </div>
     </>)
