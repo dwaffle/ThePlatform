@@ -10,55 +10,50 @@ import {
   CardDeck,
 } from "react-bootstrap";
 import MainLayout from "../../layouts/MainLayout";
-import "./style.scss";
-
-//import Faq from '../components/OrganizationPage';
+import PendingArticle from "./PendingArticle";
+import RejectArticle from "./RejectArticle";
 
 export default function EditorPage() {
   return (
     <MainLayout>
-      Temporary page
+
       <Row>
         <Col>
-          <Table className="TableBody">
-            <thead className="thead">
-              <tr>
-                <th>Pending Articles</th>
-                <th>Author</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Godzilla</td>
-                <td>Hubie Dubios</td>
-              </tr>
-              <tr>
-                <td>Title</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <td>Title</td>
-                <td>Frank</td>
-              </tr>
-              <tr>
-                <td>Title</td>
-                <td>Author</td>
-              </tr>
-              <tr>
-                <td>Title</td>
-                <td>Jacob</td>
-              </tr>
-            </tbody>
-          </Table>
+          <PendingArticle />
+
+        </Col>
+        <Col xs={8}>
+          <div className="SelectedArticle">
+            <h2 > Selected Article </h2>
+          </div>
+          <RejectArticle />
         </Col>
       </Row>
+
       <Row>
         <Col>
-          <button className="selectArticle" type="submit">
-            Select Article
-          </button>
+          <Row>
+          
+            <Col  >
+              <Button variant="primary"  block> Select Article</Button>
+            </Col>
+   
+          </Row>
+        </Col>
+        <Col xs={8}>
+
+        <Row>
+            
+            <Col  xs={7}>
+              <Button variant="primary"  block>Reject Article </Button>
+             <Button variant="primary"  block>Approve Article</Button>
+            </Col>
+            <Col></Col>
+            <Col></Col>
+          </Row>         
         </Col>
       </Row>
+
     </MainLayout>
   );
 }
