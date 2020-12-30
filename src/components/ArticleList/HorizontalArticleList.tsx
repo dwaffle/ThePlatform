@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
 import { Link, useHistory, Route, Switch } from "react-router-dom";
-import IndividualArticle from "./IndividualArticle";
 import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
@@ -80,7 +79,7 @@ export default function HorizontalArticles(props: { rows: number }) {
             <Card className="Card">
               <Card.Header className="CardHeader">
                 {" "}
-                <Link to={`/articles/${art.art_id}`}>{art.art_title}</Link>
+                <Link to={`/${art.art_title}`}>{art.art_title}</Link>
                 <div> Author:{art.user_author} </div>
               </Card.Header>
 
@@ -88,7 +87,6 @@ export default function HorizontalArticles(props: { rows: number }) {
                 <Card.Text className="CardText">{art.description}</Card.Text>
               </Card.Body>
             </Card>
-
           </div>
         ))}
       </div>
