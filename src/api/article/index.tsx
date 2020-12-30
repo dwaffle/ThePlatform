@@ -12,10 +12,20 @@ export default {
     });
   },
 
+
   post: async (body: any) => {
     return axios.post(`${HOSTNAME}/articles`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    });
+  },
+
+  getSingleArticle: async (artId: number) => {
+    console.log(`${HOSTNAME}/articles/${artId}`)
+    return axios.get(`${HOSTNAME}/articles/${artId}`, {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
     });
   },
