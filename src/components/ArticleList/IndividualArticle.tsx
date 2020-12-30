@@ -1,120 +1,59 @@
 import React, { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
-import { useHistory } from "react-router-dom";
 import Rating from "react-rating";
-import api from "../../api";
-// import {useArticleList} from './article_data'
 import "./style.scss";
-import { Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router";
+import { Row, Col } from "react-bootstrap";
+import { articleListState } from "./articleList";
 
-export default function IndividualArticle(props: IArticle) {
-  const location = useLocation();
+const IndividualArticle = () => {
   const [rating1, setRating1] = useState(0);
-
-  const [article, setArticle] = useState<IArticle[]>();
+  const params = useParams<{ id: any }>();
+  const art = useRecoilValue<IArticle[]>(articleListState);
+  const [article, setArticle] = useState<IArticle>();
 
   useEffect(() => {
-    getArticle();
-  }, []);
-
-  const getArticle = () => {
-    api.article
-      .get()
-      .then((response) => {
-        const oneArticle = response.data;
-        console.log(oneArticle);
-        setArticle(oneArticle);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  };
+    setArticle(art.find((_art) => _art.art_title === params.id));
+  }, [params.id]);
 
   return (
     <MainLayout>
-      <Container className="ContainerPosition">
-        <Row className="articleTitle"> {props.art_title} </Row>
-        <Row className="articleAuthor"> {props.user_author} </Row>
-        <Row>
-          <Col> Fiction </Col>
-        </Row>
+      <section>
+        <h1> {article?.art_title}</h1>
+        <h4>Author: {article?.user_author} </h4>
 
-        <Row xs={1} md={4} lg={6}>
-          <Col>
-            <Rating
-              initialRating={rating1}
-              onClick={(rate) => setRating1(rate)}
-            />
-          </Col>
-        </Row>
+        <div className="Rating">
+          <Rating
+            initialRating={rating1}
+            onClick={(rate) => setRating1(rate)}
+          />
+          <div>
+            <button type="submit">${article?.art_price}</button>{" "}
+          </div>
+        </div>
 
-        <Row>
-          <Col>
-            {" "}
-            <button type="submit">$5.99</button>{" "}
-          </Col>
-        </Row>
+        <div>
+          <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
+        </div>
 
-        <Row>
-          <Col>Description</Col>
-        </Row>
-        <Row className=" articleDesc ">
-          <Col>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet
-            cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem,
-            sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam
-            faucibus in urna non tempus. Proin pretium massa quis felis tempor
-            dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus
-            interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis,
-            scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi
-            sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi
-            eros. Aenean porta diam vel interdum ullamcorper. Nullam ac
-            malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies,
-            commodo augue. Donec ullamcorper risus libero, ut convallis metus
-            rutrum a.
-          </Col>
-        </Row>
+        <div>
+          {" "}
+          Description:
+          <div className="description">{article?.description}</div>
+        </div>
+
+        <div className="body">{article?.art_body}</div>
 
         <Row>
-          <Col>Body</Col>
+          <Col className="Col">1 Viewer</Col>
+          <Col className="Col"> No Series </Col>
+          <Col className="Col"> Godzilla, NYC, Destruction </Col>
         </Row>
-        <Row className="articleBody">
-          <Col>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet
-            cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem,
-            sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam
-            faucibus in urna non tempus. Proin pretium massa quis felis tempor
-            dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus
-            interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis,
-            scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi
-            sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi
-            eros. Aenean porta diam vel interdum ullamcorper. Nullam ac
-            malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies,
-            commodo augue. Donec ullamcorper risus libero, ut convallis metus
-            rutrum a. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Aliquam faucibus quis erat nec vehicula. Morbi aliquam vitae eros
-            sit amet cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo
-            lorem, sollicitudin sit amet tortor eget, iaculis finibus felis.
-            Aliquam faucibus in urna non tempus. Proin pretium massa quis felis
-            tempor dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus
-            interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis,
-            scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi
-            sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi
-            eros. Aenean porta diam vel interdum ullamcorper. Nullam ac
-            malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies,
-            commodo augue. Donec ullamcorper risus libero, ut convallis metus
-            rutrum a.
-          </Col>
-        </Row>
-
-        <Row>
-          <Col className="statistics">1 Viewer</Col>
-          <Col className="series"> Hubies Blog </Col>
-          <Col className="tags"> Godzilla, NYC, Destruction </Col>
-        </Row>
-      </Container>
+      </section>
     </MainLayout>
   );
-}
+};
+
+export default IndividualArticle;

@@ -36,7 +36,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/login" component={LoginPage} />
         <Route path="/newArticle" component={CreateNewArticle} />
         <Route path="/editProfilePage" component={EditProfilePage} />
-        <Route path="/articles/:articleId" component={IndividualArticle} />
+        <Route path="/:id" component={IndividualArticle} />
         <Route path="/" component={requireAuth} />
       </Switch>
     </BrowserRouter>

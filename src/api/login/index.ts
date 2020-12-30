@@ -7,6 +7,7 @@ export default {
         axios.post(`${HOSTNAME}/user` , body).then((response) => {let data = JSON.parse(JSON.stringify(response.data))
             console.log(data);
         localStorage.setItem('user_id', data[0].user_id)
+        localStorage.setItem('user_type', data[0].user_type)
         localStorage.setItem('username', data[0].user_userName)
         localStorage.setItem('email', data[0].user_email)
         localStorage.setItem('first_name', data[0].user_firstName)
