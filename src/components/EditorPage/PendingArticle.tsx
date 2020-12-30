@@ -64,7 +64,7 @@ export default function PendingArticleList(props: { rows: number }) {
                             </thead>
                             <tbody>
                                 {article.map((art) => (
-                                    <tr onClick ={ ShowArticleOnClick } defaultValue= {art.art_id} >                            
+                                    <tr key = {art.art_id} onClick ={ ShowArticleOnClick } defaultValue= {art.art_id} >                            
                                         <td  >{ art.art_title }</td>
                                         <td>{ art.user_author }</td>
                                         {/* <td> State</td> */}
