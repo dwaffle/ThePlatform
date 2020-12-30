@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import Rating from "react-rating";
 import "./style.scss";
 import { useParams } from "react-router";
 import { Container, Row, Col } from "react-bootstrap";
-import { useArticleList } from "./articleList";
+import { articleListState, useArticleList } from "./articleList";
+import Card from 'react'
 
 const IndividualArticle = () => {
-  // articleList holds the data from database
   const { articleList, setArticleList } = useArticleList();
-  const [article, setArticle] = useState<IArticle>();
-  console.log(article);
+  const [rating1, setRating1] = useState(0);
   const params = useParams<{ id: any }>();
+  const art = useRecoilValue<IArticle[]>(articleListState);
+  const [article, setArticle] = useState<IArticle>();
+  console.log(article)
+  
+  
 
   useEffect(() => {
-    setArticle(articleList.find((art) => art.art_id === params.id));
-  }, [params.id]);
+    setArticle(articleList.find(_art => _art.art_id));
+  }, [params.id])
 
-  const [rating1, setRating1] = useState(0);
+  
+  
 
   return (
     <MainLayout>

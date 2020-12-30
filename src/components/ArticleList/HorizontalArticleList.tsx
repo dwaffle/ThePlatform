@@ -89,9 +89,6 @@ export default function HorizontalArticles(props: { rows: number }) {
               </Card.Body>
             </Card>
 
-            <Switch>
-              <Route path="arrticles/:id" children={<IndividualArticle />} />
-            </Switch>
           </div>
         ))}
       </div>

@@ -20,6 +20,16 @@ export default {
     });
   },
 
+  getSingleArticle: async (artId: number) => {
+    console.log(`${HOSTNAME}/articles/${artId}`)
+    return axios.get(`${HOSTNAME}/articles/${artId}`, {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    });
+  },
+ 
+
   patch: async (id: string, body: any) => {
     return axios.patch(`${HOSTNAME}/articles/${id}`, body, {
       headers: {
