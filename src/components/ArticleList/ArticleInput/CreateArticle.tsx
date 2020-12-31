@@ -48,10 +48,9 @@ export function CreateNewArticle() {
   }
 
   const [image, setImage] = useState<string>('');
-  const fileHandler = (e:any) => {
-    setImage(e.target.files[0]);
+  const fileHandler = (event:any) => {
+    setImage(URL.createObjectURL(event.target.files[0]));
   }
-
 
   return (
     <MainLayout>
@@ -73,9 +72,11 @@ export function CreateNewArticle() {
 
           <Form.Row className="FormRowSpacing">
             <input type="file" accept="image/*" onChange={fileHandler} />
-            <img src={image}/>
             
           </Form.Row>
+          <div>
+          <img src={image}></img>
+          </div>
 
           <Form.Row className="FormRowSpacing">
             <Form.Control

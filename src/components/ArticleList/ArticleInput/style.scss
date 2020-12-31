@@ -1,5 +1,13 @@
 Form {
     padding-top: 25px;
+
+    img {
+        object-fit: cover;
+        padding: 0px;
+        min-width: 100%;
+        min-height: 190px;
+        margin-top: 5px;
+    }
 }
 
 .FormRowSpacing {
