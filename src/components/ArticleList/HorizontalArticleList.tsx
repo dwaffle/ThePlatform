@@ -93,22 +93,3 @@ export default function HorizontalArticles(props: { rows: number }) {
     </MainLayout>
   );
 }
-
-//   useEffect(() => {
-
-//     const innerProductList = [ ...article ].filter(( article ) => {
-
-//       let found = true;
-
-//       return found;
-
-//     });
-//     const rows = [];
-
-//     while( innerProductList.length && rows.length < (props.rows||1) ){
-//         rows.push( innerProductList.splice(0,4));
-//     }
-
-//     setArticleRows( rows );
-
-// }, [ props.rows ]);
