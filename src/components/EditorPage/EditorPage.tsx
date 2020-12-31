@@ -1,55 +1,44 @@
-import React from 'react';
-import { Container, Row, Col, Table, Button, Form, Card, CardDeck } from 'react-bootstrap';
-import MainLayout from '../../layouts/MainLayout';
-import './style.scss'
+import React from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Table,
+  Button,
+  Form,
+  Card,
+  CardDeck,
+  ButtonGroup,
+} from "react-bootstrap";
+import MainLayout from "../../layouts/MainLayout";
+import PendingArticle from "./PendingArticle";
+import RejectArticle from "./RejectArticle";  
+import SelectedArticle from "./SelectedArticle";
 
-//import Faq from '../components/OrganizationPage';
 
+export default function EditorPage() {
+  
+  return (
+    <MainLayout>
 
-export default function EditorPage () {
-
-    return <MainLayout>
-        Temporary page
-        <Row>
-            <Col>
-                <Table className="TableBody">
-                        <thead className="thead">
-                            <tr>
-                                <th>Pending Articles</th>
-                                <th>Author</th>
-                            </tr>
-                        </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Godzilla</td>
-                                    <td>Hubie Dubios</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Mark</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Frank</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Author</td>
-                                </tr>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Jacob</td>
-                                </tr>
-                            </tbody>
-                </Table>
+      <Row>
+        <Col>
+          <PendingArticle rows={3} />
+          <Button variant="primary" block > Select Article</Button>
+        </Col>
+        <Col xs={8}>
+          <SelectedArticle />
+          <RejectArticle />
+          <Row>
+            <Col xs={7}>
+              <Button variant="primary" block >Reject Article </Button>
+              <Button variant="primary" block >Approve Article</Button>
             </Col>
-        </Row>
-
-        <Row>
-            <Col>
-                <button className="selectArticle" type="submit">Select Article</button>
-            </Col>
-        </Row>
+            <Col></Col>
+          </Row>
+        </Col>
+      </Row>
 
     </MainLayout>
+  );
 }

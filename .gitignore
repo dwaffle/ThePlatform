@@ -2,11 +2,14 @@
 
 # dependencies
 /node_modules
+/dist
 /.pnp
 .pnp.js
+.eslintcache
 
 # testing
 /coverage
+debug.log
 
 # production
 /build
