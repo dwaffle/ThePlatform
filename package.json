@@ -24,10 +24,7 @@
     "react-router": "^5.2.0",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-star-rating": "^1.4.2",
-    "react-star-ratings": "^2.3.0",
-    "react-tagsinput": "^3.19.0",
+    "react-scripts": "^4.0.1",
     "recoil": "^0.1.2",
     "typescript": "^3.8.3"
   },
@@ -68,9 +65,6 @@
     "axios": "^0.21.0",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",
-    "prettier": "2.2.1",
-    "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
-    "react-star-rating-component": "^1.4.1",
-    "react-tag-input": "^6.5.2"
+    "prettier": "2.2.1"
   }
 }

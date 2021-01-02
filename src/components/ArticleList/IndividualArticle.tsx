@@ -1,82 +1,76 @@
-import React, { useState } from 'react'
-import MainLayout from '../../layouts/MainLayout';
-import Rating from 'react-rating'
-import api from '../../api'
+import React, { useState, useEffect } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import MainLayout from "../../layouts/MainLayout";
+import { IArticle } from "../../../services/crud-server/src/models/article";
+import Rating from "react-rating";
+import "./style.scss";
+import { useParams } from "react-router";
+import { Container, Row, Col } from "react-bootstrap";
+import { articleListState, useArticleList } from "./articleList";
+import Card from 'react'
 
-import './style.scss'
-import {Container, Row, Col } from 'react-bootstrap';
+const IndividualArticle = () => {
+  const { articleList, setArticleList } = useArticleList();
+  const [rating1, setRating1] = useState(0);
+  const params = useParams<{ id: string }>();
+  const art = useRecoilValue<IArticle[]>(articleListState);
+  const [article, setArticle] = useState<IArticle>();
+  
+  
 
-
-export default function IndividualArticle () {
-
-    const [rating1, setRating1] = useState(0);
-    const [article, setArticle] = useState<any>();
+  useEffect(() => {
+    console.log(`Params: ${params.id}`)
+    setArticle(articleList.find(_art => _art.art_title  === params.id));
     
+  }, [params.id])
 
-    async function getArticleFromDatabase(){
-            let result = await api.article.getSingleArticle(2);
-            return result  
-    }
+  return (
+    <MainLayout>
+      <Container className="ContainerPosition">
+        <Row className="articleTitle"> {article?.art_title} </Row>
+        <Row className="articleAuthor"> {article?.user_author} </Row>
+        <Row>
+          <Col> Fiction </Col>
+        </Row>
 
-    function loadArticle(){
+        <Row>
+          <Col>
+            <Rating
+              initialRating={rating1}
+              onClick={(rate) => setRating1(rate)}
+            />
+          </Col>
+        </Row>
 
-        getArticleFromDatabase().then(result => {setArticle(result.data);
-        console.log(result)})
-        console.log(article);
-    }
+        <Row>
+          <Col>
+            {" "}
+            <button type="submit">$5.99</button>{" "}
+          </Col>
+        </Row>
 
-    loadArticle();
-    
-    return <MainLayout>
+        <Row>
+          <Col>Description</Col>
+        </Row>
+        <Row className=" articleDesc ">
+          <Col>{article?.description}</Col>
+        </Row>
 
-        <Container className="ContainerPosition">
-            <Row className="articleTitle" >qaz</Row>
-            <Row className="articleAuthor"> Author: Hubie Dubios </Row>
-            <Row> 
-                <Col> Fiction </Col>
-            </Row>
+        <Row>
+          <Col>Body</Col>
+        </Row>
+        <Row className="articleBody">
+          <Col>{article?.art_body}</Col>
+        </Row>
 
-            <Row xs={1} md={4} lg={6}>
-                <Col> 
-                    <Rating  initialRating={rating1} onClick={rate => setRating1(rate)} /> 
-                </Col>
-        
-            </Row>
-
-            <Row>
-                <Col> <button type="submit">$5.99</button> </Col>
-            </Row>
-
-            <Row><Col>Description</Col></Row>
-            <Row className=" articleDesc ">
-                <Col>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem, sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam faucibus in urna non tempus. Proin pretium massa quis felis tempor dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis, scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi eros. Aenean porta diam vel interdum ullamcorper. Nullam ac malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies, commodo augue. Donec ullamcorper risus libero, ut convallis metus rutrum a. 
-                </Col>
-            </Row>
-
-
-            <Row><Col>Body</Col></Row>
-            <Row className="articleBody">
-                <Col>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem, sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam faucibus in urna non tempus. Proin pretium massa quis felis tempor dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis, scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi eros. Aenean porta diam vel interdum ullamcorper. Nullam ac malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies, commodo augue. Donec ullamcorper risus libero, ut convallis metus rutrum a. 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus quis erat nec vehicula. Morbi aliquam vitae eros sit amet cursus. Sed feugiat interdum mi sit amet faucibus. Nam leo lorem, sollicitudin sit amet tortor eget, iaculis finibus felis. Aliquam faucibus in urna non tempus. Proin pretium massa quis felis tempor dignissim ac nec eros. Aliquam eget tellus nec ligula dapibus interdum. Nunc egestas mollis elit et interdum. Morbi diam turpis, scelerisque nec aliquet et, hendrerit in dui. Nam nec lacus nec mi sollicitudin pretium eu sed purus. Nullam ac rutrum risus. Ut at mi eros. Aenean porta diam vel interdum ullamcorper. Nullam ac malesuada turpis. Vivamus nec enim posuere, pretium urna ultricies, commodo augue. Donec ullamcorper risus libero, ut convallis metus rutrum a. 
-
-                </Col>
-            </Row>
-
-            <Row>
-                <Col className="statistics">1 Viewer</Col>
-                <Col className="series"> Hubies Blog </Col>
-                <Col className="tags"> Godzilla, NYC, Destruction </Col>
-
-            </Row>
-
-
-
-
-
-        </Container>
-
-
+        <Row>
+          <Col className="statistics">1 Viewer</Col>
+          <Col className="series"> Hubies Blog </Col>
+          <Col className="tags"> Godzilla, NYC, Destruction </Col>
+        </Row>
+      </Container>
     </MainLayout>
-}
+  );
+};
+
+export default IndividualArticle;

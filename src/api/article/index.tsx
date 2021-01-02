@@ -29,6 +29,7 @@ export default {
       },
     });
   },
+ 
 
   patch: async (id: string, body: any) => {
     return axios.patch(`${HOSTNAME}/articles/${id}`, body, {

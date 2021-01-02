@@ -4,10 +4,9 @@ import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
 import { Link, useHistory, Route, Switch } from "react-router-dom";
 import IndividualArticle from "./IndividualArticle";
-import {useArticleList} from './articleList'
+import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
-
   const { articleList, setArticleList } = useArticleList();
   const history = useHistory();
 
@@ -81,7 +80,7 @@ export default function HorizontalArticles(props: { rows: number }) {
             <Card className="Card">
               <Card.Header className="CardHeader">
                 {" "}
-                <Link to={`/articles/${art.art_id}`}>{art.art_title}</Link>
+                <Link to={`/articles/${art.art_title}`}>{art.art_title}</Link>
                 <div> Author:{art.user_author} </div>
               </Card.Header>
 
@@ -90,9 +89,6 @@ export default function HorizontalArticles(props: { rows: number }) {
               </Card.Body>
             </Card>
 
-            <Switch>
-              <Route path="arrticles/:id" children={<IndividualArticle />} />
-            </Switch>
           </div>
         ))}
       </div>
