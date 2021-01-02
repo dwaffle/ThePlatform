@@ -7,6 +7,11 @@ import "./style.scss";
 import { useParams } from "react-router";
 import { Row, Col } from "react-bootstrap";
 import { articleListState } from "./articleList";
+import google from "../../data/icon/google.png";
+import facebook from "../../data/icon/facebook.png";
+import instagram from "../../data/icon/instagram.png";
+import twitter from "../../data/icon/twitter.png";
+import { Link } from "react-router-dom";
 
 const IndividualArticle = () => {
   const [rating1, setRating1] = useState(0);
@@ -35,7 +40,10 @@ const IndividualArticle = () => {
         </div>
 
         <div>
-          <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
+          <img
+            className="artImage"
+            src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"
+          ></img>
         </div>
 
         <div>
@@ -50,6 +58,18 @@ const IndividualArticle = () => {
           <Col className="Col">1 Viewer</Col>
           <Col className="Col"> No Series </Col>
           <Col className="Col"> Godzilla, NYC, Destruction </Col>
+        </Row>
+
+        <Row className="socialMedia">
+          <a href="http://www.facebook.com/" target="_blank">
+            <img src={facebook}></img>
+          </a>
+          <a href="http://www.twitter.com/" target="_blank">
+            <img src={twitter}></img>
+          </a>
+          <a href="http://www.instagram.com/" target="_blank">
+            <img src={instagram}></img>
+          </a>
         </Row>
       </section>
     </MainLayout>
