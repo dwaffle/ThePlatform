@@ -13,14 +13,11 @@ import {
 import "./style.scss";
 
 export default function RejectArticleList() {
-    return ( <>
-
-        <div className="RejectArticle">
-            <h5>Reject Articles Box</h5>
-
-        </div>
-
-        
-
-    </>)
+  return (
+    <>
+      <div className="RejectArticle">
+        <h5>Reject Articles Box</h5>
+      </div>
+    </>
+  );
 }
