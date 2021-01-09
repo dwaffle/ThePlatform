@@ -66,7 +66,6 @@ export const UserModel = {
             if(err){
                 reject(err);
             } else {
-                console.log(result);
                 resolve(result);
             }
         })
@@ -79,7 +78,6 @@ export const UserModel = {
             if(err){
                 reject(err)
             } else {
-                console.log(result);
                 resolve(result);
             }
         }
@@ -92,7 +90,6 @@ export const UserModel = {
             if(err){
                 reject(err)
             } else {
-                console.log(result)
                 resolve(result)
             }
         }
@@ -119,7 +116,6 @@ export const UserModel = {
                 if(err){
                     reject(err)
                 } else {
-                    console.log(result);
                     resolve(result);
                 }
             })
@@ -148,7 +144,6 @@ export const UserModel = {
         }
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-        console.log("Query params: " + queryParams)
         connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function(err:any, result:any){
                 if(err){
                     reject(err);
