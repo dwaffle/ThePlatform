@@ -21,7 +21,7 @@ export interface IArticle {
     art_title: string,
     art_body: string,
     art_image: string,
-    isPublished: boolean
+    art_is_approved?: number
 }
 
 export const ArticleModel = {

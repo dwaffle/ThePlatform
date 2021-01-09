@@ -7,6 +7,11 @@ import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
+  console.log(articleList)
+
+  const approvedArticle =  articleList.filter(a => a.art_is_approved === 1)
+  console.log(approvedArticle)
+  
   const history = useHistory();
 
   let isAuthor = (e: any) => {
@@ -74,7 +79,7 @@ export default function HorizontalArticles(props: { rows: number }) {
       </div>
 
       <div className="viewArticles">
-        {articleList.map((art, index) => (
+        {approvedArticle.map((art, index) => (
           <div key={index}>
             <Card className="Card">
               <Card.Header className="CardHeader">

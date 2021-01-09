@@ -30,7 +30,7 @@ export default {
     });
   },
 
-  patch: async (id: string, body: any) => {
+  patch: async (id: any, body?: any) => {
     return axios.patch(`${HOSTNAME}/articles/${id}`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
