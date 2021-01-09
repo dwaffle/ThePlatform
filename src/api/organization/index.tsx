@@ -1,29 +1,17 @@
 import axios from "axios";
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-import { IArticle } from "../../../services/crud-server/src/models/article";
 import { HOSTNAME } from "../config";
 
 export default {
   get: async () => {
-    return axios.get(`${HOSTNAME}/articles`, {
+    return axios.get(`${HOSTNAME}/Organizations`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
     });
   },
-
 
   post: async (body: any) => {
-    return axios.post(`${HOSTNAME}/articles`, body, {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
-    });
-  },
-
-  getSingleArticle: async (artId: number) => {
-    console.log(`${HOSTNAME}/articles/${artId}`);
-    return axios.get(`${HOSTNAME}/articles/${artId}`, {
+    return axios.post(`${HOSTNAME}/Organizations`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -31,7 +19,7 @@ export default {
   },
 
   patch: async (id: string, body: any) => {
-    return axios.patch(`${HOSTNAME}/articles/${id}`, body, {
+    return axios.patch(`${HOSTNAME}/Organizations/${id}`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
@@ -39,7 +27,7 @@ export default {
   },
 
   delete: async (id: string) => {
-    return axios.delete(`${HOSTNAME}/articles/${id}`, {
+    return axios.delete(`${HOSTNAME}/Organizations/${id}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

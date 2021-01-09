@@ -1,74 +1,57 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import Rating from "react-rating";
 import "./style.scss";
 import { useParams } from "react-router";
-import { Container, Row, Col } from "react-bootstrap";
-import { articleListState, useArticleList } from "./articleList";
-import Card from 'react'
+import { Row, Col } from "react-bootstrap";
+import { articleListState } from "./articleList";
 
 const IndividualArticle = () => {
-  const { articleList, setArticleList } = useArticleList();
   const [rating1, setRating1] = useState(0);
   const params = useParams<{ id: string }>();
   const art = useRecoilValue<IArticle[]>(articleListState);
   const [article, setArticle] = useState<IArticle>();
-  
-  
 
   useEffect(() => {
-    console.log(`Params: ${params.id}`)
-    setArticle(articleList.find(_art => _art.art_title  === params.id));
-    
-  }, [params.id])
+    setArticle(art.find((_art) => _art.art_title === params.id));
+  }, [params.id]);
 
   return (
     <MainLayout>
-      <Container className="ContainerPosition">
-        <Row className="articleTitle"> {article?.art_title} </Row>
-        <Row className="articleAuthor"> {article?.user_author} </Row>
-        <Row>
-          <Col> Fiction </Col>
-        </Row>
+      <section>
+        <h1> {article?.art_title}</h1>
+        <h4>Author: {article?.user_author} </h4>
+
+        <div className="Rating">
+          <Rating
+            initialRating={rating1}
+            onClick={(rate) => setRating1(rate)}
+          />
+          <div>
+            <button type="submit">${article?.art_price}</button>{" "}
+          </div>
+        </div>
+
+        <div>
+          <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
+        </div>
+
+        <div>
+          {" "}
+          Description:
+          <div className="description">{article?.description}</div>
+        </div>
+
+        <div className="body">{article?.art_body}</div>
 
         <Row>
-          <Col>
-            <Rating
-              initialRating={rating1}
-              onClick={(rate) => setRating1(rate)}
-            />
-          </Col>
+          <Col className="Col">1 Viewer</Col>
+          <Col className="Col"> No Series </Col>
+          <Col className="Col"> Godzilla, NYC, Destruction </Col>
         </Row>
-
-        <Row>
-          <Col>
-            {" "}
-            <button type="submit">$5.99</button>{" "}
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>Description</Col>
-        </Row>
-        <Row className=" articleDesc ">
-          <Col>{article?.description}</Col>
-        </Row>
-
-        <Row>
-          <Col>Body</Col>
-        </Row>
-        <Row className="articleBody">
-          <Col>{article?.art_body}</Col>
-        </Row>
-
-        <Row>
-          <Col className="statistics">1 Viewer</Col>
-          <Col className="series"> Hubies Blog </Col>
-          <Col className="tags"> Godzilla, NYC, Destruction </Col>
-        </Row>
-      </Container>
+      </section>
     </MainLayout>
   );
 };

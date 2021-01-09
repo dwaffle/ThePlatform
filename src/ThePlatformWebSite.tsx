@@ -28,8 +28,7 @@ export default function ThePlatformWebsite(props: {}) {
       <Switch>
         <Route path="/admin" component={AdminSite} />
         <Route path="/organization" component={Organization} />
-        
-        <Route path="/series" component={IndividualArticle} />
+        <Route path="/series" component={Series} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
@@ -39,6 +38,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/login" component={LoginPage} />
         <Route path="/newArticle" component={CreateNewArticle} />
         <Route path="/editProfilePage" component={EditProfilePage} />
+        <Route path="/:id" component={IndividualArticle} />
         <Route path="/" component={requireAuth} />
       </Switch>
     </BrowserRouter>

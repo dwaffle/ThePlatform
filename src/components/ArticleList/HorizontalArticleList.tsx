@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
 import { Link, useHistory, Route, Switch } from "react-router-dom";
-import IndividualArticle from "./IndividualArticle";
 import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
@@ -88,29 +87,9 @@ export default function HorizontalArticles(props: { rows: number }) {
                 <Card.Text className="CardText">{art.description}</Card.Text>
               </Card.Body>
             </Card>
-
           </div>
         ))}
       </div>
     </MainLayout>
   );
 }
-
-//   useEffect(() => {
-
-//     const innerProductList = [ ...article ].filter(( article ) => {
-
-//       let found = true;
-
-//       return found;
-
-//     });
-//     const rows = [];
-
-//     while( innerProductList.length && rows.length < (props.rows||1) ){
-//         rows.push( innerProductList.splice(0,4));
-//     }
-
-//     setArticleRows( rows );
-
-// }, [ props.rows ]);
