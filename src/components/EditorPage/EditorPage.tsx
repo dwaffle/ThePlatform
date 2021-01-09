@@ -68,7 +68,6 @@ export default function EditorPage() {
               </Col>
             </Row>
           </div>
-
           <Button variant="primary" block>
             {" "}
             Select Article

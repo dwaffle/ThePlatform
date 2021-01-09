@@ -40,14 +40,17 @@ section {
         text-align: center;
     }
 
-    
-
     img {
         object-fit: cover;
         padding: 0px;
-        min-width: 100%;
-        min-height: 190px;
+        max-width: 35px;
+        max-height: 35px;
         margin-top: 5px;
+    }
+
+    button {
+        border: 0px black solid;
+        background-color: white;
     }
 
     .description {
@@ -73,3 +76,15 @@ section {
     text-align: center;
 }
 
+.artImage {
+    object-fit: cover;
+    padding: 0px;
+    min-width: 100%;
+    min-height: 190px;
+    margin-top: 5px;
+}
+
+.socialMedia {
+    float: right;
+    padding-right: 15px;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
-import { Link, useHistory, Route, Switch } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
