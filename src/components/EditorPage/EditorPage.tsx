@@ -28,7 +28,6 @@ export default function EditorPage() {
 
   let pendingArticle = articleList.filter (a => a.art_is_approved == 0)
   
-  // It's currently targetting the entire <tr> instead of the article you want to select
   const ShowArticleOnClick = (e: any) => {
     const selectedArticle = pendingArticle[(e.currentTarget.rowIndex) - 1] //Arrays start at 0.  Row indexes start at 1.
     setArticle(selectedArticle);
@@ -39,20 +38,18 @@ export default function EditorPage() {
   let approvedOrRejected = (e:any) => {
     let articleState = e.target.value
     setArtState(articleState);
-  };
+ };
 
-  function patchArticle (e:any) {
-    e.preventdefault();
+  function patchArticle (art:IArticle) {
     let updatedArticle = {
       art_is_approved: artState
     }
     console.log(updatedArticle)
-    api.article.patch(updatedArticle)
+    api.article.patch(updatedArticle).then ( response => {
+      // return api.article.get();
+    })
   }
 
-  
-
-  
   return (
     <MainLayout>
       <Row>
