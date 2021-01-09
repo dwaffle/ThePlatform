@@ -56,6 +56,32 @@ export const ArticleModel = {
     //     return;
 
     // },
+
+    publish: async ( article:IArticle) => {
+        return new Promise<any>((resolve, reject) => {
+            connection.query(`UPDATE article SET art_is_approved = 1 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+                if(err){
+                    console.log(`${article.art_is_approved}` + ` `+ `${article.art_id}`)
+                    throw err
+                } else {
+                    result
+                }
+            })
+        })
+    },
+
+    unpublish: async ( article:IArticle) => {
+        return new Promise<any>((resolve, reject) => {
+            connection.query(`UPDATE article SET art_is_approved = 0 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+                if(err){
+                    console.log(`${article.art_is_approved}` + ` `+ `${article.art_id}`)
+                    throw err
+                } else {
+                    result
+                }
+            })
+        })
+    },
     
     update: async ( article:IArticle) => {
 
