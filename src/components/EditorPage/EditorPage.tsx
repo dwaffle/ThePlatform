@@ -68,10 +68,10 @@ export default function EditorPage() {
               </Col>
             </Row>
           </div>
-          <Button variant="primary" block>
+          {/* <Button variant="primary" block>
             {" "}
             Select Article
-          </Button>
+          </Button> */}
         </Col>
         <Col xs={8}>
           <div className="SelectedArticle">
@@ -81,10 +81,10 @@ export default function EditorPage() {
               <Card bg="Light" style={{ width: "18rem" }}>
                 <Card.Header> {article?.art_title}</Card.Header>
                 <Card.Body>
-                  <Card.Title>author : Test (Price : Test CAD)</Card.Title>
+                  <Card.Title>author : {article?.user_author} (Price : {article?.art_price} CAD)</Card.Title>
                   <Card.Text>
                     Description :<br />
-                    Test
+                     {article?.art_body}
                     <br />
                   </Card.Text>
                 </Card.Body>
