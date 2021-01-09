@@ -7,10 +7,10 @@ import api from "../../api";
 import { useHistory } from "react-router";
 import userAvatar from "../../data/icon/userAvatar.jpg";
 
-export interface Iprofile {
-  name: string;
-  email: string;
-  phone: string;
+class Iprofile {
+  name: string = "";
+  email: string = "";
+  phone: string = "";
 }
 
 export default function ProfilePage(props: {}) {

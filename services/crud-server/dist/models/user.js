@@ -41,7 +41,6 @@ exports.UserModel = {
                     reject(err);
                 }
                 else {
-                    console.log(result);
                     resolve(result);
                 }
             });
@@ -55,7 +54,6 @@ exports.UserModel = {
                         reject(err);
                     }
                     else {
-                        console.log(result);
                         resolve(result);
                     }
                 };
@@ -68,7 +66,6 @@ exports.UserModel = {
                     lodash_1.reject(err);
                 }
                 else {
-                    console.log(result);
                     path_1.resolve(result);
                 }
             };
@@ -93,7 +90,6 @@ exports.UserModel = {
                     reject(err);
                 }
                 else {
-                    console.log(result);
                     resolve(result);
                 }
             });
@@ -118,7 +114,6 @@ exports.UserModel = {
             queryParams += `user_password = '${userInfo.user_password}', `;
         }
         queryParams = queryParams.slice(0, -2);
-        console.log("Query params: " + queryParams);
         connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
             if (err) {
                 lodash_1.reject(err);
