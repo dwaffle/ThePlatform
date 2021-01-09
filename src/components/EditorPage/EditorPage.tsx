@@ -29,7 +29,6 @@ export default function EditorPage() {
 
   const ShowArticleOnClick = (e: any) => {
     const selectedArticle = articleList[(e.currentTarget.rowIndex) - 1] //Arrays start at 0.  Row indexes start at 1.
-    console.log("Selected article: " + selectedArticle)
     setArticle(selectedArticle);
   };
 
@@ -79,12 +78,19 @@ export default function EditorPage() {
             <br />
             <CardDeck>
               <Card bg="Light" style={{ width: "18rem" }}>
-                <Card.Header> {article?.art_title}</Card.Header>
+                <Card.Header>Title: {article?.art_title}</Card.Header>
                 <Card.Body>
-                  <Card.Title>author : Test (Price : Test CAD)</Card.Title>
+                  <Card.Title>Author: {article?.user_author} </Card.Title>
                   <Card.Text>
-                    Description :<br />
-                    Test
+                    Description:
+                    <div className="SelectedArticleDescription">
+                    {article?.description}
+                    </div>
+                    Body:
+                    <div className="SelectedArticleBody">
+                    {article?.art_body}
+                    </div>
+                    
                     <br />
                   </Card.Text>
                 </Card.Body>
