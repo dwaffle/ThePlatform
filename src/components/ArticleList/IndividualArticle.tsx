@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 const IndividualArticle = () => {
   const [rating1, setRating1] = useState(0);
-  const params = useParams<{ id: any }>();
+  const params = useParams<{ id: string }>();
   const art = useRecoilValue<IArticle[]>(articleListState);
   const [article, setArticle] = useState<IArticle>();
 

@@ -79,7 +79,7 @@ export default function HorizontalArticles(props: { rows: number }) {
             <Card className="Card">
               <Card.Header className="CardHeader">
                 {" "}
-                <Link to={`/${art.art_title}`}>{art.art_title}</Link>
+                <Link to={`/articles/${art.art_title}`}>{art.art_title}</Link>
                 <div> Author:{art.user_author} </div>
               </Card.Header>
 
@@ -93,22 +93,3 @@ export default function HorizontalArticles(props: { rows: number }) {
     </MainLayout>
   );
 }
-
-//   useEffect(() => {
-
-//     const innerProductList = [ ...article ].filter(( article ) => {
-
-//       let found = true;
-
-//       return found;
-
-//     });
-//     const rows = [];
-
-//     while( innerProductList.length && rows.length < (props.rows||1) ){
-//         rows.push( innerProductList.splice(0,4));
-//     }
-
-//     setArticleRows( rows );
-
-// }, [ props.rows ]);

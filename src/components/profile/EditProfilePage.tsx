@@ -7,9 +7,9 @@ import api from "../../api";
 import { useHistory } from "react-router";
 import userAvatar from "../../data/icon/userAvatar.jpg";
 
-export interface IprofileChangeRequest {
-  user_id: number;
-  user_firstName: string;
+class IprofileChangeRequest {
+  user_id: number = 0;
+  user_firstName?: string;
   user_lastName?: string;
   user_email?: string;
   user_password?: string;
@@ -80,7 +80,7 @@ export default function EditProfilePage(props: {}) {
     }
     const user_id = Number(localStorage.getItem("user_id"));
     //If somehow there is no user, do not send a change request.
-    if (user_id == null || undefined) {
+    if (user_id == null || undefined || 0) {
       return;
     }
 
