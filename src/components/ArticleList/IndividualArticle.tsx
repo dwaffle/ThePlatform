@@ -23,6 +23,7 @@ const IndividualArticle = () => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
+
   return (
     <MainLayout>
       <section>

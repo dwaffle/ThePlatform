@@ -27,7 +27,7 @@ export function CreateNewArticle() {
   function onSubmit(e: any) {
     e.preventDefault();
     let objectToSend = {
-      art_price: 1,
+      art_price: 0,
       artype_id: type,
       art_title: title,
       description: description,
