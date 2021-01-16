@@ -134,6 +134,9 @@ export function CreateNewArticle() {
                 id="div1"
                 value={price}
                 onChange={onChange}
+                // Currently having an issue where the price field is accesible when the radio button is not selected
+                // hoping to make the radio button open and display the field for price input when selected to combat this and for aesthetics.
+                // or an enable/disable function to make the price input work as intended when selected  
                 disabled
               />
             </Form.Group>

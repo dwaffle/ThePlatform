@@ -22,32 +22,31 @@ import api from "../../api";
 export default function EditorPage() {
   const articleList = useRecoilValue<IArticle[]>(articleListState);
   const [article, setArticle] = useState<IArticle>();
-  console.log("article", article)
+  console.log("article", article);
   const [artState, setArtState] = useState<IArticle>();
-  console.log(artState)
+  console.log(artState);
 
-  let pendingArticle = articleList.filter (a => a.art_is_approved == 0)
-  
+  let pendingArticle = articleList.filter((a) => a.art_is_approved == 0);
+
   const ShowArticleOnClick = (e: any) => {
-    const selectedArticle = pendingArticle[(e.currentTarget.rowIndex) - 1] //Arrays start at 0.  Row indexes start at 1.
+    const selectedArticle = pendingArticle[e.currentTarget.rowIndex - 1]; //Arrays start at 0.  Row indexes start at 1.
     setArticle(selectedArticle);
   };
 
-
-
-  let approvedOrRejected = (e:any) => {
-    let articleState = e.target.value
+  let approvedOrRejected = (e: any) => {
+    let articleState = e.target.value;
     setArtState(articleState);
- };
+  };
 
-  function patchArticle (art:IArticle) {
+  function patchArticle(art: IArticle) {
     let updatedArticle = {
-      art_is_approved: artState
-    }
-    console.log(updatedArticle)
-    api.article.patch(updatedArticle).then ( response => {
+      art_is_approved: artState,
+     // art_id: art.art_id
+    };
+    console.log(updatedArticle);
+    api.article.patch(updatedArticle).then((response) => {
       // return api.article.get();
-    })
+    });
   }
 
   return (
@@ -101,13 +100,12 @@ export default function EditorPage() {
                   <Card.Text>
                     Description:
                     <div className="SelectedArticleDescription">
-                    {article?.description}
+                      {article?.description}
                     </div>
                     Body:
                     <div className="SelectedArticleBody">
-                    {article?.art_body}
+                      {article?.art_body}
                     </div>
-                    
                     <br />
                   </Card.Text>
                 </Card.Body>
@@ -117,11 +115,22 @@ export default function EditorPage() {
           <RejectArticle />
           <Row>
             <Col xs={7}>
-          
-              <Button variant="primary" block value="2" name="status" onClick={approvedOrRejected}>
+              <Button
+                variant="primary"
+                block
+                value="2"
+                name="status"
+                onClick={approvedOrRejected}
+              >
                 Reject Article
               </Button>
-              <Button variant="primary" block value="1" name="status" onClick={approvedOrRejected}>
+              <Button
+                variant="primary"
+                block
+                value="1"
+                name="status"
+                onClick={approvedOrRejected}
+              >
                 Approve Article
               </Button>
             </Col>
