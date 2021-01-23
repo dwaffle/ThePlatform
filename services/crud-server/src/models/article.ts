@@ -11,11 +11,13 @@ var connection = mysql.createConnection({
 })
 
 
-//Id and date of creation are generated for us by the SQL query.
+//Id and date of creation are generated for us by the SQL query.  user_firstName and user_lastName are used when getting an article back.
 export interface IArticle {
     art_id?: number,
     art_price: number,
     user_author: number,
+    user_firstName?: string,
+    user_lastName?: string,
     artype_id: number,
     description: string,
     art_title: string,
@@ -28,7 +30,7 @@ export const ArticleModel = {
 
     getAll: async ():Promise<any> => {
         return new Promise((resolve, reject) => {
-                connection.query('SELECT * FROM article', function(err:any, result:any){
+                connection.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {
