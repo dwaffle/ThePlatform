@@ -16,12 +16,12 @@ import IndividualArticle from "./components/ArticleList/IndividualArticle";
 import {IndividualArticlePage} from './pages/IndividualArticlePage'
 
 export default function ThePlatformWebsite(props: {}) {
-  const requireAuth = () => {
-    if (!localStorage.getItem("token")) {
-      return <Route path="/" component={LoginPage} />;
-    }
-    return <Route path="/" component={HomePage} />;
-  };
+  // const requireAuth = () => {
+  //   if (!localStorage.getItem("token")) {
+  //     return <Route path="/" component={LoginPage} />;
+  //   }
+  //   return <Route path="/" component={HomePage} />;
+  // };
 
   return (
     <BrowserRouter>
@@ -39,7 +39,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/newArticle" component={CreateNewArticle} />
         <Route path="/editProfilePage" component={EditProfilePage} />
         <Route path="/:id" component={IndividualArticle} />
-        <Route path="/" component={requireAuth} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
   );

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
-import Rating from "react-rating";
+// import Rating from "react-rating";
+import RatingArticle from '../rating'
 import "./style.scss";
 import { useParams } from "react-router";
 import { Row, Col } from "react-bootstrap";
@@ -14,7 +15,7 @@ import twitter from "../../data/icon/twitter.png";
 import { Link } from "react-router-dom";
 
 const IndividualArticle = () => {
-  const [rating1, setRating1] = useState(0);
+  // const [rating1, setRating1] = useState(0);
   const params = useParams<{ id: string }>();
   const art = useRecoilValue<IArticle[]>(articleListState);
   const [article, setArticle] = useState<IArticle>();
@@ -23,6 +24,7 @@ const IndividualArticle = () => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
+
   return (
     <MainLayout>
       <section>
@@ -30,10 +32,11 @@ const IndividualArticle = () => {
         <h4>Author: {article?.user_author} </h4>
 
         <div className="Rating">
-          <Rating
+          <RatingArticle/>
+          {/* <Rating
             initialRating={rating1}
             onClick={(rate) => setRating1(rate)}
-          />
+          /> */}
           <div>
             <button type="submit">${article?.art_price}</button>{" "}
           </div>
