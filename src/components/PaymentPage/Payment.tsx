@@ -85,6 +85,8 @@ function onClickGoProfile(){
         cvv: card_cvv
     }
     api.payment.post(paymentInfoSubmisson)
+    history.push("/profile")
+    alert("Success")
 }
 
 
