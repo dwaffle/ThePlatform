@@ -30,5 +30,17 @@ export const PaymentModel = {
                 result;
             }
         });
+    },
+
+    retrieve: async(userId:number):Promise<any> => {
+        return new Promise<any>((resolve, reject) => {
+            connection.query(`SELECT * FROM payment_info WHERE user_id = ${userId}`, function(err:any, result:any){
+                if(err){
+                    throw err
+                } else {
+                    resolve(result)
+                }
+            })
+        })
     }
 }
