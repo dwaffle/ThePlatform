@@ -23,6 +23,10 @@ const IndividualArticle = () => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
+  function getRating (){
+    // code that will display rating and allow users to rate the article
+  }
+
   return (
     <MainLayout>
       <section>

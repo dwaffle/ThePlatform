@@ -7,9 +7,11 @@ import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
+  // Only allows published/approved articles to be displayed
   const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
   const history = useHistory();
 
+  // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem("user_type"));

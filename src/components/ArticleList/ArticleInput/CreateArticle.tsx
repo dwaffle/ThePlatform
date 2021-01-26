@@ -7,12 +7,14 @@ import api from "../../../api";
 import "./style.scss";
 
 export function CreateNewArticle() {
+  // Stateful component that sets the type of article from "handleSelectChange"
   const [type, setType] = useState<number>();
   const handleSelectChange = (event: any) => {
     const value = event.target.value;
     let valueAsNumber = parseInt(value);
     setType(valueAsNumber);
   };
+
 
   const [price, setPrice] = useState();
   const onChange = (e: any) => {
@@ -24,6 +26,7 @@ export function CreateNewArticle() {
   const [description, setDescription] = useState<string>("");
   const [body, setBody] = useState<string>("");
 
+  // Submit button functionality and sends it to the database on submit.
   function onSubmit(e: any) {
     e.preventDefault();
     let objectToSend = {
@@ -43,10 +46,12 @@ export function CreateNewArticle() {
 
   let authorName: string = window.localStorage.getItem("username") || "";
 
+  //currently disfunctional
   function onRadioClick(disabled: any) {
     disabled = false;
   }
 
+  //doesn't work
   const [image, setImage] = useState<string>('');
   const fileHandler = (event:any) => {
     setImage(URL.createObjectURL(event.target.files[0]));

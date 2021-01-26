@@ -21,29 +21,29 @@ import api from "../../api";
 
 export default function EditorPage() {
   const history = useHistory();
-  // all articles
+    // all articles
   const articleList = useRecoilValue<IArticle[]>(articleListState);
-  // selected article that comes from pending article
+    // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
-  // value of approved or rejected of a selected article
+    // value of approved or rejected of a selected article
   const [artState, setArtState] = useState();
-  //filter only articles that are not evaluated
+    //filter only articles that are not evaluated
   let pendingArticle = articleList.filter((a) => a.art_is_approved == 0);
 
-  // function to select and set an article from the pending list
+    // function to select and set an article from the pending list
   const ShowArticleOnClick = (e: any) => {
     setArticle(pendingArticle[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
   };
 
-  // backend is currently set as 0 is unpublished AND rejected,
-  // 1 is approved.
-  // currently have to hit twice?
+    // backend is currently set as 0 is unpublished AND rejected,
+    // 1 is approved.
+    // currently have to hit twice?
   let approvedOrRejected = (e: any) => {
     setArtState(e.target.value);
     patchArticle();
   };
 
-  //api patch request
+    //api patch request
   function patchArticle() {
     let updatedArticle = {
       art_is_approved: Number(artState),

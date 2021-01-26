@@ -12,6 +12,7 @@ import {
 
 import "./style.scss";
 
+//unused
 export default function RejectArticleList() {
   return (
     <>
