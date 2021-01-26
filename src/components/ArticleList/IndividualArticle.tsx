@@ -23,7 +23,7 @@ const IndividualArticle = () => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
-  function getRating (){
+  function getRating() {
     // code that will display rating and allow users to rate the article
   }
 
@@ -31,7 +31,9 @@ const IndividualArticle = () => {
     <MainLayout>
       <section>
         <h1> {article?.art_title}</h1>
-        <h4>Author: {article?.user_author} </h4>
+        <h4>
+          Author: {article?.user_firstName} {article?.user_lastName}
+        </h4>
 
         <div className="Rating">
           <Rating

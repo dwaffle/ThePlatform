@@ -1,39 +1,39 @@
 
-
 .Card {
-    width: 100%;
-    height: 110px;
-    margin-top: 5px;
-    overflow-y: scroll;
+    max-width: 65%;
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.CardFeatured {
+    float:right;
+    margin-top: 72px;
+    margin-right: 5%!important;
+    max-width: 25%;
+    text-align: center;
 }
 
 
 .CardHeader {
-    border-radius: 0px;
-    height: 60px;
-    justify-content: inherit;
+    background: #e2e2e2 !important;
 }
 
-// .CardText {
-//     overflow-y: scroll;
-// }
+.filter {
+    width: 65%;
+    margin-left: 5%;
+    margin-top: -15px;
+    margin-bottom: 15px;
 
-.CardBody {
-    background-color: white;
-}
-
-.viewArticles {
-    height: 55vh;
-    overflow-y: scroll;
-    margin-top: 5px;
-    padding-bottom: 10px;
-}
-
-.CardFeatured {
-    margin-top: 10px;
+    button {
+        float: right;
+    }
 }
 
 section {
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     h1 {
         border: 0px;
         background-color: white;
@@ -82,10 +82,10 @@ section {
 }
 
 .artImage {
-    object-fit: cover;
+    object-fit: fill;
     padding: 0px;
     min-width: 100%;
-    min-height: 190px;
+    min-height: 390px;
     margin-top: 5px;
 }
 

@@ -39,16 +39,16 @@ export default function ProfilePage(props: {}) {
   }
 
   function displayFirstName() {
-    const firstName = localStorage.getItem("first_name")
+    const firstName = localStorage.getItem("first_name");
     if (firstName) {
       return firstName;
     } else {
       return;
     }
   }
-  
+
   function displayLastName() {
-    const lastName = localStorage.getItem("last_name")
+    const lastName = localStorage.getItem("last_name");
     if (lastName) {
       return lastName;
     } else {
@@ -64,7 +64,7 @@ export default function ProfilePage(props: {}) {
   }
 
   function paymentInfo() {
-    history.push("/EditPaymentPage")
+    history.push("/EditPaymentPage");
   }
 
   return (
@@ -76,7 +76,9 @@ export default function ProfilePage(props: {}) {
           <h2>{displayUserName()}</h2>
         </Col>
         <Col className="user_real_name">
-          <h3>{displayFirstName()} {displayLastName()}</h3>
+          <h3>
+            {displayFirstName()} {displayLastName()}
+          </h3>
         </Col>
       </Row>
 

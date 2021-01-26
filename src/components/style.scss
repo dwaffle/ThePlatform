@@ -1,12 +1,11 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 .footer{
-    position:relative;
+    position: fixed;
     margin-top: 1rem;
     padding: 1rem;
     background-color: #363535;
     border: 2px solid #d47501;
-    // align-content: center;
     bottom: 0;
     width: 100%;
     color:white;
@@ -15,11 +14,16 @@
 .navbarBG{
   height: 9vh;
   background-color: #363535;
-  border: 2px solid #d47501;
+  border: 1px solid #d47501;
   font-size: 1.1rem;
-  // padding-bottom: 15px;
   color: lightgray;
   margin-bottom: 1rem;
+  
+  .navButtons {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
 
 }
 
