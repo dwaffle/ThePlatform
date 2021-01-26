@@ -46,9 +46,6 @@ const IndividualArticle = () => {
             initialRating={rating1}
             onClick={(rate) => setRating1(rate)}
           />
-          <div>
-            <button type="submit">{priceCheck(article?.art_price)}</button>{" "}
-          </div>
         </div>
 
         <div>
