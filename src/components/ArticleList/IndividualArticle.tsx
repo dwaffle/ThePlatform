@@ -27,6 +27,12 @@ const IndividualArticle = () => {
     // code that will display rating and allow users to rate the article
   }
 
+  function priceCheck (price:any){
+    if(price <= 0){
+      return "Free Article"
+    } else return "$" + price
+  }
+
   return (
     <MainLayout>
       <section>
@@ -41,7 +47,7 @@ const IndividualArticle = () => {
             onClick={(rate) => setRating1(rate)}
           />
           <div>
-            <button type="submit">${article?.art_price}</button>{" "}
+            <button type="submit">{priceCheck(article?.art_price)}</button>{" "}
           </div>
         </div>
 
