@@ -33,6 +33,32 @@ const IndividualArticle = () => {
     } else return "$" + price
   }
 
+   //popup state
+  const [isOpen, setisOpen] = useState<boolean>(false);
+
+  // button functionality to set the state of the popup
+  // allow free users to only view % of the article until purchased 
+  const togglePopup = (price:any) => {
+     setisOpen(!isOpen); 
+  };
+
+  //Content of this popup is held in the mainlayout
+  const PurchasePopup = (props: any) => {
+    function oneClickPurchase() {
+      // needs a user to have their payment info filled in
+    }
+    return (
+      <div className="popup-box">
+        <div className="box">
+          <span className="close-icon" onClick={props.handleClose}>
+            x
+          </span>
+          {props.content}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <MainLayout>
       <section>
@@ -46,6 +72,20 @@ const IndividualArticle = () => {
             initialRating={rating1}
             onClick={(rate) => setRating1(rate)}
           />
+          <div>
+          <input
+            type="button"
+            value={priceCheck(article?.art_price)}
+            onClick={togglePopup}
+          />
+          {isOpen && <PurchasePopup
+            content={<>
+          <b>Design your Popup</b>
+          <button>Test button</button>
+          </>}
+        handleClose={togglePopup}
+        />}
+          </div>
         </div>
 
         <div>
@@ -54,6 +94,8 @@ const IndividualArticle = () => {
             src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"
           ></img>
         </div>
+
+    
 
         <div>
           {" "}

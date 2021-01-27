@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MainLayout from "../../layouts/MainLayout";
 import "./style.scss";
 import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
@@ -20,32 +20,6 @@ export default function HorizontalArticles(props: { rows: number }) {
     } else {
       return history.push("/newArticle");
     }
-  };
-
-  //popup state
-  const [isOpen, setisOpen] = useState<boolean>(false);
-
-  // button functionality to set the state of the popup
-  const togglePopup = (price:any) => {
-    //need to figure out how to make price a defining property without displaying the price
-    setisOpen(!isOpen);
-  };
-  //Content of this popop is held in the mainlayout
-  // Will make popup not show popop if the article is free soon
-  const PurchasePopup = (props: any) => {
-    function oneClickPurchase() {
-      // needs a user to have their payment info filled in
-    }
-    return (
-      <div className="popup-box">
-        <div className="box">
-          <span className="close-icon" onClick={props.handleClose}>
-            x
-          </span>
-          {props.content}
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -96,19 +70,7 @@ export default function HorizontalArticles(props: { rows: number }) {
             <Card className="Card">
               <Card.Header className="CardHeader">
                 {" "}
-                <input
-                  type="button"
-                  value={art.art_title}
-                  onClick={togglePopup}
-                />
-                {isOpen && <PurchasePopup
-                  content={<>
-                    <button> Purchase Button Here </button>
-                    <p></p>
-                    <Link to={`/articles/${art.art_title}`}> Temporary Link to article </Link>
-                  </>}
-                  handleClose={togglePopup}
-                />}
+                <Link to={`/articles/${art.art_title}`}>{art.art_title}</Link>
                 <div>
                   {" "}
                   Author: {art.user_firstName}
