@@ -13,7 +13,9 @@ import "./App.scss";
 import EditProfilePage from "./pages/EditProfilePage";
 import EditorPage from "./components/EditorPage/EditorPage";
 import IndividualArticle from "./components/ArticleList/IndividualArticle";
-import {IndividualArticlePage} from './pages/IndividualArticlePage'
+// import {IndividualArticlePage} from './pages/IndividualArticlePage'
+
+import WriteRating from "./components/rating/rating"
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -31,7 +33,8 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/series" component={Series} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
-        <Route path="/organization" component={Organization} />
+        {/* <Route path="/rating" component = {WriteRating}/> */}
+        <Route path="/rating" component = {WriteRating}/>
         <Route path="/articles/:id" exact component={IndividualArticle} />
         <Route path="/articles" exact component={HorizontalArticles} />
         <Route path="/editor" component={EditorPage} />

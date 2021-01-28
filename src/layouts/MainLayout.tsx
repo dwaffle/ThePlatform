@@ -7,6 +7,8 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 
 export default function MainLayout(props: PropsWithChildren<{}>) {
 
+  
+
   return (
     <>
       <Container>

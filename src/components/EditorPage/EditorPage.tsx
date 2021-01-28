@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { articleListState } from "../ArticleList/articleList";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import { useRecoilValue } from "recoil";
-
+import { useHistory } from "react-router-dom";
 import {
   Container,
   Row,
@@ -20,34 +20,39 @@ import SelectedArticleList from "./SelectedArticle";
 import api from "../../api";
 
 export default function EditorPage() {
+  const history = useHistory();
+  // all articles
   const articleList = useRecoilValue<IArticle[]>(articleListState);
+  // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
-  console.log("article", article)
-  const [artState, setArtState] = useState<IArticle>();
-  console.log(artState)
+  // value of approved or rejected of a selected article
+  const [artState, setArtState] = useState();
+  //filter only articles that are not evaluated
+  let pendingArticle = articleList.filter((a) => a.art_is_approved == 0);
 
-  let pendingArticle = articleList.filter (a => a.art_is_approved == 0)
-  
-  // It's currently targetting the entire <tr> instead of the article you want to select
+  // function to select and set an article from the pending list
   const ShowArticleOnClick = (e: any) => {
-    const selectedArticle = pendingArticle[(e.currentTarget.rowIndex) - 1] //Arrays start at 0.  Row indexes start at 1.
-    setArticle(selectedArticle);
+    setArticle(pendingArticle[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
   };
 
-
-
-  let approvedOrRejected = (e:any) => {
-    let articleState = e.target.value
-    setArtState(articleState);
+  // backend is currently set as 0 is unpublished AND rejected,
+  // 1 is approved.
+  // currently have to hit twice?
+  let approvedOrRejected = (e: any) => {
+    setArtState(e.target.value);
+    patchArticle();
   };
 
-  function patchArticle (e:any) {
-    e.preventdefault();
+  //api patch request
+  function patchArticle() {
     let updatedArticle = {
-      art_is_approved: artState
-    }
-    console.log(updatedArticle)
-    api.article.patch(updatedArticle)
+      art_is_approved: Number(artState),
+      art_id: article?.art_id,
+    };
+    console.log("patch", updatedArticle);
+    api.article.patch(updatedArticle);
+    history.push("/editor");
+    return;
   }
 
   return (
@@ -84,10 +89,6 @@ export default function EditorPage() {
               </Col>
             </Row>
           </div>
-          {/* <Button variant="primary" block>
-            {" "}
-            Select Article
-          </Button> */}
         </Col>
         <Col xs={8}>
           <div className="SelectedArticle">
@@ -101,13 +102,12 @@ export default function EditorPage() {
                   <Card.Text>
                     Description:
                     <div className="SelectedArticleDescription">
-                    {article?.description}
+                      {article?.description}
                     </div>
                     Body:
                     <div className="SelectedArticleBody">
-                    {article?.art_body}
+                      {article?.art_body}
                     </div>
-                    
                     <br />
                   </Card.Text>
                 </Card.Body>
@@ -117,11 +117,22 @@ export default function EditorPage() {
           <RejectArticle />
           <Row>
             <Col xs={7}>
-          
-              <Button variant="primary" block value="2" name="status" onClick={approvedOrRejected}>
+              <Button
+                variant="primary"
+                block
+                value="2"
+                name="status"
+                onClick={approvedOrRejected}
+              >
                 Reject Article
               </Button>
-              <Button variant="primary" block value="1" name="status" onClick={approvedOrRejected}>
+              <Button
+                variant="primary"
+                block
+                value="1"
+                name="status"
+                onClick={approvedOrRejected}
+              >
                 Approve Article
               </Button>
             </Col>

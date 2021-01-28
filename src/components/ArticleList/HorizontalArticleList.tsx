@@ -7,11 +7,7 @@ import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
-  console.log(articleList)
-
-  const approvedArticle =  articleList.filter(a => a.art_is_approved === 1)
-  console.log(approvedArticle)
-  
+  const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
   const history = useHistory();
 
   let isAuthor = (e: any) => {

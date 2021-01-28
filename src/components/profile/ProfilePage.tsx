@@ -21,6 +21,7 @@ export default function ProfilePage(props: {}) {
     localStorage.clear();
     history.push("/articles");
   }
+
   function checkLogin() {
     if (window.localStorage.getItem("username")) {
       history.push("/EditProfilePage");
@@ -34,6 +35,22 @@ export default function ProfilePage(props: {}) {
       return <div>{window.localStorage.getItem("username")}</div>;
     } else {
       return <div>Please sign in.</div>;
+    }
+  }
+
+  function displayFirstName() {
+    if (localStorage.getItem("first_name")) {
+      return <div>{localStorage.getItem("email")}</div>;
+    } else {
+      return;
+    }
+  }
+  
+  function displayLastName() {
+    if (localStorage.getItem("last_name")) {
+      return <div>{localStorage.getItem("last_name")}</div>;
+    } else {
+      return;
     }
   }
   function displayEmail() {

@@ -12,7 +12,6 @@ export default {
     });
   },
 
-
   post: async (body: any) => {
     return axios.post(`${HOSTNAME}/articles`, body, {
       headers: {
@@ -30,8 +29,8 @@ export default {
     });
   },
 
-  patch: async (id: any, body?: any) => {
-    return axios.patch(`${HOSTNAME}/articles/${id}`, body, {
+  patch: async (body?: any) => {
+    return axios.patch(`${HOSTNAME}/articles`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },

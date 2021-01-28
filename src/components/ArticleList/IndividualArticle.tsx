@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 // import Rating from "react-rating";
-import RatingArticle from '../rating'
+import Rating from '../rating/rating'
 import "./style.scss";
 import { useParams } from "react-router";
 import { Row, Col } from "react-bootstrap";
@@ -24,7 +24,6 @@ const IndividualArticle = () => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
-
   return (
     <MainLayout>
       <section>
@@ -32,7 +31,7 @@ const IndividualArticle = () => {
         <h4>Author: {article?.user_author} </h4>
 
         <div className="Rating">
-          <RatingArticle/>
+          <Rating/>
           {/* <Rating
             initialRating={rating1}
             onClick={(rate) => setRating1(rate)}

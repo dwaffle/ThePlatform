@@ -2,7 +2,6 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import { reject } from 'lodash';
 import { resolve } from 'path';
-import { PasswordModel } from './password';
 dotenv.config();
 
 interface IprofileChangeRequest {
