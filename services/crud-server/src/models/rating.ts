@@ -9,9 +9,8 @@ var connection = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 })
 
-console.log("+++++++, ", connection)
 
-let _sql: string = "";
+// let _sql: string = "";
 
 //Id and date of creation are generated for us by the SQL query.
 export interface IRating {
@@ -28,17 +27,16 @@ export interface IRating {
 // this model to rate the article 
 export const RatingModel = {
 
-    getAll: async ():Promise<IRating> => {
-        return new Promise((resolve, reject) => {
-                _sql = 'SELECT * from rating'
-                connection.query(_sql, function(err:any, result:any){
-                    if(err){
-                        reject(err);
-                    } else {
-                        resolve(result);
-                    }
-                })
-            })
+    getAll: ():Promise<IRating[]> => {
+        return new Promise((resolve, reject) => {connection.query('SELECT * from rating', function(err:any, result:any){
+            if(err){
+                reject(err);
+            } else {
+                console.log(result);
+                resolve(result);
+            }
+        })
+    })
     },
 
     // getById: async ( rateId:number ): Promise<any> => {

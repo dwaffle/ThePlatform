@@ -7,9 +7,11 @@ import { useArticleList } from "./articleList";
 
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
+  // Only allows published/approved articles to be displayed
   const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
   const history = useHistory();
 
+  // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem("user_type"));
@@ -27,20 +29,7 @@ export default function HorizontalArticles(props: { rows: number }) {
           <CardDeck>
             <Card className="cardStyle">
               <Card.Header className="cardHeader">
-                Godzilla strikes again!
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <br />
-                  <a href=""> See more </a>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card bg="Light" style={{ width: "15rem" }}>
-              <Card.Header className="cardHeader">
-                Adam Sandler defeats Godzilla
+                The card styling for all articles will be changed.
               </Card.Header>
               <Card.Body>
                 <Card.Text>
@@ -55,7 +44,7 @@ export default function HorizontalArticles(props: { rows: number }) {
         </Col>
       </Row>
 
-      <div>
+      <div className="filter">
         <Form>
           <Row>
             <Col>
@@ -64,7 +53,7 @@ export default function HorizontalArticles(props: { rows: number }) {
               </Form.Control>
             </Col>
             <Col>
-              <Form.Control placeholder="Search Articles..." value="" />
+              <Form.Control placeholder="Search Articles..." />
             </Col>
             <Col>
               {" "}
@@ -74,6 +63,7 @@ export default function HorizontalArticles(props: { rows: number }) {
         </Form>
       </div>
 
+      <Row></Row>
       <div className="viewArticles">
         {approvedArticle.map((art, index) => (
           <div key={index}>
@@ -81,7 +71,11 @@ export default function HorizontalArticles(props: { rows: number }) {
               <Card.Header className="CardHeader">
                 {" "}
                 <Link to={`/articles/${art.art_title}`}>{art.art_title}</Link>
-                <div> Author:{art.user_author} </div>
+                <div>
+                  {" "}
+                  Author: {art.user_firstName}
+                  {art.user_lastName}{" "}
+                </div>
               </Card.Header>
 
               <Card.Body className="CardBody">

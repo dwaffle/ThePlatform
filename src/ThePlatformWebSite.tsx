@@ -13,9 +13,9 @@ import "./App.scss";
 import EditProfilePage from "./pages/EditProfilePage";
 import EditorPage from "./components/EditorPage/EditorPage";
 import IndividualArticle from "./components/ArticleList/IndividualArticle";
-// import {IndividualArticlePage} from './pages/IndividualArticlePage'
-
-import WriteRating from "./components/rating/rating"
+import {IndividualArticlePage} from './pages/IndividualArticlePage'
+import EditPaymentPage from './pages/EditPaymentInfo'
+import Rating from './components/rating/writeRating'
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -29,18 +29,18 @@ export default function ThePlatformWebsite(props: {}) {
     <BrowserRouter>
       <Switch>
         <Route path="/admin" component={AdminSite} />
-        <Route path="/organization" component={Organization} />
+        <Route path="/rating" component={Rating} />
         <Route path="/series" component={Series} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
-        {/* <Route path="/rating" component = {WriteRating}/> */}
-        <Route path="/rating" component = {WriteRating}/>
+        <Route path="/organization" component={Organization} />
         <Route path="/articles/:id" exact component={IndividualArticle} />
         <Route path="/articles" exact component={HorizontalArticles} />
         <Route path="/editor" component={EditorPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/newArticle" component={CreateNewArticle} />
         <Route path="/editProfilePage" component={EditProfilePage} />
+        <Route path="/editPaymentPage" component={EditPaymentPage} />
         <Route path="/:id" component={IndividualArticle} />
         <Route path="/" component={HomePage} />
       </Switch>

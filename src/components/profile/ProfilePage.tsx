@@ -39,16 +39,18 @@ export default function ProfilePage(props: {}) {
   }
 
   function displayFirstName() {
-    if (localStorage.getItem("first_name")) {
-      return <div>{localStorage.getItem("email")}</div>;
+    const firstName = localStorage.getItem("first_name");
+    if (firstName) {
+      return firstName;
     } else {
       return;
     }
   }
-  
+
   function displayLastName() {
-    if (localStorage.getItem("last_name")) {
-      return <div>{localStorage.getItem("last_name")}</div>;
+    const lastName = localStorage.getItem("last_name");
+    if (lastName) {
+      return lastName;
     } else {
       return;
     }
@@ -61,6 +63,10 @@ export default function ProfilePage(props: {}) {
     }
   }
 
+  function paymentInfo() {
+    history.push("/EditPaymentPage");
+  }
+
   return (
     <>
       <h1>Profile page</h1>
@@ -69,8 +75,10 @@ export default function ProfilePage(props: {}) {
         <Col>
           <h2>{displayUserName()}</h2>
         </Col>
-        <Col>
-          <h2>type of User</h2>
+        <Col className="user_real_name">
+          <h3>
+            {displayFirstName()} {displayLastName()}
+          </h3>
         </Col>
       </Row>
 
@@ -85,6 +93,7 @@ export default function ProfilePage(props: {}) {
           <Image src={userAvatar} roundedCircle />
         </Col>
       </Row>
+      <Button onClick={paymentInfo}>Payment Info</Button>
       <Button onClick={checkLogin}>Edit</Button>
       <Button variant="primary" type="submit" onClick={onClickLogOut}>
         {" "}

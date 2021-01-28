@@ -3,20 +3,9 @@ import { articleListState } from "../ArticleList/articleList";
 import { IArticle } from "../../../services/crud-server/src/models/article";
 import { useRecoilValue } from "recoil";
 import { useHistory } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Table,
-  Button,
-  Form,
-  Card,
-  CardDeck,
-  ButtonGroup,
-} from "react-bootstrap";
+import { Row, Col, Table, Button, CardDeck, Card } from "react-bootstrap";
 import MainLayout from "../../layouts/MainLayout";
 import RejectArticle from "./RejectArticle";
-import SelectedArticleList from "./SelectedArticle";
 import api from "../../api";
 
 export default function EditorPage() {

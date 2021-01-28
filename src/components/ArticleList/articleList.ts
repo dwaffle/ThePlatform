@@ -9,7 +9,8 @@ export const articleListState = atom({
     default: [] as IArticle[]
 });
 
-
+// Main function that pulls all the articles out of the database
+// Is used in many differen't files
 export function useArticleList () {
 
   const [ articleList, setArticleList ] = useRecoilState<IArticle[]>(articleListState);
