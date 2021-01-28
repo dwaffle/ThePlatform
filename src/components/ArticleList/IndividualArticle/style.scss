@@ -1,0 +1,99 @@
+
+section {
+    width: 70%;
+    margin: auto;
+    display:flex;
+
+    h1 {
+        border: 0px;
+        background-color: white;
+        color: black;
+        font-size: 3rem;
+        padding: 0px;
+    }
+
+    img {
+        object-fit: cover;
+        min-width: 65vh;
+        min-height: 55vh;
+        padding: 0px;
+
+        // @media screen and (min-width:100vh) {
+        //     body { color:#555; }
+        // }
+    }
+
+    .description {
+        height: 55vh;
+        min-width: 50vh;
+        margin-left: 4px;
+
+        overflow-y: scroll;
+        scrollbar-width: none;
+
+        //not working yet
+        // @media screen and (min-width:90%) {
+        //     body { color:#555; }
+        // }
+    }  
+}
+
+.divD {
+    position: fixed;
+    min-height: 25vh;
+    float: left;
+    margin-top: 7vh;
+    margin-left: 4vw;
+    border: 1px black solid;
+    border-radius: 5px;
+
+    @media (min-width: 446px) {
+        #fadeshow1 {
+            display: none;
+        }
+    }
+}
+
+.socialMedia {
+    float: right;
+    padding-right: 15px;
+}
+
+
+.popup-box {
+
+    background: #ffffff2a;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+.box {
+    position: fixed;
+    bottom: 0;
+    width: 70%;
+    margin: 0 auto;
+    height: 20%;
+    max-height: 70vh;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 40px;
+    border: 1px solid #999;
+}
+
+.close-icon {
+    content: 'x';
+    cursor: pointer;
+    position: fixed;
+    right: calc(34.5% - 30px);
+    top: calc(100vh - 15vh - 33px);
+    background: #d3d3d3;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, CardDeck, Card } from "react-bootstrap";
+// import { Row, Col, CardDeck, Card } from "react-bootstrap";
 import "./style.scss";
 
 export default function SeriesPage(props: {}) {

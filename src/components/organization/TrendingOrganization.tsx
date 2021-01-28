@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Table, Button, Form, Card, CardDeck } from "react-bootstrap";
+import { Row, Col, Table } from "react-bootstrap";
 import "./style.scss";
 
 export default function TrendingOrganization(props: {}) {
