@@ -11,6 +11,7 @@ import { articleListState } from "../articleList";
 import facebook from "../../../data/icon/facebook.png";
 import instagram from "../../../data/icon/instagram.png";
 import twitter from "../../..//data/icon/twitter.png";
+import paymentInfo from "../../../api/paymentInfo/paymentInfo";
 // import { Link } from "react-router-dom";
 
 const IndividualArticle = () => {
@@ -21,7 +22,7 @@ const IndividualArticle = () => {
 
   // Check for users payment info
   const [userPInfo, setUserPInfo] = useState();
-  console.log(userPInfo)
+  console.log("Payment Info", userPInfo)
 
   //rendering for articls and assigning an id to a article
   useEffect(() => {
@@ -29,9 +30,9 @@ const IndividualArticle = () => {
   }, [params.id]);
 
   useEffect(() => {
-    let userId = Number(localStorage.getItem("user_id"));
+    const paymentInfo = { user_id: Number(localStorage.getItem("user_id"))}  
     api.paymentInfo
-      .post(userId)
+      .post(paymentInfo)
       .then((response) => {
         setUserPInfo(response.data);
       })
@@ -43,9 +44,9 @@ const IndividualArticle = () => {
   }
 
   function priceCheck(price: any) {
-    if (price <= 0) {
-      return "Free Article";
-    } else return "$" + price;
+    if (price = 0) {
+      setisOpen(!isOpen)
+    } else setisOpen(isOpen)
   }
   
 
@@ -57,14 +58,10 @@ const IndividualArticle = () => {
   // allow free users to only view % of the article until purchased
   const togglePopup = (price: any) => {
     setisOpen(!isOpen);
-    
   };
 
   //Content of this popup is held in the mainlayout
-  const PurchasePopup = (props: any) => {
-    function oneClickPurchase() {
-      // needs a user to have their payment info filled in
-    }
+  const PurchasePopup = (props: any) => { 
     return (
       <div className="popup-box">
         <div className="box">
@@ -76,13 +73,20 @@ const IndividualArticle = () => {
       </div>
     );
   };
-  // the
+  
+  function oneClickPurchase() {
+    if (!userPInfo){
+      alert("You don't have any payment information")
+    } else {
+      alert("Test")
+    }
+  }
+
   return (
     <MainLayout>
 
       <div className="divD">
         {article?.user_firstName}{" "}{article?.user_lastName}
-        <p>{priceCheck(article?.art_price)}</p>
         <p></p>
       </div>
 
@@ -113,7 +117,7 @@ const IndividualArticle = () => {
                     <p>
                       This Article is not free, If you wish to view it, press "Buy Article"
                     </p>
-                    <button> Purchase Article </button>
+                    <button onClick={oneClickPurchase}> Test </button>
                     <p>soon.. The page won't scroll when this div is open</p>
                   </>}
                   handleClose={togglePopup}

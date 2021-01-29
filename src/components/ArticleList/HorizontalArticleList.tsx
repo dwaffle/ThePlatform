@@ -5,7 +5,6 @@ import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useArticleList } from "./articleList";
 
-
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
   // Only allows published/approved articles to be displayed
