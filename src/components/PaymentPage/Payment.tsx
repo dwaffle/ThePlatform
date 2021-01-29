@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Row, Col, CardDeck, Card, Button, Form } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
+import { Row, Col, Button, Form } from "react-bootstrap";
+// import Image from "react-bootstrap/Image";
 //import Faq from '../components/OrganizationPage';
 import "./style.scss";
 import api from "../../api";
 import { useHistory } from "react-router";
-import userAvatar from "../../data/icon/userAvatar.jpg";
+// import userAvatar from "../../data/icon/userAvatar.jpg";
 
 interface IPaymentInformation {
   user_id: number;

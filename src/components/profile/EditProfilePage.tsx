@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, CardDeck, Card, Button, Form } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 //import Faq from '../components/OrganizationPage';
 import "./style.scss";
@@ -73,7 +73,7 @@ export default function EditProfilePage(props: {}) {
   function onsubmit() {
     if (
       password_entry !== password_verify &&
-      (password_entry != "" || password_verify != "")
+      (password_entry !== "" || password_verify !== "")
     ) {
       alert("Passwords must match to be changed.");
       return;

@@ -5,8 +5,9 @@ import * as Tokens from './routes/tokens';
 import * as Users from './routes/users';
 import * as Articles from './routes/articles';
 import * as Organization from './routes/organization';
-import * as Payment from './routes/payments'
-import * as PaymentInfo from './routes/paymentInfo'
+import * as Payment from './routes/payments';
+import * as PaymentInfo from './routes/paymentInfo';
+import * as PurchaseArticle from './routes/purchaseArticle'
 
 const app = express();
 const port = 4330;
@@ -25,7 +26,7 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Tokens, Users, Articles, Organization, Payment, PaymentInfo ].forEach( ImportedObject => {
+[ Tokens, Users, Articles, Organization, Payment, PaymentInfo, PurchaseArticle ].forEach( ImportedObject => {
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
 });
