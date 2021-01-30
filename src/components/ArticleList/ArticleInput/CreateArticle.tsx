@@ -15,7 +15,6 @@ export function CreateNewArticle() {
     setType(valueAsNumber);
   };
 
-
   const [price, setPrice] = useState();
   const onChange = (e: any) => {
     setPrice(e.target.value);
@@ -36,7 +35,7 @@ export function CreateNewArticle() {
       description: description,
       user_author: Number(localStorage.getItem("user_id")),
       art_body: body,
-      art_image: image
+      art_image: image,
     };
     api.article.post(objectToSend);
     alert("Success!");
@@ -52,10 +51,10 @@ export function CreateNewArticle() {
   }
 
   //doesn't work
-  const [image, setImage] = useState<string>('');
-  const fileHandler = (event:any) => {
+  const [image, setImage] = useState<string>("");
+  const fileHandler = (event: any) => {
     setImage(URL.createObjectURL(event.target.files[0]));
-  }
+  };
 
   return (
     <MainLayout>
@@ -77,10 +76,9 @@ export function CreateNewArticle() {
 
           <Form.Row className="FormRowSpacing">
             <input type="file" accept="image/*" onChange={fileHandler} />
-            
           </Form.Row>
           <div>
-          <img src={image}></img>
+            <img src={image}></img>
           </div>
 
           <Form.Row className="FormRowSpacing">
@@ -141,7 +139,7 @@ export function CreateNewArticle() {
                 onChange={onChange}
                 // Currently having an issue where the price field is accesible when the radio button is not selected
                 // hoping to make the radio button open and display the field for price input when selected to combat this and for aesthetics.
-                // or an enable/disable function to make the price input work as intended when selected  
+                // or an enable/disable function to make the price input work as intended when selected
                 disabled
               />
             </Form.Group>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { useRecoilValue } from "recoil";
-import MainLayout from '../../../layouts/MainLayout'
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import MainLayout from "../../../layouts/MainLayout";
 import { IArticle } from "../../../../services/crud-server/src/models/article";
 import api from "../../../api";
-import Rating from "react-rating";
+import { Rating } from "@material-ui/lab";
 import { useParams } from "react-router";
 import { Row, Col } from "react-bootstrap";
+
 import { articleListState } from "../articleList";
 import facebook from "../../../data/icon/facebook.png";
 import instagram from "../../../data/icon/instagram.png";
@@ -20,48 +21,57 @@ const IndividualArticle = () => {
   const art = useRecoilValue<IArticle[]>(articleListState);
   const [article, setArticle] = useState<IArticle>();
 
+  //popup state
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   // Check for users payment info
   const [userPInfo, setUserPInfo] = useState();
-  console.log("Payment Info", userPInfo)
+  console.log("Payment Info", userPInfo);
 
-  //rendering for articls and assigning an id to a article
+  //rendering for articles and assigning an id to an article
   useEffect(() => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
   useEffect(() => {
-    const paymentInfo = { user_id: Number(localStorage.getItem("user_id"))}  
+    const paymentInfo = { user_id: Number(localStorage.getItem("user_id")) };
     api.paymentInfo
       .post(paymentInfo)
       .then((response) => {
         setUserPInfo(response.data);
+        if (article?.art_price == undefined || article?.art_price === 0){
+          console.log("useEffect Art price", article?.art_price)
+          document.body.style.overflow = "unset";
+        } else {
+          setIsOpen(isOpen);
+          document.body.style.overflow = "hidden";
+
+        }
+      
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
+
 
   function getRating() {
     // code that will display rating and allow users to rate the article
   }
 
   function priceCheck(price: any) {
-    if (price = 0) {
-      setisOpen(!isOpen)
-    } else setisOpen(isOpen)
+    if (price == 0) {
+      setIsOpen(!isOpen);
+    } else setIsOpen(isOpen);
   }
-  
 
-  
-  //popup state
-  const [isOpen, setisOpen] = useState<boolean>(false);
 
   // button functionality to set the state of the popup
   // allow free users to only view % of the article until purchased
-  const togglePopup = (price: any) => {
-    setisOpen(!isOpen);
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
   };
 
   //Content of this popup is held in the mainlayout
-  const PurchasePopup = (props: any) => { 
+  const PurchasePopup = (props: any) => {
     return (
       <div className="popup-box">
         <div className="box">
@@ -73,62 +83,63 @@ const IndividualArticle = () => {
       </div>
     );
   };
-  
+
   function oneClickPurchase() {
-    if (!userPInfo){
-      alert("You don't have any payment information")
+    if (!userPInfo) {
+      alert("You don't have any payment information");
     } else {
-      alert("Test")
+      let objectToSend = {
+        user_id: Number(localStorage.getItem("user_id")),
+        article_id: article?.art_id,
+      };
+      api.purchaseArticle.post(objectToSend);
+      alert("You have bought this article!");
+      return;
     }
   }
 
   return (
     <MainLayout>
-
       <div className="divD">
-        {article?.user_firstName}{" "}{article?.user_lastName}
+        {article?.user_firstName} {article?.user_lastName}
         <p></p>
       </div>
 
       <section>
         <h1>{article?.art_title} </h1>
+        <Rating name="half-rating" defaultValue={2.5} precision={1} />
         <Row noGutters>
-          <Col md="auto" >
-            <img
-              src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"
-            ></img>
+          <Col md="auto">
+            <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
           </Col>
-          <Col className="description" >
-            {article?.description}
-          </Col>
+          <Col className="description">{article?.description}</Col>
         </Row>
 
-        <div>
-          {article?.art_body}
-        </div>
+        <div>{article?.art_body}</div>
 
-        <input
-                  type="button"
-                  value="test"
-                  onClick={togglePopup}
-                />
-                {isOpen && <PurchasePopup
-                  content={<>
-                    <p>
-                      This Article is not free, If you wish to view it, press "Buy Article"
-                    </p>
-                    <button onClick={oneClickPurchase}> Test </button>
-                    <p>soon.. The page won't scroll when this div is open</p>
-                  </>}
-                  handleClose={togglePopup}
-                />}
-
+        <input type="button" value="test" onClick={togglePopup} />
+        {isOpen && (
+          <PurchasePopup
+            content={
+              <>
+                <p>
+                  This Article is not free, If you wish to view it, press "Buy
+                  Article"
+                </p>
+                <button onClick={oneClickPurchase}> Test </button>
+                <p>soon.. The page won't scroll when this div is open</p>
+              </>
+            }
+            handleClose={togglePopup}
+          />
+        )}
       </section>
-      
     </MainLayout>
   );
 };
 
-{/* <togglePopup 
-condition={article.price} */}
+{
+  /* <togglePopup 
+condition={article.price} */
+}
 export default IndividualArticle;
