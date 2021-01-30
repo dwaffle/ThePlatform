@@ -5,7 +5,8 @@ import tokens from "./tokens";
 import login from "./login";
 import user from "./user";
 import payment from "./payment";
-import paymentInfo from "./paymentInfo/paymentInfo"
+import paymentInfo from "./paymentInfo/paymentInfo";
+import purchaseArticle from './purchaseArticle/purchaseArticle'
 
 export default {
   organization,
@@ -16,4 +17,5 @@ export default {
   user,
   payment,
   paymentInfo,
+  purchaseArticle
 };
