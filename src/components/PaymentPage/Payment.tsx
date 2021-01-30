@@ -34,7 +34,8 @@ export default function EditPaymentPage(props: {}) {
       user_id: Number(localStorage.getItem('user_id'))
     }
     api.paymentInfo.post(paymentInfo).then((response) => {
-      if(response.data){
+  
+      if(response.data[0] != undefined){
         history.push("/ChangePaymentPage")
       } else {
         console.log("quack")
