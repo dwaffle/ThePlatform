@@ -1,0 +1,35 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+
+.PendingArticle {
+    border: red 1px solid;
+    min-height: 500px;
+    margin-left:5%;
+}
+
+.SelectedArticle {
+    margin-right: 5%!important;
+    border: red 1px solid; 
+    min-height: 500px;
+
+    .SelectedArticleDescription{
+        max-height: 10vh;
+        overflow-y: scroll;
+        border: 1px black solid;
+    }
+    
+    .SelectedArticleBody{
+        min-height: 20vh;
+        max-height: 23vh;
+        overflow-y: scroll;
+        border: 1px black solid;
+
+    }
+}
+
+.RejectArticle {
+    border: red 1px solid; 
+    min-height: 150px;
+    margin-top: 10px;
+    margin-right: 5%!important;
+}
