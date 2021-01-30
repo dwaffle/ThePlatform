@@ -12,10 +12,11 @@ import LoginPage from "./pages/LoginPage";
 import "./App.scss";
 import EditProfilePage from "./pages/EditProfilePage";
 import EditorPage from "./components/EditorPage/EditorPage";
-import IndividualArticle from "./components/ArticleList/IndividualArticle";
-import {IndividualArticlePage} from './pages/IndividualArticlePage'
 import EditPaymentPage from './pages/EditPaymentInfo'
 import WriteRating from './components/rating/writeRating'
+import IndividualArticle from "./components/ArticleList/IndividualArticle/IndividualArticle";
+// import {IndividualArticlePage} from './pages/IndividualArticlePage'
+
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {

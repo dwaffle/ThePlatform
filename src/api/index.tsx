@@ -6,6 +6,7 @@ import login from "./login";
 import user from "./user";
 import payment from "./payment"
 import rating from "./rating"
+import paymentInfo from "./paymentInfo/paymentInfo"
 
 export default {
   organization,
@@ -16,4 +17,5 @@ export default {
   user,
   payment,
   rating,
+  paymentInfo,
 };

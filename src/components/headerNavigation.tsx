@@ -18,7 +18,7 @@ export default function HeaderNavigation(props: {}) {
 
   return (
     <>
-      <Navbar variant="dark" className="navbarBG" collapseOnSelect expand="lg">
+      <Navbar variant="dark" className="navbarBG" collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="navFont">
@@ -26,7 +26,7 @@ export default function HeaderNavigation(props: {}) {
               <Nav.Link>The Platform</Nav.Link>
             </LinkContainer>
           </Nav>
-          <Nav className="mr-auto">
+          <Nav className="navButtons">
             <LinkContainer to="/articles">
               <Nav.Link>Articles</Nav.Link>
             </LinkContainer>
@@ -41,7 +41,7 @@ export default function HeaderNavigation(props: {}) {
             </LinkContainer>
             {isEditor()}
           </Nav>
-          <Nav>
+          <Nav className="navProfile">
             <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
