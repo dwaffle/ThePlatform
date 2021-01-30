@@ -15,7 +15,7 @@ import EditorPage from "./components/EditorPage/EditorPage";
 import IndividualArticle from "./components/ArticleList/IndividualArticle";
 import {IndividualArticlePage} from './pages/IndividualArticlePage'
 import EditPaymentPage from './pages/EditPaymentInfo'
-import Rating from './components/rating/writeRating'
+import WriteRating from './components/rating/writeRating'
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -29,7 +29,7 @@ export default function ThePlatformWebsite(props: {}) {
     <BrowserRouter>
       <Switch>
         <Route path="/admin" component={AdminSite} />
-        <Route path="/rating" component={Rating} />
+        <Route path="/writeRating" component={WriteRating} />
         <Route path="/series" component={Series} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />

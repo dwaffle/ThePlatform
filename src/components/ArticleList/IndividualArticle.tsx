@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import MainLayout from "../../layouts/MainLayout";
 import { IArticle } from "../../../services/crud-server/src/models/article";
-import Rating from "react-rating";
+// import Rating from "react-rating";
 import "./style.scss";
 import { useParams } from "react-router";
 import { Row, Col } from "react-bootstrap";
@@ -12,6 +12,8 @@ import facebook from "../../data/icon/facebook.png";
 import instagram from "../../data/icon/instagram.png";
 import twitter from "../../data/icon/twitter.png";
 import { Link } from "react-router-dom";
+
+import Rating from "../rating/rating"
 
 const IndividualArticle = () => {
   const [rating1, setRating1] = useState(0);
@@ -68,10 +70,11 @@ const IndividualArticle = () => {
         </h4>
 
         <div className="Rating">
-          <Rating
+          <Rating />
+          {/* <Rating
             initialRating={rating1}
             onClick={(rate) => setRating1(rate)}
-          />
+          /> */}
           <div>
           <input
             type="button"
