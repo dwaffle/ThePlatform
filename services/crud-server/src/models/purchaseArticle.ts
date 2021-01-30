@@ -28,7 +28,7 @@ export const UserOwnsArticle = {
         });
     },
 
-    retrieve: async(user_id:number):Promise<any> => {
+    get: async(user_id:number):Promise<any> => {
         return new Promise<any>((resolve, reject) => {
             connection.query(`SELECT * FROM user_has_article WHERE user_id = ${user_id}`, function(err:any, result:any){
                 if(err){
