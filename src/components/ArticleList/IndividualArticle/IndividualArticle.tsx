@@ -39,35 +39,24 @@ const IndividualArticle = () => {
       .post(paymentInfo)
       .then((response) => {
         setUserPInfo(response.data);
-        if (article?.art_price == undefined || article?.art_price === 0){
+        // rendering undefined so popup is currently present until you hit exit
+        if (article?.art_price == undefined || article?.art_price > 0) {
+          togglePopup();
           console.log("useEffect Art price", article?.art_price)
-          document.body.style.overflow = "unset";
-        } else {
-          setIsOpen(isOpen);
-          document.body.style.overflow = "hidden";
-
-        }
-      
+        } 
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
-
-
-  function getRating() {
-    // code that will display rating and allow users to rate the article
-  }
-
-  function priceCheck(price: any) {
-    if (price == 0) {
-      setIsOpen(!isOpen);
-    } else setIsOpen(isOpen);
-  }
 
 
   // button functionality to set the state of the popup
   // allow free users to only view % of the article until purchased
   const togglePopup = () => {
     setIsOpen(!isOpen);
+    document.body.style.overflow = "hidden";
+    if (isOpen) {
+      document.body.style.overflow = "unset";
+    }
   };
 
   //Content of this popup is held in the mainlayout
