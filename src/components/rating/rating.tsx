@@ -52,6 +52,7 @@ export default function RatingArticles(props: {}) {
              
               >
               <strong>Your Rating</strong>
+              { console.log(rate) }
           </Button>
  
 

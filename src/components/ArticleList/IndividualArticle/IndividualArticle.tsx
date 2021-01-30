@@ -4,7 +4,9 @@ import { useRecoilValue, useResetRecoilState } from "recoil";
 import MainLayout from "../../../layouts/MainLayout";
 import { IArticle } from "../../../../services/crud-server/src/models/article";
 import api from "../../../api";
-import { Rating } from "@material-ui/lab";
+// import { Rating } from "@material-ui/lab";
+
+import Rating from "../../rating/rating"
 import { useParams } from "react-router";
 import { Row, Col } from "react-bootstrap";
 
@@ -107,7 +109,9 @@ const IndividualArticle = () => {
 
       <section>
         <h1>{article?.art_title} </h1>
-        <Rating name="half-rating" defaultValue={2.5} precision={1} />
+        {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
+
+        <Rating />
         <Row noGutters>
           <Col md="auto">
             <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
