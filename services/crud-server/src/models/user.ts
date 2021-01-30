@@ -43,19 +43,6 @@ var connection = mysql.createConnection({
     database: 'mydb'
 })
 
-// read user
-const path = `${__dirname}/../data`;
-const file = `${path}/users.json`;
-
-if(!fs.existsSync(path)){
-    fs.mkdirSync(path);
-}
-
-if(!fs.existsSync(file)){
-    fs.writeFileSync(file, JSON.stringify([]), { encoding: 'utf-8' });
-}
-
-
 
 
 export const UserModel = {

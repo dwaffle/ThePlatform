@@ -14,9 +14,9 @@ export function post(app:any){
             cvv: payment.cvv
 
         });
-        response.sendStatus(201);
+        response.status(201).send("Modified.");
     } catch {
-        response.sendStatus(400).send({
+        response.status(400).send({
             error: 400,
             message: "There is a syntax error in your payment information.  It needs a user id, first name, last name, card number, expiry date, and cvv"
         })

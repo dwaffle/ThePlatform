@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 // import Image from "react-bootstrap/Image";
 //import Faq from '../components/OrganizationPage';
@@ -29,6 +29,19 @@ export default function EditPaymentPage(props: {}) {
     history.push("/articles");
   }
 
+  useEffect(() => {
+    const paymentInfo = {
+      user_id: Number(localStorage.getItem('user_id'))
+    }
+    api.paymentInfo.post(paymentInfo).then((response) => {
+      if(response.data){
+        history.push("/ChangePaymentPage")
+      } else {
+        console.log("quack")
+      }
+    })
+  })
+  
   function getUserId() {
     const user = window.localStorage.getItem("user_id");
     if (user) {
@@ -65,7 +78,7 @@ export default function EditPaymentPage(props: {}) {
       );
     }
   }
-
+  
   function onClickGoProfile() {
     history.push("/profile");
   }
@@ -83,6 +96,7 @@ export default function EditPaymentPage(props: {}) {
       alert("All fields need to be filled out, and you need to be signed in.");
       return;
     }
+
     const paymentInfoSubmisson = {
       user_id: userId,
       first_name: cardholder_firstname,

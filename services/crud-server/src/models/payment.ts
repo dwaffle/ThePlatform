@@ -8,6 +8,7 @@ var connection = mysql.createConnection({
     password: process.env.MYSQL_PASSWORD,
     database: 'mydb'
 })
+
 //Remember to parse out the spaces in a card number before sending it.
 export interface IPaymentInfo {
     user_id:number,
@@ -16,6 +17,15 @@ export interface IPaymentInfo {
     cardNo:number,
     expiry_date:string,
     cvv:number
+}
+
+export interface IPaymentChangeRequest {
+        user_id:number,
+        first_name?:string,
+        last_name?:string,
+        cardNo?:number,
+        expiry_date?:string,
+        cvv?:number
 }
 
 export const PaymentModel = {
@@ -30,6 +40,7 @@ export const PaymentModel = {
                 result;
             }
         });
+
     },
 
     retrieve: async(userId:number):Promise<any> => {
@@ -42,5 +53,40 @@ export const PaymentModel = {
                 }
             })
         })
+    },
+
+    modify: async(paymentChangeRequest:IPaymentChangeRequest):Promise<any> => {
+        let queryParams = "";
+        //Double check that a user id has come in with the user info.
+        if(!paymentChangeRequest.user_id){
+            console.log("No user id")
+            return
+        }
+        //Need to figure out which items, and therefore how to structure the query.
+        if(paymentChangeRequest.first_name){
+            queryParams += `cardholder_firstname = '${paymentChangeRequest.first_name}', `
+        }
+        if(paymentChangeRequest.last_name){
+            queryParams += `cardholder_lastname = '${paymentChangeRequest.last_name}', ` 
+        }
+        if(paymentChangeRequest.cardNo){
+            queryParams += `card_no = ${paymentChangeRequest.cardNo}, `
+        }
+        if(paymentChangeRequest.expiry_date){
+            queryParams += `expiry_date = '${paymentChangeRequest.expiry_date}', `
+        }
+        if(paymentChangeRequest.cvv){
+            queryParams += `cvv = ${paymentChangeRequest.cvv}, `
+        }
+        console.log("Query paramaters: " + queryParams)
+        //Take out the final ", " before actually sending the query
+        queryParams = queryParams.slice(0, -2)
+        
+        console.log("CHange request: " + paymentChangeRequest.first_name)
+            connection.query(`UPDATE payment_info SET ${queryParams} WHERE user_id = ${paymentChangeRequest.user_id}`, function(err:any, result:any){
+                if(err){
+                    throw err
+                 }
+            })
     }
 }
