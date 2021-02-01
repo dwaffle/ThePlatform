@@ -10,6 +10,7 @@ import AdminSite from "./pages/AdminPage";
 import HorizontalArticles from "./components/ArticleList/HorizontalArticleList";
 import LoginPage from "./pages/LoginPage";
 import "./App.scss";
+import ChangePayment from "./pages/ChangePaymentInfo"
 import EditProfilePage from "./pages/EditProfilePage";
 import EditorPage from "./components/EditorPage/EditorPage";
 import IndividualArticle from "./components/ArticleList/IndividualArticle/IndividualArticle";
@@ -29,6 +30,7 @@ export default function ThePlatformWebsite(props: {}) {
       <Switch>
         <Route path="/admin" component={AdminSite} />
         <Route path="/organization" component={Organization} />
+        <Route path="/ChangePaymentPage" component={ChangePayment} />
         <Route path="/series" component={Series} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />

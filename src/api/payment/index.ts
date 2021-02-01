@@ -9,4 +9,12 @@ export default {
             },
           });
     },
+
+    patch: async (body:any) => {
+      return axios.patch(`${HOSTNAME}/payments`, body, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      })
+    }
 }

@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
-const fs_1 = __importDefault(require("fs"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const lodash_1 = require("lodash");
 const path_1 = require("path");
@@ -25,14 +24,6 @@ var connection = mysql.createConnection({
     password: process.env.MYSQL_PASSWORD,
     database: 'mydb'
 });
-const path = `${__dirname}/../data`;
-const file = `${path}/users.json`;
-if (!fs_1.default.existsSync(path)) {
-    fs_1.default.mkdirSync(path);
-}
-if (!fs_1.default.existsSync(file)) {
-    fs_1.default.writeFileSync(file, JSON.stringify([]), { encoding: 'utf-8' });
-}
 exports.UserModel = {
     getAll: () => {
         return new Promise((resolve, reject) => {
