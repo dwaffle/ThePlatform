@@ -7,6 +7,6 @@ export default {
             headers: {
               Authorization: `Bearer ${window.localStorage.getItem("token")}`,
             },
-          });
+        });
     },
 }

@@ -42,12 +42,11 @@ const IndividualArticle = () => {
         // rendering undefined so popup is currently present until you hit exit
         if (article?.art_price == undefined || article?.art_price > 0) {
           togglePopup();
-          console.log("useEffect Art price", article?.art_price)
-        } 
+          console.log("useEffect Art price", article?.art_price);
+        }
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
-
 
   // button functionality to set the state of the popup
   // allow free users to only view % of the article until purchased
