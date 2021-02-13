@@ -1,17 +1,17 @@
-import React, { ChangeEvent, useState } from "react";
-import { useHistory } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
-import { Card, Form, Button, Row, Col, InputGroup } from "react-bootstrap";
-import api from "../api";
-import "./style.scss";
+import React, { ChangeEvent, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import MainLayout from '../layouts/MainLayout';
+import { Card, Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
+import api from '../api';
+import './style.scss';
 
 export default function SignupPage(props: {}) {
   const history = useHistory();
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [privacyIsChecked, setPrivacy] = useState<boolean>();
 
   function onPrivacyTaskHandler(e: ChangeEvent<HTMLInputElement>) {
@@ -36,7 +36,7 @@ export default function SignupPage(props: {}) {
       user_password: password,
     };
     api.signup.post(objectToSend);
-    history.push("/articles");
+    history.push('/articles');
     return;
   }
 

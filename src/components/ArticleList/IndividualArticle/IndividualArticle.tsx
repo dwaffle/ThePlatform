@@ -1,62 +1,88 @@
-import React, { useState, useEffect } from "react";
-import "./style.scss";
-import { useRecoilValue, useResetRecoilState } from "recoil";
-import MainLayout from "../../../layouts/MainLayout";
-import { IArticle } from "../../../../services/crud-server/src/models/article";
-import api from "../../../api";
-import { Rating } from "@material-ui/lab";
-import { useParams } from "react-router";
-import { Row, Col } from "react-bootstrap";
-
-import { articleListState } from "../articleList";
-import facebook from "../../../data/icon/facebook.png";
-import instagram from "../../../data/icon/instagram.png";
-import twitter from "../../..//data/icon/twitter.png";
-import paymentInfo from "../../../api/paymentInfo/paymentInfo";
-// import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import MainLayout from '../../../layouts/MainLayout';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import api from '../../../api';
+import { useParams } from 'react-router';
+import { Row, Col } from 'react-bootstrap';
+import './style.scss';
+import { articleListState } from '../articleList';
+import facebook from '../../../data/icon/facebook.png';
+import instagram from '../../../data/icon/instagram.png';
+import twitter from '../../..//data/icon/twitter.png';
+import paymentInfo from '../../../api/paymentInfo/paymentInfo';
 
 const IndividualArticle = () => {
-  const [rating1, setRating1] = useState(0);
-  const params = useParams<{ id: string }>();
+  //articles without id
   const art = useRecoilValue<IArticle[]>(articleListState);
+  //articles with ids
   const [article, setArticle] = useState<IArticle>();
-
-  //popup state
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  // Check for users payment info
-  const [userPInfo, setUserPInfo] = useState();
-  console.log("Payment Info", userPInfo);
+  // assigns an id to one article
+  const params = useParams<{ id: string }>();
+  // user id...
+  const user_id = Number(localStorage.getItem('user_id'));
+  //does the user own the article if required?
+  const [isOwned, setIsOwned] = useState();
+  console.log('isOwned', isOwned);
 
   //rendering for articles and assigning an id to an article
   useEffect(() => {
     setArticle(art.find((_art) => _art.art_title === params.id));
   }, [params.id]);
 
+  // if the article is a paid article, check to see if the user owns it
+  // if not, enforce pop up where they can purchase the article
   useEffect(() => {
-    const paymentInfo = { user_id: Number(localStorage.getItem("user_id")) };
-    api.paymentInfo
-      .post(paymentInfo)
-      .then((response) => {
-        setUserPInfo(response.data);
-        // rendering undefined so popup is currently present until you hit exit
-        if (article?.art_price == undefined || article?.art_price > 0) {
-          togglePopup();
-          console.log("useEffect Art price", article?.art_price);
-        }
-      })
-      .catch((error) => console.error(`Error: ${error}`));
+    if (article?.artype_id == 2) {
+      // with or without object?
+      const userID = {user_id: Number(localStorage.getItem("user_id"))}  
+      api.purchaseArticle
+        .get(userID)
+        .then((response) => {
+          setIsOwned(response.data);
+        })
+        .catch((error) => console.error(`Error: ${error}`));
+    }
+    if (!isOwned) {
+      togglePopup();
+    }
   }, []);
 
+  //popup state
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // state if the user has payment information or not.
+  const [userPInfo, setUserPInfo] = useState();
+  console.log('UserPInfo', userPInfo);
   // button functionality to set the state of the popup
-  // allow free users to only view % of the article until purchased
+  // makes api request to check payment information
   const togglePopup = () => {
     setIsOpen(!isOpen);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     if (isOpen) {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
+    api.paymentInfo
+      .post(user_id)
+      .then((response) => {
+        setUserPInfo(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
   };
+
+  // Function enabling a user to purchase an article
+  function oneClickPurchase() {
+    if (!userPInfo) {
+      alert("You don't have any payment information");
+    } else {
+      let objectToSend = {
+        user_id: Number(localStorage.getItem('user_id')),
+        article_id: article?.art_id,
+      };
+      api.purchaseArticle.post(objectToSend);
+      alert('You have bought this article!');
+      return; /*history.push(`/articles/${article?.art_title}`); */
+    }
+  }
 
   //Content of this popup is held in the mainlayout
   const PurchasePopup = (props: any) => {
@@ -72,20 +98,6 @@ const IndividualArticle = () => {
     );
   };
 
-  function oneClickPurchase() {
-    if (!userPInfo) {
-      alert("You don't have any payment information");
-    } else {
-      let objectToSend = {
-        user_id: Number(localStorage.getItem("user_id")),
-        article_id: article?.art_id,
-      };
-      api.purchaseArticle.post(objectToSend);
-      alert("You have bought this article!");
-      return;
-    }
-  }
-
   return (
     <MainLayout>
       <div className="divD">
@@ -95,7 +107,6 @@ const IndividualArticle = () => {
 
       <section>
         <h1>{article?.art_title} </h1>
-        <Rating name="half-rating" defaultValue={2.5} precision={1} />
         <Row noGutters>
           <Col md="auto">
             <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
@@ -114,8 +125,7 @@ const IndividualArticle = () => {
                   This Article is not free, If you wish to view it, press "Buy
                   Article"
                 </p>
-                <button onClick={oneClickPurchase}> Test </button>
-                <p>soon.. The page won't scroll when this div is open</p>
+                <button onClick={oneClickPurchase}> Buy Article </button>
               </>
             }
             handleClose={togglePopup}
@@ -126,8 +136,4 @@ const IndividualArticle = () => {
   );
 };
 
-{
-  /* <togglePopup 
-condition={article.price} */
-}
 export default IndividualArticle;

@@ -1,10 +1,10 @@
-import React, { useState, ChangeEvent } from "react";
-import { Switch } from "react-router";
-import Form from "react-bootstrap/Form";
-import MainLayout from "../../../layouts/MainLayout";
-import { useHistory } from "react-router-dom";
-import api from "../../../api";
-import "./style.scss";
+import React, { useState, ChangeEvent } from 'react';
+import { Switch } from 'react-router';
+import Form from 'react-bootstrap/Form';
+import MainLayout from '../../../layouts/MainLayout';
+import { useHistory } from 'react-router-dom';
+import api from '../../../api';
+import './style.scss';
 
 export function CreateNewArticle() {
   // Stateful component that sets the type of article from "handleSelectChange"
@@ -21,9 +21,9 @@ export function CreateNewArticle() {
   };
 
   const history = useHistory();
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [body, setBody] = useState<string>("");
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [body, setBody] = useState<string>('');
 
   // Submit button functionality and sends it to the database on submit.
   function onSubmit(e: any) {
@@ -33,17 +33,17 @@ export function CreateNewArticle() {
       artype_id: type,
       art_title: title,
       description: description,
-      user_author: Number(localStorage.getItem("user_id")),
+      user_author: Number(localStorage.getItem('user_id')),
       art_body: body,
       art_image: image,
     };
     api.article.post(objectToSend);
-    alert("Success!");
-    history.push("/");
+    alert('Success!');
+    history.push('/');
     return;
   }
 
-  let authorName: string = window.localStorage.getItem("username") || "";
+  let authorName: string = window.localStorage.getItem('username') || '';
 
   //currently disfunctional
   function onRadioClick(disabled: any) {
@@ -51,7 +51,7 @@ export function CreateNewArticle() {
   }
 
   //doesn't work
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string>('');
   const fileHandler = (event: any) => {
     setImage(URL.createObjectURL(event.target.files[0]));
   };
