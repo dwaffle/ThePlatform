@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 import './style.scss';
 import { articleListState } from '../articleList';
+import { useHistory } from 'react-router-dom';
 import facebook from '../../../data/icon/facebook.png';
 import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
@@ -20,9 +21,12 @@ const IndividualArticle = () => {
   // assigns an id to one article
   const params = useParams<{ id: string }>();
   // user id...
-  const user_id = Number(localStorage.getItem('user_id'));
+  const user_ID = {user_id: Number(localStorage.getItem("user_id"))}
   //does the user own the article if required?
-  const [isOwned, setIsOwned] = useState();
+  const [isOwned, setIsOwned] = useState<boolean>();
+  //history router
+  const history = useHistory();
+
   console.log('isOwned', isOwned);
 
   //rendering for articles and assigning an id to an article
@@ -33,26 +37,31 @@ const IndividualArticle = () => {
   // if the article is a paid article, check to see if the user owns it
   // if not, enforce pop up where they can purchase the article
   useEffect(() => {
-    if (article?.artype_id == 2) {
-      // with or without object?
-      const userID = {user_id: Number(localStorage.getItem("user_id"))}  
-      api.purchaseArticle
-        .get(userID)
-        .then((response) => {
-          setIsOwned(response.data);
-        })
-        .catch((error) => console.error(`Error: ${error}`));
-    }
+    api.purchaseArticle
+      .get(Number(localStorage.getItem("user_id")))
+      .then((response) => {
+        setIsOwned(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+    
     if (!isOwned) {
       togglePopup();
     }
   }, []);
 
+  useEffect(() => {
+    api.paymentInfo
+      .post(user_ID)
+      .then((response) => {
+        setUserPInfo(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }, [])
+
   //popup state
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // state if the user has payment information or not.
   const [userPInfo, setUserPInfo] = useState();
-  console.log('UserPInfo', userPInfo);
   // button functionality to set the state of the popup
   // makes api request to check payment information
   const togglePopup = () => {
@@ -61,28 +70,30 @@ const IndividualArticle = () => {
     if (isOpen) {
       document.body.style.overflow = 'unset';
     }
-    api.paymentInfo
-      .post(user_id)
-      .then((response) => {
-        setUserPInfo(response.data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
+    
   };
 
+
   // Function enabling a user to purchase an article
+
   function oneClickPurchase() {
     if (!userPInfo) {
       alert("You don't have any payment information");
     } else {
+      if(article != undefined){
       let objectToSend = {
         user_id: Number(localStorage.getItem('user_id')),
-        article_id: article?.art_id,
+        article_id: article.art_id,
       };
       api.purchaseArticle.post(objectToSend);
       alert('You have bought this article!');
-      return; /*history.push(`/articles/${article?.art_title}`); */
+      history.push(`/articles/${article.art_title}`); 
+    }
+      
+      return; 
     }
   }
+
 
   //Content of this popup is held in the mainlayout
   const PurchasePopup = (props: any) => {

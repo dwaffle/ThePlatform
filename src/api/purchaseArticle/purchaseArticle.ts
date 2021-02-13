@@ -3,8 +3,8 @@ import {HOSTNAME} from '../config'
 
 export default {
 
-  get: async (body:any) => {
-    return axios.get(`${HOSTNAME}/purchaseArticle`, {
+  get: async (user_id:any) => {
+    return axios.get(`${HOSTNAME}/purchaseArticle/${user_id}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
