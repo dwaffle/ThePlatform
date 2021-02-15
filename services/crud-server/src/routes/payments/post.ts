@@ -14,6 +14,7 @@ export function post(app:any){
             cvv: payment.cvv
 
         });
+        console.log(payment)
         response.status(201).send("Modified.");
     } catch {
         response.status(400).send({
