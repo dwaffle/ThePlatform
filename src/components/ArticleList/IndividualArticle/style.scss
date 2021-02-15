@@ -11,11 +11,12 @@ section {
         padding: 0px;
     }
 
-    img {
+    .mainImg {
         object-fit: cover;
         min-width: 65vh;
         min-height: 55vh;
         padding: 0px;
+
 
         // @media screen and (min-width:100vh) {
         //     body { color:#555; }
@@ -25,7 +26,8 @@ section {
     .description {
         max-height: 55vh;
         min-width: 50vh;
-        margin-left: 4px;
+        margin-left: 0px;
+        padding-bottom: 2vh;
 
         overflow-y: scroll;
         scrollbar-width: none;
@@ -35,28 +37,24 @@ section {
         //     body { color:#555; }
         // }
     }  
-}
 
-.divD {
-    position: fixed;
-    min-height: 25vh;
-    float: left;
-    margin-top: 7vh;
-    margin-left: 4vw;
-    border: 1px black solid;
-    border-radius: 5px;
-
-    @media (min-width: 446px) {
-        #fadeshow1 {
-            display: none;
-        }
+    .articleDetails {
+        font-size: 2vh;
     }
 }
 
+
+
+
 .socialMedia {
-    float: right;
-    padding-right: 15px;
-}
+
+    img {
+        width: 3.5vh;
+        height: 3.5vh;
+        padding: 0px;
+    }
+}  
+
 
 
 .popup-box {

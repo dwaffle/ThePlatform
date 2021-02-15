@@ -7,7 +7,8 @@ import { useParams } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 import './style.scss';
 import { articleListState } from '../articleList';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
 import facebook from '../../../data/icon/facebook.png';
 import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
@@ -21,13 +22,13 @@ const IndividualArticle = () => {
   // assigns an id to one article
   const params = useParams<{ id: string }>();
   // user id...
-  const user_ID = {user_id: Number(localStorage.getItem("user_id"))}
+  const user_ID = { user_id: Number(localStorage.getItem('user_id')) };
   //does the user own the article if required?
-  const [isOwned, setIsOwned] = useState<boolean>();
+  const [usersWithArticles, setUsersWithArticles] = useState();
   //history router
   const history = useHistory();
 
-  console.log('isOwned', isOwned);
+  console.log('isOwned', usersWithArticles);
 
   //rendering for articles and assigning an id to an article
   useEffect(() => {
@@ -38,25 +39,12 @@ const IndividualArticle = () => {
   // if not, enforce pop up where they can purchase the article
   useEffect(() => {
     api.purchaseArticle
-      .get(Number(localStorage.getItem("user_id")))
+      .get(Number(localStorage.getItem('user_id')))
       .then((response) => {
-        setIsOwned(response.data);
+        setUsersWithArticles(response.data);
       })
       .catch((error) => console.error(`Error: ${error}`));
-    
-    if (!isOwned) {
-      togglePopup();
-    }
   }, []);
-
-  useEffect(() => {
-    api.paymentInfo
-      .post(user_ID)
-      .then((response) => {
-        setUserPInfo(response.data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, [])
 
   //popup state
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -70,9 +58,16 @@ const IndividualArticle = () => {
     if (isOpen) {
       document.body.style.overflow = 'unset';
     }
-    
   };
 
+  useEffect(() => {
+    api.paymentInfo
+      .post(user_ID)
+      .then((response) => {
+        setUserPInfo(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }, []);
 
   // Function enabling a user to purchase an article
 
@@ -80,20 +75,19 @@ const IndividualArticle = () => {
     if (!userPInfo) {
       alert("You don't have any payment information");
     } else {
-      if(article != undefined){
-      let objectToSend = {
-        user_id: Number(localStorage.getItem('user_id')),
-        article_id: article.art_id,
-      };
-      api.purchaseArticle.post(objectToSend);
-      alert('You have bought this article!');
-      history.push(`/articles/${article.art_title}`); 
-    }
-      
-      return; 
+      if (article != undefined) {
+        let objectToSend = {
+          user_id: Number(localStorage.getItem('user_id')),
+          art_id: article.art_id,
+        };
+        api.purchaseArticle.post(objectToSend);
+        alert('You have bought this article!');
+        history.push(`/articles/${article.art_title}`);
+      }
+
+      return;
     }
   }
-
 
   //Content of this popup is held in the mainlayout
   const PurchasePopup = (props: any) => {
@@ -111,16 +105,29 @@ const IndividualArticle = () => {
 
   return (
     <MainLayout>
-      <div className="divD">
-        {article?.user_firstName} {article?.user_lastName}
-        <p></p>
-      </div>
-
       <section>
         <h1>{article?.art_title} </h1>
+        <div className="articleDetails">
+          {article?.user_firstName + ' ' + article?.user_lastName}
+            
+            <a className="socialMedia" href="https://facebook.com/">
+              <img src={facebook} />
+            </a>
+            <a className="socialMedia" href="https://www.instagram.com/">
+              <Image src={instagram} />
+            </a>
+            <a className="socialMedia" href="https://twitter.com/">
+              <Image src={twitter} />
+            </a>
+
+        </div>
+
         <Row noGutters>
           <Col md="auto">
-            <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
+            <img
+              className="mainImg"
+              src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"
+            ></img>
           </Col>
           <Col className="description">{article?.description}</Col>
         </Row>
