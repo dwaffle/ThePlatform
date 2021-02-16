@@ -1,16 +1,17 @@
-import React from "react";
-import { Row, Col, CardDeck, Card, Button } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
+import React from 'react';
+import { Row, Col, CardDeck, Card, Button } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
 //import Faq from '../components/OrganizationPage';
-import "./style.scss";
-import api from "../../api";
-import { useHistory } from "react-router";
-import userAvatar from "../../data/icon/userAvatar.jpg";
+import './style.scss';
+import api from '../../api';
+import { useHistory } from 'react-router';
+import userAvatar from '../../data/icon/userAvatar.jpg';
+import { useArticleList } from '../ArticleList/articleList';
 
 class Iprofile {
-  name: string = "";
-  email: string = "";
-  phone: string = "";
+  name: string = '';
+  email: string = '';
+  phone: string = '';
 }
 
 export default function ProfilePage(props: {}) {
@@ -19,27 +20,27 @@ export default function ProfilePage(props: {}) {
 
   function onClickLogOut() {
     localStorage.clear();
-    history.push("/articles");
+    history.push('/articles');
   }
 
   function checkLogin() {
-    if (window.localStorage.getItem("username")) {
-      history.push("/EditProfilePage");
+    if (window.localStorage.getItem('username')) {
+      history.push('/EditProfilePage');
     } else {
-      alert("Please log in first");
+      alert('Please log in first');
     }
   }
 
   function displayUserName() {
-    if (window.localStorage.getItem("username")) {
-      return <div>{window.localStorage.getItem("username")}</div>;
+    if (window.localStorage.getItem('username')) {
+      return <div>{window.localStorage.getItem('username')}</div>;
     } else {
       return <div>Please sign in.</div>;
     }
   }
 
   function displayFirstName() {
-    const firstName = localStorage.getItem("first_name");
+    const firstName = localStorage.getItem('first_name');
     if (firstName) {
       return firstName;
     } else {
@@ -48,7 +49,7 @@ export default function ProfilePage(props: {}) {
   }
 
   function displayLastName() {
-    const lastName = localStorage.getItem("last_name");
+    const lastName = localStorage.getItem('last_name');
     if (lastName) {
       return lastName;
     } else {
@@ -56,15 +57,21 @@ export default function ProfilePage(props: {}) {
     }
   }
   function displayEmail() {
-    if (localStorage.getItem("email")) {
-      return <div>{localStorage.getItem("email")}</div>;
+    if (localStorage.getItem('email')) {
+      return <div>{localStorage.getItem('email')}</div>;
     } else {
       return;
     }
   }
 
   function paymentInfo() {
-    history.push("/EditPaymentPage");
+    history.push('/EditPaymentPage');
+  }
+
+  const { articleList, setArticleList } = useArticleList();
+
+  function myArticles() {
+    return history.push('/MyArticles');
   }
 
   return (
@@ -96,8 +103,11 @@ export default function ProfilePage(props: {}) {
       <Button onClick={paymentInfo}>Payment Info</Button>
       <Button onClick={checkLogin}>Edit</Button>
       <Button variant="primary" type="submit" onClick={onClickLogOut}>
-        {" "}
+        {' '}
         Log Out
+      </Button>
+      <Button variant="primary" onClick={myArticles}>
+        My Articles
       </Button>
     </>
   );

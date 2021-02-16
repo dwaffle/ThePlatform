@@ -16,6 +16,7 @@ import EditorPage from './components/EditorPage/EditorPage';
 import IndividualArticle from './components/ArticleList/IndividualArticle/IndividualArticle';
 // import {IndividualArticlePage} from './pages/IndividualArticlePage'
 import EditPaymentPage from './pages/EditPaymentInfo';
+import MyArticles from './components/MyArticles/myArticles';
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -42,6 +43,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/newArticle" component={CreateNewArticle} />
         <Route path="/editProfilePage" component={EditProfilePage} />
         <Route path="/editPaymentPage" component={EditPaymentPage} />
+        <Route path="/myArticles" component={MyArticles} />
         <Route path="/:id" component={IndividualArticle} />
         <Route path="/" component={HomePage} />
       </Switch>

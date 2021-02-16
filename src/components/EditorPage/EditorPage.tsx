@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { articleListState } from "../ArticleList/articleList";
-import { IArticle } from "../../../services/crud-server/src/models/article";
-import { useRecoilValue } from "recoil";
-import { useHistory } from "react-router-dom";
-import { Row, Col, Table, Button, CardDeck, Card } from "react-bootstrap";
-import MainLayout from "../../layouts/MainLayout";
-import RejectArticle from "./RejectArticle";
-import api from "../../api";
+import React, { useState, useEffect } from 'react';
+import { articleListState } from '../ArticleList/articleList';
+import { IArticle } from '../../../services/crud-server/src/models/article';
+import { useRecoilValue } from 'recoil';
+import { useHistory } from 'react-router-dom';
+import { Row, Col, Table, Button, CardDeck, Card } from 'react-bootstrap';
+import MainLayout from '../../layouts/MainLayout';
+import RejectArticle from './RejectArticle';
+import api from '../../api';
 
 export default function EditorPage() {
   const history = useHistory();
@@ -38,9 +38,9 @@ export default function EditorPage() {
       art_is_approved: Number(artState),
       art_id: article?.art_id,
     };
-    console.log("patch", updatedArticle);
+    console.log('patch', updatedArticle);
     api.article.patch(updatedArticle);
-    history.push("/editor");
+    history.push('/editor');
     return;
   }
 
@@ -84,7 +84,7 @@ export default function EditorPage() {
             <h2> Selected Article </h2>
             <br />
             <CardDeck>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header>Title: {article?.art_title}</Card.Header>
                 <Card.Body>
                   <Card.Title>Author: {article?.user_author} </Card.Title>
