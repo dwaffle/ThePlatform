@@ -15,7 +15,7 @@ export default function HorizontalArticles(props: { rows: number }) {
   let isAuthor = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem("user_type"));
-    if (userType != 1) {
+    if ((userType != 2 && userType != 4) || !userType) {
       alert("You must be an author to create an article");
     } else {
       return history.push("/newArticle");

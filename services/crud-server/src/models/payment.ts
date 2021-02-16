@@ -31,6 +31,7 @@ export interface IPaymentChangeRequest {
 export const PaymentModel = {
 
     create: async(paymentInfo:IPaymentInfo) => {
+        
         connection.query(`INSERT INTO payment_info (user_id, cardholder_firstname, cardholder_lastname, card_no, expiry_date, cvv) VALUES (${paymentInfo.user_id}, '${paymentInfo.first_name}', '${paymentInfo.last_name}', ${paymentInfo.cardNo}, '${paymentInfo.expiry_date}', ${paymentInfo.cvv})`,
         function(err:any, result:any){
             if(err)
@@ -81,8 +82,6 @@ export const PaymentModel = {
         console.log("Query paramaters: " + queryParams)
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-        
-        console.log("CHange request: " + paymentChangeRequest.first_name)
             connection.query(`UPDATE payment_info SET ${queryParams} WHERE user_id = ${paymentChangeRequest.user_id}`, function(err:any, result:any){
                 if(err){
                     throw err

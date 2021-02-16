@@ -35,9 +35,9 @@ export default function EditPaymentPage(props: {}) {
     }
     api.paymentInfo.post(paymentInfo).then((response) => {
   
-      if(response.data[0] != undefined){
+      if(response.data[0] !== undefined){
         history.push("/ChangePaymentPage")
-      } else {
+        console.log(response.data[0])
         console.log("quack")
       }
     })
