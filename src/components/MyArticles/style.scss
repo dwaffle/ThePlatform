@@ -1,0 +1,31 @@
+.pageSize {
+    margin-left: 1vh;
+}
+.userArticleList {
+    min-width: 22%;
+    min-height: 100vh;
+
+}
+
+.userArticleListCol {
+    width: 0px;
+}
+
+.selectedArticle {
+    width: 80%;
+    margin: 1vw;
+    margin-top: 3vh;
+    height: 10%;
+    border: 1px black solid;
+}
+
+.description {
+    height: 15vh;
+    overflow-y: scroll;
+}
+
+.body {
+    height: 40vh;
+
+}
+   

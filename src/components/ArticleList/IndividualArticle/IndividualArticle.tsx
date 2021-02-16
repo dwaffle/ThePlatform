@@ -109,17 +109,16 @@ const IndividualArticle = () => {
         <h1>{article?.art_title} </h1>
         <div className="articleDetails">
           {article?.user_firstName + ' ' + article?.user_lastName}
-            
-            <a className="socialMedia" href="https://facebook.com/">
-              <img src={facebook} />
-            </a>
-            <a className="socialMedia" href="https://www.instagram.com/">
-              <Image src={instagram} />
-            </a>
-            <a className="socialMedia" href="https://twitter.com/">
-              <Image src={twitter} />
-            </a>
 
+          <a className="socialMedia" href="https://facebook.com/">
+            <img src={facebook} />
+          </a>
+          <a className="socialMedia" href="https://www.instagram.com/">
+            <Image src={instagram} />
+          </a>
+          <a className="socialMedia" href="https://twitter.com/">
+            <Image src={twitter} />
+          </a>
         </div>
 
         <Row noGutters>

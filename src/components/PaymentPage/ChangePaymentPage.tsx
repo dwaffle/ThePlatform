@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Row, Col, Button, Form } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Button, Form } from 'react-bootstrap';
 // import Image from "react-bootstrap/Image";
 //import Faq from '../components/OrganizationPage';
-import "./style.scss";
-import api from "../../api";
-import { useHistory } from "react-router";
+import './style.scss';
+import api from '../../api';
+import { useHistory } from 'react-router';
 // import userAvatar from "../../data/icon/userAvatar.jpg";
 
 interface IPaymentInformationChangeRequest {
@@ -26,21 +26,21 @@ export default function ChangePaymentPage(props: {}) {
 
   function onClickLogOut() {
     localStorage.clear();
-    history.push("/articles");
+    history.push('/articles');
   }
 
   function getUserId() {
-    const user = window.localStorage.getItem("user_id");
+    const user = window.localStorage.getItem('user_id');
     if (user) {
       return user;
     } else {
-      alert("Please sign in first.");
+      alert('Please sign in first.');
     }
   }
 
   function displayUserName() {
-    if (window.localStorage.getItem("username")) {
-      return <div>{window.localStorage.getItem("username")}</div>;
+    if (window.localStorage.getItem('username')) {
+      return <div>{window.localStorage.getItem('username')}</div>;
     } else {
       return <div>Please sign in.</div>;
     }
@@ -65,17 +65,15 @@ export default function ChangePaymentPage(props: {}) {
       );
     }
   }
-  
+
   function onClickGoProfile() {
-    history.push("/profile");
+    history.push('/profile');
   }
 
   function onsubmit() {
     const userId = getUserId();
-    if (
-      !userId
-    ) {
-      alert("You need to be signed in.");
+    if (!userId) {
+      alert('You need to be signed in.');
       return;
     }
     const paymentInfoSubmisson = {
@@ -87,8 +85,8 @@ export default function ChangePaymentPage(props: {}) {
       cvv: card_cvv,
     };
     api.payment.patch(paymentInfoSubmisson);
-    history.push("/profile");
-    alert("Success");
+    history.push('/profile');
+    alert('Success');
   }
 
   return (
@@ -98,41 +96,41 @@ export default function ChangePaymentPage(props: {}) {
       <Form>
         <Row>
           <Col>
-            Cardholder First Name:{" "}
+            Cardholder First Name:{' '}
             <Form.Control onChange={(e) => setFirstName(e.target.value)} />
           </Col>
           <Col>
-            Cardholder Last Name:{" "}
+            Cardholder Last Name:{' '}
             <Form.Control onChange={(e) => setLastName(e.target.value)} />
           </Col>
         </Row>
         <Row>
           <Col>
-            Card Number:{" "}
+            Card Number:{' '}
             <Form.Control onChange={(e) => setCardNo(e.target.value)} />
             {checkCardNo()}
           </Col>
         </Row>
         <Row>
           <Col>
-            Card Expiry:{" "}
+            Card Expiry:{' '}
             <Form.Control onChange={(e) => setCardExpiry(e.target.value)} />
           </Col>
         </Row>
         <Row>
           <Col>
-            Card CVV:{" "}
+            Card CVV:{' '}
             <Form.Control onChange={(e) => setCardCvv(e.target.value)} />
           </Col>
         </Row>
         {checkCvv()}
       </Form>
       <Button variant="primary" onClick={onClickGoProfile}>
-        {" "}
+        {' '}
         Back to Profile
       </Button>
       <Button variant="primary" onClick={onClickLogOut}>
-        {" "}
+        {' '}
         Log Out
       </Button>
       <Button

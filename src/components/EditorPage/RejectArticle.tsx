@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   Row,
@@ -8,9 +8,9 @@ import {
   Form,
   Card,
   CardDeck,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import "./style.scss";
+import './style.scss';
 
 //unused
 export default function RejectArticleList() {

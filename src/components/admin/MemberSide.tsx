@@ -1,5 +1,5 @@
-import React from "react";
-import { Row, Col, CardDeck, Card } from "react-bootstrap";
+import React from 'react';
+import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 
 export default function MemberSide(props: {}) {
   return (

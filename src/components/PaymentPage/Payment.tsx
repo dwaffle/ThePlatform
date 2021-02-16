@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Row, Col, Button, Form } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Button, Form } from 'react-bootstrap';
 // import Image from "react-bootstrap/Image";
 //import Faq from '../components/OrganizationPage';
-import "./style.scss";
-import api from "../../api";
-import { useHistory } from "react-router";
+import './style.scss';
+import api from '../../api';
+import { useHistory } from 'react-router';
 // import userAvatar from "../../data/icon/userAvatar.jpg";
 
 interface IPaymentInformation {
@@ -26,35 +26,34 @@ export default function EditPaymentPage(props: {}) {
 
   function onClickLogOut() {
     localStorage.clear();
-    history.push("/articles");
+    history.push('/articles');
   }
 
   useEffect(() => {
     const paymentInfo = {
-      user_id: Number(localStorage.getItem('user_id'))
-    }
+      user_id: Number(localStorage.getItem('user_id')),
+    };
     api.paymentInfo.post(paymentInfo).then((response) => {
-  
-      if(response.data[0] != undefined){
-        history.push("/ChangePaymentPage")
+      if (response.data[0] != undefined) {
+        history.push('/ChangePaymentPage');
       } else {
-        console.log("quack")
+        console.log('quack');
       }
-    })
-  })
-  
+    });
+  });
+
   function getUserId() {
-    const user = window.localStorage.getItem("user_id");
+    const user = window.localStorage.getItem('user_id');
     if (user) {
       return user;
     } else {
-      alert("Please sign in first.");
+      alert('Please sign in first.');
     }
   }
 
   function displayUserName() {
-    if (window.localStorage.getItem("username")) {
-      return <div>{window.localStorage.getItem("username")}</div>;
+    if (window.localStorage.getItem('username')) {
+      return <div>{window.localStorage.getItem('username')}</div>;
     } else {
       return <div>Please sign in.</div>;
     }
@@ -79,9 +78,9 @@ export default function EditPaymentPage(props: {}) {
       );
     }
   }
-  
+
   function onClickGoProfile() {
-    history.push("/profile");
+    history.push('/profile');
   }
 
   function onsubmit() {
@@ -94,7 +93,7 @@ export default function EditPaymentPage(props: {}) {
       !card_expiry ||
       !userId
     ) {
-      alert("All fields need to be filled out, and you need to be signed in.");
+      alert('All fields need to be filled out, and you need to be signed in.');
       return;
     }
 
@@ -107,8 +106,8 @@ export default function EditPaymentPage(props: {}) {
       cvv: card_cvv,
     };
     api.payment.post(paymentInfoSubmisson);
-    history.push("/profile");
-    alert("Success");
+    history.push('/profile');
+    alert('Success');
   }
 
   return (
@@ -118,41 +117,41 @@ export default function EditPaymentPage(props: {}) {
       <Form>
         <Row>
           <Col>
-            Cardholder First Name:{" "}
+            Cardholder First Name:{' '}
             <Form.Control onChange={(e) => setFirstName(e.target.value)} />
           </Col>
           <Col>
-            Cardholder Last Name:{" "}
+            Cardholder Last Name:{' '}
             <Form.Control onChange={(e) => setLastName(e.target.value)} />
           </Col>
         </Row>
         <Row>
           <Col>
-            Card Number:{" "}
+            Card Number:{' '}
             <Form.Control onChange={(e) => setCardNo(e.target.value)} />
             {checkCardNo()}
           </Col>
         </Row>
         <Row>
           <Col>
-            Card Expiry:{" "}
+            Card Expiry:{' '}
             <Form.Control onChange={(e) => setCardExpiry(e.target.value)} />
           </Col>
         </Row>
         <Row>
           <Col>
-            Card CVV:{" "}
+            Card CVV:{' '}
             <Form.Control onChange={(e) => setCardCvv(e.target.value)} />
           </Col>
         </Row>
         {checkCvv()}
       </Form>
       <Button variant="primary" onClick={onClickGoProfile}>
-        {" "}
+        {' '}
         Back to Profile
       </Button>
       <Button variant="primary" onClick={onClickLogOut}>
-        {" "}
+        {' '}
         Log Out
       </Button>
       <Button
