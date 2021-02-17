@@ -14,9 +14,9 @@ export default function HorizontalArticles(props: { rows: number }) {
   // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
     e.preventDefault();
-    let userType = Number(localStorage.getItem("user_type"));
-    if ((userType != 2 && userType != 4) || !userType) {
-      alert("You must be an author to create an article");
+    let userType = Number(localStorage.getItem('user_type'));
+    if ((userType != 1 && userType != 4) || !userType) {
+      alert('You must be an author to create an article');
     } else {
       return history.push('/newArticle');
     }

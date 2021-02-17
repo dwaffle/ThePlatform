@@ -19,13 +19,22 @@
     border: 1px black solid;
 }
 
+
+// .radioButtons {
+//    border: 1px solid lightgray;
+//    border-radius: 5px;
+
+// }
+
 .description {
-    height: 15vh;
+    min-height: 12vh;
     overflow-y: scroll;
 }
 
 .body {
-    height: 40vh;
+    min-height: 40vh;
+    // max-width: 100%;
+    // overflow-x:scroll;
 
 }
    

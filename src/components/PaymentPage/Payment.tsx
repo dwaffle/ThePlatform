@@ -34,11 +34,10 @@ export default function EditPaymentPage(props: {}) {
       user_id: Number(localStorage.getItem('user_id')),
     };
     api.paymentInfo.post(paymentInfo).then((response) => {
-  
-      if(response.data[0] !== undefined){
-        history.push("/ChangePaymentPage")
-        console.log(response.data[0])
-        console.log("quack")
+      if (response.data[0] !== undefined) {
+        history.push('/ChangePaymentPage');
+        console.log(response.data[0]);
+        console.log('quack');
       }
     });
   });
