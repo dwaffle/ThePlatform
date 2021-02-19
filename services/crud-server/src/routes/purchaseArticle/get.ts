@@ -2,8 +2,8 @@ import { authenticateToken } from '../../middleware/authenticator';
 import {articlePurchase, UserOwnsArticle} from '../../models/purchaseArticle'
 
 export function get(app:any){
-    app.get('/purchaseArticle', async(request:any, response: any) => {
-        const user_id = request.body.user_id;
+    app.get('/purchaseArticle/:user_id', async(request:any, response: any) => {
+        const user_id = request.params.user_id;
         const foundArticle = await UserOwnsArticle.get(user_id);
 
         if(foundArticle){

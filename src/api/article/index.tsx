@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
 // import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
 // import { IArticle } from "../../../services/crud-server/src/models/article";
-import { HOSTNAME } from "../config";
+import { HOSTNAME } from '../config';
 
 export default {
   get: async () => {
     return axios.get(`${HOSTNAME}/articles`, {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
     });
   },
@@ -15,7 +15,7 @@ export default {
   post: async (body: any) => {
     return axios.post(`${HOSTNAME}/articles`, body, {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
     });
   },
@@ -24,7 +24,7 @@ export default {
     console.log(`${HOSTNAME}/articles/${artId}`);
     return axios.get(`${HOSTNAME}/articles/${artId}`, {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
     });
   },
@@ -32,7 +32,7 @@ export default {
   patch: async (body?: any) => {
     return axios.patch(`${HOSTNAME}/articles`, body, {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
     });
   },
@@ -40,7 +40,7 @@ export default {
   delete: async (id: string) => {
     return axios.delete(`${HOSTNAME}/articles/${id}`, {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
     });
   },

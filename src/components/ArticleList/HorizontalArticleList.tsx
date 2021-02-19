@@ -1,9 +1,9 @@
-import React from "react";
-import MainLayout from "../../layouts/MainLayout";
-import "./style.scss";
-import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
-import { useArticleList } from "./articleList";
+import React from 'react';
+import MainLayout from '../../layouts/MainLayout';
+import './style.scss';
+import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
+import { useArticleList } from './articleList';
 
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
@@ -14,11 +14,11 @@ export default function HorizontalArticles(props: { rows: number }) {
   // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
     e.preventDefault();
-    let userType = Number(localStorage.getItem("user_type"));
-    if ((userType != 2 && userType != 4) || !userType) {
-      alert("You must be an author to create an article");
+    let userType = Number(localStorage.getItem('user_type'));
+    if ((userType != 1 && userType != 4) || !userType) {
+      alert('You must be an author to create an article');
     } else {
-      return history.push("/newArticle");
+      return history.push('/newArticle');
     }
   };
 
@@ -56,7 +56,7 @@ export default function HorizontalArticles(props: { rows: number }) {
               <Form.Control placeholder="Search Articles..." />
             </Col>
             <Col>
-              {" "}
+              {' '}
               <Button onClick={isAuthor}>Create New</Button>
             </Col>
           </Row>
@@ -69,12 +69,12 @@ export default function HorizontalArticles(props: { rows: number }) {
           <div key={index}>
             <Card className="Card">
               <Card.Header className="CardHeader">
-                {" "}
+                {' '}
                 <Link to={`/articles/${art.art_title}`}>{art.art_title}</Link>
                 <div>
-                  {" "}
+                  {' '}
                   Author: {art.user_firstName}
-                  {art.user_lastName}{" "}
+                  {art.user_lastName}{' '}
                 </div>
               </Card.Header>
 

@@ -1,7 +1,7 @@
-import React from "react";
-import { Row, Col, Button, Form, Card, CardDeck } from "react-bootstrap";
+import React from 'react';
+import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 //import Faq from '../components/OrganizationPage';
-import "./style.scss";
+import './style.scss';
 
 // export interface IOrganization {
 //     name: string;
@@ -11,7 +11,7 @@ import "./style.scss";
 export default function HorizontalOrganizationList(props: {}) {
   return (
     <>
-      {" "}
+      {' '}
       <div className="horizontal-organization-list">
         {/* Search | Filters */}
         <Form>
@@ -27,7 +27,7 @@ export default function HorizontalOrganizationList(props: {}) {
             <Col></Col>
             {/* Create a new organization */}
             <Col>
-              {" "}
+              {' '}
               <Button href="#">Create New</Button>
             </Col>
           </Row>
@@ -37,7 +37,7 @@ export default function HorizontalOrganizationList(props: {}) {
         <Row>
           <Col>
             <CardDeck>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>
@@ -51,7 +51,7 @@ export default function HorizontalOrganizationList(props: {}) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>
@@ -65,7 +65,7 @@ export default function HorizontalOrganizationList(props: {}) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>
@@ -79,7 +79,7 @@ export default function HorizontalOrganizationList(props: {}) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>

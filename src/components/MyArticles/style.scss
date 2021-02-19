@@ -1,0 +1,40 @@
+.pageSize {
+    margin-left: 1vh;
+}
+.userArticleList {
+    min-width: 22%;
+    min-height: 100vh;
+
+}
+
+.userArticleListCol {
+    width: 0px;
+}
+
+.selectedArticle {
+    width: 80%;
+    margin: 1vw;
+    margin-top: 3vh;
+    height: 10%;
+    border: 1px black solid;
+}
+
+
+// .radioButtons {
+//    border: 1px solid lightgray;
+//    border-radius: 5px;
+
+// }
+
+.description {
+    min-height: 12vh;
+    overflow-y: scroll;
+}
+
+.body {
+    min-height: 40vh;
+    // max-width: 100%;
+    // overflow-x:scroll;
+
+}
+   
