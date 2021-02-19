@@ -1,29 +1,4 @@
-// import { IOrganization } from '../../../../src/components/organization/IOrganization';
-// import { callbackify } from 'util';
-// import { deserialize } from 'v8';
-
-import dotenv from 'dotenv';
-dotenv.config();
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: process.env.MYSQL_CONNECTION_STRING,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
-})
-
-
-
-// //Id and date of creation are generated for us by the SQL query.
-// export interface IOrganization {
-//     organization_id: number;
-//     organization_title: string;
-//     organization_price: number;
-//     organization_type: number;
-//     // organization_status: boolean;
-
-// }
+import {DBConnection} from './connection'
 
 //Id and date of creation are generated for us by the SQL query.
 export interface IOrganization {
@@ -35,12 +10,14 @@ export interface IOrganization {
 
 }
 
+const connection = new DBConnection()
+
 
 
 export const OrganizationModel = {
 
     getAll: ():Promise<IOrganization[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT * FROM organization', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.connectToDB().query('SELECT * FROM organization', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -54,7 +31,7 @@ export const OrganizationModel = {
     getById: async ( organizationId:number ): Promise<IOrganization[]> => {
         return new Promise((resolve, reject) => {
             
-            connection.query(`SELECT * FROM organization WHERE ord_id = ${organizationId}`, function(err:any, result: any){
+            connection.connectToDB().query(`SELECT * FROM organization WHERE ord_id = ${organizationId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -72,7 +49,7 @@ export const OrganizationModel = {
     },
 
     create: async( Organization:IOrganization) => {
-            connection.query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${Organization.ord_id}', '${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
+            connection.connectToDB().query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${Organization.ord_id}', '${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
             function(err:any, result:any){
                 if(err)
                 {

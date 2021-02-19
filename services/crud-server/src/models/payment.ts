@@ -1,13 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: process.env.MYSQL_CONNECTION_STRING,
-    user: 'admin',
-    password: process.env.MYSQL_PASSWORD,
-    database: 'mydb'
-})
+import {DBConnection} from './connection'
 
 //Remember to parse out the spaces in a card number before sending it.
 export interface IPaymentInfo {
@@ -28,11 +19,12 @@ export interface IPaymentChangeRequest {
         cvv?:number
 }
 
+const connection = new DBConnection()
 export const PaymentModel = {
 
     create: async(paymentInfo:IPaymentInfo) => {
         
-        connection.query(`INSERT INTO payment_info (user_id, cardholder_firstname, cardholder_lastname, card_no, expiry_date, cvv) VALUES (${paymentInfo.user_id}, '${paymentInfo.first_name}', '${paymentInfo.last_name}', ${paymentInfo.cardNo}, '${paymentInfo.expiry_date}', ${paymentInfo.cvv})`,
+        connection.connectToDB().query(`INSERT INTO payment_info (user_id, cardholder_firstname, cardholder_lastname, card_no, expiry_date, cvv) VALUES (${paymentInfo.user_id}, '${paymentInfo.first_name}', '${paymentInfo.last_name}', ${paymentInfo.cardNo}, '${paymentInfo.expiry_date}', ${paymentInfo.cvv})`,
         function(err:any, result:any){
             if(err)
             {
@@ -46,7 +38,7 @@ export const PaymentModel = {
 
     retrieve: async(userId:number):Promise<any> => {
         return new Promise<any>((resolve, reject) => {
-            connection.query(`SELECT * FROM payment_info WHERE user_id = ${userId}`, function(err:any, result:any){
+            connection.connectToDB().query(`SELECT * FROM payment_info WHERE user_id = ${userId}`, function(err:any, result:any){
                 if(err){
                     throw err
                 } else {
@@ -82,7 +74,7 @@ export const PaymentModel = {
         console.log("Query paramaters: " + queryParams)
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-            connection.query(`UPDATE payment_info SET ${queryParams} WHERE user_id = ${paymentChangeRequest.user_id}`, function(err:any, result:any){
+            connection.connectToDB().query(`UPDATE payment_info SET ${queryParams} WHERE user_id = ${paymentChangeRequest.user_id}`, function(err:any, result:any){
                 if(err){
                     throw err
                  }

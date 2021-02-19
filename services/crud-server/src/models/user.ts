@@ -1,8 +1,7 @@
-import fs from 'fs';
-import dotenv from 'dotenv';
+
 import { reject } from 'lodash';
 import { resolve } from 'path';
-dotenv.config();
+import { DBConnection } from './connection'
 
 interface IprofileChangeRequest {
     user_id: number,
@@ -35,20 +34,12 @@ export interface IUserNoPassword {
     user_creation_date:string
 }
 
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: process.env.MYSQL_CONNECTION_STRING,
-    user: 'admin',
-    password: process.env.MYSQL_PASSWORD,
-    database: 'mydb'
-})
-
-
+const connection = new DBConnection()
 
 export const UserModel = {
 
     getAll: ():Promise<IUser[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.connectToDB().query('SELECT * FROM user', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -59,7 +50,7 @@ export const UserModel = {
     },
 
     getAllWithoutPassword: ():any => {
-        return new Promise<any>((resolve, reject) => {connection.query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
+        return new Promise<any>((resolve, reject) => {connection.connectToDB().query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
     , function(err:any, result:any){
             if(err){
                 reject(err)
@@ -71,7 +62,7 @@ export const UserModel = {
     },
 
     setAll: async (user:IUser) => {
-        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+        connection.connectToDB().query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
         function(err:any, result:any){
             if(err){
                 reject(err)
@@ -84,7 +75,7 @@ export const UserModel = {
     getByUsername: async ( username:string ):Promise<IUser> => {
         return new Promise<IUser>((resolve, reject) => {
             
-            connection.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function(err:any, result: any){
+            connection.connectToDB().query(`SELECT * FROM user WHERE user_userName = '${username}'`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -98,7 +89,7 @@ export const UserModel = {
 
     delete: async (userId:number) => {
         return new Promise((resolve, reject) => {
-            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function(err:any, result:any){
+            connection.connectToDB().query(`DELETE FROM user WHERE user_id = ${userId}`, function(err:any, result:any){
                 if(err){
                     reject(err)
                 } else {
@@ -130,7 +121,7 @@ export const UserModel = {
         }
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function(err:any, result:any){
+        connection.connectToDB().query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function(err:any, result:any){
                 if(err){
                     reject(err);
                 }
