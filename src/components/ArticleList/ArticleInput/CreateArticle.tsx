@@ -8,7 +8,7 @@ import './style.scss';
 
 //An enum is a numbered list, starting at 0.
 enum ArticleType{
-  FREE,
+  FREE = 1,
   PAIDMEMBERS,
   PURCHASED
 }
@@ -68,7 +68,7 @@ export function CreateNewArticle() {
       //Construct object.  Add one to the enum of the artype_id to line it up with the database IDs.  Enums start at 0, our DB starts at 1.
     let objectToSend = {
       art_price: Number(price),
-      artype_id: Number(hasPrice) + 1,
+      artype_id: Number(hasPrice),
       art_title: title,
       description: description,
       user_author: Number(localStorage.getItem('user_id')),
