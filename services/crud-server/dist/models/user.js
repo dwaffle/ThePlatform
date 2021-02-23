@@ -41,15 +41,45 @@ exports.UserModel = {
         });
     },
     setAll: (user) => __awaiter(void 0, void 0, void 0, function* () {
-        connection.connectToDB().query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
-            function (err, result) {
-                if (err) {
-                    lodash_1.reject(err);
-                }
-                else {
-                    path_1.resolve(result);
-                }
-            };
+        let socialMediaOptions = "";
+        let extraQueryParams = "";
+        if (user.user_twitter) {
+            socialMediaOptions += `'${user.user_twitter}', `;
+            extraQueryParams += "user_twitter, ";
+        }
+        if (user.user_facebook) {
+            socialMediaOptions += `'${user.user_facebook}', `;
+            extraQueryParams += "user_facebook, ";
+        }
+        if (user.user_instagram) {
+            socialMediaOptions += `'${user.user_instagram}', `;
+            extraQueryParams += "user_instagram, ";
+        }
+        console.log(socialMediaOptions);
+        if (socialMediaOptions !== "") {
+            socialMediaOptions = socialMediaOptions.slice(0, -2);
+            extraQueryParams = extraQueryParams.slice(0, -2);
+            connection.connectToDB().query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date, ${extraQueryParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE(), ${socialMediaOptions})`),
+                function (err, result) {
+                    if (err) {
+                        lodash_1.reject(err);
+                    }
+                    else {
+                        path_1.resolve(result);
+                    }
+                };
+        }
+        else {
+            connection.connectToDB().query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+                function (err, result) {
+                    if (err) {
+                        lodash_1.reject(err);
+                    }
+                    else {
+                        path_1.resolve(result);
+                    }
+                };
+        }
     }),
     getByUsername: (username) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
@@ -94,7 +124,17 @@ exports.UserModel = {
         if (userInfo.user_password) {
             queryParams += `user_password = '${userInfo.user_password}', `;
         }
+        if (userInfo.user_facebook) {
+            queryParams += `user_facebook = '${userInfo.user_facebook}', `;
+        }
+        if (userInfo.user_instagram) {
+            queryParams += `user_instagram = '${userInfo.user_instagram}', `;
+        }
+        if (userInfo.user_twitter) {
+            queryParams += `user_twitter = '${userInfo.user_twitter}', `;
+        }
         queryParams = queryParams.slice(0, -2);
+        console.log(queryParams);
         connection.connectToDB().query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
             if (err) {
                 lodash_1.reject(err);
