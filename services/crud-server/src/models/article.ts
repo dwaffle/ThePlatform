@@ -1,4 +1,7 @@
+
+
 import {DBConnection} from './connection'
+
 
 //Id and date of creation are generated for us by the SQL query.  user_firstName and user_lastName are used when getting an article back.
 export interface IArticle {

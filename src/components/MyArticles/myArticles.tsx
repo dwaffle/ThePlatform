@@ -88,7 +88,7 @@ function MyArticles() {
       //Construct object.  Add one to the enum of the artype_id to line it up with the database IDs.  Enums start at 0, our DB starts at 1.
       let articlePatch = {
         art_price: Number(price),
-        artype_id: Number(hasPrice) + 1,
+        artype_id: Number(hasPrice),
         art_title: title,
         description: description,
         user_author: Number(localStorage.getItem('user_id')),
