@@ -16,8 +16,10 @@ const connection = new DBConnection()
 
 export const OrganizationModel = {
 
-    getAll: ():Promise<IOrganization[]> => {
-        return new Promise((resolve, reject) => {connection.connectToDB().query('SELECT * FROM organization', function(err:any, result:any){
+    getAll: async ():Promise<IOrganization[]> => {
+        const client = await connection.getClient();
+
+        return new Promise((resolve, reject) => {client.query('SELECT * FROM organization', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -29,9 +31,11 @@ export const OrganizationModel = {
     },
 
     getById: async ( organizationId:number ): Promise<IOrganization[]> => {
+        const client = await connection.getClient();
+
         return new Promise((resolve, reject) => {
             
-            connection.connectToDB().query(`SELECT * FROM organization WHERE ord_id = ${organizationId}`, function(err:any, result: any){
+            client.query(`SELECT * FROM organization WHERE ord_id = ${organizationId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -49,7 +53,9 @@ export const OrganizationModel = {
     },
 
     create: async( Organization:IOrganization) => {
-            connection.connectToDB().query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${Organization.ord_id}', '${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
+        const client = await connection.getClient();
+
+            client.query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${Organization.ord_id}', '${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
             function(err:any, result:any){
                 if(err)
                 {

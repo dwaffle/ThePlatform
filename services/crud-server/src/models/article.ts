@@ -15,12 +15,14 @@ export interface IArticle {
     art_is_approved?: number
 }
 
-const connection = new DBConnection()
+const connection = new DBConnection();
+
 export const ArticleModel = {
 
     getAll: async ():Promise<any> => {
+        const client = await connection.getClient();
         return new Promise((resolve, reject) => {
-                connection.connectToDB().query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
+                client.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {
@@ -31,9 +33,10 @@ export const ArticleModel = {
 },
 
     getById: async ( articleId:number ): Promise<any> => {
+        const client = await connection.getClient();
         return new Promise((resolve, reject) => {
             
-            connection.connectToDB().query(`SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id WHERE art_id = ${articleId}`, function(err:any, result: any){
+            client.query(`SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id WHERE art_id = ${articleId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -50,8 +53,9 @@ export const ArticleModel = {
     // },
 
     publish: async ( article:IArticle) => {
+        const client = await connection.getClient();
         return new Promise<any>((resolve, reject) => {
-            connection.connectToDB().query(`UPDATE article SET art_is_approved = 1 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+            client.query(`UPDATE article SET art_is_approved = 1 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
                 if(err){
                     console.log(`${article.art_is_approved}` + ` `+ `${article.art_id}`)
                     throw err
@@ -63,8 +67,9 @@ export const ArticleModel = {
     },
 
     unpublish: async ( article:IArticle) => {
+        const client = await connection.getClient();
         return new Promise<any>((resolve, reject) => {
-            connection.connectToDB().query(`UPDATE article SET art_is_approved = 0 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+            client.query(`UPDATE article SET art_is_approved = 0 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
                 if(err){
                     console.log(`${article.art_is_approved}` + ` `+ `${article.art_id}`)
                     throw err
@@ -82,7 +87,8 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.connectToDB().query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}')`,
+        const client = await connection.getClient();
+            client.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}')`,
             function(err:any, result:any){
                 if(err)
                 {

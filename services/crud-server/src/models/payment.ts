@@ -23,8 +23,10 @@ const connection = new DBConnection()
 export const PaymentModel = {
 
     create: async(paymentInfo:IPaymentInfo) => {
+        const client = await connection.getClient();
+
         
-        connection.connectToDB().query(`INSERT INTO payment_info (user_id, cardholder_firstname, cardholder_lastname, card_no, expiry_date, cvv) VALUES (${paymentInfo.user_id}, '${paymentInfo.first_name}', '${paymentInfo.last_name}', ${paymentInfo.cardNo}, '${paymentInfo.expiry_date}', ${paymentInfo.cvv})`,
+        client.query(`INSERT INTO payment_info (user_id, cardholder_firstname, cardholder_lastname, card_no, expiry_date, cvv) VALUES (${paymentInfo.user_id}, '${paymentInfo.first_name}', '${paymentInfo.last_name}', ${paymentInfo.cardNo}, '${paymentInfo.expiry_date}', ${paymentInfo.cvv})`,
         function(err:any, result:any){
             if(err)
             {
@@ -37,8 +39,10 @@ export const PaymentModel = {
     },
 
     retrieve: async(userId:number):Promise<any> => {
+        const client = await connection.getClient();
+
         return new Promise<any>((resolve, reject) => {
-            connection.connectToDB().query(`SELECT * FROM payment_info WHERE user_id = ${userId}`, function(err:any, result:any){
+            client.query(`SELECT * FROM payment_info WHERE user_id = ${userId}`, function(err:any, result:any){
                 if(err){
                     throw err
                 } else {
@@ -49,6 +53,8 @@ export const PaymentModel = {
     },
 
     modify: async(paymentChangeRequest:IPaymentChangeRequest):Promise<any> => {
+        const client = await connection.getClient();
+
         let queryParams = "";
         //Double check that a user id has come in with the user info.
         if(!paymentChangeRequest.user_id){
@@ -74,7 +80,7 @@ export const PaymentModel = {
         console.log("Query paramaters: " + queryParams)
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-            connection.connectToDB().query(`UPDATE payment_info SET ${queryParams} WHERE user_id = ${paymentChangeRequest.user_id}`, function(err:any, result:any){
+            client.query(`UPDATE payment_info SET ${queryParams} WHERE user_id = ${paymentChangeRequest.user_id}`, function(err:any, result:any){
                 if(err){
                     throw err
                  }

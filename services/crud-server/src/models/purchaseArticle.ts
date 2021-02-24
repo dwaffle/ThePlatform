@@ -10,7 +10,9 @@ const connection = new DBConnection()
 export const UserOwnsArticle = {
 
     create: async(purchase:articlePurchase) => {
-        connection.connectToDB().query(`INSERT INTO user_has_article (art_id, user_id) VALUES (${purchase.art_id}, ${purchase.user_id})`,
+        const client = await connection.getClient();
+
+        client.query(`INSERT INTO user_has_article (art_id, user_id) VALUES (${purchase.art_id}, ${purchase.user_id})`,
         function(err:any, result:any){
             if(err)
             {
@@ -22,8 +24,10 @@ export const UserOwnsArticle = {
     },
 
     get: async(user_id:number):Promise<any> => {
+        const client = await connection.getClient();
+
         return new Promise<any>((resolve, reject) => {
-            connection.connectToDB().query(`SELECT * FROM user_has_article WHERE user_id = ${user_id}`, function(err:any, result:any){
+            client.query(`SELECT * FROM user_has_article WHERE user_id = ${user_id}`, function(err:any, result:any){
                 if(err){
                     throw err
                 } else {
