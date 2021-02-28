@@ -11,6 +11,10 @@ export default {
         localStorage.setItem('username', data[0].user_userName)
         localStorage.setItem('email', data[0].user_email)
         localStorage.setItem('first_name', data[0].user_firstName)
-        localStorage.setItem('last_name', data[0].user_lastName)})
+        localStorage.setItem('last_name', data[0].user_lastName)
+        localStorage.setItem('user_instagram', data[0].user_instagram)
+        localStorage.setItem('user_facebook', data[0].user_facebook)
+        localStorage.setItem('user_twitter', data[0].user_twitter)})
+        
     }
 }

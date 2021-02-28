@@ -13,6 +13,9 @@ class IprofileChangeRequest {
   user_lastName?: string;
   user_email?: string;
   user_password?: string;
+  user_facebook?: string;
+  user_twitter?: string;
+  user_instagram?: string;
 }
 
 export default function EditProfilePage(props: {}) {
@@ -21,8 +24,12 @@ export default function EditProfilePage(props: {}) {
   const [user_email, setEmail] = useState<string>();
   const [user_firstName, setFirstName] = useState<string>();
   const [user_lastName, setLastName] = useState<string>();
+  const [user_facebook, setUserFacebook] = useState<string>();
+  const [user_instagram, setUserInstagram] = useState<string>();
+  const [user_twitter, setUserTwitter] = useState<string>();
   const [password_entry, setPasswordEntry] = useState<string>();
   const [password_verify, setPasswordVerify] = useState<string>();
+
 
   function onClickLogOut() {
     localStorage.clear();
@@ -63,6 +70,28 @@ export default function EditProfilePage(props: {}) {
     }
   }
 
+  function displayFacebook() {
+    let facebook = localStorage.getItem('user_facebook');
+    if (facebook != null) {
+      return facebook;
+    }
+  }
+
+  function displayInstagram() {
+    let instagram = localStorage.getItem('user_instagram');
+    if (instagram != null) {
+      return instagram;
+    }
+  }
+
+  function displayTwitter() {
+    let twitter = localStorage.getItem('user_twitter');
+    if (twitter != null) {
+      return twitter;
+    }
+  }
+
+
   function deleteAccount() {
     if (window.confirm('Are you sure?  This will delete your account!')) {
       api.user.delete(localStorage.getItem('user'));
@@ -90,7 +119,11 @@ export default function EditProfilePage(props: {}) {
       user_lastName: user_lastName,
       user_email: user_email,
       user_password: password_entry,
+      user_facebook: user_facebook,
+      user_instagram: user_instagram,
+      user_twitter: user_twitter
     };
+
     api.user.patch(changeRequest);
     //Get the user's new info after a successful request.
     const username = localStorage.getItem('username');
@@ -139,6 +172,33 @@ export default function EditProfilePage(props: {}) {
               placeholder={displayLastName()}
               onChange={(e) => setLastName(e.target.value)}
             />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            Change Facebook{' '}
+            <Form.Control
+              placeholder={displayFacebook()}
+              onChange={(e) => setUserFacebook(e.target.value)}
+            ></Form.Control>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            Change Instagram{' '}
+            <Form.Control
+              placeholder={displayInstagram()}
+              onChange={(e) => setUserInstagram(e.target.value)}
+            ></Form.Control>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            Change Twitter{' '}
+            <Form.Control
+              placeholder={displayTwitter()}
+              onChange={(e) => setUserTwitter(e.target.value)}
+            ></Form.Control>
           </Col>
         </Row>
         <Row>
