@@ -1,4 +1,16 @@
-import {DBConnection} from './connection'
+//To be replaced with the code for retriving an article.
+import dotenv from 'dotenv';
+import { reject } from 'lodash';
+dotenv.config();
+
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: process.env.MYSQL_CONNECTION_STRING,
+    user: 'admin',
+    password: process.env.MYSQL_PASSWORD,
+    database: 'mydb'
+})
+
 
 //Id and date of creation are generated for us by the SQL query.  user_firstName and user_lastName are used when getting an article back.
 export interface IArticle {
@@ -12,17 +24,15 @@ export interface IArticle {
     art_title: string,
     art_body: string,
     art_image: string,
-    art_is_approved?: number
+    art_is_approved?: number,
+    art_category?:string
 }
-
-const connection = new DBConnection();
 
 export const ArticleModel = {
 
     getAll: async ():Promise<any> => {
-        const client = await connection.getClient();
         return new Promise((resolve, reject) => {
-                client.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
+                connection.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {
@@ -33,10 +43,9 @@ export const ArticleModel = {
 },
 
     getById: async ( articleId:number ): Promise<any> => {
-        const client = await connection.getClient();
         return new Promise((resolve, reject) => {
             
-            client.query(`SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id WHERE art_id = ${articleId}`, function(err:any, result: any){
+            connection.query(`SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id WHERE art_id = ${articleId}`, function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -53,9 +62,8 @@ export const ArticleModel = {
     // },
 
     publish: async ( article:IArticle) => {
-        const client = await connection.getClient();
         return new Promise<any>((resolve, reject) => {
-            client.query(`UPDATE article SET art_is_approved = 1 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+            connection.query(`UPDATE article SET art_is_approved = 1 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
                 if(err){
                     console.log(`${article.art_is_approved}` + ` `+ `${article.art_id}`)
                     throw err
@@ -67,9 +75,8 @@ export const ArticleModel = {
     },
 
     unpublish: async ( article:IArticle) => {
-        const client = await connection.getClient();
         return new Promise<any>((resolve, reject) => {
-            client.query(`UPDATE article SET art_is_approved = 0 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+            connection.query(`UPDATE article SET art_is_approved = 0 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
                 if(err){
                     console.log(`${article.art_is_approved}` + ` `+ `${article.art_id}`)
                     throw err
@@ -80,15 +87,49 @@ export const ArticleModel = {
         })
     },
     
-    update: async ( article:IArticle) => {
+    patchEdit: async( article:IArticle) => {
+        let patchedArticle = '';
+        //Double check that a user id has come in with the user info.
+        if(!article.art_id){
+            console.log("No article id")
+            return
+        }
+        //Need to figure out which items, and therefore how to structure the query.
+        if (article.art_title){
+            patchedArticle += `art_title = '${article.art_title}'`
+        }
+        if (article.art_price){
+            patchedArticle += `art_price = '${article.art_price}`
+        }
 
-        return;
+        if (article.description){
+            patchedArticle += `description = '${article.description}`
+        }
 
+        if (article.art_body){
+            patchedArticle += `art_body = '${article.art_body}`
+        }
+
+        if (article.artype_id){
+            patchedArticle += `artype_id = '${article.artype_id}`
+        }
+
+        if (article.art_category){
+            patchedArticle += `artype_id = '${article.art_category}`
+        }
+
+       
+        //Take out the final ", " before actually sending the query
+        patchedArticle = patchedArticle.slice(0, -2)
+        connection.query(`UPDATE article SET ${patchedArticle} WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+                if(err){
+                    reject(err);
+                }
+            })
     },
 
     create: async( articleToCreate:IArticle) => {
-        const client = await connection.getClient();
-            client.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}')`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}')`,
             function(err:any, result:any){
                 if(err)
                 {

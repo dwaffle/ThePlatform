@@ -31,15 +31,20 @@ function MyArticles() {
 
   const history = useHistory();
   const [title, setTitle] = useState<string>('');
+  const [category, setCategory] = useState();
+  console.log(category)
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
 
   const [hasPrice, setChecked] = useState<ArticleType>();
-  console.log(hasPrice)
+  
   const [price, setPrice] = useState<number>(0);
   const onChange = (e: any) => {
     setPrice(e.target.value);
   };
+  const changeCategory = (e:any) => {
+    setCategory(e.target.value);
+  }
 
   //Activates or deactivates the price text box.
 
@@ -88,7 +93,7 @@ function MyArticles() {
       //Construct object.  Add one to the enum of the artype_id to line it up with the database IDs.  Enums start at 0, our DB starts at 1.
       let articlePatch = {
         art_price: Number(price),
-        artype_id: Number(hasPrice) + 1,
+        artype_id: Number(hasPrice),
         art_title: title,
         description: description,
         user_author: Number(localStorage.getItem('user_id')),
@@ -156,7 +161,7 @@ function MyArticles() {
             <Form.Label>Article Title</Form.Label>
             <Form.Control
               type="Title"
-              placeholder={article?.art_title}
+              defaultValue={article?.art_title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
@@ -202,10 +207,13 @@ function MyArticles() {
             <Col>
               <Form.Group>
                 <Form.Label>Category</Form.Label>
-                <Form.Control as="select">
-                  <option>Will Change this </option>
-                  <option> Health </option>
-                  <option> Sci-Fi </option>
+                <Form.Control as="select"
+                onChange={changeCategory}>
+                  <option value="Tech"> Tech </option>
+                  <option value="Health"> Health </option>
+                  <option value="Sci-Fi"> Sci-Fi </option>
+                  <option value="Science"> Science </option>
+                  <option value="Beauty"> Beauty </option>
                 </Form.Control>
               </Form.Group>
             </Col>
@@ -225,7 +233,7 @@ function MyArticles() {
               as="textarea"
               className="description"
               type="Description"
-              value={article?.description}
+              defaultValue={article?.description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
@@ -236,12 +244,12 @@ function MyArticles() {
               as="textarea"
               className="body"
               type="Body"
-              value={article?.art_body}
+              defaultValue={article?.art_body}
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-          I need to finish the backend for Put first
-          <p>A user may want to change more than one field. </p>
+          I need to finish the backend for Put or Patch first
+          <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit
           </button>

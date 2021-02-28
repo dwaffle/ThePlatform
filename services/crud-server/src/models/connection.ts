@@ -1,6 +1,7 @@
 //To be replaced with the code for retriving an article.
 import dotenv from 'dotenv';
 dotenv.config();
+var mysql = require('mysql');
 
 var mysql = require('mysql');
 

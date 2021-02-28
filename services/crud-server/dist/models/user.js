@@ -8,17 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
 const lodash_1 = require("lodash");
 const path_1 = require("path");
-const connection_1 = require("./connection");
-const connection = new connection_1.DBConnection();
+dotenv_1.default.config();
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: process.env.MYSQL_CONNECTION_STRING,
+    user: 'admin',
+    password: process.env.MYSQL_PASSWORD,
+    database: 'mydb'
+});
 exports.UserModel = {
-    getAll: () => __awaiter(void 0, void 0, void 0, function* () {
-        const client = yield connection.getClient();
+    getAll: () => {
         return new Promise((resolve, reject) => {
-            client.query('SELECT * FROM user', function (err, result) {
+            connection.query('SELECT * FROM user', function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -27,10 +36,22 @@ exports.UserModel = {
                 }
             });
         });
-    }),
+    },
+    getAllWithoutPassword: () => {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
+                , function (err, result) {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(result);
+                    }
+                };
+        });
+    },
     setAll: (user) => __awaiter(void 0, void 0, void 0, function* () {
-        const client = yield connection.getClient();
-        client.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
             function (err, result) {
                 if (err) {
                     lodash_1.reject(err);
@@ -41,9 +62,8 @@ exports.UserModel = {
             };
     }),
     getByUsername: (username) => __awaiter(void 0, void 0, void 0, function* () {
-        const client = yield connection.getClient();
         return new Promise((resolve, reject) => {
-            client.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function (err, result) {
+            connection.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -55,9 +75,8 @@ exports.UserModel = {
         });
     }),
     delete: (userId) => __awaiter(void 0, void 0, void 0, function* () {
-        const client = yield connection.getClient();
         return new Promise((resolve, reject) => {
-            client.query(`DELETE FROM user WHERE user_id = ${userId}`, function (err, result) {
+            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -68,7 +87,6 @@ exports.UserModel = {
         });
     }),
     patch: (userInfo) => __awaiter(void 0, void 0, void 0, function* () {
-        const client = yield connection.getClient();
         let queryParams = "";
         if (!userInfo.user_id) {
             console.log("No user id");
@@ -87,7 +105,7 @@ exports.UserModel = {
             queryParams += `user_password = '${userInfo.user_password}', `;
         }
         queryParams = queryParams.slice(0, -2);
-        client.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
+        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
             if (err) {
                 lodash_1.reject(err);
             }
