@@ -1,0 +1,44 @@
+
+    
+    .dummyCards {
+        margin-top: 0vh;
+        margin-right: 10px;
+    
+        padding: 0px;
+        min-width: 15vw;
+        min-height: 35vh;
+        border: 2px black solid;
+        opacity: 0.2;
+    
+        .scBody {
+            padding: 0px;
+            margin: 0px;
+            background: rgb(231, 230, 230);
+            text-align: center;
+    
+            .scTextArea {
+                overflow: scroll;
+                overflow-y: hidden;
+                overflow-x: hidden;
+            }
+        }
+    
+        .scTitle {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 0px;
+        }
+    
+        .card-image-top {
+            min-width: 100%;
+            padding: 0px;
+        }
+    
+        .scFooter {
+            padding: 0;
+            position:absolute;
+            width: 100%;
+            bottom: 0px;
+            text-align: center;
+        }
+    }

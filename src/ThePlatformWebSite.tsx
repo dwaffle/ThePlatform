@@ -17,6 +17,7 @@ import IndividualArticle from './components/ArticleList/IndividualArticle/Indivi
 // import {IndividualArticlePage} from './pages/IndividualArticlePage'
 import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';
+import CreateSeries from './components/series/newSeries/createSeries';
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -33,6 +34,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/organization" component={Organization} />
         <Route path="/ChangePaymentPage" component={ChangePayment} />
         <Route path="/series" component={Series} />
+        <Route path="/seriesCreation" component={CreateSeries} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />

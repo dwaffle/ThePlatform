@@ -3,14 +3,18 @@
 .seriesBody {
     width: 90%;
     margin: 0 auto;
+
+    .filter {
+        margin-bottom: 20px;
+    }
 }
 
 .sCards {
-    margin-top: 15px;
+    margin-top: 2vh;
     padding: 0px;
     max-width: 15vw;
     max-height: 35vh;
-    border: 2px black solid;
+    border: 1px black solid;
     
 
     .scBody {
@@ -31,8 +35,13 @@
     }
 
     .scFooter {
+        padding: 0;
+        position:absolute;
+        width: 100%;
+        bottom: 0px;
         text-align: center;
     }
+
 }
 
 h2 {

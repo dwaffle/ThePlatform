@@ -40,7 +40,7 @@ export const ArticleModel = {
                     }
                 })
             })
-},
+    },
 
     getById: async ( articleId:number ): Promise<any> => {
         return new Promise((resolve, reject) => {

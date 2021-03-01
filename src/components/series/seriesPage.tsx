@@ -1,17 +1,16 @@
 import React from 'react';
-import {
-  Row,
-  Col,
-  Form,
-  Button,
-  CardDeck,
-  Card,
-  CardGroup,
-} from 'react-bootstrap';
-import './style.scss';
+import { Rating } from '@material-ui/lab';
+import { Card, CardDeck, Col, Form, Row, Button } from 'react-bootstrap';
 import unnamed from '../../data/icon/unnamed.jpg';
+import { Link, useHistory } from 'react-router-dom';
+import './style.scss';
 
 export default function SeriesPage(props: {}) {
+  function seriesLink() {
+    return history.push('/seriesCreation');
+  }
+  const history = useHistory();
+
   let test = {
     header: {
       background: 'rgba(0, 0, 0, 0.5)',
@@ -35,6 +34,8 @@ export default function SeriesPage(props: {}) {
       <div style={test.header}>
         <h2>Series</h2>
       </div>
+
+      <Button variant="primary" onClick={seriesLink}> Series Creation </Button>
 
       <div className="seriesBody">
         <div className="filter">
@@ -61,6 +62,7 @@ export default function SeriesPage(props: {}) {
             ></Card.Img>
             <Card.Body className="scBody">
               <Card.Title className="scTitle">Series</Card.Title>
+              <Rating name="half-rating" defaultValue={2.5} precision={1} />
               <Card.Text>
                 Baby Shark Do do Do do do do
                 <p>Baby Shark Do do Do do do do</p>
@@ -77,6 +79,7 @@ export default function SeriesPage(props: {}) {
             ></Card.Img>
             <Card.Body className="scBody">
               <Card.Title className="scTitle">Series</Card.Title>
+              <Rating name="half-rating" defaultValue={2.5} precision={1} />
               <Card.Text>
                 Baby Shark Do do Do do do do
                 <p>Baby Shark Do do Do do do do</p>
@@ -93,6 +96,7 @@ export default function SeriesPage(props: {}) {
             ></Card.Img>
             <Card.Body className="scBody">
               <Card.Title className="scTitle">Series</Card.Title>
+              <Rating name="half-rating" defaultValue={2.5} precision={1} />
               <Card.Text>
                 Baby Shark Do do Do do do do
                 <p>Baby Shark Do do Do do do do</p>
@@ -109,6 +113,7 @@ export default function SeriesPage(props: {}) {
             ></Card.Img>
             <Card.Body className="scBody">
               <Card.Title className="scTitle">Series</Card.Title>
+              <Rating name="half-rating" defaultValue={2.5} precision={1} />
               <Card.Text>
                 Baby Shark Do do Do do do do
                 <p>Baby Shark Do do Do do do do</p>
@@ -124,7 +129,10 @@ export default function SeriesPage(props: {}) {
               className="card-image-top"
             ></Card.Img>
             <Card.Body className="scBody">
-              <Card.Title className="scTitle">Series</Card.Title>
+              <Card.Title className="scTitle">
+                <Link to={`/articles/series`}>Series</Link>
+              </Card.Title>
+              <Rating name="half-rating" defaultValue={2.5} precision={1} />
               <Card.Text>
                 Baby Shark Do do Do do do do
                 <p>Baby Shark Do do Do do do do</p>

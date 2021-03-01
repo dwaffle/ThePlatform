@@ -8,6 +8,7 @@ import * as Organization from './routes/organization';
 import * as Payment from './routes/payments';
 import * as PaymentInfo from './routes/paymentInfo';
 import * as PurchaseArticle from './routes/purchaseArticle';
+import * as Series from './routes/series/serie'
 
 
 const app = express();
@@ -27,7 +28,7 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Tokens, Users, Articles, Organization, Payment, PaymentInfo, PurchaseArticle ].forEach( ImportedObject => {
+[ Tokens, Users, Articles, Organization, Payment, PaymentInfo, PurchaseArticle, Series ].forEach( ImportedObject => {
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
 });

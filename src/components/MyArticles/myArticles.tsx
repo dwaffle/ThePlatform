@@ -107,20 +107,6 @@ function MyArticles() {
     }
   }
 
-  // No one wants to see 0s and 1s for their articles status
-  let reformedStatus = articleList.filter((status) => status.art_is_approved);
-
-  // function articleStatus (){
-  //     switch(articleList.filter((status) => status.art_is_approved) ){
-  //         case 0: {
-  //             return "Pending";
-  //         }
-  //         case reformedStatus == 1: {
-  //             return "Approved"
-  //         }
-  //     }
-  // }
-
   return (
     <MainLayout>
       <Row className="pageSize">
@@ -153,6 +139,9 @@ function MyArticles() {
               </Table>
             </Col>
           </Row>
+          Have too many articles? Click
+          <button className="seriesCreate">here</button>
+          to form a new Series!
         </div>
 
         <Col className="selectedArticle">

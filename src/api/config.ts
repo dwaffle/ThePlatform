@@ -1,1 +1,1 @@
-export const HOSTNAME = "http://localhost:4330";
+export const HOSTNAME = 'http://localhost:4330';

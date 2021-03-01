@@ -5,6 +5,14 @@
     min-width: 22%;
     min-height: 100vh;
 
+    .seriesCreate {
+        color: blue;
+        background: none;
+        border: hidden;
+        padding: 4px;
+        margin: 0px;
+    }
+
 }
 
 .userArticleListCol {
@@ -14,7 +22,7 @@
 .selectedArticle {
     width: 80%;
     margin: 1vw;
-    margin-top: 3vh;
+    // margin-top: 3.4vh;
     height: 10%;
     border: 1px black solid;
 }
