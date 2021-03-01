@@ -186,19 +186,12 @@ export function CreateNewArticle() {
                 showPrice(price)
               }
             </Form.Group>
-          </Form.Row>
-
-          <Form.Row>
-
-  
-
-          <Form.Group>
-                <Form.Label>Category</Form.Label>
+            <Form.Group>
                 <Form.Control as="select"
                 onChange={changeCategory}
                 value={category}
                 >
-                  <option>Default..</option>
+                  <option>Catorgies</option>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
                   <option value="Sci-Fi"> Sci-Fi </option>
@@ -206,7 +199,9 @@ export function CreateNewArticle() {
                   <option value="Beauty"> Beauty </option>
                 </Form.Control>
             </Form.Group>
+          </Form.Row>
 
+          <Form.Row>
 
             {/* <Form.Group>
             <Form.Label>Tags</Form.Label>
