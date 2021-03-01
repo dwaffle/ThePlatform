@@ -5,6 +5,7 @@ import MainLayout from '../../../layouts/MainLayout';
 import { useHistory } from 'react-router-dom';
 import api from '../../../api';
 import './style.scss';
+import { options } from './options'
 
 //An enum is a numbered list, starting at 0.
 enum ArticleType{
@@ -20,14 +21,20 @@ export function CreateNewArticle() {
   const [hasPrice, setChecked] = useState<ArticleType>();
   const [price, setPrice] = useState<number>(0);
   const onChange = (e: any) => {
-    setPrice(e.target.value);
-      
+    setPrice(e.target.value);    
   };
   
   const history = useHistory();
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
+  const [category, setCategory] = useState<string>('');
+  console.log(category)
+  // Why is this returning undefined???!
+  const changeCategory = (e:any) => {
+    setCategory(e.target.value);
+  }
+
 
 //Activates or deactivates the price text box.
   function showPrice(e:any){
@@ -74,6 +81,8 @@ export function CreateNewArticle() {
       user_author: Number(localStorage.getItem('user_id')),
       art_body: body,
       art_image: image,
+      art_category: category,
+      
     };
     console.log(objectToSend)
     //Send object.
@@ -179,9 +188,32 @@ export function CreateNewArticle() {
             </Form.Group>
           </Form.Row>
 
-            <Form.Group>
-              <input type="text" placeholder="Press enter to add tags" />
+          <Form.Row>
+
+  
+
+          <Form.Group>
+                <Form.Label>Category</Form.Label>
+                <Form.Control as="select"
+                onChange={changeCategory}
+                value={category}
+                >
+                  <option>Default..</option>
+                  <option value="Tech"> Tech </option>
+                  <option value="Health"> Health </option>
+                  <option value="Sci-Fi"> Sci-Fi </option>
+                  <option value="Science"> Science </option>
+                  <option value="Beauty"> Beauty </option>
+                </Form.Control>
             </Form.Group>
+
+
+            {/* <Form.Group>
+            <Form.Label>Tags</Form.Label>
+              <input type="text" placeholder="Press enter to add tags" />
+            </Form.Group> */}
+
+          </Form.Row>
           <button type="submit" onClick={onSubmit}>
             Submit
           </button>

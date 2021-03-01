@@ -32,19 +32,19 @@ function MyArticles() {
   const history = useHistory();
   const [title, setTitle] = useState<string>('');
   const [category, setCategory] = useState();
-  console.log(category)
+  console.log(category);
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
 
   const [hasPrice, setChecked] = useState<ArticleType>();
-  
+
   const [price, setPrice] = useState<number>(0);
   const onChange = (e: any) => {
     setPrice(e.target.value);
   };
-  const changeCategory = (e:any) => {
+  const changeCategory = (e: any) => {
     setCategory(e.target.value);
-  }
+  };
 
   //Activates or deactivates the price text box.
 
@@ -108,7 +108,7 @@ function MyArticles() {
   }
 
   // No one wants to see 0s and 1s for their articles status
-  let reformedStatus = articleList.filter((status) => status.art_is_approved)
+  let reformedStatus = articleList.filter((status) => status.art_is_approved);
 
   // function articleStatus (){
   //     switch(articleList.filter((status) => status.art_is_approved) ){
@@ -123,7 +123,6 @@ function MyArticles() {
 
   return (
     <MainLayout>
-
       <Row className="pageSize">
         <div className="userArticleList">
           <h5> My Articles </h5>
@@ -165,9 +164,7 @@ function MyArticles() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-          
           <Form.Row className="radioButtons">
-            
             <Form.Group>
               <input
                 type="radio"
@@ -207,8 +204,7 @@ function MyArticles() {
             <Col>
               <Form.Group>
                 <Form.Label>Category</Form.Label>
-                <Form.Control as="select"
-                onChange={changeCategory}>
+                <Form.Control as="select" onChange={changeCategory}>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
                   <option value="Sci-Fi"> Sci-Fi </option>
@@ -226,7 +222,6 @@ function MyArticles() {
               </Form.Group>
             </Col>
           </Row>
-
           <Form.Group>
             <Form.Label>Article Description</Form.Label>
             <Form.Control
@@ -237,7 +232,6 @@ function MyArticles() {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group>
             <Form.Label>Article Body</Form.Label>
             <Form.Control
@@ -254,7 +248,6 @@ function MyArticles() {
             Submit
           </button>
         </Col>
-        
       </Row>
     </MainLayout>
   );

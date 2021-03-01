@@ -96,18 +96,18 @@ export const ArticleModel = {
         }
         //Need to figure out which items, and therefore how to structure the query.
         if (article.art_title){
-            patchedArticle += `art_title = '${article.art_title}'`
+            patchedArticle += `art_title = '${article.art_title}', '`
         }
         if (article.art_price){
             patchedArticle += `art_price = '${article.art_price}`
         }
 
         if (article.description){
-            patchedArticle += `description = '${article.description}`
+            patchedArticle += `description = '${article.description}', `
         }
 
         if (article.art_body){
-            patchedArticle += `art_body = '${article.art_body}`
+            patchedArticle += `art_body = '${article.art_body}', `
         }
 
         if (article.artype_id){
@@ -115,7 +115,7 @@ export const ArticleModel = {
         }
 
         if (article.art_category){
-            patchedArticle += `artype_id = '${article.art_category}`
+            patchedArticle += `artype_id = '${article.art_category}', `
         }
 
        
@@ -129,7 +129,7 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}')`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}')`,
             function(err:any, result:any){
                 if(err)
                 {
