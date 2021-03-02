@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Switch } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import MainLayout from '../../../layouts/MainLayout';
@@ -28,7 +28,7 @@ export function CreateNewArticle() {
   const [body, setBody] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   console.log(category);
-  // Why is this returning undefined???!
+
   const changeCategory = (e: any) => {
     setCategory(e.target.value);
   };

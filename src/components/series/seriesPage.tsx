@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import { Rating } from '@material-ui/lab';
-import { Card, CardDeck, Col, Form, Row, Button } from 'react-bootstrap';
+import {
+  Card,
+  CardDeck,
+  Col,
+  Form,
+  Row,
+  Button,
+  ListGroup,
+} from 'react-bootstrap';
 import unnamed from '../../data/icon/unnamed.jpg';
 import { Link, useHistory } from 'react-router-dom';
 import './style.scss';
+import { seriesListState } from '../ArticleList/articleList';
+import { ISeries } from '../../../services/crud-server/src/models/series';
 
-export default function SeriesPage(props: {}) {
+export default function SeriesPage(props: { rows?: number }) {
+  const seriesList = useRecoilValue<ISeries[]>(seriesListState);
+  const [seriesRows, setSeriesRows] = useState<Array<ISeries[]>>([]);
+
   function seriesLink() {
     return history.push('/seriesCreation');
   }
@@ -29,13 +43,31 @@ export default function SeriesPage(props: {}) {
     },
   };
 
+  useEffect(() => {
+    const innerProductList = [...seriesList].filter((product) => {
+      let found = true;
+
+      return found;
+    });
+    const rows = [];
+
+    while (innerProductList.length && rows.length < (props.rows || 1)) {
+      rows.push(innerProductList.splice(0, 4));
+    }
+
+    setSeriesRows(rows);
+  }, [props.rows]);
+
   return (
     <>
       <div style={test.header}>
         <h2>Series</h2>
       </div>
 
-      <Button variant="primary" onClick={seriesLink}> Series Creation </Button>
+      <Button variant="primary" onClick={seriesLink}>
+        {' '}
+        Series Creation{' '}
+      </Button>
 
       <div className="seriesBody">
         <div className="filter">
@@ -52,95 +84,47 @@ export default function SeriesPage(props: {}) {
             </Row>
           </Form>
         </div>
-        <CardDeck>
-          <Card className="sCards">
-            <Card.Img
-              variant="top"
-              width="100%"
-              src={unnamed}
-              className="card-image-top"
-            ></Card.Img>
-            <Card.Body className="scBody">
-              <Card.Title className="scTitle">Series</Card.Title>
-              <Rating name="half-rating" defaultValue={2.5} precision={1} />
-              <Card.Text>
-                Baby Shark Do do Do do do do
-                <p>Baby Shark Do do Do do do do</p>
-              </Card.Text>
-              <Card.Footer className="scFooter">Authors name</Card.Footer>
-            </Card.Body>
-          </Card>
-          <Card className="sCards">
-            <Card.Img
-              variant="top"
-              width="100%"
-              src={unnamed}
-              className="card-image-top"
-            ></Card.Img>
-            <Card.Body className="scBody">
-              <Card.Title className="scTitle">Series</Card.Title>
-              <Rating name="half-rating" defaultValue={2.5} precision={1} />
-              <Card.Text>
-                Baby Shark Do do Do do do do
-                <p>Baby Shark Do do Do do do do</p>
-              </Card.Text>
-              <Card.Footer className="scFooter">Authors name</Card.Footer>
-            </Card.Body>
-          </Card>
-          <Card className="sCards">
-            <Card.Img
-              variant="top"
-              width="100%"
-              src={unnamed}
-              className="card-image-top"
-            ></Card.Img>
-            <Card.Body className="scBody">
-              <Card.Title className="scTitle">Series</Card.Title>
-              <Rating name="half-rating" defaultValue={2.5} precision={1} />
-              <Card.Text>
-                Baby Shark Do do Do do do do
-                <p>Baby Shark Do do Do do do do</p>
-              </Card.Text>
-              <Card.Footer className="scFooter">Authors name</Card.Footer>
-            </Card.Body>
-          </Card>
-          <Card className="sCards">
-            <Card.Img
-              variant="top"
-              width="100%"
-              src={unnamed}
-              className="card-image-top"
-            ></Card.Img>
-            <Card.Body className="scBody">
-              <Card.Title className="scTitle">Series</Card.Title>
-              <Rating name="half-rating" defaultValue={2.5} precision={1} />
-              <Card.Text>
-                Baby Shark Do do Do do do do
-                <p>Baby Shark Do do Do do do do</p>
-              </Card.Text>
-              <Card.Footer className="scFooter">Authors name</Card.Footer>
-            </Card.Body>
-          </Card>
-          <Card className="sCards">
-            <Card.Img
-              variant="top"
-              width="100%"
-              src={unnamed}
-              className="card-image-top"
-            ></Card.Img>
-            <Card.Body className="scBody">
-              <Card.Title className="scTitle">
-                <Link to={`/articles/series`}>Series</Link>
-              </Card.Title>
-              <Rating name="half-rating" defaultValue={2.5} precision={1} />
-              <Card.Text>
-                Baby Shark Do do Do do do do
-                <p>Baby Shark Do do Do do do do</p>
-              </Card.Text>
-              <Card.Footer className="scFooter">Authors name</Card.Footer>
-            </Card.Body>
-          </Card>
-        </CardDeck>
+
+        {seriesRows.map((row) => {
+          return (
+            <div className="scCardDeck">
+            <CardDeck>
+              {row.map((series, index) => (
+                <div key={index}>
+                  <Card className="sCards">
+                    <Card.Img
+                      variant="top"
+                      width="100%"
+                      src={unnamed}
+                      className="card-image-top"
+                    ></Card.Img>
+                    <Card.Body className="scBody">
+                      <Card.Title className="scTitle">
+                        {series.series_title}
+                      </Card.Title>
+                      <Rating
+                        name="half-rating"
+                        defaultValue={2.5}
+                        precision={1}
+                      />
+                      <Card.Text className="scText">
+                        {series.series_desc}
+                      </Card.Text>
+                      <ListGroup.Item className="scCategory">
+                        {series.series_category}
+                      </ListGroup.Item>
+                      <Card.Footer className="scFooter">
+                        {series.series_owner}
+                      </Card.Footer>
+                    </Card.Body>
+                  </Card>
+                </div>
+              ))}
+            </CardDeck>
+            </div>
+          );
+        })}
+        <Row></Row>
       </div>
     </>
   );

@@ -8,17 +8,17 @@ export function post(app:any){
         const series:ISeries = request.body;
         SeriesModel.createSeries({
             series_id: series.series_id,
+            series_owner: series.series_owner,
             series_title: series.series_title,
             series_desc: series.series_desc,
             series_price: series.series_price,
-            organization_ord_id: series.organization_ord_id,
-            art_id: series.art_id
+            series_category: series.series_category
         });
         response.send(201);
     } catch {
         response.send(400).send({
             error: 400,
-            message: "There is a syntax error in your article formation.  It needs a price, author number, title, descrption, type number, and a body."
+            message: "There is a syntax error in your article formation."
         })
     }
     })

@@ -7,7 +7,7 @@ import user from './user';
 import payment from './payment';
 import paymentInfo from './paymentInfo/paymentInfo';
 import purchaseArticle from './purchaseArticle/purchaseArticle';
-import series from './series'
+import series from './series';
 
 export default {
   organization,
@@ -19,5 +19,5 @@ export default {
   payment,
   paymentInfo,
   purchaseArticle,
-  series
+  series,
 };
