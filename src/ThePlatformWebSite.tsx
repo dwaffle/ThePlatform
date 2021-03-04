@@ -35,6 +35,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/ChangePaymentPage" component={ChangePayment} />
         <Route path="/series" component={Series} />
         <Route path="/seriesCreation" component={CreateSeries} />
+        {/* <Route path="/series/:id" exact component={IndividualSeries} /> */}
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />

@@ -25,14 +25,15 @@ export interface IArticle {
     art_body: string,
     art_image: string,
     art_is_approved?: number,
-    art_category?:string
+    art_category?:string,
+    series_id?: number
 }
 
 export const ArticleModel = {
 
     getAll: async ():Promise<any> => {
         return new Promise((resolve, reject) => {
-                connection.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
+                connection.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved, art_category, series_id from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {
@@ -129,7 +130,7 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}')`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category, series_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}', '${articleToCreate.series_id}')`,
             function(err:any, result:any){
                 if(err)
                 {

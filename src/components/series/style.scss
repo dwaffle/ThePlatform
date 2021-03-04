@@ -5,20 +5,30 @@
     margin: 0 auto;
 
     .filter {
+        margin: 0 auto;
         margin-bottom: 20px;
     }
+
+    .scPagin {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
 .scCardDeck {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: auto;
 
     .sCards {
-        margin-top: 2vh;
+        margin-top: 15px;
         padding: 0px;
-        min-width: 15vw;
-        max-width: 15vw;
+        min-width: 13vw;
+        max-width: 13vw;
         max-height: 35vh;
         min-height: 35vh;
         border: 1px black solid;

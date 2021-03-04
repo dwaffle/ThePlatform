@@ -6,6 +6,9 @@ import { useHistory } from 'react-router-dom';
 import api from '../../../api';
 import './style.scss';
 import { options } from './options';
+import { useRecoilValue } from 'recoil';
+import { ISeries } from '../../../../services/crud-server/src/models/series';
+import { seriesListState } from '../articleList';
 
 //An enum is a numbered list, starting at 0.
 enum ArticleType {
@@ -27,7 +30,19 @@ export function CreateNewArticle() {
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
   const [category, setCategory] = useState<string>('');
-  console.log(category);
+  const [series, setSeries] = useState('');
+
+  const user_id = Number(localStorage.getItem('user_id'));
+  const authorName: string = window.localStorage.getItem('username') || '';
+
+  // list of all series
+  const seriesList = useRecoilValue<ISeries[]>(seriesListState);
+  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_id);
+
+  function onChangeSeries(e: any) {
+    setSeries(e.target.value);
+    console.log(e.target.value);
+  }
 
   const changeCategory = (e: any) => {
     setCategory(e.target.value);
@@ -83,10 +98,11 @@ export function CreateNewArticle() {
         artype_id: Number(hasPrice),
         art_title: title,
         description: description,
-        user_author: Number(localStorage.getItem('user_id')),
+        user_author: user_id,
         art_body: body,
         art_image: image,
         art_category: category,
+        series_id: series,
       };
       console.log(objectToSend);
       //Send object.
@@ -96,8 +112,6 @@ export function CreateNewArticle() {
       return;
     }
   }
-
-  let authorName: string = window.localStorage.getItem('username') || '';
 
   //doesn't work
   const [image, setImage] = useState<string>('');
@@ -185,13 +199,15 @@ export function CreateNewArticle() {
               Price
               {showPrice(price)}
             </Form.Group>
-            <Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group className="FormRowSpacing">
               <Form.Control
                 as="select"
                 onChange={changeCategory}
                 value={category}
               >
-                <option>Catorgies</option>
+                <option>Categories</option>
                 <option value="Tech"> Tech </option>
                 <option value="Health"> Health </option>
                 <option value="Sci-Fi"> Sci-Fi </option>
@@ -199,12 +215,19 @@ export function CreateNewArticle() {
                 <option value="Beauty"> Beauty </option>
               </Form.Control>
             </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            {/* <Form.Group>
-            <Form.Label>Tags</Form.Label>
-              <input type="text" placeholder="Press enter to add tags" />
-            </Form.Group> */}
+            <Form.Group className="FormRowSpacing">
+              <Form.Control as="select" onChange={onChangeSeries}>
+                <option>
+                  Select Series
+                </option>
+                {userOwnsSeries.map((s) => {
+                  if(!userOwnsSeries){
+                    return "You have no Series"
+                  }
+                  return <option value={s.series_id}>{s.series_title}</option>;
+                })}
+              </Form.Control>
+            </Form.Group>
           </Form.Row>
           <button type="submit" onClick={onSubmit}>
             Submit

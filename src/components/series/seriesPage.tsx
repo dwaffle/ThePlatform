@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { Rating } from '@material-ui/lab';
+import { PaginationItem, Rating } from '@material-ui/lab';
+import Pagination from '@material-ui/lab/Pagination';
 import {
   Card,
   CardDeck,
@@ -16,9 +17,16 @@ import './style.scss';
 import { seriesListState } from '../ArticleList/articleList';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 
+export interface ISearchFilter {
+  name?: string;
+  author?: string;
+  category?: string;
+}
+
 export default function SeriesPage(props: { rows?: number }) {
   const seriesList = useRecoilValue<ISeries[]>(seriesListState);
   const [seriesRows, setSeriesRows] = useState<Array<ISeries[]>>([]);
+  const [searchFilter, setSearchFilter] = useState<ISearchFilter>({});
 
   function seriesLink() {
     return history.push('/seriesCreation');
@@ -51,12 +59,18 @@ export default function SeriesPage(props: { rows?: number }) {
     });
     const rows = [];
 
-    while (innerProductList.length && rows.length < (props.rows || 1)) {
-      rows.push(innerProductList.splice(0, 4));
+    while (innerProductList.length && rows.length < (props.rows || 2)) {
+      rows.push(innerProductList.splice(0, 5));
     }
 
     setSeriesRows(rows);
-  }, [props.rows]);
+  }, [props.rows, searchFilter]);
+
+  const [page, setPage] = useState(1);
+
+  const handlePageChange = (event: any, value: any) => {
+    setPage(value);
+  };
 
   return (
     <>
@@ -88,43 +102,52 @@ export default function SeriesPage(props: { rows?: number }) {
         {seriesRows.map((row) => {
           return (
             <div className="scCardDeck">
-            <CardDeck>
-              {row.map((series, index) => (
-                <div key={index}>
-                  <Card className="sCards">
-                    <Card.Img
-                      variant="top"
-                      width="100%"
-                      src={unnamed}
-                      className="card-image-top"
-                    ></Card.Img>
-                    <Card.Body className="scBody">
-                      <Card.Title className="scTitle">
-                        {series.series_title}
-                      </Card.Title>
-                      <Rating
-                        name="half-rating"
-                        defaultValue={2.5}
-                        precision={1}
-                      />
-                      <Card.Text className="scText">
-                        {series.series_desc}
-                      </Card.Text>
-                      <ListGroup.Item className="scCategory">
-                        {series.series_category}
-                      </ListGroup.Item>
-                      <Card.Footer className="scFooter">
-                        {series.series_owner}
-                      </Card.Footer>
-                    </Card.Body>
-                  </Card>
-                </div>
-              ))}
-            </CardDeck>
+              <CardDeck>
+                {row.map((series, index) => (
+                  <div key={index}>
+                    <Card className="sCards">
+                      <Card.Img
+                        variant="top"
+                        width="100%"
+                        src={unnamed}
+                        className="card-image-top"
+                      ></Card.Img>
+                      <Card.Body className="scBody">
+                        <Card.Title className="scTitle">
+                          {series.series_title}
+                        </Card.Title>
+                        <Rating
+                          name="half-rating"
+                          defaultValue={2.5}
+                          precision={1}
+                        />
+                        <Card.Text className="scText">
+                          {series.series_desc}
+                        </Card.Text>
+                        <ListGroup.Item className="scCategory">
+                          {series.series_category}
+                        </ListGroup.Item>
+                        <Card.Footer className="scFooter">
+                          {series.series_owner}
+                        </Card.Footer>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                ))}
+              </CardDeck>
             </div>
           );
         })}
         <Row></Row>
+
+        <Pagination
+          componentName="scCardDeck"
+          className="scPagin"
+          page={page}
+          variant="outlined"
+          shape="rounded"
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );

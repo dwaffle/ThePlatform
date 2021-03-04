@@ -1,12 +1,14 @@
 import MainLayout from '../../layouts/MainLayout';
 import React, { useState, useEffect } from 'react';
-import { useArticleList } from '../ArticleList/articleList';
+import { seriesListState, useArticleList } from '../ArticleList/articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import { Row, Col, Table, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import api from '../../api';
 import './style.scss';
+import { constSelector, useRecoilValue } from 'recoil';
+import { ISeries } from '../../../services/crud-server/src/models/series';
 
 enum ArticleType {
   FREE = 1,
@@ -17,10 +19,14 @@ enum ArticleType {
 function MyArticles() {
   // ALL of the articles
   const { articleList, setArticleList } = useArticleList();
+  // list of all series
+  const seriesList = useRecoilValue<ISeries[]>(seriesListState);
   // users ID
   const user_ID = Number(localStorage.getItem('user_id'));
   // show only the users articles
   let myArtList = articleList.filter((a) => a.user_author == user_ID);
+  //user ID
+  const user_id = Number(localStorage.getItem('user_id'));
 
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
@@ -32,7 +38,7 @@ function MyArticles() {
   const history = useHistory();
   const [title, setTitle] = useState<string>('');
   const [category, setCategory] = useState();
-  console.log(category);
+  const [series, setSeries] = useState();
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
 
@@ -96,15 +102,33 @@ function MyArticles() {
         artype_id: Number(hasPrice),
         art_title: title,
         description: description,
-        user_author: Number(localStorage.getItem('user_id')),
+        user_author: user_id,
         art_body: body,
+        series_id: series,
       };
       //Send object.
-      // Will be api.put
       api.article.patch(articlePatch);
       history.push('/myArticles');
       return;
     }
+  }
+
+  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_id);
+  function onChangeSeries(e: any) {
+    setSeries(e.target.value);
+    console.log(e.target.value);
+  }
+
+  const seriesNull = (seriesID: any) => {
+    if (!seriesID) {
+      return 'None';
+    }
+
+    return seriesID;
+  };
+
+  function newSeries() {
+    return history.push('/seriesCreation');
   }
 
   return (
@@ -119,6 +143,7 @@ function MyArticles() {
                   <tr>
                     <th>Articles</th>
                     <th>Status</th>
+                    <th>Series </th>
                     {/* <th>State</th> */}
                   </tr>
                 </thead>
@@ -131,8 +156,7 @@ function MyArticles() {
                     >
                       <td>{art.art_title}</td>
                       <td>{art.art_is_approved}</td>
-                      {/* <td> State</td> */}
-                      {/* <td> <Link to="/articles/:articleId">{art.art_title}</Link></td> */}
+                      <td> {seriesNull(art.series_id)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -207,6 +231,20 @@ function MyArticles() {
                 <Form.Label>Tags</Form.Label>
                 <Form.Control as="select">
                   <option>Will Change this.. </option>
+                </Form.Control>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Group>
+                <Form.Label>Series</Form.Label>
+                <Form.Control as="select" onChange={onChangeSeries}>
+                  {userOwnsSeries.map((s) => {
+                    return (
+                      <option value={s.series_id}>{s.series_title}</option>
+                    );
+                  })}
                 </Form.Control>
               </Form.Group>
             </Col>
