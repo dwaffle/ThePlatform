@@ -1,1 +1,88 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
+
+.seriesBody {
+    width: 90%;
+    margin: 0 auto;
+
+    .filter {
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+    .scPagin {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+.scCardDeck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+
+    .sCards {
+        margin-top: 15px;
+        padding: 0px;
+        min-width: 13vw;
+        max-width: 13vw;
+        max-height: 35vh;
+        min-height: 35vh;
+        border: 1px black solid;
+    
+        .card-image-top {
+            min-width: 100%;
+            padding: 0px;
+        }
+    
+        .scTitle {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+    
+        .scBody {
+            padding: 0px;
+            margin: 0px;
+            background: rgb(231, 230, 230);
+            text-align: center;
+        }
+    
+        .scText {
+            margin: 0px;
+            overflow-y: hidden;
+        }
+    
+        
+    
+        .scCategory {
+            background: inherit;
+    
+            padding: 0px;
+            border: none;
+        }
+      
+    
+        .scFooter {
+            padding: 0;
+            position:absolute;
+            width: 100%;
+            bottom: 0px;
+            text-align: center;
+            margin-top: 1px;
+        }
+    
+    }
+
+}
+
+
+h2 {
+    // font-size: 5rem;
+    color: white;
+    text-align: center;
+}
+

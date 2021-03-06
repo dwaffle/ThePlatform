@@ -8,16 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
 const lodash_1 = require("lodash");
 const path_1 = require("path");
-const connection_1 = require("./connection");
-const connection = new connection_1.DBConnection();
+dotenv_1.default.config();
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: process.env.MYSQL_CONNECTION_STRING,
+    user: 'admin',
+    password: process.env.MYSQL_PASSWORD,
+    database: 'mydb'
+});
 exports.UserModel = {
     getAll: () => {
         return new Promise((resolve, reject) => {
-            connection.connectToDB().query('SELECT * FROM user', function (err, result) {
+            connection.query('SELECT * FROM user', function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -29,7 +39,7 @@ exports.UserModel = {
     },
     getAllWithoutPassword: () => {
         return new Promise((resolve, reject) => {
-            connection.connectToDB().query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
+            connection.query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
                 , function (err, result) {
                     if (err) {
                         reject(err);
@@ -41,49 +51,19 @@ exports.UserModel = {
         });
     },
     setAll: (user) => __awaiter(void 0, void 0, void 0, function* () {
-        let socialMediaOptions = "";
-        let extraQueryParams = "";
-        if (user.user_twitter) {
-            socialMediaOptions += `'${user.user_twitter}', `;
-            extraQueryParams += "user_twitter, ";
-        }
-        if (user.user_facebook) {
-            socialMediaOptions += `'${user.user_facebook}', `;
-            extraQueryParams += "user_facebook, ";
-        }
-        if (user.user_instagram) {
-            socialMediaOptions += `'${user.user_instagram}', `;
-            extraQueryParams += "user_instagram, ";
-        }
-        console.log(socialMediaOptions);
-        if (socialMediaOptions !== "") {
-            socialMediaOptions = socialMediaOptions.slice(0, -2);
-            extraQueryParams = extraQueryParams.slice(0, -2);
-            connection.connectToDB().query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date, ${extraQueryParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE(), ${socialMediaOptions})`),
-                function (err, result) {
-                    if (err) {
-                        lodash_1.reject(err);
-                    }
-                    else {
-                        path_1.resolve(result);
-                    }
-                };
-        }
-        else {
-            connection.connectToDB().query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
-                function (err, result) {
-                    if (err) {
-                        lodash_1.reject(err);
-                    }
-                    else {
-                        path_1.resolve(result);
-                    }
-                };
-        }
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+            function (err, result) {
+                if (err) {
+                    lodash_1.reject(err);
+                }
+                else {
+                    path_1.resolve(result);
+                }
+            };
     }),
     getByUsername: (username) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.connectToDB().query(`SELECT * FROM user WHERE user_userName = '${username}'`, function (err, result) {
+            connection.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -96,7 +76,7 @@ exports.UserModel = {
     }),
     delete: (userId) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.connectToDB().query(`DELETE FROM user WHERE user_id = ${userId}`, function (err, result) {
+            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -124,18 +104,8 @@ exports.UserModel = {
         if (userInfo.user_password) {
             queryParams += `user_password = '${userInfo.user_password}', `;
         }
-        if (userInfo.user_facebook) {
-            queryParams += `user_facebook = '${userInfo.user_facebook}', `;
-        }
-        if (userInfo.user_instagram) {
-            queryParams += `user_instagram = '${userInfo.user_instagram}', `;
-        }
-        if (userInfo.user_twitter) {
-            queryParams += `user_twitter = '${userInfo.user_twitter}', `;
-        }
         queryParams = queryParams.slice(0, -2);
-        console.log(queryParams);
-        connection.connectToDB().query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
+        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
             if (err) {
                 lodash_1.reject(err);
             }

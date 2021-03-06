@@ -73,7 +73,7 @@ export default function HorizontalArticles(props: { rows: number }) {
                 <Link to={`/articles/${art.art_title}`}>{art.art_title}</Link>
                 <div>
                   {' '}
-                  Author: {art.user_firstName}
+                  Author: {art.user_firstName} {''}
                   {art.user_lastName}{' '}
                 </div>
               </Card.Header>
