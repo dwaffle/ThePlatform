@@ -18,6 +18,7 @@ import IndividualArticle from './components/ArticleList/IndividualArticle/Indivi
 import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';
 import CreateSeries from './components/series/newSeries/createSeries';
+import IndividualSeries from './components/series/individualSeries/IndividualSeries';
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -31,11 +32,12 @@ export default function ThePlatformWebsite(props: {}) {
     <BrowserRouter>
       <Switch>
         <Route path="/admin" component={AdminSite} />
+        <Route path="/series/:id" exact component={IndividualSeries} />
         <Route path="/organization" component={Organization} />
         <Route path="/ChangePaymentPage" component={ChangePayment} />
         <Route path="/series" component={Series} />
         <Route path="/seriesCreation" component={CreateSeries} />
-        {/* <Route path="/series/:id" exact component={IndividualSeries} /> */}
+
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
@@ -47,7 +49,6 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/editProfilePage" component={EditProfilePage} />
         <Route path="/editPaymentPage" component={EditPaymentPage} />
         <Route path="/myArticles" component={MyArticles} />
-        <Route path="/:id" component={IndividualArticle} />
         <Route path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>

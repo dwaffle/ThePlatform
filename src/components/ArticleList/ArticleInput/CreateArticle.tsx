@@ -217,12 +217,10 @@ export function CreateNewArticle() {
             </Form.Group>
             <Form.Group className="FormRowSpacing">
               <Form.Control as="select" onChange={onChangeSeries}>
-                <option>
-                  Select Series
-                </option>
+                <option>Select Series</option>
                 {userOwnsSeries.map((s) => {
-                  if(!userOwnsSeries){
-                    return "You have no Series"
+                  if (!userOwnsSeries) {
+                    return 'You have no Series';
                   }
                   return <option value={s.series_id}>{s.series_title}</option>;
                 })}

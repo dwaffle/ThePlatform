@@ -30,6 +30,7 @@ function MyArticles() {
 
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
+ 
 
   const ShowArticleOnClick = (e: any) => {
     setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
@@ -148,9 +149,9 @@ function MyArticles() {
                   </tr>
                 </thead>
                 <tbody>
-                  {myArtList.map((art) => (
+                  {myArtList.map((art, index) => (
                     <tr
-                      key={art.art_id}
+                      key={index}
                       onClick={ShowArticleOnClick}
                       defaultValue={art.art_id}
                     >
@@ -169,6 +170,7 @@ function MyArticles() {
         </div>
 
         <Col className="selectedArticle">
+          
           <Form.Group>
             <Form.Label>Article Title</Form.Label>
             <Form.Control
@@ -240,9 +242,12 @@ function MyArticles() {
               <Form.Group>
                 <Form.Label>Series</Form.Label>
                 <Form.Control as="select" onChange={onChangeSeries}>
+                  <option value="null">Select Series..</option>
                   {userOwnsSeries.map((s) => {
                     return (
-                      <option value={s.series_id}>{s.series_title}</option>
+                      <option value={s.series_id}>
+                        {s.series_title}({s.series_id})
+                      </option>
                     );
                   })}
                 </Form.Control>

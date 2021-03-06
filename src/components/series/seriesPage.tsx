@@ -114,7 +114,9 @@ export default function SeriesPage(props: { rows?: number }) {
                       ></Card.Img>
                       <Card.Body className="scBody">
                         <Card.Title className="scTitle">
-                          {series.series_title}
+                          <Link to={`/series/${series.series_title}`}>
+                            {series.series_title}
+                          </Link>
                         </Card.Title>
                         <Rating
                           name="half-rating"
