@@ -13,9 +13,9 @@ export default function SignupPage(props: {}) {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [privacyIsChecked, setPrivacy] = useState<boolean>();
-  const [instagramHandle, setInstagramHandle] = useState<string>('')
-  const [twitterHandle, setTwitterHandle] = useState<string>('')
-  const [facebookHandle, setFacebookHandle] = useState<string>('')
+  const [instagramHandle, setInstagramHandle] = useState<string>('');
+  const [twitterHandle, setTwitterHandle] = useState<string>('');
+  const [facebookHandle, setFacebookHandle] = useState<string>('');
 
   function onPrivacyTaskHandler(e: ChangeEvent<HTMLInputElement>) {
     setPrivacy(e.target.checked);
@@ -39,7 +39,7 @@ export default function SignupPage(props: {}) {
       user_password: password,
       user_instagram: instagramHandle,
       user_facebook: facebookHandle,
-      user_twitter: twitterHandle
+      user_twitter: twitterHandle,
     };
     api.signup.post(objectToSend);
     history.push('/articles');
@@ -57,7 +57,8 @@ export default function SignupPage(props: {}) {
     ) {
       return (
         <div>
-          You must fill out all fields marked with a *  and accept the Terms and Conditions
+          You must fill out all fields marked with a * and accept the Terms and
+          Conditions
         </div>
       );
     }
@@ -73,7 +74,8 @@ export default function SignupPage(props: {}) {
             <div className="signup-txt">
               Sign Up:
               <br />
-              Please fill in the form to sign up.  Fields marked with a * are manditory
+              Please fill in the form to sign up. Fields marked with a * are
+              manditory
             </div>
             <Form.Group className="name">
               <Row>

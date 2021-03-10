@@ -1,12 +1,14 @@
 import MainLayout from '../../layouts/MainLayout';
 import React, { useState, useEffect } from 'react';
-import { useArticleList } from '../ArticleList/articleList';
+import { seriesListState, useArticleList } from '../ArticleList/articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import { Row, Col, Table, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import api from '../../api';
 import './style.scss';
+import { constSelector, useRecoilValue } from 'recoil';
+import { ISeries } from '../../../services/crud-server/src/models/series';
 
 enum ArticleType {
   FREE = 1,
@@ -17,13 +19,18 @@ enum ArticleType {
 function MyArticles() {
   // ALL of the articles
   const { articleList, setArticleList } = useArticleList();
+  // list of all series
+  const seriesList = useRecoilValue<ISeries[]>(seriesListState);
   // users ID
   const user_ID = Number(localStorage.getItem('user_id'));
   // show only the users articles
   let myArtList = articleList.filter((a) => a.user_author == user_ID);
+  //user ID
+  const user_id = Number(localStorage.getItem('user_id'));
 
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
+ 
 
   const ShowArticleOnClick = (e: any) => {
     setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
@@ -31,14 +38,19 @@ function MyArticles() {
 
   const history = useHistory();
   const [title, setTitle] = useState<string>('');
+  const [category, setCategory] = useState();
+  const [series, setSeries] = useState();
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
 
   const [hasPrice, setChecked] = useState<ArticleType>();
-  console.log(hasPrice)
+
   const [price, setPrice] = useState<number>(0);
   const onChange = (e: any) => {
     setPrice(e.target.value);
+  };
+  const changeCategory = (e: any) => {
+    setCategory(e.target.value);
   };
 
   //Activates or deactivates the price text box.
@@ -91,34 +103,37 @@ function MyArticles() {
         artype_id: Number(hasPrice),
         art_title: title,
         description: description,
-        user_author: Number(localStorage.getItem('user_id')),
+        user_author: user_id,
         art_body: body,
+        series_id: series,
       };
       //Send object.
-      // Will be api.put
       api.article.patch(articlePatch);
       history.push('/myArticles');
       return;
     }
   }
 
-  // No one wants to see 0s and 1s for their articles status
-  let reformedStatus = articleList.filter((status) => status.art_is_approved)
+  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_id);
+  function onChangeSeries(e: any) {
+    setSeries(e.target.value);
+    console.log(e.target.value);
+  }
 
-  // function articleStatus (){
-  //     switch(articleList.filter((status) => status.art_is_approved) ){
-  //         case 0: {
-  //             return "Pending";
-  //         }
-  //         case reformedStatus == 1: {
-  //             return "Approved"
-  //         }
-  //     }
-  // }
+  const seriesNull = (seriesID: any) => {
+    if (!seriesID) {
+      return 'None';
+    }
+
+    return seriesID;
+  };
+
+  function newSeries() {
+    return history.push('/seriesCreation');
+  }
 
   return (
     <MainLayout>
-
       <Row className="pageSize">
         <div className="userArticleList">
           <h5> My Articles </h5>
@@ -129,40 +144,42 @@ function MyArticles() {
                   <tr>
                     <th>Articles</th>
                     <th>Status</th>
+                    <th>Series </th>
                     {/* <th>State</th> */}
                   </tr>
                 </thead>
                 <tbody>
-                  {myArtList.map((art) => (
+                  {myArtList.map((art, index) => (
                     <tr
-                      key={art.art_id}
+                      key={index}
                       onClick={ShowArticleOnClick}
                       defaultValue={art.art_id}
                     >
                       <td>{art.art_title}</td>
                       <td>{art.art_is_approved}</td>
-                      {/* <td> State</td> */}
-                      {/* <td> <Link to="/articles/:articleId">{art.art_title}</Link></td> */}
+                      <td> {seriesNull(art.series_id)}</td>
                     </tr>
                   ))}
                 </tbody>
               </Table>
             </Col>
           </Row>
+          Have too many articles? Click
+          <button className="seriesCreate">here</button>
+          to form a new Series!
         </div>
 
         <Col className="selectedArticle">
+          
           <Form.Group>
             <Form.Label>Article Title</Form.Label>
             <Form.Control
               type="Title"
-              placeholder={article?.art_title}
+              defaultValue={article?.art_title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-          
           <Form.Row className="radioButtons">
-            
             <Form.Group>
               <input
                 type="radio"
@@ -202,10 +219,12 @@ function MyArticles() {
             <Col>
               <Form.Group>
                 <Form.Label>Category</Form.Label>
-                <Form.Control as="select">
-                  <option>Will Change this </option>
-                  <option> Health </option>
-                  <option> Sci-Fi </option>
+                <Form.Control as="select" onChange={changeCategory}>
+                  <option value="Tech"> Tech </option>
+                  <option value="Health"> Health </option>
+                  <option value="Sci-Fi"> Sci-Fi </option>
+                  <option value="Science"> Science </option>
+                  <option value="Beauty"> Beauty </option>
                 </Form.Control>
               </Form.Group>
             </Col>
@@ -218,35 +237,49 @@ function MyArticles() {
               </Form.Group>
             </Col>
           </Row>
-
+          <Row>
+            <Col>
+              <Form.Group>
+                <Form.Label>Series</Form.Label>
+                <Form.Control as="select" onChange={onChangeSeries}>
+                  <option value="null">Select Series..</option>
+                  {userOwnsSeries.map((s) => {
+                    return (
+                      <option value={s.series_id}>
+                        {s.series_title}({s.series_id})
+                      </option>
+                    );
+                  })}
+                </Form.Control>
+              </Form.Group>
+            </Col>
+          </Row>
           <Form.Group>
             <Form.Label>Article Description</Form.Label>
             <Form.Control
               as="textarea"
               className="description"
               type="Description"
-              value={article?.description}
+              defaultValue={article?.description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group>
             <Form.Label>Article Body</Form.Label>
             <Form.Control
               as="textarea"
               className="body"
               type="Body"
-              value={article?.art_body}
+              defaultValue={article?.art_body}
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-          I need to finish the backend for Put first
-          <p>A user may want to change more than one field. </p>
+          I need to finish the backend for Put or Patch first
+          <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit
           </button>
         </Col>
-        
       </Row>
     </MainLayout>
   );
