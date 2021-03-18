@@ -164,7 +164,9 @@ function MyArticles() {
             </Col>
           </Row>
           Have too many articles? Click
-          <button className="seriesCreate">here</button>
+          <button className="seriesCreate" onClick={newSeries}>
+            here
+          </button>
           to form a new Series!
         </div>
 

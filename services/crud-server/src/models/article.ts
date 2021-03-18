@@ -25,7 +25,7 @@ export interface IArticle {
     art_body: string,
     art_image: string,
     art_is_approved?: number,
-    art_category?:string,
+    art_category:string,
     series_id?: number
 }
 

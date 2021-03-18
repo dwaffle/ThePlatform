@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { PaginationItem, Rating } from '@material-ui/lab';
 import Pagination from '@material-ui/lab/Pagination';
@@ -16,6 +16,8 @@ import { Link, useHistory } from 'react-router-dom';
 import './style.scss';
 import { seriesListState } from '../ArticleList/articleList';
 import { ISeries } from '../../../services/crud-server/src/models/series';
+import SeriesFilter from './searchFilter/SeriesFilter';
+import { sCategoriesState } from './searchFilter/series.recoil';
 
 export interface ISearchFilter {
   name?: string;
@@ -52,13 +54,16 @@ export default function SeriesPage(props: { rows?: number }) {
   };
 
   useEffect(() => {
-    const innerProductList = [...seriesList].filter((/*  parameter */) => {
+    const innerProductList = [...seriesList].filter((series) => {
       let found = true;
 
-      /* 
-        filters for searching
-      
-      */
+      if (searchFilter?.name) {
+        found = series.series_title.includes(searchFilter.name);
+      }
+
+      if (searchFilter?.category) {
+        found = found && series.series_category.includes(searchFilter.category);
+      }
 
       return found;
     });
@@ -83,28 +88,11 @@ export default function SeriesPage(props: { rows?: number }) {
         <h2>Series</h2>
       </div>
 
-      <div className="seriesBody">
-        <div className="filter">
-          <Form>
-            <Row>
-              <Col>
-                <Form.Control as="select" defaultValue="Choose..." value="">
-                  <option value="">Show All...</option>
-                </Form.Control>
-              </Col>
-              <Col>
-                <Form.Control placeholder="Search Series..." />
-              </Col>
-              <Col>
-                <Button variant="primary" onClick={seriesLink}>
-                  {' '}
-                  Series Creation{' '}
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </div>
+      <div className="searchFilter">
+        {<SeriesFilter searchDispatch={setSearchFilter} />}
+      </div>
 
+      <div className="seriesBody">
         {seriesRows.map((row) => {
           return (
             <div className="scCardDeck">
