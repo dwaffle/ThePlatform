@@ -4,9 +4,30 @@ import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 import './style.scss';
 
 export default function HomePage(props: {}) {
+
+  let background = {
+    header: {
+      background: 'rgba(0, 0, 0, 0.5)',
+      backgroundImage:
+        'url(https://assets.weforum.org/article/image/TmPdNlFv0WnroKsD8LqWVj0al8UlbVlFb1B8ngDfz8A.jpg)',
+      height: '100vh',
+
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+    },
+
+    content: {
+      height: '100%',
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+  };
+
   return (
     <>
-      <Row>
+    <div /*style={background.header}*/>
+    <Row>
         <Col xs={8}>
           {' '}
           <div className="HeadlineArticle">
@@ -83,7 +104,10 @@ export default function HomePage(props: {}) {
             </CardDeck>
           </Col>
         </Row>
-      </div>
+      </div> */
+    </div>
+      
     </>
   );
 }
+

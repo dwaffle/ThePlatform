@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useRecoilValue } from 'recoil';
 import { IASearchFilter } from '../HorizontalArticleList';
 import { ArticleCategoryState } from './article.recoil';
+// import './style.scss';
 
 export default function ArticleFilter(props: {
   aSearchDispatch: (searchFilter: IASearchFilter) => void;
@@ -40,7 +41,7 @@ export default function ArticleFilter(props: {
 
   return (
     <>
-      <Form>
+      <Form className="filter">
         <Row>
           {/* <Col>
                     <Form.Control as="select" defaultValue="Choose..." value={searchBrand} onChange={onChangeBrand}>
@@ -55,7 +56,7 @@ export default function ArticleFilter(props: {
               value={searchCategory}
               onChange={onChangeCategory}
             >
-              <option value="">Show All...</option>
+              <option value="">Select by Category</option>
               {categories.map((category: string) => (
                 <option value={category}>{category}</option>
               ))}
@@ -63,7 +64,7 @@ export default function ArticleFilter(props: {
           </Col>
           <Col>
             <Form.Control
-              placeholder="Search Series Name..."
+              placeholder="Search by Title"
               value={searchTerm}
               onChange={onChangeSearchTerm}
             />

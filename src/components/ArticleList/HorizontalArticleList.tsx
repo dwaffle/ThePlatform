@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import './style.scss';
 import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useArticleList } from './articleList';
@@ -8,6 +7,7 @@ import { ISeries } from '../../../services/crud-server/src/models/series';
 import { ISearchFilter } from '../series/seriesPage';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import ArticleFilter from './ArticleFilter.ts/articleFilter';
+import './style.scss';
 
 export interface IASearchFilter {
   name?: string;
@@ -84,7 +84,7 @@ export default function HorizontalArticles(props: { rows: number }) {
       <Row></Row>
       {articleCol.map((col) => {
         return (
-          <div className="viewArticles">
+          <div>
             {col.map((art, index) => (
               <div key={index}>
                 <Card className="Card">
@@ -98,6 +98,7 @@ export default function HorizontalArticles(props: { rows: number }) {
                       Author: {art.user_firstName} {''}
                       {art.user_lastName}{' '}
                     </div>
+
                   </Card.Header>
 
                   <Card.Body className="CardBody">
@@ -105,6 +106,9 @@ export default function HorizontalArticles(props: { rows: number }) {
                       {art.description}
                     </Card.Text>
                   </Card.Body>
+                  <Card.Footer className="acFooter">
+                    {art.art_category}
+                  </Card.Footer>
                 </Card>
               </div>
             ))}

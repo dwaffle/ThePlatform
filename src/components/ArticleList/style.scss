@@ -4,11 +4,22 @@
     margin-top: 10px;
     margin-left: 5%;
 
+    .CardHeader {
+        background: #c0c0c0;
+    }
+    
     input {
         padding: 0px;
         border: 0;
         background-color: inherit;
         color: blue;
+    }
+
+    .acFooter {
+        padding: 0;
+        // margin-left: 1%;
+        width: 100%;
+        bottom: 0px;
     }
 }
 
@@ -19,7 +30,6 @@
     max-width: 25%;
     text-align: center;
 
-    
 }
 
 .filter {
@@ -33,9 +43,5 @@
         display: none;
         color: green;
     } 
-}
-
-.CardHeader {
-    background: #e2e2e2 !important;
 }
 

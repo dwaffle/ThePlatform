@@ -31,6 +31,7 @@ function MyArticles() {
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
 
+  // (myArtList[e.currentTarget.rowIndex - 1]) is affecting all the articles when trying to change just 1
   const ShowArticleOnClick = (e: any) => {
     setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
   };
@@ -127,6 +128,22 @@ function MyArticles() {
     return seriesID;
   };
 
+  const seriesSet = (seriesID: any) => {
+    if (!seriesID) {
+      return 'Select Series..';
+    }
+
+    return seriesID;
+  };
+
+  const seriesCategory = (seriesCat: any) => {
+    if(!seriesCat){
+      return "Select Category..";
+    }
+
+    return seriesCat;
+  }
+
   function newSeries() {
     return history.push('/seriesCreation');
   }
@@ -183,6 +200,7 @@ function MyArticles() {
             <Form.Group>
               <input
                 type="radio"
+                checked = {article?.artype_id === Number("1")}
                 name="articleType"
                 value="1"
                 onChange={(e) => setChecked(ArticleType.FREE)}
@@ -193,6 +211,7 @@ function MyArticles() {
             <Form.Group>
               <input
                 type="radio"
+                checked = {article?.artype_id === Number("3")}
                 name="articleType"
                 value="3"
                 onChange={(e) => setChecked(ArticleType.PAIDMEMBERS)}
@@ -203,6 +222,7 @@ function MyArticles() {
             <Form.Group>
               <input
                 type="radio"
+                checked = {article?.artype_id === Number("2")}
                 name="articleType"
                 value="2"
                 onChange={(e) => setChecked(ArticleType.PURCHASED)}
@@ -220,6 +240,7 @@ function MyArticles() {
               <Form.Group>
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" onChange={changeCategory}>
+                  <option > {seriesCategory(article?.art_category)} </option>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
                   <option value="Sci-Fi"> Sci-Fi </option>
@@ -242,7 +263,7 @@ function MyArticles() {
               <Form.Group>
                 <Form.Label>Series</Form.Label>
                 <Form.Control as="select" onChange={onChangeSeries}>
-                  <option value="null">Select Series..</option>
+                  <option value="null">{seriesSet(article?.series_id)}</option>
                   {userOwnsSeries.map((s) => {
                     return (
                       <option value={s.series_id}>

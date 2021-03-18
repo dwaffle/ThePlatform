@@ -55,7 +55,7 @@ export default function SeriesFilter(props: {
               value={searchCategory}
               onChange={onChangeCategory}
             >
-              <option value="">Show All...</option>
+              <option value="">Select by Category</option>
               {categories.map((category: string) => (
                 <option value={category}>{category}</option>
               ))}
@@ -63,7 +63,7 @@ export default function SeriesFilter(props: {
           </Col>
           <Col>
             <Form.Control
-              placeholder="Search Series Name..."
+              placeholder="Search by Title"
               value={searchTerm}
               onChange={onChangeSearchTerm}
             />
