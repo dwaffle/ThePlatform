@@ -30,7 +30,6 @@ export default function EditProfilePage(props: {}) {
   const [password_entry, setPasswordEntry] = useState<string>();
   const [password_verify, setPasswordVerify] = useState<string>();
 
-
   function onClickLogOut() {
     localStorage.clear();
     history.push('/articles');
@@ -91,7 +90,6 @@ export default function EditProfilePage(props: {}) {
     }
   }
 
-
   function deleteAccount() {
     if (window.confirm('Are you sure?  This will delete your account!')) {
       api.user.delete(localStorage.getItem('user'));
@@ -121,7 +119,7 @@ export default function EditProfilePage(props: {}) {
       user_password: password_entry,
       user_facebook: user_facebook,
       user_instagram: user_instagram,
-      user_twitter: user_twitter
+      user_twitter: user_twitter,
     };
 
     api.user.patch(changeRequest);

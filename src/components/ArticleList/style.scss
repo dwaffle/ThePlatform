@@ -18,13 +18,24 @@
     margin-right: 5%!important;
     max-width: 25%;
     text-align: center;
+
+    
 }
 
+.filter {
+    max-width: 65%;
+    margin-left: 5%;
+}
+
+
+@media screen and (max-width:700px){
+    .CardFeatured {
+        display: none;
+        color: green;
+    } 
+}
 
 .CardHeader {
     background: #e2e2e2 !important;
 }
 
-.filter {
-    max-width: 65%;
-}

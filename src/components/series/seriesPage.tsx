@@ -27,11 +27,11 @@ export default function SeriesPage(props: { rows?: number }) {
   const seriesList = useRecoilValue<ISeries[]>(seriesListState);
   const [seriesRows, setSeriesRows] = useState<Array<ISeries[]>>([]);
   const [searchFilter, setSearchFilter] = useState<ISearchFilter>({});
+  const history = useHistory();
 
   function seriesLink() {
     return history.push('/seriesCreation');
   }
-  const history = useHistory();
 
   let test = {
     header: {
@@ -52,14 +52,19 @@ export default function SeriesPage(props: { rows?: number }) {
   };
 
   useEffect(() => {
-    const innerProductList = [...seriesList].filter((product) => {
+    const innerProductList = [...seriesList].filter((/*  parameter */) => {
       let found = true;
+
+      /* 
+        filters for searching
+      
+      */
 
       return found;
     });
     const rows = [];
 
-    while (innerProductList.length && rows.length < (props.rows || 2)) {
+    while (innerProductList.length && rows.length < (props.rows || 5)) {
       rows.push(innerProductList.splice(0, 5));
     }
 
@@ -78,11 +83,6 @@ export default function SeriesPage(props: { rows?: number }) {
         <h2>Series</h2>
       </div>
 
-      <Button variant="primary" onClick={seriesLink}>
-        {' '}
-        Series Creation{' '}
-      </Button>
-
       <div className="seriesBody">
         <div className="filter">
           <Form>
@@ -95,6 +95,12 @@ export default function SeriesPage(props: { rows?: number }) {
               <Col>
                 <Form.Control placeholder="Search Series..." />
               </Col>
+              <Col>
+                <Button variant="primary" onClick={seriesLink}>
+                  {' '}
+                  Series Creation{' '}
+                </Button>
+              </Col>
             </Row>
           </Form>
         </div>
@@ -104,7 +110,7 @@ export default function SeriesPage(props: { rows?: number }) {
             <div className="scCardDeck">
               <CardDeck>
                 {row.map((series, index) => (
-                  <div key={index}>
+                  <div className="scIndex" key={index}>
                     <Card className="sCards">
                       <Card.Img
                         variant="top"
@@ -117,20 +123,23 @@ export default function SeriesPage(props: { rows?: number }) {
                           <Link to={`/series/${series.series_title}`}>
                             {series.series_title}
                           </Link>
+                          <div>
+                            <h5> {series.series_owner}</h5>
+                          </div>
                         </Card.Title>
-                        <Rating
-                          name="half-rating"
-                          defaultValue={2.5}
-                          precision={1}
-                        />
+
                         <Card.Text className="scText">
                           {series.series_desc}
                         </Card.Text>
-                        <ListGroup.Item className="scCategory">
-                          {series.series_category}
-                        </ListGroup.Item>
+                        {/* <ListGroup.Item>
+                          <Rating
+                            name="half-rating"
+                            defaultValue={2.5}
+                            precision={1}
+                          />
+                        </ListGroup.Item> */}
                         <Card.Footer className="scFooter">
-                          {series.series_owner}
+                          {series.series_category}
                         </Card.Footer>
                       </Card.Body>
                     </Card>
@@ -140,8 +149,6 @@ export default function SeriesPage(props: { rows?: number }) {
             </div>
           );
         })}
-        <Row></Row>
-
         <Pagination
           componentName="scCardDeck"
           className="scPagin"
@@ -150,6 +157,7 @@ export default function SeriesPage(props: { rows?: number }) {
           shape="rounded"
           onChange={handlePageChange}
         />
+        <Row></Row>
       </div>
     </>
   );

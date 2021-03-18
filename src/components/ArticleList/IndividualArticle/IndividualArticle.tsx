@@ -6,45 +6,39 @@ import api from '../../../api';
 import { useParams } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 import './style.scss';
-import { articleListState } from '../articleList';
+import { articleListState, userOwnsArticle } from '../articleList';
 import { useHistory, Link } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import facebook from '../../../data/icon/facebook.png';
 import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
 import paymentInfo from '../../../api/paymentInfo/paymentInfo';
+import user from '../../../api/user';
 
 const IndividualArticle = () => {
   //articles without id
   const art = useRecoilValue<IArticle[]>(articleListState);
   //articles with ids
   const [article, setArticle] = useState<IArticle>();
+
   // assigns an id to one article
   const params = useParams<{ id: string }>();
-  // user id...
+  // user id... as JSON
   const user_ID = { user_id: Number(localStorage.getItem('user_id')) };
+
   //does the user own the article if required?
-  const [usersWithArticles, setUsersWithArticles] = useState();
+  const articleOwnership = useRecoilValue(userOwnsArticle);
+
   //history router
   const history = useHistory();
-
-  console.log('isOwned', usersWithArticles);
-
   //rendering for articles and assigning an id to an article
   useEffect(() => {
     setArticle(art.find((_art) => _art.art_title === params.id));
+    // togglePopup()
   }, [params.id]);
 
   // if the article is a paid article, check to see if the user owns it
   // if not, enforce pop up where they can purchase the article
-  useEffect(() => {
-    api.purchaseArticle
-      .get(Number(localStorage.getItem('user_id')))
-      .then((response) => {
-        setUsersWithArticles(response.data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
 
   //popup state
   const [isOpen, setIsOpen] = useState<boolean>(false);

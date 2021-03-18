@@ -47,7 +47,7 @@ export default function HorizontalArticles(props: { rows: number }) {
       <div className="filter">
         <Form>
           <Row>
-            <Col>
+            <Col className="boxes">
               <Form.Control as="select" defaultValue="Choose..." value="">
                 <option value="">Show All...</option>
               </Form.Control>
