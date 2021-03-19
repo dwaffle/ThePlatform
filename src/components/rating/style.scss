@@ -7,9 +7,14 @@
     // object-fit: cover;
     padding: 10px;
     margin: 0px;
+    text-align: center;
+
+
+
     // border: green 2px solid; 
     // border-radius: 30%;
     
+   
 }
 
 // Individual articles
@@ -29,6 +34,7 @@
         text-align: center;
     }
 
+    
   
     // .body {
     //     margin-top: 10px;
@@ -38,3 +44,15 @@
     // }
 
 }
+
+.Card{
+
+    max-width: 600px;
+    
+    // object-fit: cover;
+    padding: 0px;
+    margin: 0px;
+    
+   
+}
+

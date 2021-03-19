@@ -30,7 +30,7 @@ export default function ThePlatformWebsite(props: {}) {
     <BrowserRouter>
       <Switch>
         <Route path="/admin" component={AdminSite} />
-        <Route path="/writeRating" component={WriteRating} />
+        <Route path="/rating" component={WriteRating} />
         <Route path="/series" component={Series} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />

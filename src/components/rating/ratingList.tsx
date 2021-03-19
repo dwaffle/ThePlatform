@@ -13,12 +13,13 @@ export const ratingListState = atom({
 export function useRatingList () {
 
   const [ ratingList, setRatingList ] = useRecoilState<IRating[]>(ratingListState);
-  const ratingArticle = 3;
-  const nbrReviews = 20;
+
+  // const ratingArticle = 3 ;
+  // const nbrReviews = ratingList.length;
  
   useEffect(() => {
     api.rating
-        .get()     
+        .get()   
         .then((response) => {
           setRatingList(response.data);
         })
@@ -28,7 +29,7 @@ export function useRatingList () {
   return {
     ratingList,
     setRatingList,
-    ratingArticle,
-    nbrReviews
+    // ratingArticle,
+    // nbrReviews
   }
 }

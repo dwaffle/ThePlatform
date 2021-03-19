@@ -18,7 +18,7 @@ import paymentInfo from "../../../api/paymentInfo/paymentInfo";
 // import { Link } from "react-router-dom";
 
 const IndividualArticle = () => {
-  const [rating1, setRating1] = useState(0);
+ // const [rating1, setRating1] = useState(0);
   const params = useParams<{ id: string }>();
   const art = useRecoilValue<IArticle[]>(articleListState);
   const [article, setArticle] = useState<IArticle>();
@@ -111,13 +111,13 @@ const IndividualArticle = () => {
         <h1>{article?.art_title} </h1>
         {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
 
-        <Rating />
+        <Rating article_id = {article?.art_id} />
         <Row noGutters>
           <Col md="auto">
             <img src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"></img>
           </Col>
           <Col className="description">{article?.description}</Col>
-        </Row>
+        </Row> 
 
         <div>{article?.art_body}</div>
 
