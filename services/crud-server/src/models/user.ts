@@ -6,10 +6,13 @@ dotenv.config();
 
 interface IprofileChangeRequest {
     user_id: number,
-    user_firstName?: string;
-    user_lastName?: string;
-    user_email?: string;
+    user_firstName?: string
+    user_lastName?: string
+    user_email?: string
     user_password?: string
+    user_twitter?:string
+    user_facebook?:string
+    user_instagram?:string
 }
 
 export interface IUser {
@@ -21,7 +24,10 @@ export interface IUser {
     user_lastName:string,
     user_password:string,
     user_email:string,
-    user_creation_date:string
+    user_creation_date:string,
+    user_facebook?:string,
+    user_twitter?:string,
+    user_instagram?:string
 }
 
 export interface IUserNoPassword {
@@ -35,26 +41,14 @@ export interface IUserNoPassword {
     user_creation_date:string
 }
 
+
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: process.env.MYSQL_CONNECTION_STRING,
-    user: 'admin',
+    user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
-    database: 'mydb'
+    database: process.env.MYSQL_DATABASE
 })
-
-// read user
-const path = `${__dirname}/../data`;
-const file = `${path}/users.json`;
-
-if(!fs.existsSync(path)){
-    fs.mkdirSync(path);
-}
-
-if(!fs.existsSync(file)){
-    fs.writeFileSync(file, JSON.stringify([]), { encoding: 'utf-8' });
-}
-
 
 
 
@@ -84,7 +78,22 @@ export const UserModel = {
     },
 
     setAll: async (user:IUser) => {
-        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+        //Because I know I have some parameters in the query, the commas can come before the optinal paramaters.
+        let extraParams = ""
+        let extraValues = ""
+        if(user.user_twitter){
+            extraParams += `, user_twitter`
+            extraValues += `, '${user.user_twitter}'`
+        }
+        if(user.user_facebook){
+            extraParams += `, user_facebook`
+            extraValues += `, ${user.user_facebook}`
+        }
+        if(user.user_instagram){
+            extraParams += ", user_instagram"
+            extraValues += `, ${user.user_instagram}`
+        }
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE() ${extraValues})`),
         function(err:any, result:any){
             if(err){
                 reject(err)
@@ -140,6 +149,15 @@ export const UserModel = {
         }
         if(userInfo.user_password){
             queryParams += `user_password = '${userInfo.user_password}', `
+        }
+        if(userInfo.user_twitter){
+            queryParams += `user_twitter = '${userInfo.user_twitter}', `
+        }
+        if(userInfo.user_facebook){
+            queryParams += `user_facebook = '${userInfo.user_facebook}', `
+        }
+        if(userInfo.user_instagram){
+            queryParams += `user_instagram = '${userInfo.user_instagram}', `
         }
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)

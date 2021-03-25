@@ -1,0 +1,59 @@
+
+
+.iSeriesHeader {
+    h1 {
+        font-size: 3.1rem;
+        background: white;
+        color: black;
+        border: hidden;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .iSAuthor {
+        text-align: center;
+    }
+}
+
+.iAList {
+    width: 80%;
+    margin: auto;
+}
+
+.iCard {
+    min-height: 10vh;
+    margin-bottom: 7px;
+    .iaTitle {
+        background: rgb(211, 209, 209);
+        
+        .titleLink {
+            padding-left: 0px;
+            // color: black;
+        }
+
+    }
+
+    // .iaDesc {
+    //     background:rgb(233, 249, 250)
+    // }
+
+    .iaFooter {
+        max-height: 3vh;
+        display:flex;
+        align-items: center;
+    }
+}
+
+.tag {
+    &-Beauty {
+        color: rgb(130, 183, 200)
+    }
+
+    &-Sci-Fi {
+        color: darkblue
+    }
+
+
+}

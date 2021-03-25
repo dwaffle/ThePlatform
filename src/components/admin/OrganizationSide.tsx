@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Row, Col, CardDeck, Card, Table } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Row, Col, CardDeck, Card, Table } from 'react-bootstrap';
 
 export interface IOrganization {
   organization_id: number;
@@ -11,9 +11,9 @@ export interface IOrganization {
 
 let organization: IOrganization = {
   organization_id: 1,
-  organization_title: "White water",
+  organization_title: 'White water',
   organization_price: 5000,
-  organization_type: "constarction",
+  organization_type: 'constarction',
   organization_status: true,
 };
 

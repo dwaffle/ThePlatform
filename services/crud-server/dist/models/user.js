@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
-const fs_1 = __importDefault(require("fs"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const lodash_1 = require("lodash");
 const path_1 = require("path");
@@ -21,18 +20,10 @@ dotenv_1.default.config();
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: process.env.MYSQL_CONNECTION_STRING,
-    user: 'admin',
+    user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
-    database: 'mydb'
+    database: process.env.MYSQL_DATABASE
 });
-const path = `${__dirname}/../data`;
-const file = `${path}/users.json`;
-if (!fs_1.default.existsSync(path)) {
-    fs_1.default.mkdirSync(path);
-}
-if (!fs_1.default.existsSync(file)) {
-    fs_1.default.writeFileSync(file, JSON.stringify([]), { encoding: 'utf-8' });
-}
 exports.UserModel = {
     getAll: () => {
         return new Promise((resolve, reject) => {
@@ -60,7 +51,21 @@ exports.UserModel = {
         });
     },
     setAll: (user) => __awaiter(void 0, void 0, void 0, function* () {
-        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE())`),
+        let extraParams = "";
+        let extraValues = "";
+        if (user.user_twitter) {
+            extraParams += `, user_twitter`;
+            extraValues += `, '${user.user_twitter}'`;
+        }
+        if (user.user_facebook) {
+            extraParams += `, user_facebook`;
+            extraValues += `, ${user.user_facebook}`;
+        }
+        if (user.user_instagram) {
+            extraParams += ", user_instagram";
+            extraValues += `, ${user.user_instagram}`;
+        }
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE() ${extraValues})`),
             function (err, result) {
                 if (err) {
                     lodash_1.reject(err);
@@ -112,6 +117,15 @@ exports.UserModel = {
         }
         if (userInfo.user_password) {
             queryParams += `user_password = '${userInfo.user_password}', `;
+        }
+        if (userInfo.user_twitter) {
+            queryParams += `user_twitter = '${userInfo.user_twitter}', `;
+        }
+        if (userInfo.user_facebook) {
+            queryParams += `user_facebook = '${userInfo.user_facebook}', `;
+        }
+        if (userInfo.user_instagram) {
+            queryParams += `user_instagram = '${userInfo.user_instagram}', `;
         }
         queryParams = queryParams.slice(0, -2);
         connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {

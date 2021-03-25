@@ -40,16 +40,16 @@ export interface IRating {
 export const RatingModel = {
 
 
-    getByArticleId: async ( rateId:number ): Promise<any> => {
+    getRating: async (  ): Promise<IRating[]> => {
         // const myConnection =  await connection
         return new Promise((resolve, reject) => {
 
             // _sql = `SELECT  * FROM rating rat INNER JOIN article art ON rat.article_art_id = art.art_id JOIN user usr ON rat.user_user_id = usr.user_id
             // WHERE art.art_id = ${rateId}`;
 
-            _sql = `SELECT  * FROM rating WHERE art_id = ${rateId}`;
+            _sql = `SELECT  * FROM rating`;
 
-
+            console.log("Im here getRating")
             connection.query(_sql, function(err:any, result: any){
                 if(err){
                     reject(err);
@@ -60,29 +60,9 @@ export const RatingModel = {
         })
     },
 
-
-    getAll: async ():Promise<IRating[]> => {
-        // const myConnection =  await connection.getClient();
-        return new Promise((resolve, reject) => {connection.query('SELECT * from rating', function(err:any, result:any){
-            if(err){
-                reject(err);
-            } else {
-                console.log(result);
-                resolve(result);
-            }
-        })
-    })
-    },
-    
-                                                        // rate_id: number;
-                                                        // rate_title: string;
-                                                        // rate_user_id: number;
-                                                        // rate_article_id: number;
-                                                        // rate_value: number;
-                                                        // rate_date;string;
-                                                        // rate_review: string;
     newRate: async( newRate:IRating) => {
 
+        console.log("newRate ++++ ", newRate)
             _sql = `INSERT INTO rating 
                     ( rate_title, rate_date, rate_user_id, rate_article_id, rate_value, rate_review ) 
                     VALUES 

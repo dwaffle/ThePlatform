@@ -1,18 +1,21 @@
-import React, { ChangeEvent, useState } from "react";
-import { useHistory } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
-import { Card, Form, Button, Row, Col, InputGroup } from "react-bootstrap";
-import api from "../api";
-import "./style.scss";
+import React, { ChangeEvent, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import MainLayout from '../layouts/MainLayout';
+import { Card, Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
+import api from '../api';
+import './style.scss';
 
 export default function SignupPage(props: {}) {
   const history = useHistory();
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [privacyIsChecked, setPrivacy] = useState<boolean>();
+  const [instagramHandle, setInstagramHandle] = useState<string>('');
+  const [twitterHandle, setTwitterHandle] = useState<string>('');
+  const [facebookHandle, setFacebookHandle] = useState<string>('');
 
   function onPrivacyTaskHandler(e: ChangeEvent<HTMLInputElement>) {
     setPrivacy(e.target.checked);
@@ -34,9 +37,12 @@ export default function SignupPage(props: {}) {
       user_email: email,
       user_userName: username,
       user_password: password,
+      user_instagram: instagramHandle,
+      user_facebook: facebookHandle,
+      user_twitter: twitterHandle,
     };
     api.signup.post(objectToSend);
-    history.push("/articles");
+    history.push('/articles');
     return;
   }
 
@@ -51,7 +57,8 @@ export default function SignupPage(props: {}) {
     ) {
       return (
         <div>
-          You must fill out all forms and accept the Terms and Conditions
+          You must fill out all fields marked with a * and accept the Terms and
+          Conditions
         </div>
       );
     }
@@ -67,12 +74,13 @@ export default function SignupPage(props: {}) {
             <div className="signup-txt">
               Sign Up:
               <br />
-              Please fill in the form to sign up.
+              Please fill in the form to sign up. Fields marked with a * are
+              manditory
             </div>
             <Form.Group className="name">
               <Row>
                 <Col>
-                  <Form.Label>First Name</Form.Label>
+                  <Form.Label>First Name*</Form.Label>
                   <Form.Control
                     className="firstname"
                     type="firstname"
@@ -82,7 +90,7 @@ export default function SignupPage(props: {}) {
                   />
                 </Col>
                 <Col>
-                  <Form.Label>Last Name</Form.Label>
+                  <Form.Label>Last Name*</Form.Label>
                   <Form.Control
                     className="lastname"
                     type="lastname"
@@ -92,7 +100,7 @@ export default function SignupPage(props: {}) {
                   />
                 </Col>
                 <Col>
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label>Email*</Form.Label>
                   <Form.Control
                     className="email"
                     type="email"
@@ -104,7 +112,7 @@ export default function SignupPage(props: {}) {
               </Row>
             </Form.Group>
             <Form.Group>
-              <Form.Label>Username:</Form.Label>
+              <Form.Label>Username*</Form.Label>
               <Form.Control
                 className="username"
                 type="username"
@@ -114,7 +122,7 @@ export default function SignupPage(props: {}) {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Password*</Form.Label>
               <Form.Control
                 className="password"
                 type="password"
@@ -123,13 +131,37 @@ export default function SignupPage(props: {}) {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Label>Instagram Handle</Form.Label>
+              <Form.Control
+                className="instagram"
+                type="instagram"
+                placeholder="Enter Instagram Handle"
+                value={username}
+                onChange={(e) => setInstagramHandle(e.target.value)}
+              />
+              <Form.Control
+                className="facebook"
+                type="facebook"
+                placeholder="Enter Facebook Handle"
+                value={username}
+                onChange={(e) => setFacebookHandle(e.target.value)}
+              />
+              <Form.Control
+                className="twitter"
+                type="twitter"
+                placeholder="Enter Twitter Handle"
+                value={username}
+                onChange={(e) => setTwitterHandle(e.target.value)}
+              />
+            </Form.Group>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Checkbox
                   className="privacy"
                   onChange={onPrivacyTaskHandler}
                 ></InputGroup.Checkbox>
-                Accept the Privacy Policy and Terms of Use Agreement
+                Accept the Privacy Policy and Terms of Use Agreement*
               </InputGroup.Prepend>
             </InputGroup>
             {AllFormsFilledOut()}

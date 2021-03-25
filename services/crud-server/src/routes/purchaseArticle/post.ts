@@ -6,7 +6,7 @@ export function post(app:any){
         try {
         const purchase:articlePurchase = request.body;
         UserOwnsArticle.create({
-            article_id: purchase.article_id,
+            art_id: purchase.art_id,
             user_id: purchase.user_id
         });
         response.sendStatus(201);

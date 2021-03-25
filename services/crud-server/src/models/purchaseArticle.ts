@@ -4,20 +4,20 @@ dotenv.config();
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: process.env.MYSQL_CONNECTION_STRING,
-    user: 'admin',
+    user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
-    database: 'mydb'
+    database: process.env.MYSQL_DATABASE
 })
 
 export interface articlePurchase {
     user_id:number,
-    article_id: number
+    art_id: number
 }
 
 export const UserOwnsArticle = {
 
     create: async(purchase:articlePurchase) => {
-        connection.query(`INSERT INTO user_has_article (article_id, user_id) VALUES (${purchase.article_id}, ${purchase.user_id})`,
+        connection.query(`INSERT INTO user_has_article (art_id, user_id) VALUES (${purchase.art_id}, ${purchase.user_id})`,
         function(err:any, result:any){
             if(err)
             {

@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useRecoilState } from "recoil";
-import { useHistory } from "react-router";
-import api from "../../api";
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useRecoilState } from 'recoil';
+import { useHistory } from 'react-router';
+import api from '../../api';
 // import data from '../../data/icon'
-import "./login.scss";
+import './login.scss';
 
 function LoginForm() {
   const history = useHistory();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   function handleLogin(e: any) {
     e.preventDefault();
     const loginRequest = { user_userName: username, user_password: password };
     api.tokens.post(loginRequest);
     api.login.post({ user_userName: username });
-    history.push("/articles");
+    history.push('/articles');
   }
 
   function directToSignUp() {
-    history.push("/signup");
+    history.push('/signup');
   }
 
   return (
@@ -61,7 +61,7 @@ function LoginForm() {
                 type="submit"
                 onClick={handleLogin}
               >
-                {" "}
+                {' '}
                 Submit
               </Button>
               <label> Not on the Platform yet?</label>
@@ -71,7 +71,7 @@ function LoginForm() {
                 type="submit"
                 onClick={directToSignUp}
               >
-                {" "}
+                {' '}
                 Sign up
               </Button>
             </Form>

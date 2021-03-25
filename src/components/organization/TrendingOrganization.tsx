@@ -1,6 +1,6 @@
-import React from "react";
-import { Row, Col, Table } from "react-bootstrap";
-import "./style.scss";
+import React from 'react';
+import { Row, Col, Table } from 'react-bootstrap';
+import './style.scss';
 
 export default function TrendingOrganization(props: {}) {
   return (

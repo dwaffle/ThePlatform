@@ -12,7 +12,9 @@ export function post(app:any){
             description: article.description,
             user_author: article.user_author,
             art_body: article.art_body,
-            art_image: article.art_image
+            art_image: article.art_image,
+            art_category: article.art_category,
+            series_id: article.series_id
         });
         response.send(201);
     } catch {

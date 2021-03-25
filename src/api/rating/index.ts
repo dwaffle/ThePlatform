@@ -19,13 +19,13 @@ export default {
     });
   },
 
-  getRatingByArticleId: async (ratArtId: number) => {
-    console.log(`${HOSTNAME}/rating/${ratArtId}`);
-    return axios.get(`${HOSTNAME}/rating/${ratArtId}`, {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
-    });
-  },
+  // getRatingByArticleId: async (ratArtId: number) => {
+  //    console.log(`${HOSTNAME}/rating/${ratArtId}`);
+  //   return axios.get(`${HOSTNAME}/rating/${ratArtId}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+  //     },
+  //   });
+  // },
 
 };

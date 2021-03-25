@@ -1,17 +1,17 @@
-import React from "react";
-import { Row, Col, CardDeck, Card } from "react-bootstrap";
+import React from 'react';
+import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 //import Faq from '../components/OrganizationPage';
-import "./style.scss";
+import './style.scss';
 
 export default function HomePage(props: {}) {
   return (
     <>
       <Row>
         <Col xs={8}>
-          {" "}
+          {' '}
           <div className="HeadlineArticle">
             <h1> HeadlineArticle </h1>
-          </div>{" "}
+          </div>{' '}
         </Col>
         <Col>
           <div className="MostPopularArticle">
@@ -24,7 +24,7 @@ export default function HomePage(props: {}) {
         <Row>
           <Col>
             <CardDeck>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>
@@ -38,7 +38,7 @@ export default function HomePage(props: {}) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>
@@ -52,7 +52,7 @@ export default function HomePage(props: {}) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>
@@ -66,7 +66,7 @@ export default function HomePage(props: {}) {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card bg="Light" style={{ width: "18rem" }}>
+              <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header className="text-center p-3">
                   Organization Name
                 </Card.Header>

@@ -3,10 +3,11 @@ import { useHistory, useParams } from "react-router";
 import React from "react";
 import { Rating } from "@material-ui/lab";
 // import Rating from "react-rating";
-import { useRatingList } from "./ratingList";
+import { ratingListState, useRatingList } from "./ratingList";
 import "./style.scss";
 import { Button } from "react-bootstrap";
 import { IRating } from "../../../services/crud-server/src/models/rating";
+import { useRecoilValue } from "recoil";
 
 
 
@@ -16,44 +17,44 @@ export default function RatingArticles(props: { article_id?: number|undefined })
   console.log(params)
   // const rate = useRecoilValue<IRating[]>(ratingListState);
 
-    const rate = [ {
-      rating_id: 1,
-      rating_title: 'rating1',
-      rating_value: 5,
-      rating_review: 'rating1',
-      rating_date: '0000-00-00 00:00:00',
-      user_user_id: 5,
-      article_art_id: 57 } ,
-      {
-        rating_id: 1,
-        rating_title: 'rating2',
-        rating_value: 3,
-        rating_review: 'rating2',
-        rating_date: '0000-00-00 00:00:00',
-        user_user_id: 2,
-        article_art_id: 57 },
-        {
-          rating_id: 1,
-          rating_title: 'rating3',
-          rating_value: 2,
-          rating_review: 'rating3',
-          rating_date: '0000-00-00 00:00:00',
-          user_user_id: 4,
-          article_art_id: 57 },
-          {
-            rating_id: 1,
-            rating_title: 'rating4',
-            rating_value: 2,
-            rating_review: 'rating4',
-            rating_date: '0000-00-00 00:00:00',
-            user_user_id: 4,
-            article_art_id: 54 }];
+    // const rate = [ {
+    //   rating_id: 1,
+    //   rating_title: 'rating1',
+    //   rating_value: 5,
+    //   rating_review: 'rating1',
+    //   rating_date: '0000-00-00 00:00:00',
+    //   user_user_id: 5,
+    //   article_art_id: 57 } ,
+    //   {
+    //     rating_id: 1,
+    //     rating_title: 'rating2',
+    //     rating_value: 3,
+    //     rating_review: 'rating2',
+    //     rating_date: '0000-00-00 00:00:00',
+    //     user_user_id: 2,
+    //     article_art_id: 57 },
+    //     {
+    //       rating_id: 1,
+    //       rating_title: 'rating3',
+    //       rating_value: 2,
+    //       rating_review: 'rating3',
+    //       rating_date: '0000-00-00 00:00:00',
+    //       user_user_id: 4,
+    //       article_art_id: 57 },
+    //       {
+    //         rating_id: 1,
+    //         rating_title: 'rating4',
+    //         rating_value: 2,
+    //         rating_review: 'rating4',
+    //         rating_date: '0000-00-00 00:00:00',
+    //         user_user_id: 4,
+    //         article_art_id: 54 }];
           
-    // const rate = useRatingList().ratingList;
+    const rate = useRatingList().ratingList;
     const nbrReviews = rate.length;
 
     
-     const myRate = rate.find((_rat) => _rat.article_art_id === 57);
+    //  const myRate = rate.find((_rat) => _rat.article_art_id === 57);
    
 
     // let  ratingArticle = calculateRating( 
