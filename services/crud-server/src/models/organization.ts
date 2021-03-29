@@ -1,6 +1,7 @@
 // import { IOrganization } from '../../../../src/components/organization/IOrganization';
 // import { callbackify } from 'util';
 // import { deserialize } from 'v8';
+import {IUser} from './user'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -64,6 +65,18 @@ export const OrganizationModel = {
         })
     },
 
+    getOrgUsers: async( orgId:number): Promise<IUser[]> => {
+        return new Promise((resolve, reject) =>{
+            connection.query(`SELECT * FROM organization WHERE ord_id = ${orgId}`, function(err:any, result: any){
+                if(err){
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            })
+        })
+    },
+
   
     update: async ( Organization:IOrganization) => {
 
@@ -72,7 +85,12 @@ export const OrganizationModel = {
     },
 
     create: async( Organization:IOrganization) => {
-            connection.query(`INSERT INTO organization (ord_id, org_title, org_price, orgType_id) VALUES ('${Organization.ord_id}', '${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
+            if(Organization.org_price > 0){
+                Organization.orgType_id = 2
+            } else {
+                Organization.orgType_id = 1
+            }
+            connection.query(`INSERT INTO organization (org_title, org_price, orgType_id) VALUES ('${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
             function(err:any, result:any){
                 if(err)
                 {
