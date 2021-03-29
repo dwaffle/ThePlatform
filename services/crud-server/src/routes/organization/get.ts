@@ -8,9 +8,6 @@ export function get( app:any ){
         const orgs = await OrganizationModel.getAll();
         response.status(200).send(orgs);
 
-        // const orgs = OrganizationModel.getAll;
-        // response.status(200).send(orgs);
-
     });
 
 }

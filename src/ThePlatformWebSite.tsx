@@ -9,6 +9,7 @@ import { CreateNewArticle } from './components/ArticleList/ArticleInput/CreateAr
 import AdminSite from './pages/AdminPage';
 import HorizontalArticles from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage';
+import NewOrganizationPage from './pages/Organization/CreateOrganizationPage'
 import './App.scss';
 import ChangePayment from './pages/ChangePaymentInfo';
 import EditProfilePage from './pages/EditProfilePage';
@@ -37,7 +38,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/ChangePaymentPage" component={ChangePayment} />
         <Route path="/series" component={Series} />
         <Route path="/seriesCreation" component={CreateSeries} />
-
+        <Route path="/NewOrganizationPage" component={NewOrganizationPage} />
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
