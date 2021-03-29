@@ -3,13 +3,14 @@ import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 import api from '../../api';
 //import Faq from '../components/OrganizationPage';
 import './style.scss';
-
+import { useHistory } from 'react-router-dom';
 
 
 export default function NewOrganizationForm(props: {}){
 
     const [orgName, setOrgName] = useState<string>()
     const [orgPrice, setOrgPrice] = useState<string>()
+    const history = useHistory()
 
     function submitHandler(){
         //Make sure we have an org name and price before submitting.  0 for free orgs, any other number greater than 0 for paid orgs.
@@ -20,6 +21,7 @@ export default function NewOrganizationForm(props: {}){
                 org_price: orgPrice
             }
             api.organization.post(orgToSubmit)
+            history.push("/organization")
         }
     }
     
