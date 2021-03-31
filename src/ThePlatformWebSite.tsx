@@ -20,6 +20,7 @@ import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';
 import CreateSeries from './components/series/newSeries/createSeries';
 import IndividualSeries from './components/series/individualSeries/IndividualSeries';
+import IndividualOrganizationPage from './pages/Organization/IndividualOrgPage'
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -43,6 +44,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
         <Route path="/articles/:id" exact component={IndividualArticle} />
+        <Route path="/individualOrganizationPage/:id" component={IndividualOrganizationPage}/>
         <Route path="/articles" exact component={HorizontalArticles} />
         <Route path="/editor" component={EditorPage} />
         <Route path="/login" component={LoginPage} />

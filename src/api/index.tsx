@@ -8,6 +8,7 @@ import payment from './payment';
 import paymentInfo from './paymentInfo/paymentInfo';
 import purchaseArticle from './purchaseArticle/purchaseArticle';
 import series from './series';
+import orgs from './orgs'
 
 export default {
   organization,
@@ -20,4 +21,5 @@ export default {
   paymentInfo,
   purchaseArticle,
   series,
+  orgs
 };

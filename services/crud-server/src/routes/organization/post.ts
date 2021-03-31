@@ -1,16 +1,15 @@
 
 import { IOrganization, OrganizationModel } from '../../models/organization';
 
-export function post( app:any ){
+export async function post( app:any ){
 
-    app.post("/organizations", ( request:any, response:any ) => {
+    app.post("/organization", async ( request:any, response:any ) => {
 
         // read payload from post body
         const payload = request.body;
-        OrganizationModel.create(payload);
-
+        const usersInOrg = await OrganizationModel.getOrgUsers(payload.id)
         // send successful response
-        response.status(201).send();
+        response.status(200).send(usersInOrg);
 
     });
 

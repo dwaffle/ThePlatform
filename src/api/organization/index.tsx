@@ -11,7 +11,7 @@ export default {
   },
 
   post: async (body: any) => {
-    return axios.post(`${HOSTNAME}/Organizations`, body, {
+    return axios.post(`${HOSTNAME}/organizations/`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
