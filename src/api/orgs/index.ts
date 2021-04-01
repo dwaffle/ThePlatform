@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { HOSTNAME } from '../config';
 
+//For individual organizations.
 export default {
   get: async () => {
-    return axios.get(`${HOSTNAME}/Organizations`, {
+    return axios.get(`${HOSTNAME}/Organization`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -11,7 +12,7 @@ export default {
   },
 
   post: async (body: any) => {
-    return axios.post(`${HOSTNAME}/organizations/`, body, {
+    return axios.post(`${HOSTNAME}/organization/`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -19,7 +20,7 @@ export default {
   },
 
   patch: async (id: string, body: any) => {
-    return axios.patch(`${HOSTNAME}/Organizations/${id}`, body, {
+    return axios.patch(`${HOSTNAME}/Organization/${id}`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -27,7 +28,7 @@ export default {
   },
 
   delete: async (id: string) => {
-    return axios.delete(`${HOSTNAME}/Organizations/${id}`, {
+    return axios.delete(`${HOSTNAME}/Organization/${id}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },

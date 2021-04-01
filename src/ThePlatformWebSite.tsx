@@ -9,7 +9,7 @@ import { CreateNewArticle } from './components/ArticleList/ArticleInput/CreateAr
 import AdminSite from './pages/AdminPage';
 import HorizontalArticles from './components/ArticleList/HorizontalArticleList';
 import LoginPage from './pages/LoginPage';
-import NewOrganizationPage from './pages/Organization/CreateOrganizationPage'
+import NewOrganizationPage from './pages/Organization/CreateOrganizationPage';
 import './App.scss';
 import ChangePayment from './pages/ChangePaymentInfo';
 import EditProfilePage from './pages/EditProfilePage';
@@ -20,6 +20,7 @@ import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';
 import CreateSeries from './components/series/newSeries/createSeries';
 import IndividualSeries from './components/series/individualSeries/IndividualSeries';
+import IndividualOrganizationPage from './pages/Organization/IndividualOrgPage';
 
 export default function ThePlatformWebsite(props: {}) {
   // const requireAuth = () => {
@@ -43,6 +44,10 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
         <Route path="/articles/:id" exact component={IndividualArticle} />
+        <Route
+          path="/individualOrganizationPage/:id"
+          component={IndividualOrganizationPage}
+        />
         <Route path="/articles" exact component={HorizontalArticles} />
         <Route path="/editor" component={EditorPage} />
         <Route path="/login" component={LoginPage} />

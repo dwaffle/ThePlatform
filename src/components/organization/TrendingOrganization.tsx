@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
 import './style.scss';
 
