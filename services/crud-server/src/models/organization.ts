@@ -45,7 +45,6 @@ export const OrganizationModel = {
             if(err){
                 reject(err);
             } else {
-                console.log(result);
                 resolve(result);
             }
         })
@@ -67,7 +66,7 @@ export const OrganizationModel = {
 
     getOrgUsers: async( orgId:number): Promise<IUser[]> => {
         return new Promise((resolve, reject) =>{
-            connection.query(`SELECT user_userName FROM organization o JOIN organization_has_user ou ON o.ord_id = ou.ord_id
+            connection.query(`SELECT o.ord_id, user_userName FROM organization o JOIN organization_has_user ou ON o.ord_id = ou.ord_id
             JOIN user ON ou.user_id = user.user_id`, function(err:any, result: any){
                 if(err){
                     reject(err);

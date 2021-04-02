@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil';
+import { atom, useRecoilState, selector } from 'recoil';
 import { useEffect } from 'react';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
 import { IUser } from '../../../services/crud-server/src/models/user';
@@ -14,7 +14,8 @@ export const orgWithUsers = atom({
   default: [] as IUser[],
 });
 
-export function UseOrganizationList(orgId?:string) {
+
+export function UseOrganizationList(orgId?:number) {
   const [orgList, setOrgList] = useRecoilState<IOrganization[]>(
     orgListState,
   );
@@ -48,7 +49,5 @@ export function UseOrganizationList(orgId?:string) {
   return {
     orgList,
     setOrgList,
-    usersInOrg,
-    setUserList
   };
 }
