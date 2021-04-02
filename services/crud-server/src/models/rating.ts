@@ -64,7 +64,7 @@ export const RatingModel = {
 
         console.log("newRate ++++ ", newRate)
             _sql = `INSERT INTO rating 
-                    ( rate_title, rate_date, rate_user_id, rate_article_id, rate_value, rate_review ) 
+                    ( rating_title, rating_date, rating_user_id, rating_article_id, rating_value, rating_review ) 
                     VALUES 
                     ('${newRate.rating_title}', SYSDATE(),
                      '${newRate.rating_user_id}', '${newRate.rating_article_id}',

@@ -1,2 +1,2 @@
-//export { post } from './_post';
+export { post } from './post';
 export { get } from './get';

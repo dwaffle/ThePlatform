@@ -28,7 +28,7 @@ export default function HorizontalOrganizationList(props: {}) {
             {/* Create a new organization */}
             <Col>
               {' '}
-              <Button href="#">Create New</Button>
+              <Button href="/NewOrganizationPage">Create New</Button>
             </Col>
           </Row>
         </Form>
