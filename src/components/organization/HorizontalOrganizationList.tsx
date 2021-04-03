@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
+import Carousel from 'react-multi-carousel';
+import api from '../../api';
+import { IOrganization } from '../../../services/crud-server/src/models/organization';
+import "react-multi-carousel/lib/styles.css";
 //import Faq from '../components/OrganizationPage';
 import './style.scss';
 
@@ -8,7 +12,37 @@ import './style.scss';
 //     description: string;
 // }
 
+
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000 , min: 1024 },
+    items: 4
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
+
 export default function HorizontalOrganizationList(props: {}) {
+
+  const [allOrgs, setAllOrgs] = useState<IOrganization[]>()
+
+  useEffect(() => {
+    api.organization.get().then((response) => {
+      setAllOrgs(response.data)
+    })
+  }, [])
   return (
     <>
       {' '}
@@ -36,64 +70,15 @@ export default function HorizontalOrganizationList(props: {}) {
       <div className="search-filter">
         <Row>
           <Col>
-            <CardDeck>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </CardDeck>
+            <Carousel responsive={responsive}>
+            {allOrgs?.map((data) => {
+              
+              return (<div>
+                Organization: {data.org_title}
+                </div>
+              )
+            })}
+            </Carousel>
           </Col>
         </Row>
       </div>
