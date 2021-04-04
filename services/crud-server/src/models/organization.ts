@@ -32,6 +32,7 @@ export interface IOrganization {
     org_title: string;
     org_price: number;
     orgType_id: number;
+    org_desc:string;
     // organization_status: boolean;
 }
 
@@ -119,7 +120,7 @@ export const OrganizationModel = {
             } else {
                 Organization.orgType_id = 1
             }
-            connection.query(`INSERT INTO organization (org_title, org_price, orgType_id) VALUES ('${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}')`,
+            connection.query(`INSERT INTO organization (org_title, org_price, orgType_id, org_desc) VALUES ('${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}', '${Organization.org_desc}')`,
             function(err:any, result:any){
                 if(err)
                 {
