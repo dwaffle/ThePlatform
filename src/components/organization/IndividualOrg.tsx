@@ -78,6 +78,9 @@ interface IIndividuals{
                 </Card.Header>
                 <Card.Body>
                   <Card.Text>
+                    {org?.org_desc}
+                  </Card.Text>
+                  <Card.Text>
                         Users: {users?.map(name => {return (<div className="user">{name.user_userName}</div>)})}
                     <br />
                   </Card.Text>

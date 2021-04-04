@@ -57,7 +57,6 @@ export default function HorizontalOrganizationList(props: {}) {
     <>
       {' '}
       <div className="horizontal-organization-list">
-        {/* Search | Filters */}
         <Form>
           <Row>
             <Col>
@@ -85,20 +84,18 @@ export default function HorizontalOrganizationList(props: {}) {
               
               return (<Card bg="Light" style={{ width: '18rem' }}>
               <Card.Header className="text-center p-3">
-                Organization {data.org_title}
+                {data.org_title}
               </Card.Header>
               <Card.Body>
-                {/* <Card.Title>Primary Card Title</Card.Title> */}
                 <Card.Text>
-                  Some quick example text to build on the card title and make
-                  up the bulk of the card's content. 
+                  {data.org_desc}
                   <br />
                   <Button className="view-org-button" onClick={onClickHandler(data.ord_id)}>View Org</Button>
                 </Card.Text>
               </Card.Body>
             </Card>
               )
-            }) : <div></div>
+            }) : <div>Please log in to see organizations.</div>
           }
             </Carousel>
           </Col>
