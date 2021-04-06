@@ -6,19 +6,17 @@ import { Rating } from "@material-ui/lab";
 import { ratingListState, useRatingList } from "./ratingList";
 import "./style.scss";
 import { Button } from "react-bootstrap";
-import { IRating } from "../../../services/crud-server/src/models/rating";
 import { useRecoilValue } from "recoil";
 
 
 
-export default function RatingArticles(props: { article_id?: number|undefined }) {
+export default function RatingArticles(props: { article_id: number }) {
 
   // const params = useParams<{ id: string }>();
   // console.log(params)
 
   const articleID = props.article_id;
-  console.log(articleID)
-
+ 
   
   // const rate = useRecoilValue<IRating[]>(ratingListState);
 
@@ -56,10 +54,11 @@ export default function RatingArticles(props: { article_id?: number|undefined })
     //         article_art_id: 54 }];
           
     const rate = useRatingList().ratingList;
+    
     const nbrReviews = rate.length;
 
     
-    //  const myRate = rate.find((_rat) => _rat.article_art_id === 57);
+    //  const myRate = rate.find((_rat) => _rat.article_art_id === articleID);
    
 
     // let  ratingArticle = calculateRating( 
@@ -130,7 +129,7 @@ export default function RatingArticles(props: { article_id?: number|undefined })
           <h1>{ ratingArticle } <Rating name="half-rating" defaultValue ={ratingArticle}  readOnly = {readonly}
             precision={1}/> </h1> 
           <p>Averge rating based on ( <strong> { nbrReviews} </strong>)</p>
-          id === {articleID }
+        
           { console.log("...", rate) }
               <Button
               variant="warning"

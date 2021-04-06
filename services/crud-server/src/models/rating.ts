@@ -29,8 +29,11 @@ export const RatingModel = {
 
 
     getRating: async (  ): Promise<IRating[]> => {
-  
+        // const myConnection =  await connection
         return new Promise((resolve, reject) => {
+
+            // _sql = `SELECT  * FROM rating rat INNER JOIN article art ON rat.article_art_id = art.art_id JOIN user usr ON rat.user_user_id = usr.user_id
+            // WHERE art.art_id = ${rateId}`;
 
             _sql = `SELECT  * FROM rating`;
 
@@ -44,6 +47,24 @@ export const RatingModel = {
             })
         })
     },
+
+
+    getById: async ( articleId:number ): Promise<any> => {
+        // var connection = await myConnection.getClient()
+        return new Promise((resolve, reject) => {
+
+            _sql = `SELECT  * FROM rating WHERE article_art_id = ${articleId}`;
+
+            connection.query(_sql, function(err:any, result: any){
+                if(err){
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            })
+        })
+    },
+
 
     newRate: async( newRate:IRating) => {
 
