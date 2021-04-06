@@ -5,6 +5,7 @@ import * as Tokens from './routes/tokens';
 import * as Users from './routes/users';
 import * as Articles from './routes/articles';
 import * as Organization from './routes/organization';
+import * as OrgItems from './routes/organizations'
 import * as Payment from './routes/payments';
 import * as PaymentInfo from './routes/paymentInfo';
 import * as Rating from './routes/rating'
@@ -29,7 +30,7 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Tokens, Users, Articles, Organization, Payment, PaymentInfo, PurchaseArticle, Series, Rating ].forEach( ImportedObject => {
+[ Tokens, Users, Articles, Organization, Payment, PaymentInfo, PurchaseArticle, Series, Rating, OrgItems ].forEach( ImportedObject => {
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
 });
