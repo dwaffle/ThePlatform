@@ -15,7 +15,7 @@ import ChangePayment from './pages/ChangePaymentInfo';
 import EditProfilePage from './pages/EditProfilePage';
 import EditorPage from './components/EditorPage/EditorPage';
 import IndividualArticle from './components/ArticleList/IndividualArticle/IndividualArticle';
-import Rating from './components/rating/rating'
+import writeRating from './components/rating/writeRating'
 // import getRating from './components/rating/rating'
 import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';
@@ -46,7 +46,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
-        <Route path="/rating" component={Rating} />
+        <Route path="/rating" component={writeRating} />
         <Route path="/articles/:id" exact component={IndividualArticle} />
         <Route path="/individualOrganizationPage/:id" component={IndividualOrganizationPage}/>
         <Route path="/articles" exact component={HorizontalArticles} />

@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 
 
 
-export default function RatingArticles(props: { article_id: number }) {
+export default function RatingArticles(props: { article_id?: number }) {
 
   // const params = useParams<{ id: string }>();
   // console.log(params)
@@ -18,41 +18,6 @@ export default function RatingArticles(props: { article_id: number }) {
   const articleID = props.article_id;
  
   
-  // const rate = useRecoilValue<IRating[]>(ratingListState);
-
-    // const rate = [ {
-    //   rating_id: 1,
-    //   rating_title: 'rating1',
-    //   rating_value: 5,
-    //   rating_review: 'rating1',
-    //   rating_date: '0000-00-00 00:00:00',
-    //   user_user_id: 5,
-    //   article_art_id: 57 } ,
-    //   {
-    //     rating_id: 1,
-    //     rating_title: 'rating2',
-    //     rating_value: 3,
-    //     rating_review: 'rating2',
-    //     rating_date: '0000-00-00 00:00:00',
-    //     user_user_id: 2,
-    //     article_art_id: 57 },
-    //     {
-    //       rating_id: 1,
-    //       rating_title: 'rating3',
-    //       rating_value: 2,
-    //       rating_review: 'rating3',
-    //       rating_date: '0000-00-00 00:00:00',
-    //       user_user_id: 4,
-    //       article_art_id: 57 },
-    //       {
-    //         rating_id: 1,
-    //         rating_title: 'rating4',
-    //         rating_value: 2,
-    //         rating_review: 'rating4',
-    //         rating_date: '0000-00-00 00:00:00',
-    //         user_user_id: 4,
-    //         article_art_id: 54 }];
-          
     const rate = useRatingList().ratingList;
     
     const nbrReviews = rate.length;
@@ -113,7 +78,7 @@ export default function RatingArticles(props: { article_id: number }) {
         //   return history.push(`/rating/:id` );
         // }
         
-        // return history.push(`/rating`);
+        return history.push(`/rating`);
       };  
       
 

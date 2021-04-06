@@ -11,47 +11,15 @@ import { IRating } from "../../../services/crud-server/src/models/rating";
 import { ratingListState } from "./ratingList";
 
 
-// const rate = 3;
-
- 
-
 const user_id = Number(window.localStorage.getItem("user_id"))
-
-
- 
-
-
-// const rate = [ {
-//   rating_id: 1,
-//   rating_title: 'test',
-//   rating_value: 5,
-//   rating_review: 'kkkkkkk',
-//   rating_date: '0000-00-00 00:00:00',
-//   user_user_id: 4,
-//   article_art_id: 57 } ,
-//   {
-//     rating_id: 6,
-//     rating_title: 'test',
-//     rating_value: 3,
-//     rating_review: 'vvvvv',
-//     rating_date: '0000-00-00 00:00:00',
-//     user_user_id: 4,
-//     article_art_id: 57 },
-//     {
-//       rating_id: 8,
-//       rating_title: 'test',
-//       rating_value: 2,
-//       rating_review: 'dddd',
-//       rating_date: '0000-00-00 00:00:00',
-//       user_user_id: 4,
-//       article_art_id: 57 }];
-
 
 
 export default function WriteRating(props: {}) {
 
   
   const history = useHistory();
+  const articleID = 56;
+  console.log(articleID)
 
   const rate = useRecoilValue<IRating[]>(ratingListState);
   // const [rating, setRating] = useState(rate);
@@ -64,10 +32,10 @@ export default function WriteRating(props: {}) {
 
     
     rating_title: title,
-    rating_user_id: user_id,
+    user_user_id: user_id,
     rating_review: review,
     rating_value: ratingValue,
-    rating_article_id: 1
+    article_art_id: articleID
   }
 
   const onChangeTitle = (e: any) => {
@@ -87,7 +55,7 @@ export default function WriteRating(props: {}) {
     api.rating
     .post(objectToSend )
     .then(() => {
-      alert("Thank you for your review ");
+      console.log("Thank you for your review ");
     })
     .catch((error) => console.error(`Error: ${error}`));
 
