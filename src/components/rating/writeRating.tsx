@@ -150,7 +150,7 @@ export default function WriteRating(props: {}) {
               <Card.Header>{_rat.rating_title}</Card.Header>
               <Card.Body>
                   <Rating readOnly={true} value={ _rat.rating_value}/> <br/>
-                <Card.Title>{ _rat.rating_user_id}</Card.Title>
+                <Card.Title>{ _rat.user_user_id}</Card.Title>
                 <Card.Text>
                 { _rat.rating_review}
                 </Card.Text>

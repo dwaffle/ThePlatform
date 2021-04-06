@@ -13,8 +13,13 @@ import { useRecoilValue } from "recoil";
 
 export default function RatingArticles(props: { article_id?: number|undefined }) {
 
-  const params = useParams<{ id: string }>();
-  console.log(params)
+  // const params = useParams<{ id: string }>();
+  // console.log(params)
+
+  const articleID = props.article_id;
+  console.log(articleID)
+
+  
   // const rate = useRecoilValue<IRating[]>(ratingListState);
 
     // const rate = [ {
@@ -109,7 +114,7 @@ export default function RatingArticles(props: { article_id?: number|undefined })
         //   return history.push(`/rating/:id` );
         // }
         
-        return history.push(`/rating`);
+        // return history.push(`/rating`);
       };  
       
 
@@ -125,7 +130,7 @@ export default function RatingArticles(props: { article_id?: number|undefined })
           <h1>{ ratingArticle } <Rating name="half-rating" defaultValue ={ratingArticle}  readOnly = {readonly}
             precision={1}/> </h1> 
           <p>Averge rating based on ( <strong> { nbrReviews} </strong>)</p>
-          
+          id === {articleID }
           { console.log("...", rate) }
               <Button
               variant="warning"
