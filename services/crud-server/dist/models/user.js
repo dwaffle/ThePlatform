@@ -59,11 +59,11 @@ exports.UserModel = {
         }
         if (user.user_facebook) {
             extraParams += `, user_facebook`;
-            extraValues += `, ${user.user_facebook}`;
+            extraValues += `, '${user.user_facebook}'`;
         }
         if (user.user_instagram) {
             extraParams += ", user_instagram";
-            extraValues += `, ${user.user_instagram}`;
+            extraValues += `, '${user.user_instagram}'`;
         }
         connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE() ${extraValues})`),
             function (err, result) {
