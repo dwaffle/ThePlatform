@@ -45,7 +45,8 @@ export default function HorizontalOrganizationList(props: {}) {
   useEffect(() => {
     api.organization.get().then((response) => {
       setAllOrgs(response.data)
-      setReverseOrgs(response.data.reverse())
+      setReverseOrgs(response.data)
+      reverseOrgs?.reverse()
     })
   }, [])
 
@@ -63,7 +64,7 @@ export default function HorizontalOrganizationList(props: {}) {
           <Row>
             <Col>
               {' '}
-              <Button href="/NewOrganizationPage" className="new-org-button">Create New</Button>
+              <Button href="/NewOrganizationPage" className="new-org-button" variant="success">Create New</Button>
             </Col>
           </Row>
         </Form>

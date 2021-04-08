@@ -12,6 +12,12 @@ export default function TrendingOrganization(props: {}) {
   const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>()
   const history = useHistory()
 
+  function onClickHandler(id:number){
+    return function(){
+      history.push(`/IndividualOrganizationPage/${id}`)
+    }
+  }
+
   return (
     <>
       <Row>
@@ -48,7 +54,7 @@ export default function TrendingOrganization(props: {}) {
               </thead>
               <tbody>
                 {reverseOrgs ? reverseOrgs.map((data) => {
-                  return (<tr onClick={onClickHandler(data.ord_id)}>
+                  return (<tr>
                   <td>{data.ord_id}</td>
                   <td>{data.org_title}</td>
                 </tr>)
