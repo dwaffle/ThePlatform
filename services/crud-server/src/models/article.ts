@@ -11,6 +11,9 @@ var connection = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 })
 
+// import { MysqlConnection } from '../connection'
+
+// var myConnection =  new MysqlConnection();
 
 //Id and date of creation are generated for us by the SQL query.  user_firstName and user_lastName are used when getting an article back.
 export interface IArticle {
@@ -30,8 +33,9 @@ export interface IArticle {
 }
 
 export const ArticleModel = {
-
+    
     getAll: async ():Promise<any> => {
+        // var connection = await myConnection.getClient()
         return new Promise((resolve, reject) => {
                 connection.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved, art_category, series_id from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
                     if(err){
@@ -44,6 +48,7 @@ export const ArticleModel = {
     },
 
     getById: async ( articleId:number ): Promise<any> => {
+        // var connection = await myConnection.getClient()
         return new Promise((resolve, reject) => {
             
             connection.query(`SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved from article a JOIN user u on a.user_author = u.user_id WHERE art_id = ${articleId}`, function(err:any, result: any){
@@ -63,6 +68,7 @@ export const ArticleModel = {
     // },
 
     publish: async ( article:IArticle) => {
+        // var connection = await myConnection.getClient()
         return new Promise<any>((resolve, reject) => {
             connection.query(`UPDATE article SET art_is_approved = 1 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
                 if(err){
@@ -76,6 +82,7 @@ export const ArticleModel = {
     },
 
     unpublish: async ( article:IArticle) => {
+        // var connection = await myConnection.getClient()
         return new Promise<any>((resolve, reject) => {
             connection.query(`UPDATE article SET art_is_approved = 0 WHERE art_id = ${article.art_id}`, function(err:any, result:any){
                 if(err){

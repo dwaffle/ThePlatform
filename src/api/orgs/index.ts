@@ -19,8 +19,8 @@ export default {
     });
   },
 
-  patch: async (id: string, body: any) => {
-    return axios.patch(`${HOSTNAME}/Organization/${id}`, body, {
+  patch: async (body: any) => {
+    return axios.patch(`${HOSTNAME}/organization/`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -28,7 +28,7 @@ export default {
   },
 
   delete: async (id: string) => {
-    return axios.delete(`${HOSTNAME}/Organization/${id}`, {
+    return axios.delete(`${HOSTNAME}/organization/${id}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },

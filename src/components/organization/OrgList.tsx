@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil';
+import { atom, useRecoilState, selector } from 'recoil';
 import { useEffect } from 'react';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
 import { IUser } from '../../../services/crud-server/src/models/user';
@@ -14,10 +14,15 @@ export const orgWithUsers = atom({
   default: [] as IUser[],
 });
 
-export function UseOrganizationList(orgId?: string) {
-  const [orgList, setOrgList] = useRecoilState<IOrganization[]>(orgListState);
 
-  const [usersInOrg, setUserList] = useRecoilState<IUser[]>(orgWithUsers);
+export function UseOrganizationList(orgId?:number) {
+  const [orgList, setOrgList] = useRecoilState<IOrganization[]>(
+    orgListState,
+  );
+
+  const [usersInOrg, setUserList] = useRecoilState<IUser[]>(
+    orgWithUsers,
+  );
 
   useEffect(() => {
     api.organization
@@ -29,21 +34,20 @@ export function UseOrganizationList(orgId?: string) {
   }, []);
 
   useEffect(() => {
-    const request = {
-      id: orgId,
-    };
-    api.orgs
+      const request = {
+      id: orgId
+      }
+      api.orgs
       .post(request)
       .then((response) => {
-        setUserList(response.data);
+        setUserList(response.data)
       })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+      .catch((error) => console.error(`Error: ${error}`))
+  }, [])
+
 
   return {
     orgList,
     setOrgList,
-    usersInOrg,
-    setUserList,
   };
 }
