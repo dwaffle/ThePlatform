@@ -33,6 +33,7 @@ export interface IOrganization {
     org_price: number;
     orgType_id: number;
     org_desc:string;
+    org_status?:number;
     // organization_status: boolean;
 }
 
