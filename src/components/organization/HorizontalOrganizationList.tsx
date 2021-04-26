@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
+import { Row, Col, Button, Form, Card, Table } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import api from '../../api';
 
@@ -40,10 +40,13 @@ const responsive = {
 export default function HorizontalOrganizationList(props: {}) {
 
   const [allOrgs, setAllOrgs] = useState<IOrganization[]>()
+  const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>()
   const history = useHistory()
   useEffect(() => {
     api.organization.get().then((response) => {
       setAllOrgs(response.data)
+      setReverseOrgs(response.data)
+      reverseOrgs?.reverse()
     })
   }, [])
 
@@ -60,18 +63,8 @@ export default function HorizontalOrganizationList(props: {}) {
         <Form>
           <Row>
             <Col>
-              <Form.Control as="select" defaultValue="Choose..." value="">
-                <option value="">Show All...</option>
-              </Form.Control>
-            </Col>
-            <Col>
-              <Form.Control placeholder="Search Product Name..." value="" />
-            </Col>
-            <Col></Col>
-            {/* Create a new organization */}
-            <Col>
               {' '}
-              <Button href="/NewOrganizationPage">Create New</Button>
+              <Button href="/NewOrganizationPage" className="new-org-button" variant="success">Create New</Button>
             </Col>
           </Row>
         </Form>
@@ -95,12 +88,56 @@ export default function HorizontalOrganizationList(props: {}) {
               </Card.Body>
             </Card>
               )
-            }) : <div>Please log in to see organizations.</div>
+            }) : <div>Please <a href="/login">log in</a> or <a href="/signup">sign up</a> to see organizations.</div>
           }
             </Carousel>
           </Col>
         </Row>
       </div>
+      <Row>
+        <Col>
+          <div className="trending-organization">
+            <h3>Trending Organization</h3>
+            <Table striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>organization</th>
+                </tr>
+              </thead>
+              <tbody>
+              {allOrgs ? allOrgs.map((data) => {
+                  return (<tr onClick={onClickHandler(data.ord_id)}>
+                  <td>{data.ord_id}</td>
+                  <td>{data.org_title}</td>
+                </tr>)
+              }) : <tr><td>You must be logged in to view organizations</td></tr>} 
+              </tbody>
+            </Table>
+          </div>
+        </Col>
+        <Col>
+          <div className="trending-organization">
+            <h3>Newest organizations</h3>
+            <Table striped bordered hover variant="info">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>organization</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reverseOrgs ? reverseOrgs.map((data) => {
+                  return (<tr onClick={onClickHandler(data.ord_id)}>
+                  <td>{data.ord_id}</td>
+                  <td>{data.org_title}</td>
+                </tr>)
+              }) : <tr><td>You must be logged in to view organizations</td></tr>}
+              </tbody>
+            </Table>
+          </div>
+        </Col>
+      </Row>
     </>
   );
 }

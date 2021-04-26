@@ -130,28 +130,25 @@ export default function SignupPage(props: {}) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group>
               <Form.Label>Instagram Handle</Form.Label>
               <Form.Control
                 className="instagram"
-                type="instagram"
                 placeholder="Enter Instagram Handle"
-                value={username}
+                value={instagramHandle}
                 onChange={(e) => setInstagramHandle(e.target.value)}
               />
+              <Form.Label>Facebook Handle</Form.Label>
               <Form.Control
                 className="facebook"
-                type="facebook"
                 placeholder="Enter Facebook Handle"
-                value={username}
+                value={facebookHandle}
                 onChange={(e) => setFacebookHandle(e.target.value)}
               />
+              <Form.Label>Twitter @</Form.Label>
               <Form.Control
                 className="twitter"
-                type="twitter"
                 placeholder="Enter Twitter Handle"
-                value={username}
+                value={twitterHandle}
                 onChange={(e) => setTwitterHandle(e.target.value)}
               />
             </Form.Group>
