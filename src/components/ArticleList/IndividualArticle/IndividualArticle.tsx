@@ -14,7 +14,7 @@ import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
 import paymentInfo from '../../../api/paymentInfo/paymentInfo';
 import user from '../../../api/user';
-import Rating from "../../rating/rating"
+import Rating from '../../rating/rating';
 
 const IndividualArticle = () => {
   //articles without id
@@ -104,7 +104,7 @@ const IndividualArticle = () => {
         <h1>{article?.art_title} </h1>
         {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
 
-        <Rating article_id = {article?.art_id} />
+        <Rating article_id={article?.art_id} />
         <div className="articleDetails">
           {article?.user_firstName + ' ' + article?.user_lastName}
 
@@ -127,7 +127,7 @@ const IndividualArticle = () => {
             ></img>
           </Col>
           <Col className="description">{article?.description}</Col>
-        </Row> 
+        </Row>
 
         <div>{article?.art_body}</div>
 

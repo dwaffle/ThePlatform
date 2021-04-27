@@ -126,6 +126,11 @@ export const ArticleModel = {
             patchedArticle += `artype_id = '${article.art_category}', `
         }
 
+        if (article.series_id){
+            patchedArticle += `series_id = '${article.series_id}', `
+        }
+
+
        
         //Take out the final ", " before actually sending the query
         patchedArticle = patchedArticle.slice(0, -2)

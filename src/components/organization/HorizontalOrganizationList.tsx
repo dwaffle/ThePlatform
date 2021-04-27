@@ -5,54 +5,51 @@ import api from '../../api';
 
 import { useHistory } from 'react-router-dom';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
-import "react-multi-carousel/lib/styles.css";
+import 'react-multi-carousel/lib/styles.css';
 //import Faq from '../components/OrganizationPage';
 import './style.scss';
-
 
 // export interface IOrganization {
 //     name: string;
 //     description: string;
 // }
 
-
-
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5
+    items: 5,
   },
   desktop: {
-    breakpoint: { max: 3000 , min: 1024 },
-    items: 4
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
+    items: 1,
+  },
 };
 
 export default function HorizontalOrganizationList(props: {}) {
-
-  const [allOrgs, setAllOrgs] = useState<IOrganization[]>()
-  const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>()
-  const history = useHistory()
+  const [allOrgs, setAllOrgs] = useState<IOrganization[]>();
+  const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>();
+  const history = useHistory();
   useEffect(() => {
     api.organization.get().then((response) => {
-      setAllOrgs(response.data)
-      setReverseOrgs(response.data.reverse())
-    })
-  }, [])
+      setAllOrgs(response.data);
+      setReverseOrgs(response.data);
+      reverseOrgs?.reverse();
+    });
+  }, []);
 
-  function onClickHandler(id:number){
-    return function(){
-      history.push(`/IndividualOrganizationPage/${id}`)
-    }
+  function onClickHandler(id: number) {
+    return function () {
+      history.push(`/IndividualOrganizationPage/${id}`);
+    };
   }
 
   return (
@@ -63,7 +60,13 @@ export default function HorizontalOrganizationList(props: {}) {
           <Row>
             <Col>
               {' '}
-              <Button href="/NewOrganizationPage" className="new-org-button">Create New</Button>
+              <Button
+                href="/NewOrganizationPage"
+                className="new-org-button"
+                variant="success"
+              >
+                Create New
+              </Button>
             </Col>
           </Row>
         </Form>
@@ -72,23 +75,34 @@ export default function HorizontalOrganizationList(props: {}) {
         <Row>
           <Col>
             <Carousel responsive={responsive}>
-            {allOrgs ? allOrgs.map((data) => {
-              
-              return (<Card bg="Light" style={{ width: '18rem' }}>
-              <Card.Header className="text-center p-3">
-                {data.org_title}
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  {data.org_desc}
-                  <br />
-                  <Button className="view-org-button" onClick={onClickHandler(data.ord_id)}>View Org</Button>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-              )
-            }) : <div>Please <a href="/login">log in</a> or <a href="/signup">sign up</a> to see organizations.</div>
-          }
+              {allOrgs ? (
+                allOrgs.map((data) => {
+                  return (
+                    <Card bg="Light" style={{ width: '18rem' }}>
+                      <Card.Header className="text-center p-3">
+                        {data.org_title}
+                      </Card.Header>
+                      <Card.Body>
+                        <Card.Text>
+                          {data.org_desc}
+                          <br />
+                          <Button
+                            className="view-org-button"
+                            onClick={onClickHandler(data.ord_id)}
+                          >
+                            View Org
+                          </Button>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  );
+                })
+              ) : (
+                <div>
+                  Please <a href="/login">log in</a> or{' '}
+                  <a href="/signup">sign up</a> to see organizations.
+                </div>
+              )}
             </Carousel>
           </Col>
         </Row>
@@ -105,12 +119,20 @@ export default function HorizontalOrganizationList(props: {}) {
                 </tr>
               </thead>
               <tbody>
-              {allOrgs ? allOrgs.map((data) => {
-                  return (<tr onClick={onClickHandler(data.ord_id)}>
-                  <td>{data.ord_id}</td>
-                  <td>{data.org_title}</td>
-                </tr>)
-              }) : <tr><td>You must be logged in to view organizations</td></tr>} 
+                {allOrgs ? (
+                  allOrgs.map((data) => {
+                    return (
+                      <tr onClick={onClickHandler(data.ord_id)}>
+                        <td>{data.ord_id}</td>
+                        <td>{data.org_title}</td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td>You must be logged in to view organizations</td>
+                  </tr>
+                )}
               </tbody>
             </Table>
           </div>
@@ -126,12 +148,20 @@ export default function HorizontalOrganizationList(props: {}) {
                 </tr>
               </thead>
               <tbody>
-                {reverseOrgs ? reverseOrgs.map((data) => {
-                  return (<tr onClick={onClickHandler(data.ord_id)}>
-                  <td>{data.ord_id}</td>
-                  <td>{data.org_title}</td>
-                </tr>)
-              }) : <tr><td>You must be logged in to view organizations</td></tr>}
+                {reverseOrgs ? (
+                  reverseOrgs.map((data) => {
+                    return (
+                      <tr onClick={onClickHandler(data.ord_id)}>
+                        <td>{data.ord_id}</td>
+                        <td>{data.org_title}</td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td>You must be logged in to view organizations</td>
+                  </tr>
+                )}
               </tbody>
             </Table>
           </div>

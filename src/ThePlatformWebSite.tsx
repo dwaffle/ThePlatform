@@ -15,7 +15,7 @@ import ChangePayment from './pages/ChangePaymentInfo';
 import EditProfilePage from './pages/EditProfilePage';
 import EditorPage from './components/EditorPage/EditorPage';
 import IndividualArticle from './components/ArticleList/IndividualArticle/IndividualArticle';
-import Rating from './components/rating/writeRating'
+import Rating from './components/rating/writeRating';
 // import getRating from './components/rating/rating'
 import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';

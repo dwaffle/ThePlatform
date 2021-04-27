@@ -14,15 +14,10 @@ export const orgWithUsers = atom({
   default: [] as IUser[],
 });
 
+export function UseOrganizationList(orgId?: number) {
+  const [orgList, setOrgList] = useRecoilState<IOrganization[]>(orgListState);
 
-export function UseOrganizationList(orgId?:number) {
-  const [orgList, setOrgList] = useRecoilState<IOrganization[]>(
-    orgListState,
-  );
-
-  const [usersInOrg, setUserList] = useRecoilState<IUser[]>(
-    orgWithUsers,
-  );
+  const [usersInOrg, setUserList] = useRecoilState<IUser[]>(orgWithUsers);
 
   useEffect(() => {
     api.organization
@@ -34,17 +29,16 @@ export function UseOrganizationList(orgId?:number) {
   }, []);
 
   useEffect(() => {
-      const request = {
-      id: orgId
-      }
-      api.orgs
+    const request = {
+      id: orgId,
+    };
+    api.orgs
       .post(request)
       .then((response) => {
-        setUserList(response.data)
+        setUserList(response.data);
       })
-      .catch((error) => console.error(`Error: ${error}`))
-  }, [])
-
+      .catch((error) => console.error(`Error: ${error}`));
+  }, []);
 
   return {
     orgList,

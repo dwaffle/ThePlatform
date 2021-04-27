@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import './style.scss';
 import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useArticleList } from './articleList';
-import { ISeries } from '../../../services/crud-server/src/models/series';
-import { ISearchFilter } from '../series/seriesPage';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import ArticleFilter from './ArticleFilter.ts/articleFilter';
 
@@ -59,32 +57,12 @@ export default function HorizontalArticles(props: { rows: number }) {
 
   return (
     <MainLayout>
-      <Row className="CardFeatured">
-        <Col>
-          <CardDeck>
-            <Card className="cardStyle">
-              <Card.Header className="cardHeader">
-                The card styling for all articles will be changed.
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                  <br />
-                  <a href=""> See more </a>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </CardDeck>
-        </Col>
-      </Row>
+      <Button onClick={isAuthor}>Create New </Button>
 
       {<ArticleFilter aSearchDispatch={setASearchFilter} />}
-
-      <Row></Row>
       {articleCol.map((col) => {
         return (
-          <div className="viewArticles">
+          <div>
             {col.map((art, index) => (
               <div key={index}>
                 <Card className="Card">
@@ -111,6 +89,7 @@ export default function HorizontalArticles(props: { rows: number }) {
           </div>
         );
       })}
+
     </MainLayout>
   );
 }

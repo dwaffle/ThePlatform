@@ -22,9 +22,13 @@
 .selectedArticle {
     width: 80%;
     margin: 1vw;
-    // margin-top: 3.4vh;
+    margin-top: 0px;
     height: 10%;
-    border: 1px black solid;
+
+    .FormLabels {
+        font-size: 1.3rem;
+    }
+    
 }
 
 
@@ -35,7 +39,7 @@
 // }
 
 .description {
-    min-height: 12vh;
+    min-height: 15vh;
     overflow-y: scroll;
 }
 
