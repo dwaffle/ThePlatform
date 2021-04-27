@@ -89,7 +89,6 @@ export default function HorizontalArticles(props: { rows: number }) {
           </div>
         );
       })}
-
     </MainLayout>
   );
 }

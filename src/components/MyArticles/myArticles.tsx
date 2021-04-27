@@ -104,7 +104,7 @@ function MyArticles() {
         description: article?.description,
         user_author: article?.user_author,
         art_body: article?.art_body,
-        series_id: article?.series_id
+        series_id: article?.series_id,
       };
       //Send object.
       api.article.patch(articlePatch);
@@ -125,6 +125,14 @@ function MyArticles() {
     }
 
     return seriesID;
+  };
+
+  const seriesStatus = (seriesID: any) => {
+    if (seriesID == 1) {
+      return 'Approved';
+    }
+
+    return 'Pending';
   };
 
   function newSeries() {
@@ -155,7 +163,7 @@ function MyArticles() {
                       defaultValue={art.art_id}
                     >
                       <td>{art.art_title}</td>
-                      <td>{art.art_is_approved}</td>
+                      <td>{seriesStatus(art.art_is_approved)}</td>
                       <td> {seriesNull(art.series_id)}</td>
                     </tr>
                   ))}
@@ -198,9 +206,7 @@ function MyArticles() {
                   <option value="null">Select Series..</option>
                   {userOwnsSeries.map((s) => {
                     return (
-                      <option value={s.series_id}>
-                        {s.series_title}
-                      </option>
+                      <option value={s.series_id}>{s.series_title}</option>
                     );
                   })}
                 </Form.Control>
@@ -241,7 +247,6 @@ function MyArticles() {
               </Form.Group>
             </Col>
           </Row>
-   
           <Form.Group>
             <Form.Label className="FormLabels">Article Description</Form.Label>
             <Form.Control

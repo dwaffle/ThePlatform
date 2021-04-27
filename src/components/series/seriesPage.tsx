@@ -111,7 +111,6 @@ export default function SeriesPage(props: { rows?: number }) {
                           <Link to={`/series/${series.series_title}`}>
                             {series.series_title}
                           </Link>
-        
                         </Card.Title>
 
                         <Card.Text className="scText">
