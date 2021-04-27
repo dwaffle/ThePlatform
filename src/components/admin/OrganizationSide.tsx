@@ -7,7 +7,7 @@ import api from '../../api';
 
 
 export default function OrganizationSide(props: {}) {
- 
+
   const history = useHistory()
   // cost get_orgList = orgList
   const [orgs, setOrgs] = useState<IOrganization[]>([])
@@ -15,34 +15,32 @@ export default function OrganizationSide(props: {}) {
   const [selectedOrg, setSelectedOrg] = useState<IOrganization>()
 
   
-  // function to select and set an article from the pending list
-  function  ShowOnClick (id: number) {
-    // console.log("++++++++" + e.target.index)
-  let selected:any = orgs.filter((org) => org.ord_id == id)
-     setSelectedOrg(selected); 
+    function  onClick (selected:IOrganization) {
+      
+      return function(){
+
+            // let selected = orgs.filter((org) => org.ord_id == id)
+            setSelectedOrg(selected);          
+
+      }
   };
 
 
-  // const showSelectedOrg = () => {
-   
-  // };
-
-   //api patch request
-  // function patchOrg() {
-  //   let updatedArticle = {
-  //     org_status: Number(selectedOrg),
-  //     ord_id: selectedOrg?.ord_id,
-  //   };
-  //   console.log('patch', updatedArticle);
-  //   api.article.patch(updatedArticle);
-  //   history.push('/editor');
-  //   return;
-  // }
-
-
+  //  api put request
+  function putOrg(status:number) {
+    let updatedOrg = {
+      org_status: status,
+      ord_id: selectedOrg?.ord_id,
+    };
+    
+    api.organization.put(updatedOrg);
+    history.push('/admin');
+    return;
+  }
+ 
 
   useEffect(() => {
-  
+    
     api.organization.get().then((response) => {
       setOrgs(response.data)
     })
@@ -50,7 +48,26 @@ export default function OrganizationSide(props: {}) {
   }, [])
 
   let approvedOrRejected = (e: any) => {
-    setOrgs(e.target.value);
+    
+    if (selectedOrg && e.target.value != selectedOrg.org_status ){
+      e.preventDefault();
+      putOrg(e.target.value);
+      window.location.reload(false);
+    }
+
+    else if ( e.target.value == selectedOrg?.org_status && selectedOrg?.org_status == 0 ){
+      alert( "pls, chose another item, you cant band it again.")
+    }
+
+    else if ( e.target.value == selectedOrg?.org_status && selectedOrg?.org_status == 1 ){
+      alert( "pls, chose another item, its Approved organisation")
+    }
+
+    else {
+      alert( "pls, you didnt select any item, chose one to go ")
+    }
+    
+
   };
 
   return (
@@ -72,7 +89,7 @@ export default function OrganizationSide(props: {}) {
               
                 key={org.ord_id}
                 defaultValue={org.ord_id}
-                // onClick={ShowOnClick(org.ord_id)}
+                onClick={onClick(org)}
   
               >
                 <td > { org.org_title }</td>
@@ -87,46 +104,37 @@ export default function OrganizationSide(props: {}) {
       </Row>
 
       <Row>
-      <Col xs={4}>
+        <Col xs={4}>
               <Button
                 variant="primary"
                 block
                 value="0"
                 name="status"
                 onClick={approvedOrRejected} >
-                Reject Article
+                Band Organisation
               </Button>
+
               <Button
                 variant="primary"
                 block
                 value="1"
                 name="status"
                 onClick={approvedOrRejected} >
-                Approve Article
+                Approved Organisation
               </Button>
-            </Col>
+        </Col>
 
-            <Col xs={8}>
+        <Col xs={8}>
 
-            {/* {selectedOrg.map((selected) => { */}
-            {orgs.map((selected) => {
-             
-             return (
-
-              <CardDeck>
+            <CardDeck>
               <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header>Selected Organistion </Card.Header>
                 <Card.Body>
-                  <Card.Title>{selected.org_title } </Card.Title>
-                  <Card.Text>{selected.org_desc } </Card.Text>
+                  <Card.Title>{selectedOrg?.org_title } </Card.Title>
+                  <Card.Text>{selectedOrg?.org_desc } </Card.Text>
                 </Card.Body>
               </Card>
               </CardDeck>              
-             )
-
-
-            })}
-           
         </Col>
       </Row>
     </>

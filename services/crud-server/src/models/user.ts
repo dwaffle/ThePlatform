@@ -65,6 +65,17 @@ export const UserModel = {
     })
     },
 
+    // getMembersInOrganisation: ():Promise<IUser[]> => {
+    //     return new Promise((resolve, reject) => {connection.query('SELECT * FROM user', function(err:any, result:any){
+    //         if(err){
+    //             reject(err);
+    //         } else {
+    //             resolve(result);
+    //         }
+    //     })
+    // })
+    // },
+
     getAllWithoutPassword: ():any => {
         return new Promise<any>((resolve, reject) => {connection.query('SELECT user_id, user_type, payout_id, user_userName, user_firstName, user_lastName, user_email, user_creation_date FROM user')
     , function(err:any, result:any){

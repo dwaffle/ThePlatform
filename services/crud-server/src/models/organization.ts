@@ -43,12 +43,17 @@ export interface IOrgModificationRequest{
     addUser:boolean
 }
 
+export interface IOrgUpdatedRequest{
+    ord_id:number
+    org_status:number
+}
+
 
 
 export const OrganizationModel = {
 
     getAll: ():Promise<IOrganization[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT * FROM organization', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.query('select * from organization ORDER BY org_status DESC, org_title ASC', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -108,10 +113,20 @@ export const OrganizationModel = {
     }
     },
 
-  
-    update: async ( Organization:IOrganization) => {
+    update: async ( Organization:IOrgUpdatedRequest) => {
 
-        return;
+        // var connection = await myConnection.getClient()
+        return new Promise<any>((resolve, reject) => {
+            console.log(`UPDATE organization SET org_status = ${Organization.org_status} WHERE ord_id = ${Organization.ord_id}`)
+            connection.query(`UPDATE organization SET org_status = ${Organization.org_status} WHERE ord_id = ${Organization.ord_id}`, 
+            function(err:any, result:any){
+                if(err){
+                    throw err
+                } else {
+                    result
+                }
+            })
+        })
 
     },
 

@@ -34,4 +34,12 @@ export default {
       },
     });
   },
+
+  put: async (body: any) => {
+    return axios.put(`${HOSTNAME}/organization`, body,{
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    });
+  },
 };
