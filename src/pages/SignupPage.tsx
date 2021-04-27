@@ -108,21 +108,24 @@ export default function SignupPage(props: {}) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </Col>
+                  </Col>
               </Row>
             </Form.Group>
             <Form.Group>
               <Form.Label>Username*</Form.Label>
-              <Form.Control
-                className="username"
-                type="username"
-                placeholder="Enter Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
+              <div className="form-narrow">
+                <Form.Control
+                  className="username"
+                  type="username"
+                  placeholder="Enter Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
             </Form.Group>
             <Form.Group>
               <Form.Label>Password*</Form.Label>
+              <div className="form-narrow">
               <Form.Control
                 className="password"
                 type="password"
@@ -130,27 +133,34 @@ export default function SignupPage(props: {}) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              </div>
               <Form.Label>Instagram Handle</Form.Label>
-              <Form.Control
-                className="instagram"
-                placeholder="Enter Instagram Handle"
-                value={instagramHandle}
-                onChange={(e) => setInstagramHandle(e.target.value)}
-              />
+              <div className="form-narrow">
+                <Form.Control
+                  className="instagram"
+                  placeholder="Enter Instagram Handle"
+                  value={instagramHandle}
+                  onChange={(e) => setInstagramHandle(e.target.value)}
+                />
+              </div>
               <Form.Label>Facebook Handle</Form.Label>
-              <Form.Control
-                className="facebook"
-                placeholder="Enter Facebook Handle"
-                value={facebookHandle}
-                onChange={(e) => setFacebookHandle(e.target.value)}
-              />
+              <div className="form-narrow">
+                <Form.Control
+                  className="facebook"
+                  placeholder="Enter Facebook Handle"
+                  value={facebookHandle}
+                  onChange={(e) => setFacebookHandle(e.target.value)}
+                />
+              </div>
               <Form.Label>Twitter @</Form.Label>
+              <div className="form-narrow">
               <Form.Control
                 className="twitter"
                 placeholder="Enter Twitter Handle"
                 value={twitterHandle}
                 onChange={(e) => setTwitterHandle(e.target.value)}
               />
+              </div>
             </Form.Group>
             <InputGroup>
               <InputGroup.Prepend>

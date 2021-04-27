@@ -24,8 +24,8 @@ const responsive = {
     items: 5
   },
   desktop: {
-    breakpoint: { max: 3000 , min: 1024 },
-    items: 4
+    breakpoint: { max: 2000 , min: 768 },
+    items: 5
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -56,6 +56,13 @@ export default function HorizontalOrganizationList(props: {}) {
     }
   }
 
+  function showCreateOrgButton(){
+    const id = window.localStorage.getItem('id');
+    if(Number(id) !== 2){
+      return <Button href="/NewOrganizationPage" className="new-org-button" variant="success">Create New</Button>
+    }
+  }
+
   return (
     <>
       {' '}
@@ -64,7 +71,7 @@ export default function HorizontalOrganizationList(props: {}) {
           <Row>
             <Col>
               {' '}
-              <Button href="/NewOrganizationPage" className="new-org-button" variant="success">Create New</Button>
+              
             </Col>
           </Row>
         </Form>
