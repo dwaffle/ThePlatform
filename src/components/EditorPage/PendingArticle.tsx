@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Row,
@@ -8,13 +8,13 @@ import {
   Form,
   Card,
   CardDeck,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { IArticle } from "../../../services/crud-server/src/models/article";
-import api from "../../api";
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { IArticle } from '../../../services/crud-server/src/models/article';
+import api from '../../api';
 
-import "./style.scss";
+import './style.scss';
 
 // export default function PendingArticleList(props: { rows: number }) {
 //   const [article, setArticle] = useState<IArticle[]>([]);

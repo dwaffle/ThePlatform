@@ -100,11 +100,11 @@ function MyArticles() {
       let articlePatch = {
         art_price: Number(price),
         artype_id: Number(hasPrice),
-        art_title: title,
-        description: description,
-        user_author: user_id,
-        art_body: body,
-        series_id: series,
+        art_title: article?.art_title,
+        description: article?.description,
+        user_author: article?.user_author,
+        art_body: article?.art_body,
+        series_id: article?.series_id,
       };
       //Send object.
       api.article.patch(articlePatch);
@@ -127,6 +127,14 @@ function MyArticles() {
     return seriesID;
   };
 
+  const seriesStatus = (seriesID: any) => {
+    if (seriesID == 1) {
+      return 'Approved';
+    }
+
+    return 'Pending';
+  };
+
   function newSeries() {
     return history.push('/seriesCreation');
   }
@@ -135,7 +143,7 @@ function MyArticles() {
     <MainLayout>
       <Row className="pageSize">
         <div className="userArticleList">
-          <h5> My Articles </h5>
+          {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
               <Table striped bordered hover /*variant="warning"*/>
@@ -155,7 +163,7 @@ function MyArticles() {
                       defaultValue={art.art_id}
                     >
                       <td>{art.art_title}</td>
-                      <td>{art.art_is_approved}</td>
+                      <td>{seriesStatus(art.art_is_approved)}</td>
                       <td> {seriesNull(art.series_id)}</td>
                     </tr>
                   ))}
@@ -172,90 +180,75 @@ function MyArticles() {
 
         <Col className="selectedArticle">
           <Form.Group>
-            <Form.Label>Article Title</Form.Label>
+            <Form.Label className="FormLabels">Article Title</Form.Label>
             <Form.Control
               type="Title"
               defaultValue={article?.art_title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
-          <Form.Row className="radioButtons">
-            <Form.Group>
-              <input
-                type="radio"
-                name="articleType"
-                value="1"
-                onChange={(e) => setChecked(ArticleType.FREE)}
-              />
-              <label>All Members </label>
-            </Form.Group>
-
-            <Form.Group>
-              <input
-                type="radio"
-                name="articleType"
-                value="3"
-                onChange={(e) => setChecked(ArticleType.PAIDMEMBERS)}
-              />
-              <label> Paid Members Only </label>
-            </Form.Group>
-
-            <Form.Group>
-              <input
-                type="radio"
-                name="articleType"
-                value="2"
-                onChange={(e) => setChecked(ArticleType.PURCHASED)}
-              />
-              <label> Priced Article: </label>
-            </Form.Group>
-
-            <Form.Group className="priceBox">
-              Price
-              {showPrice(price)}
-            </Form.Group>
-          </Form.Row>
           <Row>
             <Col>
               <Form.Group>
-                <Form.Label>Category</Form.Label>
+                <Form.Label className="FormLabels">Category</Form.Label>
                 <Form.Control as="select" onChange={changeCategory}>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
                   <option value="Sci-Fi"> Sci-Fi </option>
                   <option value="Science"> Science </option>
                   <option value="Beauty"> Beauty </option>
+                  <option value="Beauty"> Humour </option>
                 </Form.Control>
               </Form.Group>
-            </Col>
-            <Col>
               <Form.Group>
-                <Form.Label>Tags</Form.Label>
-                <Form.Control as="select">
-                  <option>Will Change this.. </option>
-                </Form.Control>
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group>
-                <Form.Label>Series</Form.Label>
+                <Form.Label className="FormLabels">Series</Form.Label>
                 <Form.Control as="select" onChange={onChangeSeries}>
                   <option value="null">Select Series..</option>
                   {userOwnsSeries.map((s) => {
                     return (
-                      <option value={s.series_id}>
-                        {s.series_title}({s.series_id})
-                      </option>
+                      <option value={s.series_id}>{s.series_title}</option>
                     );
                   })}
                 </Form.Control>
               </Form.Group>
             </Col>
+
+            <Col>
+              <Form.Label className="FormLabels">Article Type </Form.Label>
+              <Form.Group>
+                <input
+                  type="radio"
+                  name="articleType"
+                  value="1"
+                  onChange={(e) => setChecked(ArticleType.FREE)}
+                />
+                <label>All Members </label>
+              </Form.Group>
+
+              <Form.Group>
+                <input
+                  type="radio"
+                  name="articleType"
+                  value="3"
+                  onChange={(e) => setChecked(ArticleType.PAIDMEMBERS)}
+                />
+                <label> Paid Members Only </label>
+              </Form.Group>
+
+              <Form.Group>
+                <input
+                  type="radio"
+                  name="articleType"
+                  value="2"
+                  onChange={(e) => setChecked(ArticleType.PURCHASED)}
+                />
+                <label> Priced Article: $ </label>
+                {showPrice(price)}
+              </Form.Group>
+            </Col>
           </Row>
           <Form.Group>
-            <Form.Label>Article Description</Form.Label>
+            <Form.Label className="FormLabels">Article Description</Form.Label>
             <Form.Control
               as="textarea"
               className="description"
@@ -265,7 +258,7 @@ function MyArticles() {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Article Body</Form.Label>
+            <Form.Label className="FormLabels">Article Body</Form.Label>
             <Form.Control
               as="textarea"
               className="body"
