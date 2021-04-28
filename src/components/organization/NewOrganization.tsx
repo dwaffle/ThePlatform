@@ -21,7 +21,9 @@ export default function NewOrganizationForm(props: {}) {
       Number(orgPrice) >= 0 &&
       orgDesc !== undefined
     ) {
+      const user = window.localStorage.getItem("user_id")
       const orgToSubmit = {
+        org_creator: user,
         org_title: orgName,
         org_price: orgPrice,
         org_desc: orgDesc,

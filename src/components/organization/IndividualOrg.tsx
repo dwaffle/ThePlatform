@@ -15,7 +15,9 @@ interface IIndividuals {
   user_id: number;
   ord_id: number;
   user_userName: string;
+  user_rank: number;
 }
+
 
 const IndividualOrg = () => {
   const history = useHistory();
@@ -52,6 +54,7 @@ const IndividualOrg = () => {
       const request = {
         ord_id: params.id,
         user_id: currentUser,
+        user_role: 3,
         addUser: true,
       };
       api.orgs.patch(request);

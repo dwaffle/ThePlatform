@@ -33,6 +33,7 @@ export interface IOrganization {
     org_price: number;
     orgType_id: number;
     org_desc:string;
+    user_id?:number;
     // organization_status: boolean;
 }
 
@@ -129,6 +130,16 @@ export const OrganizationModel = {
                     result;
                 }
             });
+            if(Organization.user_id){
+                connection.query(`INSERT INTO organization_has_user (ord_id, user_id, user_role) VALUES (${Organization.ord_id}, ${Organization.user_id}, )`,
+                function(err:any, result:any){
+                    if(err){
+                        throw err;
+                    } else {
+                        result;
+                    }
+                })
+        }
     },
 
     delete: async ( organization:IOrganization ) => {

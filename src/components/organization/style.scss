@@ -44,10 +44,6 @@
     width: 100px;
 }
 
-.new-org-button{
-    float: right;
-}
-
 .org-card{
     display:inline-block;
     min-height: 220px;
@@ -56,4 +52,14 @@
 .view-org-button{
     position: absolute;
     bottom: 10px;
+}
+
+.trending-organization{
+    width: 50%;
+}
+
+.text-center{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
