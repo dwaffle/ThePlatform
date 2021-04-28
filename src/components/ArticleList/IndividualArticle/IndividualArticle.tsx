@@ -103,8 +103,9 @@ const IndividualArticle = () => {
       <section>
         <h1>{article?.art_title} </h1>
         {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
-
-        <Rating article_id = {article?.art_id} />
+          {/* {console.log("id+++++" +article?.art_id)} */}
+          
+        { article && <Rating article_id = {article.art_id} />}
         <div className="articleDetails">
           {article?.user_firstName + ' ' + article?.user_lastName}
 

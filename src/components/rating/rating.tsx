@@ -10,35 +10,22 @@ import { useRecoilValue } from "recoil";
 
 
 
-export default function RatingArticles(props: { article_id?: number }) {
+export default function RatingArticles(props: { article_id: any }) {
 
-  // const params = useParams<{ id: string }>();
-  // console.log(params)
-
-  const articleID = props.article_id;
- 
-  
-    const rate = useRatingList().ratingList;
-    
-    const nbrReviews = rate.length;
-
-    
-    //  const myRate = rate.find((_rat) => _rat.article_art_id === articleID);
+    const articleID = props.article_id;
    
+    const rate = useRatingList().ratingList;
 
-    // let  ratingArticle = calculateRating( 
-    //   myRate.map((_rat)=> {
-    //     return Number(_rat.rating_value)
-    //   })
-    // )
+    const myRate = rate.filter((_rat) => _rat.article_art_id === articleID);
+   
+    const nbrReviews = myRate.length;
 
-    let ratingArticle = calculateRating( 
-      rate.map((_rat)=> {
+    let  ratingArticle = calculateRating( 
+      myRate.map((_rat)=> {
         return Number(_rat.rating_value)
       })
     )
-   
- 
+
     const history = useHistory();
     const user_id = window.localStorage.getItem("user_id")
     const [rating, setRating] = useState(ratingArticle);
@@ -78,20 +65,20 @@ export default function RatingArticles(props: { article_id?: number }) {
         //   return history.push(`/rating/:id` );
         // }
         
-        return history.push(`/rating`);
+        return history.push(`/rating/${articleID}`);
       };  
       
 
     
-    // useEffect(() => {
-    //     // setRating(RatingArticlesList.find((rating) => rating === params.id));
-    // }, []);
+    useEffect(() => {
+        // setRating(RatingArticlesList.find((rating) => rating === params.id));
+    }, []);
 
     return (
       <div className ="rating "> 
           <h2>Customer Ratings</h2>
          
-          <h1>{ ratingArticle } <Rating name="half-rating" defaultValue ={ratingArticle}  readOnly = {readonly}
+          <h1>{ ratingArticle } <Rating name="half-rating" defaultValue ={rating}  readOnly = {readonly}
             precision={1}/> </h1> 
           <p>Averge rating based on ( <strong> { nbrReviews} </strong>)</p>
         

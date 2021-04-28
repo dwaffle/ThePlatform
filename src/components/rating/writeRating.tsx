@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card, CardDeck, Form } from "react-bootstrap";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import MainLayout from "../../layouts/MainLayout";
 // import Rating from "react-rating"
 import { Rating } from "@material-ui/lab";
@@ -16,12 +16,16 @@ const user_id = Number(window.localStorage.getItem("user_id"))
 
 export default function WriteRating(props: {}) {
 
-  
   const history = useHistory();
-  const articleID = 56;
-  console.log(articleID)
+  const {id} = useParams<{ id: string }>();
+ 
+ 
+  console.log(Number(id))
 
   const rate = useRecoilValue<IRating[]>(ratingListState);
+  const myRate = rate.filter((_rat) => _rat.article_art_id === Number(id));
+
+  console.log(myRate);
   // const [rating, setRating] = useState(rate);
   const [title, setTitle] = useState<string>("no Title");
   const [review, setReview] = useState<string>("no Review");
@@ -35,7 +39,7 @@ export default function WriteRating(props: {}) {
     user_user_id: user_id,
     rating_review: review,
     rating_value: ratingValue,
-    article_art_id: articleID
+    article_art_id: id
   }
 
   const onChangeTitle = (e: any) => {
@@ -109,7 +113,7 @@ export default function WriteRating(props: {}) {
       <hr/>
        
       
-      {  rate.map((_rat)=> {
+      {  myRate.map((_rat)=> {
         return (
           <div  >
            <CardDeck className ="Card">

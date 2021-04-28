@@ -46,7 +46,7 @@ export default function ThePlatformWebsite(props: {}) {
         <Route path="/profile" component={Profile} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/organization" component={Organization} />
-        <Route path="/rating" component={writeRating} />
+        <Route path="/rating/:id" component={writeRating} />
         <Route path="/articles/:id" exact component={IndividualArticle} />
         <Route path="/individualOrganizationPage/:id" component={IndividualOrganizationPage}/>
         <Route path="/articles" exact component={HorizontalArticles} />
