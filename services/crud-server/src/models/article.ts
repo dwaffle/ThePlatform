@@ -104,10 +104,10 @@ export const ArticleModel = {
         }
         //Need to figure out which items, and therefore how to structure the query.
         if (article.art_title){
-            patchedArticle += `art_title = '${article.art_title}', '`
+            patchedArticle += `art_title = '${article.art_title}', `
         }
         if (article.art_price){
-            patchedArticle += `art_price = '${article.art_price}`
+            patchedArticle += `art_price = ${article.art_price}, `
         }
 
         if (article.description){
@@ -119,26 +119,25 @@ export const ArticleModel = {
         }
 
         if (article.artype_id){
-            patchedArticle += `artype_id = '${article.artype_id}`
+            patchedArticle += `artype_id = ${article.artype_id}, `
         }
 
         if (article.art_category){
-            patchedArticle += `artype_id = '${article.art_category}', `
+            patchedArticle += `art_category = '${article.art_category}', `
         }
 
         if (article.series_id){
-            patchedArticle += `series_id = '${article.series_id}', `
+            patchedArticle += `series_id = ${article.series_id}, `
         }
 
-
-       
         //Take out the final ", " before actually sending the query
         patchedArticle = patchedArticle.slice(0, -2)
+        console.log(patchedArticle)
         connection.query(`UPDATE article SET ${patchedArticle} WHERE art_id = ${article.art_id}`, function(err:any, result:any){
-                if(err){
-                    reject(err);
-                }
-            })
+            if(err){
+                reject(err);
+            }
+        })
     },
 
     create: async( articleToCreate:IArticle) => {

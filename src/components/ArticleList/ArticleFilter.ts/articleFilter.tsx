@@ -63,7 +63,7 @@ export default function ArticleFilter(props: {
           </Col>
           <Col>
             <Form.Control
-              placeholder="Search Series Name..."
+              placeholder="Search Article Name..."
               value={searchTerm}
               onChange={onChangeSearchTerm}
             />
