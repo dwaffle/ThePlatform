@@ -1,7 +1,6 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { PaginationItem, Rating } from '@material-ui/lab';
-import Pagination from '@material-ui/lab/Pagination';
+import Carousel from 'react-multi-carousel';
 import {
   Card,
   CardDeck,
@@ -40,7 +39,7 @@ export default function SeriesPage(props: { rows?: number }) {
       background: 'rgba(0, 0, 0, 0.5)',
       backgroundImage:
         'url(https://www.wholelifechallenge.com/wp-content/uploads/2018/06/e-book-header.jpg)',
-      height: '28vh',
+      height: '35vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
@@ -76,23 +75,89 @@ export default function SeriesPage(props: { rows?: number }) {
     setSeriesRows(rows);
   }, [props.rows, searchFilter]);
 
-  const [page, setPage] = useState(1);
+  function onClickHandler(id: any) {
+    return function () {
+      history.push(`/series/${id}`);
+    };
+  }
 
-  const handlePageChange = (event: any, value: any) => {
-    setPage(value);
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 6,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 6,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+    },
   };
 
   return (
     <>
       <div style={test.header}>
-        <h2>Series</h2>
+        <p className="h8tch2">Series</p>
       </div>
 
       <div className="searchFilter">
         {<SeriesFilter searchDispatch={setSearchFilter} />}
       </div>
 
-      <div className="seriesBody">
+      <div className="search-filter">
+        <Row>
+          <Col>
+            <Carousel responsive={responsive}>
+              {seriesList ? (
+                seriesList.map((data) => {
+                  return (
+                    //   <>
+                    //     {data.map((series, index) => (
+                    <Card
+                      bg="Light"
+                      className="org-card"
+                      style={{ width: '18rem' }}
+                    >
+                      <Card.Header className="text-center p-3">
+                        {data.series_title}
+                      </Card.Header>
+
+                      <Card.Body>
+                        <Card.Text>
+                          {data.series_desc}
+                          <br />
+                          <Button
+                            className="view-org-button"
+                            onClick={onClickHandler(data.series_title)}
+                          >
+                            View Series
+                          </Button>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                    //     ))}
+                    // //   </>
+                  );
+                })
+              ) : (
+                <div>
+                  Please <a href="/login">log in</a> or{' '}
+                  <a href="/signup">sign up</a> to see organizations.
+                </div>
+              )}
+            </Carousel>
+          </Col>
+        </Row>
+      </div>
+
+      {/* <div className="seriesBody">
         {seriesRows.map((row) => {
           return (
             <div className="scCardDeck">
@@ -116,13 +181,7 @@ export default function SeriesPage(props: { rows?: number }) {
                         <Card.Text className="scText">
                           {series.series_desc}
                         </Card.Text>
-                        {/* <ListGroup.Item>
-                          <Rating
-                            name="half-rating"
-                            defaultValue={2.5}
-                            precision={1}
-                          />
-                        </ListGroup.Item> */}
+              
                         <Card.Footer className="scFooter">
                           {series.series_category}
                         </Card.Footer>
@@ -134,16 +193,9 @@ export default function SeriesPage(props: { rows?: number }) {
             </div>
           );
         })}
-        <Pagination
-          componentName="scCardDeck"
-          className="scPagin"
-          page={page}
-          variant="outlined"
-          shape="rounded"
-          onChange={handlePageChange}
-        />
+ 
         <Row></Row>
-      </div>
+      </div> */}
     </>
   );
 }

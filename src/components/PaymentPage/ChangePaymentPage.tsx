@@ -96,17 +96,16 @@ export default function ChangePaymentPage(props: {}) {
       <Form>
         <Row>
           <Col md={3}>
-          
             Cardholder First Name:{' '}
-          <div className="form-med">
-            <Form.Control  onChange={(e) => setFirstName(e.target.value)} />
-          </div>
+            <div className="form-med">
+              <Form.Control onChange={(e) => setFirstName(e.target.value)} />
+            </div>
           </Col>
           <Col className="lastName">
             Cardholder Last Name:{' '}
-              <div className="form-narrow">
-                <Form.Control onChange={(e) => setLastName(e.target.value)} />
-              </div>
+            <div className="form-narrow">
+              <Form.Control onChange={(e) => setLastName(e.target.value)} />
+            </div>
           </Col>
         </Row>
         <Row>

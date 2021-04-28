@@ -171,10 +171,10 @@ export default function EditProfilePage(props: {}) {
           <Col>
             Edit Last Name:{' '}
             <div className="form-narrow">
-            <Form.Control
-              placeholder={displayLastName()}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+              <Form.Control
+                placeholder={displayLastName()}
+                onChange={(e) => setLastName(e.target.value)}
+              />
             </div>
           </Col>
         </Row>
@@ -193,10 +193,10 @@ export default function EditProfilePage(props: {}) {
           <Col>
             Change Instagram{' '}
             <div className="form-narrow">
-            <Form.Control
-              placeholder={displayInstagram()}
-              onChange={(e) => setUserInstagram(e.target.value)}
-            ></Form.Control>
+              <Form.Control
+                placeholder={displayInstagram()}
+                onChange={(e) => setUserInstagram(e.target.value)}
+              ></Form.Control>
             </div>
           </Col>
         </Row>

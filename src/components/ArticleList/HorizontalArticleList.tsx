@@ -65,7 +65,7 @@ export default function HorizontalArticles(props: { rows: number }) {
           <div>
             {col.map((art, index) => (
               <div key={index}>
-                <Card className="Card">
+                <Card className="CardArt">
                   <Card.Header className="CardHeader">
                     {' '}
                     <Link to={`/articles/${art.art_title}`}>

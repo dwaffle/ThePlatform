@@ -2,8 +2,8 @@ import { ArticleModel } from "../../../models/article";
 import {authenticateToken} from '../../../middleware/authenticator'
 
 //actually patch for myArticles
-export function put( app:any ){
-    app.put("/articles", authenticateToken, async ( request:any, response:any ) => {
+export function put ( app:any ){
+    app.put("/articles", async ( request:any, response:any ) => {
         const payload = request.body;
         console.log(payload);
         ArticleModel.patchEdit(payload);
