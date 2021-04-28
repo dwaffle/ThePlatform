@@ -95,32 +95,43 @@ export default function ChangePaymentPage(props: {}) {
       <h3>Fields are optional when changing payment information.</h3>
       <Form>
         <Row>
-          <Col>
+          <Col md={3}>
+          
             Cardholder First Name:{' '}
-            <Form.Control onChange={(e) => setFirstName(e.target.value)} />
+          <div className="form-med">
+            <Form.Control  onChange={(e) => setFirstName(e.target.value)} />
+          </div>
           </Col>
-          <Col>
+          <Col className="lastName">
             Cardholder Last Name:{' '}
-            <Form.Control onChange={(e) => setLastName(e.target.value)} />
+              <div className="form-narrow">
+                <Form.Control onChange={(e) => setLastName(e.target.value)} />
+              </div>
           </Col>
         </Row>
         <Row>
           <Col>
             Card Number:{' '}
-            <Form.Control onChange={(e) => setCardNo(e.target.value)} />
+            <div className="form-narrow">
+              <Form.Control onChange={(e) => setCardNo(e.target.value)} />
+            </div>
             {checkCardNo()}
           </Col>
         </Row>
         <Row>
           <Col>
             Card Expiry:{' '}
-            <Form.Control onChange={(e) => setCardExpiry(e.target.value)} />
+            <div className="form-narrow">
+              <Form.Control onChange={(e) => setCardExpiry(e.target.value)} />
+            </div>
           </Col>
         </Row>
         <Row>
           <Col>
             Card CVV:{' '}
-            <Form.Control onChange={(e) => setCardCvv(e.target.value)} />
+            <div className="form-narrow">
+              <Form.Control onChange={(e) => setCardCvv(e.target.value)} />
+            </div>
           </Col>
         </Row>
         {checkCvv()}
@@ -128,10 +139,6 @@ export default function ChangePaymentPage(props: {}) {
       <Button variant="primary" onClick={onClickGoProfile}>
         {' '}
         Back to Profile
-      </Button>
-      <Button variant="primary" onClick={onClickLogOut}>
-        {' '}
-        Log Out
       </Button>
       <Button
         className="sendInfo"
