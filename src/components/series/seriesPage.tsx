@@ -39,7 +39,7 @@ export default function SeriesPage(props: { rows?: number }) {
       background: 'rgba(0, 0, 0, 0.5)',
       backgroundImage:
         'url(https://www.wholelifechallenge.com/wp-content/uploads/2018/06/e-book-header.jpg)',
-      height: '35vh',
+      height: '32vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
@@ -130,16 +130,17 @@ export default function SeriesPage(props: { rows?: number }) {
                       </Card.Header>
 
                       <Card.Body>
-                        <Card.Text>
+                        <Card.Text className="sPDesc">
                           {data.series_desc}
-                          <br />
-                          <Button
-                            className="view-org-button"
-                            onClick={onClickHandler(data.series_title)}
-                          >
-                            View Series
-                          </Button>
+                          {/* <br /> */}
                         </Card.Text>
+
+                        <Button
+                          className="view-org-button"
+                          onClick={onClickHandler(data.series_title)}
+                        >
+                          View Series
+                        </Button>
                       </Card.Body>
                     </Card>
                     //     ))}

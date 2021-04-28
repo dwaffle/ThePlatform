@@ -2,10 +2,13 @@
 
 .iSeriesHeader {
     h1 {
-        font-size: 3.1rem;
+        font-size: 3.4rem;
+        font-family:'Times New Roman', Times, serif;
         background: white;
         color: black;
         border: hidden;
+        background-color:inherit;
+        margin-bottom: 0px;
     }
 
     h3 {
@@ -14,38 +17,50 @@
 
     .iSAuthor {
         text-align: center;
+        
+    }
+
+    .iSDescription {
+        font-size: 1.2rem;
+        text-align: center;
+        width: 80%;
+        margin: auto;
     }
 }
 
 .iAList {
     width: 80%;
     margin: auto;
-}
 
-.iCard {
-    min-height: 10vh;
-    margin-bottom: 7px;
-    .iaTitle {
-        background: rgb(211, 209, 209);
-        padding-left: 5px;
-        
-        .titleLink {
-            padding-left: 0px;
-            // color: black;
+    .iSCard {
+        min-height: 10vh;
+        margin-bottom: 7px;
+
+        .iaTitle {
+            background: rgb(202, 202, 202);
+            padding-left: 10px;
+            
+            .titleLink {
+                padding-left: 0px;
+            }
+    
         }
-
-    }
-
-    // .iaDesc {
-    //     background:rgb(233, 249, 250)
-    // }
-
-    .iaFooter {
-        max-height: 3vh;
-        display:flex;
-        align-items: center;
+    
+        .iaDesc {
+            overflow-y: scroll;
+            padding-left: 10px;
+        }
+    
+        .iaFooter {
+            background: rgb(255, 255, 255);
+            max-height: 3vh;
+            padding-left: 10px;
+            display:flex;
+            align-items: center;
+        }
     }
 }
+
 
 .tag {
     &-Beauty {
@@ -58,3 +73,20 @@
 
 
 }
+
+
+// .CardArt {
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+//     max-width: 80%;
+//     margin-top: 15px;
+//     // margin-left: 5%;
+
+//     input {
+//         padding: 0px;
+//         border: 0;
+//         background-color: inherit;
+//         color: blue;
+//     }
+// }

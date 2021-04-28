@@ -145,7 +145,7 @@ function MyArticles() {
           {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
-              <Table striped bordered hover /*variant="warning"*/>
+              <Table striped bordered hover variant="light">
                 <thead className="thead">
                   <tr>
                     <th>Articles</th>
@@ -190,13 +190,19 @@ function MyArticles() {
             <Col>
               <Form.Group>
                 <Form.Label className="FormLabels">Category</Form.Label>
-                <Form.Control as="select" onChange={changeCategory}>
+                <Form.Control
+                  defaultValue={article?.art_category}
+                  as="select"
+                  onChange={changeCategory}
+                >
+                  <option value="Tech"> Select Category.. </option>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
                   <option value="Sci-Fi"> Sci-Fi </option>
                   <option value="Science"> Science </option>
                   <option value="Beauty"> Beauty </option>
-                  <option value="Beauty"> Humour </option>
+                  <option value="Humour"> Humour </option>
+                  <option value="Religion"> Religion </option>
                 </Form.Control>
               </Form.Group>
               <Form.Group>
@@ -266,7 +272,7 @@ function MyArticles() {
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-          I need to finish the backend for Put or Patch first
+          TEST ME
           <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit
