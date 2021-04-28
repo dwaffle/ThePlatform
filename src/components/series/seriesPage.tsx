@@ -134,14 +134,14 @@ export default function SeriesPage(props: { rows?: number }) {
             </div>
           );
         })}
-        <Pagination
+        {/* <Pagination
           componentName="scCardDeck"
           className="scPagin"
           page={page}
           variant="outlined"
           shape="rounded"
           onChange={handlePageChange}
-        />
+        /> */}
         <Row></Row>
       </div>
     </>
