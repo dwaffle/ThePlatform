@@ -22,15 +22,15 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 
@@ -52,6 +52,13 @@ export default function HorizontalOrganizationList(props: {}) {
     };
   }
 
+  function showCreateOrgButton(){
+    const id = window.localStorage.getItem('user_type');
+    if(Number(id) !== 2 && id != null){
+      return <Button href="/NewOrganizationPage" className="new-org-button" variant="success">Create New</Button>
+    } 
+  }
+
   return (
     <>
       {' '}
@@ -60,13 +67,7 @@ export default function HorizontalOrganizationList(props: {}) {
           <Row>
             <Col>
               {' '}
-              <Button
-                href="/NewOrganizationPage"
-                className="new-org-button"
-                variant="success"
-              >
-                Create New
-              </Button>
+              {showCreateOrgButton()}
             </Col>
           </Row>
         </Form>
@@ -78,7 +79,7 @@ export default function HorizontalOrganizationList(props: {}) {
               {allOrgs ? (
                 allOrgs.map((data) => {
                   return (
-                    <Card bg="Light" style={{ width: '18rem' }}>
+                    <Card bg="Light" className="org-card" style={{ width: '18rem' }}>
                       <Card.Header className="text-center p-3">
                         {data.org_title}
                       </Card.Header>
