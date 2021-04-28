@@ -4,7 +4,7 @@ import React from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import HorizontalOrganizationList from '../../components/organization/HorizontalOrganizationList';
 import TrendingOrganization from '../../components/organization/TrendingOrganization';
-import NewOrganizationForm from '../../components/organization/NewOrganization'
+import NewOrganizationForm from '../../components/organization/NewOrganization';
 // import './style.scss'
 
 export default function CreateOrganizationPage(props: {}) {

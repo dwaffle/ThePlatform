@@ -7,15 +7,14 @@ import { useHistory } from 'react-router-dom';
 
 //Moved to the Horizontal Organization Page to minimize database queries and improve performance.
 export default function TrendingOrganization(props: {}) {
+  const [allOrgs, setAllOrgs] = useState<IOrganization[]>();
+  const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>();
+  const history = useHistory();
 
-  const [allOrgs, setAllOrgs] = useState<IOrganization[]>()
-  const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>()
-  const history = useHistory()
-
-  function onClickHandler(id:number){
-    return function(){
-      history.push(`/IndividualOrganizationPage/${id}`)
-    }
+  function onClickHandler(id: number) {
+    return function () {
+      history.push(`/IndividualOrganizationPage/${id}`);
+    };
   }
 
   return (
@@ -32,12 +31,20 @@ export default function TrendingOrganization(props: {}) {
                 </tr>
               </thead>
               <tbody>
-              {allOrgs ? allOrgs.map((data) => {
-                  return (<tr onClick={onClickHandler(data.ord_id)}>
-                  <td>{data.ord_id}</td>
-                  <td>{data.org_title}</td>
-                </tr>)
-              }) : <tr><td>You must be logged in to view organizations</td></tr>} 
+                {allOrgs ? (
+                  allOrgs.map((data) => {
+                    return (
+                      <tr /*onClick={onClickHandler(data.ord_id)}*/>
+                        <td>{data.ord_id}</td>
+                        <td>{data.org_title}</td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td>You must be logged in to view organizations</td>
+                  </tr>
+                )}
               </tbody>
             </Table>
           </div>
@@ -53,12 +60,20 @@ export default function TrendingOrganization(props: {}) {
                 </tr>
               </thead>
               <tbody>
-                {reverseOrgs ? reverseOrgs.map((data) => {
-                  return (<tr>
-                  <td>{data.ord_id}</td>
-                  <td>{data.org_title}</td>
-                </tr>)
-              }) : <tr><td>You must be logged in to view organizations</td></tr>}
+                {reverseOrgs ? (
+                  reverseOrgs.map((data) => {
+                    return (
+                      <tr>
+                        <td>{data.ord_id}</td>
+                        <td>{data.org_title}</td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td>You must be logged in to view organizations</td>
+                  </tr>
+                )}
               </tbody>
             </Table>
           </div>
