@@ -27,8 +27,7 @@ export default function RatingArticles(props: { article_id: any }) {
     )
 
     const history = useHistory();
-    const user_id = window.localStorage.getItem("user_id")
-    const [rating, setRating] = useState(ratingArticle);
+     const [rating, setRating] = useState(ratingArticle);
     let readonly = true;
 
     const onChangeRating = (e: any) => {
@@ -37,7 +36,7 @@ export default function RatingArticles(props: { article_id: any }) {
 
     
     
-  function calculateRating(rating: number[] = []) {
+  function calculateRating(rating: number[]) {
 
     
     // guard for zero
@@ -56,23 +55,10 @@ export default function RatingArticles(props: { article_id: any }) {
     }
   }
 
-    function writeRating(){
-
-        // let userType = Number(localStorage.getItem("user_type"));
-        // if (userType !=1) {
-        //   readonly = true;
-        // } else {
-        //   return history.push(`/rating/:id` );
-        // }
-        
+    function writeRating(){ 
         return history.push(`/rating/${articleID}`);
       };  
       
-
-    
-    useEffect(() => {
-        // setRating(RatingArticlesList.find((rating) => rating === params.id));
-    }, []);
 
     return (
       <div className ="rating "> 
@@ -83,14 +69,12 @@ export default function RatingArticles(props: { article_id: any }) {
           <p>Averge rating based on ( <strong> { nbrReviews} </strong>)</p>
         
           { console.log("...", rate) }
-              <Button
+          <Button
               variant="warning"
               onClick={ writeRating }
               onChange={onChangeRating}
-              // hidden = {hiddenBtn}
-             
-              >
-              <strong>See More</strong>
+            >
+            <strong>See More</strong>
             
           </Button>
           

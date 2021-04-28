@@ -26,7 +26,7 @@ export default function WriteRating(props: {}) {
   const myRate = rate.filter((_rat) => _rat.article_art_id === Number(id));
 
   console.log(myRate);
-  // const [rating, setRating] = useState(rate);
+
   const [title, setTitle] = useState<string>("no Title");
   const [review, setReview] = useState<string>("no Review");
   const [ratingValue, setValueRating] = useState(0);
@@ -69,7 +69,6 @@ export default function WriteRating(props: {}) {
   }
  
   
-  
 
     return (
       <MainLayout>
@@ -79,58 +78,58 @@ export default function WriteRating(props: {}) {
           <Rating onChange ={ onChangeRating }/> <br/>
 
          
-        <Form method="Post">
-          <Form.Row>
-            <Form.Group className="FormRowSpacing">
-              <Form.Control
-                // type="title"
-                placeholder="Rating Title"
+          <Form method="Post">
+            <Form.Row>
+              <Form.Group className="FormRowSpacing">
+                <Form.Control
+                  // type="title"
+                  placeholder="Rating Title"
+                  
+                  onChange={onChangeTitle}
+                />
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
+              <Form.Group className="FormRowSpacing">
+                <Form.Control
+                  as="textarea"
+                  placeholder="Rating review"
+                  rows={3}
                 
-                onChange={onChangeTitle}
-              />
-            </Form.Group>
-          </Form.Row>
+                  onChange={onChangeReview}
+                />
+              </Form.Group>
+            </Form.Row>
 
-          <Form.Row>
-            <Form.Group className="FormRowSpacing">
-              <Form.Control
-                as="textarea"
-                placeholder="Rating review"
-                rows={3}
-               
-                onChange={onChangeReview}
-              />
-            </Form.Group>
-          </Form.Row>
-
-            <Button
-                variant="warning"
-                onClick={submitRating}
-                >
-                <strong>submit</strong>
-            </Button>
-        </Form>
-      <hr/>
-       
-      
-      {  myRate.map((_rat)=> {
-        return (
-          <div  >
-           <CardDeck className ="Card">
-           <Card.Body>
-            <Card>
-              <Card.Header>{_rat.rating_title}</Card.Header>
+              <Button
+                  variant="warning"
+                  onClick={submitRating}
+                  >
+                  <strong>submit</strong>
+              </Button>
+          </Form>
+        <hr/>
+        
+        
+        {  myRate.map((_rat)=> {
+          return (
+            <div  >
+              <CardDeck className ="Card">
               <Card.Body>
-                  <Rating readOnly={true} value={ _rat.rating_value}/> <br/>
-                <Card.Title>{ _rat.user_user_id}</Card.Title>
-                <Card.Text>
-                { _rat.rating_review}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            </Card.Body>
-            </CardDeck>
-          </div>
+                <Card>
+                  <Card.Header>{_rat.rating_title}</Card.Header>
+                  <Card.Body>
+                      <Rating readOnly={true} value={ _rat.rating_value}/> <br/>
+                    <Card.Title>{ _rat.user_user_id}</Card.Title>
+                    <Card.Text>
+                    { _rat.rating_review}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                </Card.Body>
+                </CardDeck>
+            </div>
         )
       })}
       
