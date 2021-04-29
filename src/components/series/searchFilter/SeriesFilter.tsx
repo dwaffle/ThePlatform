@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useRecoilValue } from 'recoil';
 import { ISearchFilter } from '../seriesPage';

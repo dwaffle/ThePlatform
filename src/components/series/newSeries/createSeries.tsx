@@ -3,9 +3,10 @@ import './style.scss';
 import { Container } from 'react-bootstrap';
 import unnamed from '../../../data/icon/unnamed.jpg';
 import { DummySeriesCard } from './dummyCard/dummyCard';
-import { Form, Card } from 'react-bootstrap';
+import { Row, Col, Button, Form } from 'react-bootstrap';
+
 import { useHistory } from 'react-router-dom';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import api from '../../../api';
 import user from '../../../api/user';
 
@@ -16,7 +17,7 @@ function CreateSeries() {
 
   const [title, setTitle] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState<string>('');
   const [category, setCategory] = useState<string>('');
 
   const changeCategory = (e: any) => {
@@ -41,71 +42,56 @@ function CreateSeries() {
 
   return (
     <MainLayout>
-      <Container className="csMBG">
-        <div className="nsBG">
-          <DummySeriesCard />
-          <DummySeriesCard />
-          {/*
-           *
-           *
-           * */}
-          <Form.Group>
-            <Card className="sCards">
-              <Card.Img
-                variant="top"
-                width="100%"
-                src={unnamed}
-                className="card-image-top"
-              ></Card.Img>
-              <Card.Body className="scBody">
-                <Card.Title className="scTitle">
-                  <Form.Control
-                    type="Title"
-                    placeholder="Series Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  ></Form.Control>
-                </Card.Title>
-                <Card.Text>
-                  <Form.Control
-                    className="scTextArea"
-                    as="textarea"
-                    placeholder="Summary"
-                    value={desc}
-                    onChange={(e) => setDesc(e.target.value)}
-                  ></Form.Control>
-                </Card.Text>
-                <Form.Group>
-                  <Form.Control
-                    as="select"
-                    onChange={changeCategory}
-                    value={category}
-                  >
-                    <option>Categories</option>
-                    <option value="Tech"> Tech </option>
-                    <option value="Health"> Health </option>
-                    <option value="Sci-Fi"> Sci-Fi </option>
-                    <option value="Science"> Science </option>
-                    <option value="Beauty"> Beauty </option>
-                  </Form.Control>
-                </Form.Group>
-                <Card.Footer className="scFooter">{authorName}</Card.Footer>
-              </Card.Body>
-            </Card>
-            <button type="submit" onClick={submitButton}>
-              {' '}
-              Test{' '}
-            </button>
-          </Form.Group>
+      <Row>
+        <Col>
+          <div className="Container">
+            <Form className="FormLogin">
+              <h1 className="LoginLabel">Create Series</h1>
 
-          {/*
-           *
-           *
-           * */}
-          <DummySeriesCard />
-          <DummySeriesCard />
-        </div>
-      </Container>
+              <Form.Group controlId="formOrgCreation">
+                <Form.Label>Series Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Series Name"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                {/* <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                /> */}
+
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Description of your series"
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
+                />
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                  as="select"
+                  onChange={changeCategory}
+                  value={category}
+                >
+                  <option>Categories</option>
+                  <option value="Tech"> Tech </option>
+                  <option value="Health"> Health </option>
+                  <option value="Sci-Fi"> Sci-Fi </option>
+                  <option value="Science"> Science </option>
+                  <option value="Beauty"> Beauty </option>
+                  <option value="Beauty"> Humour </option>
+                  <option value="Beauty"> Religion </option>
+                </Form.Control>
+                <Button onClick={submitButton}>Submit</Button>
+              </Form.Group>
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </MainLayout>
   );
 }

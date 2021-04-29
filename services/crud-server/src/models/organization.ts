@@ -4,6 +4,7 @@
 import {IUser} from './user'
 
 import dotenv from 'dotenv';
+import { resolve } from 'path';
 dotenv.config();
 
 var mysql = require('mysql');
@@ -33,13 +34,14 @@ export interface IOrganization {
     org_price: number;
     orgType_id: number;
     org_desc:string;
-    user_id?:number;
+    user_id:number;
     // organization_status: boolean;
 }
 
 export interface IOrgModificationRequest{
     ord_id:number
     user_id:number
+    user_role:number
     addUser:boolean
 }
 
@@ -73,7 +75,7 @@ export const OrganizationModel = {
 
     getOrgUsers: async( orgId:number): Promise<IUser[]> => {
         return new Promise((resolve, reject) =>{
-            connection.query(`SELECT user.user_id, o.ord_id, user_userName FROM organization o JOIN organization_has_user ou ON o.ord_id = ou.ord_id
+            connection.query(`SELECT user.user_id, o.ord_id, user_userName, user_role FROM organization o JOIN organization_has_user ou ON o.ord_id = ou.ord_id
             JOIN user ON ou.user_id = user.user_id`, function(err:any, result: any){
                 if(err){
                     reject(err);
@@ -87,7 +89,7 @@ export const OrganizationModel = {
     addOrRemoveUser: async(userModification:IOrgModificationRequest): Promise<any> => {
         if(userModification.addUser){
         return new Promise((resolve, reject) => {
-            connection.query(`INSERT INTO organization_has_user VALUES (${userModification.ord_id}, ${userModification.user_id})`, function(err:any, result:any){
+            connection.query(`INSERT INTO organization_has_user VALUES (${userModification.ord_id}, ${userModification.user_id}, ${userModification.user_role})`, function(err:any, result:any){
                 if(err){
                     throw err
                 } else {
@@ -121,7 +123,7 @@ export const OrganizationModel = {
             } else {
                 Organization.orgType_id = 1
             }
-            connection.query(`INSERT INTO organization (org_title, org_price, orgType_id, org_desc) VALUES ('${Organization.org_title}',${Organization.org_price}, '${Organization.orgType_id}', '${Organization.org_desc}')`,
+            connection.query(`INSERT INTO organization (org_title, org_price, orgType_id, org_desc) VALUES ('${Organization.org_title}',${Organization.org_price}, ${Organization.orgType_id}, '${Organization.org_desc}')`,
             function(err:any, result:any){
                 if(err)
                 {
@@ -130,21 +132,33 @@ export const OrganizationModel = {
                     result;
                 }
             });
-            if(Organization.user_id){
-                connection.query(`INSERT INTO organization_has_user (ord_id, user_id, user_role) VALUES (${Organization.ord_id}, ${Organization.user_id}, )`,
-                function(err:any, result:any){
-                    if(err){
-                        throw err;
-                    } else {
-                        result;
-                    }
-                })
-        }
+            connection.query(`SELECT * FROM organization ORDER BY ord_id desc LIMIT 1`, function(err:any, result:any){
+                if(err)
+                {
+                    throw err;
+                } else {
+                    const id:IOrganization = result[0].ord_id;
+                    connection.query(`INSERT INTO organization_has_user VALUES (${id}, ${Organization.user_id}, 1)`)
+                }
+            });
     },
 
-    delete: async ( organization:IOrganization ) => {
-
-        return;
+    delete: async ( org_id:number ) => {
+        //Delete both the organization and the users in it.
+        connection.query(`DELETE FROM organization_has_user WHERE ord_id = ${org_id}`, function (err:any, result:any){
+            if(err){
+                throw err;
+            } else {
+                result;
+            }
+        })
+        connection.query(`DELETE FROM organization WHERE ord_id = ${org_id}`, function (err:any, result:any){
+            if(err){
+                throw err;
+            } else {
+                result
+            }
+        })
+        
     }
-
 }

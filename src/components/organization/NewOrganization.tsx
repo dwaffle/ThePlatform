@@ -27,6 +27,7 @@ export default function NewOrganizationForm(props: {}) {
         org_title: orgName,
         org_price: orgPrice,
         org_desc: orgDesc,
+        user_id: user
       };
       api.organization.post(orgToSubmit);
       history.push('/organization');

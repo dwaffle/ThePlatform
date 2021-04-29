@@ -50,11 +50,19 @@ export default function HorizontalOrganizationList(props: {}) {
     };
   }
 
-  function showCreateOrgButton(){
+  function showCreateOrgButton() {
     const id = window.localStorage.getItem('user_type');
-    if(Number(id) !== 2 && id != null){
-      return <Button href="/NewOrganizationPage" className="new-org-button" variant="success">Create New</Button>
-    } 
+    if (Number(id) !== 2 && id != null) {
+      return (
+        <Button
+          href="/NewOrganizationPage"
+          className="new-org-button"
+          variant="success"
+        >
+          Create New
+        </Button>
+      );
+    }
   }
 
   return (
@@ -63,10 +71,7 @@ export default function HorizontalOrganizationList(props: {}) {
       <div className="horizontal-organization-list">
         <Form>
           <Row>
-            <Col>
-              {' '}
-              {showCreateOrgButton()}
-            </Col>
+            <Col> {showCreateOrgButton()}</Col>
           </Row>
         </Form>
       </div>

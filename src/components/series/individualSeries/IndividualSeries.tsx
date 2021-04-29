@@ -54,6 +54,7 @@ function IndividualSeries() {
       </div>
 
       <div className="iAList">
+        All the articles in this series:
         {artInSeries.map((art) => (
           <Card className="iCard">
             <Card.Title className="iaTitle">

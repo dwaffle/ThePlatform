@@ -125,7 +125,10 @@ export default function EditPaymentPage(props: {}) {
           <Col>
             Cardholder Last Name:{' '}
             <div className="form-narrow">
-              <Form.Control className="form-narrow" onChange={(e) => setLastName(e.target.value)} />
+              <Form.Control
+                className="form-narrow"
+                onChange={(e) => setLastName(e.target.value)}
+              />
             </div>
           </Col>
         </Row>

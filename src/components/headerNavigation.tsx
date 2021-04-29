@@ -26,8 +26,6 @@ export default function HeaderNavigation(props: {}) {
             <LinkContainer exact to="/">
               <Nav.Link>The Platform</Nav.Link>
             </LinkContainer>
-          </Nav>
-          <Nav className="navButtons">
             <LinkContainer to="/articles">
               <Nav.Link>Articles</Nav.Link>
             </LinkContainer>
@@ -37,12 +35,14 @@ export default function HeaderNavigation(props: {}) {
             <LinkContainer to="/series">
               <Nav.Link>Series</Nav.Link>
             </LinkContainer>
+
+            {isEditor()}
+          </Nav>
+          <Nav className="navButtons"></Nav>
+          <Nav className="navProfile">
             <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
-            {isEditor()}
-          </Nav>
-          <Nav className="navProfile">
             <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
