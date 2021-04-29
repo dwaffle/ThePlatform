@@ -4,7 +4,7 @@ import MainLayout from '../../../layouts/MainLayout';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../../api';
 import { useParams } from 'react-router';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import './style.scss';
 import { articleListState, userOwnsArticle } from '../articleList';
 import { useHistory, Link } from 'react-router-dom';
@@ -15,6 +15,7 @@ import twitter from '../../..//data/icon/twitter.png';
 import paymentInfo from '../../../api/paymentInfo/paymentInfo';
 import user from '../../../api/user';
 import Rating from '../../rating/rating';
+import series from '../../../api/series';
 
 const IndividualArticle = () => {
   //articles without id
@@ -100,7 +101,7 @@ const IndividualArticle = () => {
 
   function displaySeriesTitle(seriesTitle: any) {
     if (seriesTitle) {
-      return 'Series: ' + seriesTitle;
+      return seriesTitle;
     }
   }
 
@@ -110,13 +111,9 @@ const IndividualArticle = () => {
         <em className="IAHeadline">{article?.art_title} </em>
 
         <div className="iArticleInfo">
-          <p className="pTag">
-            <u>{article?.art_category}</u>
-          </p>
-
           <p className="iAAuthor">
             {' '}
-            <i>written by:</i> {article?.user_userName} 
+            <i>written by:</i> {article?.user_userName}
             <a className="socialMedia" href="https://facebook.com/">
               <img src={facebook} />
             </a>
@@ -126,9 +123,16 @@ const IndividualArticle = () => {
             <a className="socialMedia" href="https://twitter.com/">
               <Image src={twitter} />
             </a>
-            <p className="pTag">
-              <small>{displaySeriesTitle(article?.series_title)} </small>
-            </p>
+          </p>
+          <p className="pTag">
+            <u>Category: {article?.art_category}</u>
+          </p>
+
+          <p className="pTag">
+            <small>Series:</small>{' '}
+            <Link to={`/series/${article?.series_title}`}>
+              {displaySeriesTitle(article?.series_title) || null}
+            </Link>
           </p>
         </div>
 
