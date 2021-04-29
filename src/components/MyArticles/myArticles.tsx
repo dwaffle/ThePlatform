@@ -29,39 +29,50 @@ function MyArticles() {
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
 
-  const ShowArticleOnClick = (id:number) => {
+  const ShowArticleOnClick = (id: number) => {
     // setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
-    setArticle(myArtList.find(article => article.art_id === id)); //Arrays start at 0.  Row indexes start at 1.
+    setArticle(myArtList.find((article) => article.art_id === id)); //Arrays start at 0.  Row indexes start at 1.
 
     history.push('/myArticles');
   };
 
   const history = useHistory();
-  const setTitle = (value:string) => {
+  const setTitle = (value: string) => {
     setArticle({
-      ...article as IArticle, art_title:value
-    })
-  }
+      ...(article as IArticle),
+      art_title: value,
+    });
+  };
 
-  const setDescription = (value:string) => {
+  const setDescription = (value: string) => {
     setArticle({
-      ...article as IArticle, description:value
-    })
-  }
+      ...(article as IArticle),
+      description: value,
+    });
+  };
 
-  const setBody = (value:string) => {
+  const setBody = (value: string) => {
     setArticle({
-      ...article as IArticle, art_body:value
-    })
-  }
+      ...(article as IArticle),
+      art_body: value,
+    });
+  };
 
-  const setSeries = (value:number) => {
+  const setSeries = (value: number) => {
     setArticle({
-      ...article as IArticle, series_id:value
-    })
-  }
+      ...(article as IArticle),
+      series_id: value,
+    });
+  };
+
+  const setCategory = (value: string) => {
+    setArticle({
+      ...(article as IArticle),
+      art_category: value,
+    });
+  };
   // const [title, setTitle] = useState<string>('');
-  const [category, setCategory] = useState();
+  // const [category, setCategory] = useState();
   // const [series, setSeries] = useState();
   // const [description, setDescription] = useState<string>('');
   // const [body, setBody] = useState<string>('');
@@ -71,9 +82,6 @@ function MyArticles() {
   const [price, setPrice] = useState<number>(0);
   const onChange = (e: any) => {
     setPrice(e.target.value);
-  };
-  const changeCategory = (e: any) => {
-    setCategory(e.target.value);
   };
 
   //Activates or deactivates the price text box.
@@ -122,16 +130,19 @@ function MyArticles() {
 
       //Construct object.  Add one to the enum of the artype_id to line it up with the database IDs.  Enums start at 0, our DB starts at 1.
       let articlePatch = {
-        ...article,
+        art_id: article?.art_id,
+        artype_id: article?.artype_id,
+        art_title: article?.art_title,
+        description: article?.description,
         art_body: article?.art_body,
         art_category: article?.art_category,
-        series_id: article?.series_id
+        series_id: article?.series_id,
       };
-      console.log(articlePatch)
+      // console.log(articlePatch);
       //Send object.
+      alert('Success');
       api.article.put(articlePatch);
-      history.push('/myArticles');
-      return;
+      return history.push('/myArticles');
     }
   }
 
@@ -216,7 +227,7 @@ function MyArticles() {
                 <Form.Control
                   value={article?.art_category}
                   as="select"
-                  onChange={changeCategory}
+                  onChange={(e) => setCategory(e.target.value)}
                 >
                   <option value="Tech"> Select Category.. </option>
                   <option value="Tech"> Tech </option>
@@ -230,7 +241,11 @@ function MyArticles() {
               </Form.Group>
               <Form.Group>
                 <Form.Label className="FormLabels">Series</Form.Label>
-                <Form.Control value={article?.series_id} as="select" onChange={onChangeSeries}>
+                <Form.Control
+                  value={article?.series_id}
+                  as="select"
+                  onChange={onChangeSeries}
+                >
                   <option value="null">Select Series..</option>
                   {userOwnsSeries.map((s) => {
                     return (
@@ -295,7 +310,7 @@ function MyArticles() {
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-          
+
           <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit

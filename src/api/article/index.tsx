@@ -45,7 +45,6 @@ export default {
     });
   },
 
-
   delete: async (id: string) => {
     return axios.delete(`${HOSTNAME}/articles/${id}`, {
       headers: {

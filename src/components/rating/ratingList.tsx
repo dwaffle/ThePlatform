@@ -24,7 +24,7 @@ export function useRatingList() {
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
-  console.log('*****', ratingList);
+  // console.log('*****', ratingList);
   return {
     ratingList,
     setRatingList,

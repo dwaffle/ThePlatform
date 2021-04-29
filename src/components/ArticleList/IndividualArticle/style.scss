@@ -1,22 +1,22 @@
+.IAHeadline {
+    font-size: 5rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding: 0px;
+    margin: 0px;
+}
+
 
 section {
     width: 70%;
     margin: 0 auto;
 
-    h1 {
-        border: 0px;
-        background-color: white;
-        color: black;
-        font-size: 4rem;
-        padding: 0px;
-    }
-
     .mainImg {
-        object-fit: cover;
-        min-width: 65vh;
-        min-height: 55vh;
+        object-fit:cover;
         padding: 0px;
-
+        min-width: 68vw;
+        // margin: 0 auto;
+        min-height: 30vh;
+        margin-top: 1vh;
 
         // @media screen and (min-width:100vh) {
         //     body { color:#555; }
@@ -38,24 +38,67 @@ section {
         // }
     }  
 
+    .iArticleInfo {
+        margin-top: -20px;
+        margin-left: 2vw;
+
+        .pTag {
+            margin: 0px;
+        }
+        
+        .iAAuthor {
+            margin: 0px;
+            font-size: 1.2rem;
+            // font-style: italic;
+            padding-right: 20px;
+        }
+    }
+
+    .ratingAndDesc {
+
+        .ratingArea {
+           
+            max-width: 30%;
+        }
+
+        .descArea {
+            height: 20vh;
+            overflow-y: scroll;
+            scrollbar-width:thin;
+            scrollbar-color:#363535 ;
+            white-space: pre-wrap;
+            // direction: rtl;
+    
+        }
+
+    }
+
+    .iABody {
+        white-space: pre-wrap;
+    }
+
     .articleDetails {
         font-size: 2vh;
     }
 }
 
-
-
+@media screen and (max-width:768px) {
+    section {
+        .ratingAndDesc {
+            .descArea { display: flex }
+        }
+    }
+}
 
 .socialMedia {
 
     img {
-        width: 3.5vh;
-        height: 3.5vh;
+        width: 25px;
+        height: 25px;
         padding: 0px;
+        margin-left: 1px;
     }
 }  
-
-
 
 .popup-box {
 

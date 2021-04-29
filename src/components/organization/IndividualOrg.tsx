@@ -18,7 +18,6 @@ interface IIndividuals {
   user_role: number;
 }
 
-
 const IndividualOrg = () => {
   const history = useHistory();
   const [org, setOrg] = useState<IOrganization>();
@@ -39,12 +38,13 @@ const IndividualOrg = () => {
     api.orgs.post(request).then((response) => {
       const allUsers: IIndividuals[] = response.data;
       const filteredUsers: IIndividuals[] = allUsers.filter(
-        (_id) => _id.ord_id == Number(params.id)
+        (_id) => _id.ord_id == Number(params.id),
       );
-      setThisUser(filteredUsers.find((_id) => _id.user_id === Number(currentUser)));
+      setThisUser(
+        filteredUsers.find((_id) => _id.user_id === Number(currentUser)),
+      );
       setUsers(filteredUsers);
     });
-    
   }, [params.id]);
 
   function joinHandler() {
@@ -81,43 +81,50 @@ const IndividualOrg = () => {
     }
   }
 
-  function removeUser(id:number){
+  function removeUser(id: number) {
     return () => {
-      if(users?.find((_user) => _user.user_id === id)){
+      if (users?.find((_user) => _user.user_id === id)) {
         const request = {
           ord_id: params.id,
           user_id: user,
-          addUser: false
-        }
-        api.orgs.patch(request)
+          addUser: false,
+        };
+        api.orgs.patch(request);
       }
-    }
+    };
   }
 
-  function showRemoveButton(id:number){
-    return (<Button variant="warning" className="removeButton" onClick={removeUser(id)}>Remove User</Button>)
+  function showRemoveButton(id: number) {
+    return (
+      <Button
+        variant="warning"
+        className="removeButton"
+        onClick={removeUser(id)}
+      >
+        Remove User
+      </Button>
+    );
   }
 
-  function disbandOrgHandler(org:any | undefined){
+  function disbandOrgHandler(org: any | undefined) {
     return () => {
-      if(org != undefined){
+      if (org != undefined) {
         api.orgs.delete(org);
-    }
-    history.push("/organization");
+      }
+      history.push('/organization');
+    };
   }
-  
-}
 
-  function displayRole(role:number){
-    switch(role){
+  function displayRole(role: number) {
+    switch (role) {
       case 1:
-        return "Creator";
+        return 'Creator';
         break;
       case 2:
-        return "Admin";
+        return 'Admin';
         break;
       case 3:
-        return "Member";
+        return 'Member';
         break;
     }
   }
@@ -131,7 +138,19 @@ const IndividualOrg = () => {
           <Card.Text>
             Users:{' '}
             {users?.map((name) => {
-              return <div className="user">{name.user_userName} {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1 || thisUser?.user_role === 2)&& name.user_role > thisUser?.user_role) && <div className="removeButton">{showRemoveButton(name.user_id)}</div>} <div className="role">{displayRole(name.user_role)}</div> </div>;
+              return (
+                <div className="user">
+                  {name.user_userName}{' '}
+                  {name.user_id !== Number(currentUser) &&
+                    (thisUser?.user_role === 1 || thisUser?.user_role === 2) &&
+                    name.user_role > thisUser?.user_role && (
+                      <div className="removeButton">
+                        {showRemoveButton(name.user_id)}
+                      </div>
+                    )}{' '}
+                  <div className="role">{displayRole(name.user_role)}</div>{' '}
+                </div>
+              );
             })}
             <br />
           </Card.Text>
@@ -144,7 +163,10 @@ const IndividualOrg = () => {
               Join!
             </Button>
           )}
-          {users?.find((user) => user.user_id === Number(currentUser) && user.user_role !== 1) && (
+          {users?.find(
+            (user) =>
+              user.user_id === Number(currentUser) && user.user_role !== 1,
+          ) && (
             <Button
               className="leavebutton"
               id="leavebutton"
@@ -152,13 +174,20 @@ const IndividualOrg = () => {
             >
               Leave...
             </Button>
-          )
-        }
-        {users?.find((user) => user.user_id === Number(currentUser) && user.user_role === 1) && (
-          <Button className="disband"
-          id="disband"
-          onClick={disbandOrgHandler(org?.ord_id)} variant="danger">Disband Org</Button>
-        )}
+          )}
+          {users?.find(
+            (user) =>
+              user.user_id === Number(currentUser) && user.user_role === 1,
+          ) && (
+            <Button
+              className="disband"
+              id="disband"
+              onClick={disbandOrgHandler(org?.ord_id)}
+              variant="danger"
+            >
+              Disband Org
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </>
