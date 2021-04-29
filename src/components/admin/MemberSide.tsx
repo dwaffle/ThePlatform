@@ -107,7 +107,7 @@ export default function MemberSide(props: {}) {
                 value="0"
                 name="statusMember"
                 onClick={approvedOrRejected} >
-                Band Member
+                Ban Member
               </Button>
 
               <Button
