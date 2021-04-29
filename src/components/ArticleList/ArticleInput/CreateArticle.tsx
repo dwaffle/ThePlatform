@@ -30,7 +30,7 @@ export function CreateNewArticle() {
   const [description, setDescription] = useState<string>('');
   const [body, setBody] = useState<string>('');
   const [category, setCategory] = useState<string>('');
-  const [series, setSeries] = useState('');
+  const [series, setSeries] = useState(0);
 
   const user_id = Number(localStorage.getItem('user_id'));
   const authorName: string = window.localStorage.getItem('username') || '';
@@ -217,7 +217,7 @@ export function CreateNewArticle() {
             </Form.Group>
             <Form.Group className="FormRowSpacing">
               <Form.Control as="select" onChange={onChangeSeries}>
-                <option>Select Series</option>
+                <option value='1'>Select Series</option>
                 {userOwnsSeries.map((s) => {
                   if (!userOwnsSeries) {
                     return 'You have no Series';

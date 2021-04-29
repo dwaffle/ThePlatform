@@ -23,7 +23,7 @@ export default function HeaderNavigation(props: {}) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="navFont">
-            <LinkContainer exact to="/">
+            <LinkContainer  exact to="/">
               <Nav.Link>The Platform</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/articles">

@@ -49,7 +49,7 @@ function IndividualSeries() {
           <Col>By: {singleSeries?.series_owner}</Col> 
           
         </Row> */}
-        <p className="iSAuthor"> By: {singleSeries?.series_owner} </p>
+        <p className="iSAuthor"> By: {singleSeries?.user_userName} </p>
         <p className="iSDescription">{singleSeries?.series_desc}</p>
       </div>
 

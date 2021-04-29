@@ -25,18 +25,22 @@ function MyArticles() {
   const user_ID = Number(localStorage.getItem('user_id'));
   // show only the users articles
   let myArtList = articleList.filter((a) => a.user_author == user_ID);
-  //user ID
-  const user_id = Number(localStorage.getItem('user_id'));
 
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
 
   const ShowArticleOnClick = (e: any) => {
     setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
+    history.push('/myArticles');
   };
 
   const history = useHistory();
-  const [title, setTitle] = useState<string>('');
+  const setTitle = (value:string) => {
+    setArticle({
+      ...article as IArticle, art_title:value
+    })
+  }
+  // const [title, setTitle] = useState<string>('');
   const [category, setCategory] = useState();
   const [series, setSeries] = useState();
   const [description, setDescription] = useState<string>('');
@@ -98,21 +102,24 @@ function MyArticles() {
 
       //Construct object.  Add one to the enum of the artype_id to line it up with the database IDs.  Enums start at 0, our DB starts at 1.
       let articlePatch = {
-        artype_id: article?.art_id,
+        art_id: article?.art_id,
+        artype_id: article?.artype_id,
         art_title: article?.art_title,
         description: article?.description,
-        user_author: article?.user_author,
+        user_author: user_ID,
         art_body: article?.art_body,
-        series_id: article?.series_id,
+        art_category: category,
+        series_id: series
       };
+      console.log(articlePatch)
       //Send object.
-      api.article.patch(articlePatch);
+      api.article.put(articlePatch);
       history.push('/myArticles');
       return;
     }
   }
 
-  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_id);
+  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_ID);
   function onChangeSeries(e: any) {
     setSeries(e.target.value);
     console.log(e.target.value);
@@ -181,8 +188,8 @@ function MyArticles() {
           <Form.Group>
             <Form.Label className="FormLabels">Article Title</Form.Label>
             <Form.Control
-              type="Title"
-              defaultValue={article?.art_title}
+              type="text"
+              value={article?.art_title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
@@ -191,7 +198,7 @@ function MyArticles() {
               <Form.Group>
                 <Form.Label className="FormLabels">Category</Form.Label>
                 <Form.Control
-                  defaultValue={article?.art_category}
+                  value={article?.art_category}
                   as="select"
                   onChange={changeCategory}
                 >
@@ -258,7 +265,7 @@ function MyArticles() {
               as="textarea"
               className="description"
               type="Description"
-              defaultValue={article?.description}
+              value={article?.description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
@@ -268,11 +275,11 @@ function MyArticles() {
               as="textarea"
               className="body"
               type="Body"
-              defaultValue={article?.art_body}
+              value={article?.art_body}
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-          TEST ME
+          
           <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit

@@ -25,6 +25,7 @@ export function useArticleList() {
   const [articleList, setArticleList] = useRecoilState<IArticle[]>(
     articleListState,
   );
+  
   const [seriesList, setSeriesList] = useRecoilState<ISeries[]>(
     seriesListState,
   );
