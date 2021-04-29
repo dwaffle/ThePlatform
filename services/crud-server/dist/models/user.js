@@ -27,6 +27,18 @@ var connection = mysql.createConnection({
 exports.UserModel = {
     getAll: () => {
         return new Promise((resolve, reject) => {
+            connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date FROM user', function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result);
+                }
+            });
+        });
+    },
+    getAllAdmin: () => {
+        return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM user', function (err, result) {
                 if (err) {
                     reject(err);

@@ -41,6 +41,14 @@ export interface IUserNoPassword {
     user_creation_date:string
 }
 
+export interface IUserAdmin {
+    user_id:number,
+    user_userName:string,
+    user_firstName:string,
+    user_lastName:string,
+    user_creation_date:string
+}
+
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -55,6 +63,17 @@ var connection = mysql.createConnection({
 export const UserModel = {
 
     getAll: ():Promise<IUser[]> => {
+        return new Promise((resolve, reject) => {connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date FROM user', function(err:any, result:any){
+            if(err){
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        })
+    })
+    },
+
+    getAllAdmin: ():Promise<IUser[]> => {
         return new Promise((resolve, reject) => {connection.query('SELECT * FROM user', function(err:any, result:any){
             if(err){
                 reject(err);

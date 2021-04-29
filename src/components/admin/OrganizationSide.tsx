@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Col, CardDeck, Card, Table, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
-// import { orgList } from '../organization/OrgList'
 import api from '../../api';
 
 
@@ -15,13 +14,9 @@ export default function OrganizationSide(props: {}) {
   const [selectedOrg, setSelectedOrg] = useState<IOrganization>()
 
   
-    function  onClick (selected:IOrganization) {
-      
+  function  onClick (selected:IOrganization) {
       return function(){
-
-            // let selected = orgs.filter((org) => org.ord_id == id)
             setSelectedOrg(selected);          
-
       }
   };
 
@@ -74,11 +69,11 @@ export default function OrganizationSide(props: {}) {
     <>
       <Row>
         <Col>
-          <h3>organization List</h3>
+          <h3>Organization List</h3>
           <Table striped bordered hover variant="dark">
             <thead>
               <th>Title</th>
-              <th>description</th>
+              <th>Description</th>
               <th>Price</th>
               <th>Status</th>
             </thead>
