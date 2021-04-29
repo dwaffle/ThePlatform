@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
 exports.UserModel = {
     getAll: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date FROM user', function (err, result) {
+            connection.query('SELECT * FROM user ORDER BY user_status DESC, user_firstName ASC', function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -39,7 +39,7 @@ exports.UserModel = {
     },
     getAllAdmin: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM user', function (err, result) {
+            connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date, user_status FROM user', function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -108,6 +108,19 @@ exports.UserModel = {
                 }
                 else {
                     resolve(result);
+                }
+            });
+        });
+    }),
+    update: (Member) => __awaiter(void 0, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            console.log(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`);
+            connection.query(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`, function (err, result) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    result;
                 }
             });
         });

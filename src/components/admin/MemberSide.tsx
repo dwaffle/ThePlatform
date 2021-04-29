@@ -20,6 +20,18 @@ export default function MemberSide(props: {}) {
     }
   };
 
+   //  api put request
+   function putMember(statusMember:number) {
+    let updatedMember = {
+      user_status: statusMember,
+      user_id: selectedMember?.user_id,
+    };
+    
+    api.user.put(updatedMember);
+    history.push('/admin');
+    return;
+  }
+
 
   useEffect(() => {
     
@@ -33,23 +45,23 @@ export default function MemberSide(props: {}) {
 
   let approvedOrRejected = (e: any) => {
       
-    // if (selectedMember && e.target.value != selectedMember.user_status ){
-    //   e.preventDefault();
-    //   // putMember(e.target.value);
-    //   window.location.reload(false);
-    // }
+    if (selectedMember && e.target.value != selectedMember.user_status ){
+      e.preventDefault();
+      putMember(e.target.value);
+      window.location.reload(false);
+    }
 
-    // else if ( e.target.value == selectedMember?.user_status && selectedMember.user_status == 0 ){
-    //   alert( "pls, chose another member, you cant band a member twice.")
-    // }
+    else if ( e.target.value == selectedMember?.user_status && selectedMember?.user_status == 0 ){
+      alert( "pls, chose another member, you cant band a member twice.")
+    }
 
-    // else if ( e.target.value == selectedMember.user_status && selectedMember.user_status == 1 ){
-    //   alert( "pls, chose another member, he/she Approved member.")
-    // }
+    else if ( e.target.value == selectedMember?.user_status && selectedMember?.user_status == 1 ){
+      alert( "pls, chose another member, he/she Approved member.")
+    }
 
-    // else {
-    //   alert( "pls, you didnt select any memeber, chose one to go ")
-    // }
+    else {
+      alert( "pls, you didnt select any memeber, chose one to go ")
+    }
     
 
   };
@@ -79,7 +91,7 @@ export default function MemberSide(props: {}) {
                 <td > { member.user_firstName } { member.user_lastName }</td>
                 <td>{ member.user_creation_date }</td>
                 <td>{ member.user_userName }</td>
-                {/* <td>{ member.user_status == 1? "active":"band" }</td> */}
+                <td>{ member.user_status == 1? "active":"band" }</td>
               </tr>);
             })}  
             </tbody>
@@ -93,7 +105,7 @@ export default function MemberSide(props: {}) {
                 variant="primary"
                 block
                 value="0"
-                name="status"
+                name="statusMember"
                 onClick={approvedOrRejected} >
                 Band Member
               </Button>
@@ -102,7 +114,7 @@ export default function MemberSide(props: {}) {
                 variant="primary"
                 block
                 value="1"
-                name="status"
+                name="statusMember"
                 onClick={approvedOrRejected} >
                 Approved Member
               </Button>

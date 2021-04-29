@@ -22,4 +22,13 @@ export default {
       return response.data;
     });
   },
+
+  put: async (body: any) => {
+    console.log("member, index-user")
+    return axios.put(`${HOSTNAME}/user`, body,{
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    });
+  },
 };

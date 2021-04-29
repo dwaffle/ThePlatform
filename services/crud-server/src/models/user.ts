@@ -47,6 +47,7 @@ export interface IUserAdmin {
     user_firstName:string,
     user_lastName:string,
     user_creation_date:string
+    user_status:number
 }
 
 
@@ -63,7 +64,7 @@ var connection = mysql.createConnection({
 export const UserModel = {
 
     getAll: ():Promise<IUser[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date FROM user', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user ORDER BY user_status DESC, user_firstName ASC', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -74,7 +75,7 @@ export const UserModel = {
     },
 
     getAllAdmin: ():Promise<IUser[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date, user_status FROM user', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -147,6 +148,23 @@ export const UserModel = {
                 }
             })
         })
+    },
+
+    update: async ( Member:IUserAdmin) => {
+
+        // var connection = await myConnection.getClient()
+        return new Promise<any>((resolve, reject) => {
+            console.log(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`)
+            connection.query(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`, 
+            function(err:any, result:any){
+                if(err){
+                    throw err
+                } else {
+                    result
+                }
+            })
+        })
+
     },
 
     patch: async(userInfo:IprofileChangeRequest) => {

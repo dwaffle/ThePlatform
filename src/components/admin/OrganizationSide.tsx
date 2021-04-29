@@ -22,9 +22,9 @@ export default function OrganizationSide(props: {}) {
 
 
   //  api put request
-  function putOrg(status:number) {
+  function putOrg(statusOrg:number) {
     let updatedOrg = {
-      org_status: status,
+      org_status: statusOrg,
       ord_id: selectedOrg?.ord_id,
     };
     
@@ -104,7 +104,7 @@ export default function OrganizationSide(props: {}) {
                 variant="primary"
                 block
                 value="0"
-                name="status"
+                name="statusOrg"
                 onClick={approvedOrRejected} >
                 Band Organisation
               </Button>
@@ -113,7 +113,7 @@ export default function OrganizationSide(props: {}) {
                 variant="primary"
                 block
                 value="1"
-                name="status"
+                name="statusOrg"
                 onClick={approvedOrRejected} >
                 Approved Organisation
               </Button>
