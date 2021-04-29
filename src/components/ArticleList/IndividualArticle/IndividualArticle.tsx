@@ -98,10 +98,10 @@ const IndividualArticle = () => {
     );
   };
 
-  function displaySeriesTitle(seriesTitle:any) {
-    if (seriesTitle){
-      return "Series: " + seriesTitle;
-    } 
+  function displaySeriesTitle(seriesTitle: any) {
+    if (seriesTitle) {
+      return 'Series: ' + seriesTitle;
+    }
   }
 
   return (
@@ -110,33 +110,32 @@ const IndividualArticle = () => {
         <em className="IAHeadline">{article?.art_title} </em>
 
         <div className="iArticleInfo">
-        <p className='pTag'>
-          <u>{article?.art_category}</u>
-        </p>
-
-        <p className="iAAuthor">
-          {' '}
-          <i>written by:</i> {article?.user_userName}
-          <a className="socialMedia" href="https://facebook.com/">
-            <img src={facebook} />
-          </a>
-          <a className="socialMedia" href="https://www.instagram.com/">
-            <Image src={instagram} />
-          </a>
-          <a className="socialMedia" href="https://twitter.com/">
-            <Image src={twitter} />
-          </a>
-          <p className='pTag'>
-            <small>{displaySeriesTitle(article?.series_title)} </small>
+          <p className="pTag">
+            <u>{article?.art_category}</u>
           </p>
-      
-        </p>
-        </div>
-        
 
+          <p className="iAAuthor">
+            {' '}
+            <i>written by:</i> {article?.user_userName}
+            <a className="socialMedia" href="https://facebook.com/">
+              <img src={facebook} />
+            </a>
+            <a className="socialMedia" href="https://www.instagram.com/">
+              <Image src={instagram} />
+            </a>
+            <a className="socialMedia" href="https://twitter.com/">
+              <Image src={twitter} />
+            </a>
+            <p className="pTag">
+              <small>{displaySeriesTitle(article?.series_title)} </small>
+            </p>
+          </p>
+        </div>
 
         <Row className="ratingAndDesc">
-          <Col className="ratingArea">{article && <Rating article_id={article.art_id} />}</Col>
+          <Col className="ratingArea">
+            {article && <Rating article_id={article.art_id} />}
+          </Col>
           <Col className="descArea">{article?.description}</Col>
         </Row>
 
