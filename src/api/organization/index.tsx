@@ -18,8 +18,8 @@ export default {
     });
   },
 
-  patch: async (id: string, body: any) => {
-    return axios.patch(`${HOSTNAME}/Organizations/${id}`, body, {
+  patch: async (body: any) => {
+    return axios.patch(`${HOSTNAME}/organizations/`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },

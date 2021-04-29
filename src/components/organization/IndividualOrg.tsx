@@ -10,6 +10,7 @@ import { orgListState } from './OrgList';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 import user from '../../api/user';
+import axios from 'axios';
 
 interface IIndividuals {
   user_id: number;
@@ -86,10 +87,12 @@ const IndividualOrg = () => {
       if(users?.find((_user) => _user.user_id === id)){
         const request = {
           ord_id: params.id,
-          user_id: user,
+          user_id: id,
           addUser: false
         }
         api.orgs.patch(request)
+        alert("Success")
+        history.push("/organization")
       }
     }
   }
@@ -105,20 +108,40 @@ const IndividualOrg = () => {
     }
     history.push("/organization");
   }
-  
+}
+
+function promoteUser(id:number){
+  return () => {
+    const request = {
+      ord_id: params.id,
+      user_id: id,
+      user_role: 2
+    }
+    api.organization.patch(request);
+    history.push("/organization");
+  }
+}
+
+function demoteUser(id:number){
+  return ()  => {
+    const request = {
+      ord_id: params.id,
+      user_id: id,
+      user_role: 3
+    }
+    api.organization.patch(request);
+    history.push("/organization");
+  }
 }
 
   function displayRole(role:number){
     switch(role){
       case 1:
         return "Creator";
-        break;
       case 2:
         return "Admin";
-        break;
       case 3:
         return "Member";
-        break;
     }
   }
 
@@ -131,7 +154,12 @@ const IndividualOrg = () => {
           <Card.Text>
             Users:{' '}
             {users?.map((name) => {
-              return <div className="user">{name.user_userName} {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1 || thisUser?.user_role === 2)&& name.user_role > thisUser?.user_role) && <div className="removeButton">{showRemoveButton(name.user_id)}</div>} <div className="role">{displayRole(name.user_role)}</div> </div>;
+              return <div className="user">{name.user_userName} 
+              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 3)) && <Button variant="info" onClick={promoteUser(name.user_id)}>Promote User</Button>}
+              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 2)) && <Button variant="info" onClick={demoteUser(name.user_id)}>Demote User</Button>}
+              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1 || thisUser?.user_role === 2)&& name.user_role > thisUser?.user_role) && <div className="removeButton">{showRemoveButton(name.user_id)}</div>}
+              
+              <div className="role">{displayRole(name.user_role)}</div> </div>;
             })}
             <br />
           </Card.Text>
