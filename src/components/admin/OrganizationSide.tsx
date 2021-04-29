@@ -20,20 +20,6 @@ export default function OrganizationSide(props: {}) {
       }
   };
 
-
-  //  api put request
-  function putOrg(statusOrg:number) {
-    let updatedOrg = {
-      org_status: statusOrg,
-      ord_id: selectedOrg?.ord_id,
-    };
-    
-    api.organization.put(updatedOrg);
-    history.push('/admin');
-    return;
-  }
- 
-
   useEffect(() => {
     
     api.organization.get().then((response) => {
@@ -43,18 +29,23 @@ export default function OrganizationSide(props: {}) {
   }, [])
 
   let approvedOrRejected = (e: any) => {
-    
-    if (selectedOrg && e.target.value != selectedOrg.org_status ){
+
+    const status = e.target.value
+
+    if (selectedOrg && status != selectedOrg.org_status ){
+
       e.preventDefault();
-      putOrg(e.target.value);
-      window.location.reload(false);
+      const otherOrgs = orgs.filter( _orgs => _orgs.ord_id != selectedOrg.ord_id )
+      selectedOrg.org_status = status;
+      setOrgs([ ...otherOrgs, selectedOrg ]);
+      history.push('/admin');
     }
 
-    else if ( e.target.value == selectedOrg?.org_status && selectedOrg?.org_status == 0 ){
+    else if ( status == selectedOrg?.org_status && selectedOrg?.org_status == 0 ){
       alert( "pls, chose another item, you cant band it again.")
     }
 
-    else if ( e.target.value == selectedOrg?.org_status && selectedOrg?.org_status == 1 ){
+    else if ( status == selectedOrg?.org_status && selectedOrg?.org_status == 1 ){
       alert( "pls, chose another item, its Approved organisation")
     }
 

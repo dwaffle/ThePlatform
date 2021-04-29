@@ -20,19 +20,6 @@ export default function MemberSide(props: {}) {
     }
   };
 
-   //  api put request
-   function putMember(statusMember:number) {
-    let updatedMember = {
-      user_status: statusMember,
-      user_id: selectedMember?.user_id,
-    };
-    
-    api.user.put(updatedMember);
-    history.push('/admin');
-    return;
-  }
-
-
   useEffect(() => {
     
     api.user.get().then((response) => {
@@ -44,18 +31,23 @@ export default function MemberSide(props: {}) {
 
 
   let approvedOrRejected = (e: any) => {
+
+    const status = e.target.value 
+
+    if (selectedMember && status != selectedMember.user_status ){
       
-    if (selectedMember && e.target.value != selectedMember.user_status ){
       e.preventDefault();
-      putMember(e.target.value);
-      window.location.reload(false);
+      const otherMembers = members.filter( _member => _member.user_id != selectedMember.user_id )
+      selectedMember.user_status = status;
+      setMembers([ ...otherMembers, selectedMember ]);
+      history.push('/admin');
     }
 
-    else if ( e.target.value == selectedMember?.user_status && selectedMember?.user_status == 0 ){
+    else if ( status == selectedMember?.user_status && selectedMember?.user_status == 0 ){
       alert( "pls, chose another member, you cant band a member twice.")
     }
 
-    else if ( e.target.value == selectedMember?.user_status && selectedMember?.user_status == 1 ){
+    else if ( status == selectedMember?.user_status && selectedMember?.user_status == 1 ){
       alert( "pls, chose another member, he/she Approved member.")
     }
 

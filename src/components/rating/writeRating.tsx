@@ -55,6 +55,7 @@ export default function WriteRating(props: {}) {
   };
 
   function submitRating(e:any){
+   if (objectToSend && objectToSend.rating_value >= 1) {
     e.preventDefault();
     api.rating
     .post(objectToSend )
@@ -66,6 +67,8 @@ export default function WriteRating(props: {}) {
     console.log(objectToSend)
     // alert("Thank you for your review ");
     history.goBack();
+   }
+   
   }
  
   
