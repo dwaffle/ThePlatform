@@ -9,8 +9,7 @@ import { orgListState } from './OrgList';
 //import Faq from '../components/OrganizationPage';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
-import user from '../../api/user';
-import axios from 'axios';
+
 
 interface IIndividuals {
   user_id: number;
@@ -18,7 +17,6 @@ interface IIndividuals {
   user_userName: string;
   user_role: number;
 }
-
 
 const IndividualOrg = () => {
   const history = useHistory();
@@ -40,12 +38,13 @@ const IndividualOrg = () => {
     api.orgs.post(request).then((response) => {
       const allUsers: IIndividuals[] = response.data;
       const filteredUsers: IIndividuals[] = allUsers.filter(
-        (_id) => _id.ord_id == Number(params.id)
+        (_id) => _id.ord_id == Number(params.id),
       );
-      setThisUser(filteredUsers.find((_id) => _id.user_id === Number(currentUser)));
+      setThisUser(
+        filteredUsers.find((_id) => _id.user_id === Number(currentUser)),
+      );
       setUsers(filteredUsers);
     });
-    
   }, [params.id]);
 
   function joinHandler() {
@@ -82,9 +81,9 @@ const IndividualOrg = () => {
     }
   }
 
-  function removeUser(id:number){
+  function removeUser(id: number) {
     return () => {
-      if(users?.find((_user) => _user.user_id === id)){
+      if (users?.find((_user) => _user.user_id === id)) {
         const request = {
           ord_id: params.id,
           user_id: id,
@@ -94,21 +93,30 @@ const IndividualOrg = () => {
         alert("Success")
         history.push("/organization")
       }
-    }
+    };
   }
 
-  function showRemoveButton(id:number){
-    return (<Button variant="warning" className="removeButton" onClick={removeUser(id)}>Remove User</Button>)
+  function showRemoveButton(id: number) {
+    return (
+      <Button
+        variant="warning"
+        className="removeButton"
+        onClick={removeUser(id)}
+      >
+        Remove User
+      </Button>
+    );
   }
 
-  function disbandOrgHandler(org:number | undefined){
+  function disbandOrgHandler(org: any | undefined) {
     return () => {
-      if(org != undefined){
+      if (org != undefined) {
         api.orgs.delete(org);
-    }
-    history.push("/organization");
+      }
+      history.push('/organization');
+    };
   }
-}
+
 
 function promoteUser(id:number){
   return () => {
@@ -134,8 +142,8 @@ function demoteUser(id:number){
   }
 }
 
-  function displayRole(role:number){
-    switch(role){
+  function displayRole(role: number) {
+    switch (role) {
       case 1:
         return "Creator";
       case 2:
@@ -172,7 +180,10 @@ function demoteUser(id:number){
               Join!
             </Button>
           )}
-          {users?.find((user) => user.user_id === Number(currentUser) && user.user_role !== 1) && (
+          {users?.find(
+            (user) =>
+              user.user_id === Number(currentUser) && user.user_role !== 1,
+          ) && (
             <Button
               className="leavebutton"
               id="leavebutton"
@@ -180,13 +191,20 @@ function demoteUser(id:number){
             >
               Leave...
             </Button>
-          )
-        }
-        {users?.find((user) => user.user_id === Number(currentUser) && user.user_role === 1) && (
-          <Button className="disband"
-          id="disband"
-          onClick={disbandOrgHandler(org?.ord_id)} variant="danger">Disband Org</Button>
-        )}
+          )}
+          {users?.find(
+            (user) =>
+              user.user_id === Number(currentUser) && user.user_role === 1,
+          ) && (
+            <Button
+              className="disband"
+              id="disband"
+              onClick={disbandOrgHandler(org?.ord_id)}
+              variant="danger"
+            >
+              Disband Org
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </>

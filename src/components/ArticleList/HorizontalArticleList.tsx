@@ -98,8 +98,7 @@ export default function HorizontalArticles(props: { rows: number }) {
                     </Link>
                     <div>
                       {' '}
-                      Author: {art.user_firstName} {''}
-                      {art.user_lastName}{' '}
+                      Author: {art.user_userName} {''}
                     </div>
                   </Card.Header>
 

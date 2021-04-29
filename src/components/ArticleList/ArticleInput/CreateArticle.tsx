@@ -209,8 +209,12 @@ export function CreateNewArticle() {
               >
                 <option>Categories</option>
                 <option value="Tech"> Tech </option>
+                <option value="Sports"> Sports </option>
+                <option value="Religion"> Religion </option>
                 <option value="Health"> Health </option>
                 <option value="Sci-Fi"> Sci-Fi </option>
+                <option value="Fiction"> Fiction </option>
+                <option value="Non-Fiction"> Non-Fiction </option>
                 <option value="Science"> Science </option>
                 <option value="Beauty"> Beauty </option>
               </Form.Control>

@@ -18,9 +18,9 @@ export default {
     });
   },
 
-  // getRatingByArticleId: async (ratArtId: number) => {
-  //    console.log(`${HOSTNAME}/rating/${ratArtId}`);
-  //   return axios.get(`${HOSTNAME}/rating/${ratArtId}`, {
+  // getRatingByArticleId: async (artId: number) => {
+  //   console.log(`${HOSTNAME}/rating/${artId}`);
+  //   return axios.get(`${HOSTNAME}/rating/${artId}`, {
   //     headers: {
   //       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
   //     },

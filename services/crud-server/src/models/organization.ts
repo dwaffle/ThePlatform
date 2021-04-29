@@ -34,6 +34,7 @@ export interface IOrganization {
     org_price: number;
     orgType_id: number;
     org_desc:string;
+    org_status?:number;
     user_id:number;
     // organization_status: boolean;
 }
@@ -45,12 +46,17 @@ export interface IOrgModificationRequest{
     addUser:boolean
 }
 
+export interface IOrgUpdatedRequest{
+    ord_id:number
+    org_status:number
+}
+
 
 
 export const OrganizationModel = {
 
     getAll: ():Promise<IOrganization[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT * FROM organization', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.query('select * from organization ORDER BY org_status DESC, org_title ASC', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -110,9 +116,7 @@ export const OrganizationModel = {
     }
     },
 
-  
-    update: async ( request:IOrgModificationRequest) => {
-
+    changeUserRole: async(request:IOrgModificationRequest) => {
         connection.query(`UPDATE organization_has_user SET user_role = ${request.user_role} WHERE ord_id = ${request.ord_id} AND user_id = ${request.user_id}`, 
         function (err: any, result:any){
             if(err){
@@ -120,6 +124,22 @@ export const OrganizationModel = {
             } else {
                 result
             }
+        })
+    },
+
+    update: async ( Organization:IOrgUpdatedRequest) => {
+
+        // var connection = await myConnection.getClient()
+        return new Promise<any>((resolve, reject) => {
+            console.log(`UPDATE organization SET org_status = ${Organization.org_status} WHERE ord_id = ${Organization.ord_id}`)
+            connection.query(`UPDATE organization SET org_status = ${Organization.org_status} WHERE ord_id = ${Organization.ord_id}`, 
+            function(err:any, result:any){
+                if(err){
+                    throw err
+                } else {
+                    result
+                }
+            })
         })
 
     },

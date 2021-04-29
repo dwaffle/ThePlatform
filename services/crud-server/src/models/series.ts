@@ -19,12 +19,14 @@ export interface ISeries{
     series_desc: string;
     series_price?: string;
     series_category: string;
+    ser_creationDate?: string;
+    user_userName?: string;
 }
 
 export const SeriesModel = {
     createSeries: async( seriesToCreate:ISeries) => {
-        connection.query(`INSERT INTO series (series_id, series_owner, series_title, series_desc, series_price, series_category) 
-        VALUES ('${seriesToCreate.series_id}', '${seriesToCreate.series_owner}', '${seriesToCreate.series_title}', '${seriesToCreate.series_desc}', '${seriesToCreate.series_price}', '${seriesToCreate.series_category}' )`,
+        connection.query(`INSERT INTO series (series_id, series_owner, series_title, series_desc, series_price, series_category, ser_creationDate) 
+        VALUES ('${seriesToCreate.series_id}', '${seriesToCreate.series_owner}', '${seriesToCreate.series_title}', '${seriesToCreate.series_desc}', '${seriesToCreate.series_price}', '${seriesToCreate.series_category}', SYSDATE() )`,
         function(err:any, result:any){
             if(err)
             {
@@ -37,7 +39,7 @@ export const SeriesModel = {
 
     getAll: async ():Promise<any> => {
         return new Promise((resolve, reject) => {
-                connection.query('SELECT series_id, series_owner, series_title, series_desc, series_price, series_category from series;', 
+                connection.query('SELECT series_id, series_owner, series_title, series_desc, series_price, series_category, ser_creationDate, user_userName from series a JOIN user u on a.series_owner = u.user_id;', 
                 function(err:any, result:any){
                     if(err){
                         reject(err);

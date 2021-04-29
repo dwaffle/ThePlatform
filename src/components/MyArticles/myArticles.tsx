@@ -25,31 +25,63 @@ function MyArticles() {
   const user_ID = Number(localStorage.getItem('user_id'));
   // show only the users articles
   let myArtList = articleList.filter((a) => a.user_author == user_ID);
-  //user ID
-  const user_id = Number(localStorage.getItem('user_id'));
 
   // selected article that comes from pending article
   const [article, setArticle] = useState<IArticle>();
 
-  const ShowArticleOnClick = (e: any) => {
-    setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
+  const ShowArticleOnClick = (id: number) => {
+    // setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
+    setArticle(myArtList.find((article) => article.art_id === id)); //Arrays start at 0.  Row indexes start at 1.
+
+    history.push('/myArticles');
   };
 
   const history = useHistory();
-  const [title, setTitle] = useState<string>('');
-  const [category, setCategory] = useState();
-  const [series, setSeries] = useState();
-  const [description, setDescription] = useState<string>('');
-  const [body, setBody] = useState<string>('');
+  const setTitle = (value: string) => {
+    setArticle({
+      ...(article as IArticle),
+      art_title: value,
+    });
+  };
+
+  const setDescription = (value: string) => {
+    setArticle({
+      ...(article as IArticle),
+      description: value,
+    });
+  };
+
+  const setBody = (value: string) => {
+    setArticle({
+      ...(article as IArticle),
+      art_body: value,
+    });
+  };
+
+  const setSeries = (value: number) => {
+    setArticle({
+      ...(article as IArticle),
+      series_id: value,
+    });
+  };
+
+  const setCategory = (value: string) => {
+    setArticle({
+      ...(article as IArticle),
+      art_category: value,
+    });
+  };
+  // const [title, setTitle] = useState<string>('');
+  // const [category, setCategory] = useState();
+  // const [series, setSeries] = useState();
+  // const [description, setDescription] = useState<string>('');
+  // const [body, setBody] = useState<string>('');
 
   const [hasPrice, setChecked] = useState<ArticleType>();
 
   const [price, setPrice] = useState<number>(0);
   const onChange = (e: any) => {
     setPrice(e.target.value);
-  };
-  const changeCategory = (e: any) => {
-    setCategory(e.target.value);
   };
 
   //Activates or deactivates the price text box.
@@ -98,21 +130,23 @@ function MyArticles() {
 
       //Construct object.  Add one to the enum of the artype_id to line it up with the database IDs.  Enums start at 0, our DB starts at 1.
       let articlePatch = {
-        artype_id: article?.art_id,
+        art_id: article?.art_id,
+        artype_id: article?.artype_id,
         art_title: article?.art_title,
         description: article?.description,
-        user_author: article?.user_author,
         art_body: article?.art_body,
+        art_category: article?.art_category,
         series_id: article?.series_id,
       };
+      // console.log(articlePatch);
       //Send object.
-      api.article.patch(articlePatch);
-      history.push('/myArticles');
-      return;
+      alert('Success');
+      api.article.put(articlePatch);
+      return history.push('/myArticles');
     }
   }
 
-  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_id);
+  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_ID);
   function onChangeSeries(e: any) {
     setSeries(e.target.value);
     console.log(e.target.value);
@@ -158,12 +192,12 @@ function MyArticles() {
                   {myArtList.map((art, index) => (
                     <tr
                       key={index}
-                      onClick={ShowArticleOnClick}
+                      onClick={() => ShowArticleOnClick(art.art_id)}
                       defaultValue={art.art_id}
                     >
                       <td>{art.art_title}</td>
                       <td>{seriesStatus(art.art_is_approved)}</td>
-                      <td> {seriesNull(art.series_id)}</td>
+                      <td> {seriesNull(art.series_title)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -181,8 +215,8 @@ function MyArticles() {
           <Form.Group>
             <Form.Label className="FormLabels">Article Title</Form.Label>
             <Form.Control
-              type="Title"
-              defaultValue={article?.art_title}
+              type="text"
+              value={article?.art_title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
@@ -191,9 +225,9 @@ function MyArticles() {
               <Form.Group>
                 <Form.Label className="FormLabels">Category</Form.Label>
                 <Form.Control
-                  defaultValue={article?.art_category}
+                  value={article?.art_category}
                   as="select"
-                  onChange={changeCategory}
+                  onChange={(e) => setCategory(e.target.value)}
                 >
                   <option value="Tech"> Select Category.. </option>
                   <option value="Tech"> Tech </option>
@@ -207,7 +241,11 @@ function MyArticles() {
               </Form.Group>
               <Form.Group>
                 <Form.Label className="FormLabels">Series</Form.Label>
-                <Form.Control as="select" onChange={onChangeSeries}>
+                <Form.Control
+                  value={article?.series_id}
+                  as="select"
+                  onChange={onChangeSeries}
+                >
                   <option value="null">Select Series..</option>
                   {userOwnsSeries.map((s) => {
                     return (
@@ -258,7 +296,7 @@ function MyArticles() {
               as="textarea"
               className="description"
               type="Description"
-              defaultValue={article?.description}
+              value={article?.description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
@@ -268,11 +306,11 @@ function MyArticles() {
               as="textarea"
               className="body"
               type="Body"
-              defaultValue={article?.art_body}
+              value={article?.art_body}
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-          TEST ME
+
           <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit
