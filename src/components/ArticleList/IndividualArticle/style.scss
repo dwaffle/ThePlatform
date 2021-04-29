@@ -3,6 +3,8 @@
     font-family:Georgia, 'Times New Roman', Times, serif;
     padding: 0px;
     margin: 0px;
+    line-height: 0.9em;
+    margin-bottom: 0px;
 }
 
 
@@ -39,7 +41,7 @@ section {
     }  
 
     .iArticleInfo {
-        margin-top: -20px;
+        // margin-top: -20px;
         margin-left: 2vw;
 
         .pTag {
@@ -57,8 +59,7 @@ section {
     .ratingAndDesc {
 
         .ratingArea {
-           
-            max-width: 30%;
+            max-width: 27%;
         }
 
         .descArea {

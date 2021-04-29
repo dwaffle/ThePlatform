@@ -116,7 +116,7 @@ const IndividualArticle = () => {
 
           <p className="iAAuthor">
             {' '}
-            <i>written by:</i> {article?.user_userName}
+            <i>written by:</i> {article?.user_userName} 
             <a className="socialMedia" href="https://facebook.com/">
               <img src={facebook} />
             </a>
