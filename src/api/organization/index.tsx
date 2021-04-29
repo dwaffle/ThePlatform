@@ -26,6 +26,14 @@ export default {
     });
   },
 
+  put: async (body: any) => {
+    return axios.put(`${HOSTNAME}/organization`, body,{
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    });
+  },
+
   delete: async (id: string) => {
     return axios.delete(`${HOSTNAME}/Organizations/${id}`, {
       headers: {
