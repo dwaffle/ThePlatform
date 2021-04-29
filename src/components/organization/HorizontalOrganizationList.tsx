@@ -18,31 +18,29 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 6,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 6,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3,
+    items: 4,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2,
+    items: 3,
   },
 };
 
 export default function HorizontalOrganizationList(props: {}) {
   const [allOrgs, setAllOrgs] = useState<IOrganization[]>();
-  const [reverseOrgs, setReverseOrgs] = useState<IOrganization[]>();
   const history = useHistory();
+
   useEffect(() => {
     api.organization.get().then((response) => {
       setAllOrgs(response.data);
-      setReverseOrgs(response.data);
-      reverseOrgs?.reverse();
     });
   }, []);
 
@@ -89,7 +87,7 @@ export default function HorizontalOrganizationList(props: {}) {
                       className="org-card"
                       style={{ width: '18rem' }}
                     >
-                      <Card.Header className="text-center p-3">
+                      <Card.Header className="text-center">
                         {data.org_title}
                       </Card.Header>
                       <Card.Body>
@@ -120,49 +118,18 @@ export default function HorizontalOrganizationList(props: {}) {
       <Row>
         <Col>
           <div className="trending-organization">
-            <h3>Trending Organization</h3>
-            <Table striped bordered hover variant="dark">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>organization</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allOrgs ? (
-                  allOrgs.map((data) => {
-                    return (
-                      <tr onClick={onClickHandler(data.ord_id)}>
-                        <td>{data.ord_id}</td>
-                        <td>{data.org_title}</td>
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <tr>
-                    <td>You must be logged in to view organizations</td>
-                  </tr>
-                )}
-              </tbody>
-            </Table>
-          </div>
-        </Col>
-        <Col>
-          <div className="trending-organization">
             <h3>Newest organizations</h3>
             <Table striped bordered hover variant="info">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>organization</th>
+                  <th>Organizations</th>
                 </tr>
               </thead>
               <tbody>
-                {reverseOrgs ? (
-                  reverseOrgs.map((data) => {
+                {allOrgs ? (
+                  allOrgs?.map((data) => {
                     return (
                       <tr onClick={onClickHandler(data.ord_id)}>
-                        <td>{data.ord_id}</td>
                         <td>{data.org_title}</td>
                       </tr>
                     );

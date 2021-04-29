@@ -10,43 +10,36 @@ import { LinkContainer } from 'react-router-bootstrap';
 // Add users to role by adding to list by email / username from currently signed up members
 
 export default function AdminPage(props: {}) {
-
   const user_type = Number(window.localStorage.getItem('user_type'));
-  
-   //show Amin page for admins only
-   function isAdmin() {
-    if (user_type === 1 ) {
+
+  //show Amin page for admins only
+  function isAdmin() {
+    if (user_type === 1) {
       return (
         <>
-      <h1>Admin page</h1>
-      <Row>
-        <Col>
-          <Organization />
-        </Col>
-        <Col>
-          <Member />
-        </Col>
-      </Row>
-    </>
+          <h1>Admin page</h1>
+          <Row>
+            <Col>
+              <Organization />
+            </Col>
+            <Col>
+              <Member />
+            </Col>
+          </Row>
+        </>
       );
-    }
-    else {
-      
+    } else {
       return (
-      <>
-      <Row>
-        <Col>
-        <h1>You are not authorised to navigate here, </h1>
-        </Col>
-      </Row>
-    </>
-      )
+        <>
+          <Row>
+            <Col>
+              <h1>You are not authorised to navigate here, </h1>
+            </Col>
+          </Row>
+        </>
+      );
     }
   }
 
-  return (
-    <>
-      {isAdmin()}
-    </>
-  );
+  return <>{isAdmin()}</>;
 }

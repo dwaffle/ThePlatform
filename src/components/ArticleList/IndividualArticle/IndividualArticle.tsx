@@ -98,39 +98,61 @@ const IndividualArticle = () => {
     );
   };
 
+  function displaySeriesTitle(seriesTitle: any) {
+    if (seriesTitle) {
+      return 'Series: ' + seriesTitle;
+    }
+  }
+
   return (
     <MainLayout>
       <section>
-        <h1>{article?.art_title} </h1>
-        {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
-          {/* {console.log("id+++++" +article?.art_id)} */}
-          
-        { article && <Rating article_id = {article.art_id} />}
-        <div className="articleDetails">
-          {article?.user_firstName + ' ' + article?.user_lastName}
+        <em className="IAHeadline">{article?.art_title} </em>
 
-          <a className="socialMedia" href="https://facebook.com/">
-            <img src={facebook} />
-          </a>
-          <a className="socialMedia" href="https://www.instagram.com/">
-            <Image src={instagram} />
-          </a>
-          <a className="socialMedia" href="https://twitter.com/">
-            <Image src={twitter} />
-          </a>
+        <div className="iArticleInfo">
+          <p className="pTag">
+            <u>{article?.art_category}</u>
+          </p>
+
+          <p className="iAAuthor">
+            {' '}
+            <i>written by:</i> {article?.user_userName}
+            <a className="socialMedia" href="https://facebook.com/">
+              <img src={facebook} />
+            </a>
+            <a className="socialMedia" href="https://www.instagram.com/">
+              <Image src={instagram} />
+            </a>
+            <a className="socialMedia" href="https://twitter.com/">
+              <Image src={twitter} />
+            </a>
+            <p className="pTag">
+              <small>{displaySeriesTitle(article?.series_title)} </small>
+            </p>
+          </p>
         </div>
+
+        <Row className="ratingAndDesc">
+          <Col className="ratingArea">
+            {article && <Rating article_id={article.art_id} />}
+          </Col>
+          <Col className="descArea">{article?.description}</Col>
+        </Row>
+
+        {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
+        {/* {console.log("id+++++" +article?.art_id)} */}
 
         <Row noGutters>
           <Col md="auto">
             <img
               className="mainImg"
-              src="https://image.shutterstock.com/image-photo/extra-wide-panorama-gorgeous-forest-260nw-476416021.jpg"
+              src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
             ></img>
           </Col>
-          <Col className="description">{article?.description}</Col>
+          {/* <Col className="description">{article?.description}</Col> */}
         </Row>
 
-        <div>{article?.art_body}</div>
+        <div className="iABody">{article?.art_body}</div>
 
         <input type="button" value="test" onClick={togglePopup} />
         {isOpen && (

@@ -37,6 +37,14 @@ export default {
     });
   },
 
+  put: async (body?: any) => {
+    return axios.put(`${HOSTNAME}/articles`, body, {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    });
+  },
+
   delete: async (id: string) => {
     return axios.delete(`${HOSTNAME}/articles/${id}`, {
       headers: {

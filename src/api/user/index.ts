@@ -2,7 +2,6 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 export default {
-
   get: async () => {
     return axios.get(`${HOSTNAME}/users`, {
       headers: {
@@ -24,8 +23,8 @@ export default {
   },
 
   put: async (body: any) => {
-    console.log("member, index-user")
-    return axios.put(`${HOSTNAME}/user`, body,{
+    console.log('member, index-user');
+    return axios.put(`${HOSTNAME}/user`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },

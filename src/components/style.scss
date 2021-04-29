@@ -14,10 +14,10 @@
 .navbarBG{
   height: 9vh;
   background-color: #363535;
-  border: 1px solid #d47501;
-  font-size: 1.1rem;
+  border: 0px solid #d47501;
+  font-size: 1.3rem;
   color: lightgray;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
   
   .navButtons {
     margin: 0 auto;
@@ -29,6 +29,7 @@
 
 .navFont {
   color: lightgray;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .form-narrow{

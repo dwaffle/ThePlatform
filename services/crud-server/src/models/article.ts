@@ -17,8 +17,9 @@ var connection = mysql.createConnection({
 
 //Id and date of creation are generated for us by the SQL query.  user_firstName and user_lastName are used when getting an article back.
 export interface IArticle {
-    art_id?: number,
+    art_id: number,
     art_price: number,
+    user_userName?: string,
     user_author: number,
     user_firstName?: string,
     user_lastName?: string,
@@ -29,7 +30,8 @@ export interface IArticle {
     art_image: string,
     art_is_approved?: number,
     art_category:string,
-    series_id?: number
+    series_id?: number,
+    series_title?: string
 }
 
 export const ArticleModel = {
@@ -37,7 +39,7 @@ export const ArticleModel = {
     getAll: async ():Promise<any> => {
         // var connection = await myConnection.getClient()
         return new Promise((resolve, reject) => {
-                connection.query('SELECT art_id, art_price,  user_author, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved, art_category, series_id from article a JOIN user u on a.user_author = u.user_id;', function(err:any, result:any){
+                connection.query('select art_id, art_price, user_author, user_userName, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved, art_category, a.series_id, series_title from article a join user u on a.user_author = u.user_id left join series s on s.series_id = a.series_id;', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {
@@ -141,7 +143,7 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category, series_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}', '${articleToCreate.series_id}')`,
+            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category, series_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}', ${articleToCreate.series_id || null})`,
             function(err:any, result:any){
                 if(err)
                 {
