@@ -23,6 +23,7 @@ export interface IArticle {
     user_author: number,
     user_firstName?: string,
     user_lastName?: string,
+    art_creationDate?: string,
     artype_id: number,
     description: string,
     art_title: string,
@@ -39,7 +40,7 @@ export const ArticleModel = {
     getAll: async ():Promise<any> => {
         // var connection = await myConnection.getClient()
         return new Promise((resolve, reject) => {
-                connection.query('select art_id, art_price, user_author, user_userName, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved, art_category, a.series_id, series_title from article a join user u on a.user_author = u.user_id left join series s on s.series_id = a.series_id;', function(err:any, result:any){
+                connection.query('select art_id, art_price, user_author, art_creationDate, user_userName, user_firstName, user_lastName, artype_id, description, art_title,  art_body, art_image, art_is_approved, art_category, a.series_id, series_title from article a join user u on a.user_author = u.user_id left join series s on s.series_id = a.series_id;', function(err:any, result:any){
                     if(err){
                         reject(err);
                     } else {

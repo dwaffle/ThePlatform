@@ -179,7 +179,13 @@ function MyArticles() {
           {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
-              <Table striped bordered hover variant="light">
+              <Table
+                className="tableParent"
+                striped
+                bordered
+                hover
+                variant="light"
+              >
                 <thead className="thead">
                   <tr>
                     <th>Articles</th>
@@ -188,7 +194,7 @@ function MyArticles() {
                     {/* <th>State</th> */}
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="listArtTitle">
                   {myArtList.map((art, index) => (
                     <tr
                       key={index}
@@ -229,11 +235,13 @@ function MyArticles() {
                   as="select"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="Tech"> Select Category.. </option>
+                  <option value="Null"> Select Category.. </option>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
-                  <option value="Sci-Fi"> Sci-Fi </option>
                   <option value="Science"> Science </option>
+                  <option value="Sci-Fi"> Sci-Fi </option>
+                  <option value="Fiction"> Fiction </option>
+                  <option value="Non-Fiction"> Non-Fiction </option>
                   <option value="Beauty"> Beauty </option>
                   <option value="Humour"> Humour </option>
                   <option value="Religion"> Religion </option>
@@ -257,7 +265,7 @@ function MyArticles() {
             </Col>
 
             <Col>
-              <Form.Label className="FormLabels">Article Type </Form.Label>
+              <Form.Label className="FormLabels">Article Type</Form.Label>
               <Form.Group>
                 <input
                   type="radio"

@@ -4,7 +4,7 @@ import MainLayout from '../../../layouts/MainLayout';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../../api';
 import { useParams } from 'react-router';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import './style.scss';
 import { articleListState, userOwnsArticle } from '../articleList';
 import { useHistory, Link } from 'react-router-dom';
@@ -15,6 +15,7 @@ import twitter from '../../..//data/icon/twitter.png';
 import paymentInfo from '../../../api/paymentInfo/paymentInfo';
 import user from '../../../api/user';
 import Rating from '../../rating/rating';
+import series from '../../../api/series';
 
 const IndividualArticle = () => {
   //articles without id
@@ -22,49 +23,25 @@ const IndividualArticle = () => {
   //articles with ids
   const [article, setArticle] = useState<IArticle>();
 
+  // state if the user has payment information or not.
+  const [userPInfo, setUserPInfo] = useState();
+
   // assigns an id to one article
   const params = useParams<{ id: string }>();
   // user id... as JSON
   const user_ID = { user_id: Number(localStorage.getItem('user_id')) };
+  const userIdNonObject = Number(localStorage.getItem('user_id'));
 
   //does the user own the article if required?
   const articleOwnership = useRecoilValue(userOwnsArticle);
 
   //history router
   const history = useHistory();
+
   //rendering for articles and assigning an id to an article
   useEffect(() => {
     setArticle(art.find((_art) => _art.art_title === params.id));
-    // togglePopup()
   }, [params.id]);
-
-  // if the article is a paid article, check to see if the user owns it
-  // if not, enforce pop up where they can purchase the article
-
-  //popup state
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  // state if the user has payment information or not.
-  const [userPInfo, setUserPInfo] = useState();
-  // button functionality to set the state of the popup
-  // makes api request to check payment information
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-    document.body.style.overflow = 'hidden';
-    if (isOpen) {
-      document.body.style.overflow = 'unset';
-    }
-  };
-
-  useEffect(() => {
-    api.paymentInfo
-      .post(user_ID)
-      .then((response) => {
-        setUserPInfo(response.data);
-      })
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
-
-  // Function enabling a user to purchase an article
 
   function oneClickPurchase() {
     if (!userPInfo) {
@@ -84,23 +61,48 @@ const IndividualArticle = () => {
     }
   }
 
-  //Content of this popup is held in the mainlayout
-  const PurchasePopup = (props: any) => {
-    return (
-      <div className="popup-box">
-        <div className="box">
-          <span className="close-icon" onClick={props.handleClose}>
-            x
-          </span>
-          {props.content}
-        </div>
-      </div>
-    );
-  };
+  function checkArticleType() {
+    let checkUserOwnerShip = articleOwnership.some(ch => ch.user_id == userIdNonObject)
+    console.log(checkUserOwnerShip)
+    // console.log(articleOwnership)
+    if (article?.artype_id !== 2) {
+      return <div className="iABody">{article?.art_body}</div>;
+    }
 
+    if (!checkUserOwnerShip) {
+      return (
+        <div>
+          <p>
+            This Article is not free, The contents of the article have been
+            hidden.
+            <p>
+              If you wish to view this article, please support the author by
+              purchasing the article
+            </p>
+          </p>
+          <button onClick={oneClickPurchase}> Buy Article </button>
+        </div>
+      );
+    } 
+
+    if(checkUserOwnerShip) {
+      return <div className="iABody">
+        {article.art_body}
+      </div>
+    }
+  }
+
+  useEffect(() => {
+    api.paymentInfo
+      .post(user_ID)
+      .then((response) => {
+        setUserPInfo(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }, []);
   function displaySeriesTitle(seriesTitle: any) {
     if (seriesTitle) {
-      return 'Series: ' + seriesTitle;
+      return seriesTitle;
     }
   }
 
@@ -108,12 +110,7 @@ const IndividualArticle = () => {
     <MainLayout>
       <section>
         <em className="IAHeadline">{article?.art_title} </em>
-
         <div className="iArticleInfo">
-          <p className="pTag">
-            <u>{article?.art_category}</u>
-          </p>
-
           <p className="iAAuthor">
             {' '}
             <i>written by:</i> {article?.user_userName}
@@ -126,22 +123,26 @@ const IndividualArticle = () => {
             <a className="socialMedia" href="https://twitter.com/">
               <Image src={twitter} />
             </a>
-            <p className="pTag">
-              <small>{displaySeriesTitle(article?.series_title)} </small>
-            </p>
+          </p>
+          <p className="pTag">
+            <u>Category: {article?.art_category}</u>
+          </p>
+
+          <p className="pTag">
+            <small>Series:</small>{' '}
+            <Link to={`/series/${article?.series_title}`}>
+              {displaySeriesTitle(article?.series_title) || null}
+            </Link>
           </p>
         </div>
-
         <Row className="ratingAndDesc">
           <Col className="ratingArea">
             {article && <Rating article_id={article.art_id} />}
           </Col>
           <Col className="descArea">{article?.description}</Col>
         </Row>
-
         {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
         {/* {console.log("id+++++" +article?.art_id)} */}
-
         <Row noGutters>
           <Col md="auto">
             <img
@@ -151,11 +152,10 @@ const IndividualArticle = () => {
           </Col>
           {/* <Col className="description">{article?.description}</Col> */}
         </Row>
-
-        <div className="iABody">{article?.art_body}</div>
-
-        <input type="button" value="test" onClick={togglePopup} />
-        {isOpen && (
+        {checkArticleType()}
+        {/* <div className="iABody">{article?.art_body}</div> */}
+        {/* <input type="button" value="test" onClick={togglePopup} /> */}
+        {/* {isOpen && (
           <PurchasePopup
             content={
               <>
@@ -168,7 +168,7 @@ const IndividualArticle = () => {
             }
             handleClose={togglePopup}
           />
-        )}
+        )} */}
       </section>
     </MainLayout>
   );

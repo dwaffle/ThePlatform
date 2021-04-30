@@ -1,22 +1,14 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Carousel from 'react-multi-carousel';
-import {
-  Card,
-  CardDeck,
-  Col,
-  Form,
-  Row,
-  Button,
-  ListGroup,
-} from 'react-bootstrap';
-import unnamed from '../../data/icon/unnamed.jpg';
-import { Link, useHistory } from 'react-router-dom';
+import { Card, Col, Form, Row, Button } from 'react-bootstrap';
+// import unnamed from '../../data/icon/unnamed.jpg';
+import { useHistory } from 'react-router-dom';
 import './style.scss';
 import { seriesListState } from '../ArticleList/articleList';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import SeriesFilter from './searchFilter/SeriesFilter';
-import { sCategoriesState } from './searchFilter/series.recoil';
+// import { sCategoriesState } from './searchFilter/series.recoil';
 
 export interface ISearchFilter {
   name?: string;
