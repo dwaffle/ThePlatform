@@ -179,7 +179,13 @@ function MyArticles() {
           {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
-              <Table className="tableParent" striped bordered hover variant="light">
+              <Table
+                className="tableParent"
+                striped
+                bordered
+                hover
+                variant="light"
+              >
                 <thead className="thead">
                   <tr>
                     <th>Articles</th>
