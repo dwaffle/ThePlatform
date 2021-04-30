@@ -22,7 +22,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 6,
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -49,6 +49,8 @@ export default function HorizontalOrganizationList(props: {}) {
       history.push(`/IndividualOrganizationPage/${id}`);
     };
   }
+
+
 
   function showCreateOrgButton() {
     const id = window.localStorage.getItem('user_type');
@@ -118,7 +120,7 @@ export default function HorizontalOrganizationList(props: {}) {
       <Row>
         <Col>
           <div className="trending-organization">
-            <h3>Newest organizations</h3>
+            <h3>Your Organizations</h3>
             <Table striped bordered hover variant="info">
               <thead>
                 <tr>

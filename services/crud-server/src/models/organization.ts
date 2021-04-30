@@ -116,6 +116,17 @@ export const OrganizationModel = {
     }
     },
 
+    changeUserRole: async(request:IOrgModificationRequest) => {
+        connection.query(`UPDATE organization_has_user SET user_role = ${request.user_role} WHERE ord_id = ${request.ord_id} AND user_id = ${request.user_id}`, 
+        function (err: any, result:any){
+            if(err){
+                throw err
+            } else {
+                result
+            }
+        })
+    },
+
     update: async ( Organization:IOrgUpdatedRequest) => {
 
         // var connection = await myConnection.getClient()
