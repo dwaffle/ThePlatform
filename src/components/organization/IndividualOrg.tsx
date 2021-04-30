@@ -100,6 +100,7 @@ const IndividualOrg = () => {
       <Button
         variant="warning"
         className="removeButton"
+        size="sm"
         onClick={removeUser(id)}
       >
         Remove User
@@ -162,8 +163,8 @@ function demoteUser(id:number){
             Users:{' '}
             {users?.map((name) => {
               return <div className="user">{name.user_userName} 
-              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 3)) && <Button variant="info" onClick={promoteUser(name.user_id)}>Promote User</Button>}
-              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 2)) && <Button variant="info" onClick={demoteUser(name.user_id)}>Demote User</Button>}
+              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 3)) && <Button variant="info" onClick={promoteUser(name.user_id)} className="removeButton" size="sm">Promote User</Button>}
+              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 2)) && <Button variant="info" onClick={demoteUser(name.user_id)} className="removeButton" size="sm">Demote User</Button>}
               {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1 || thisUser?.user_role === 2)&& name.user_role > thisUser?.user_role) && <div className="removeButton">{showRemoveButton(name.user_id)}</div>}
               
               <div className="role">{displayRole(name.user_role)}</div> </div>;
