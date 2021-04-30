@@ -9,22 +9,18 @@ import './style.scss';
 export default function HomePage(props: {}) {
   // all series
   const seriesList = useRecoilValue<ISeries[]>(seriesListState);
-  //  const test = seriesList.sort((a,b) => new Date(b.ser_creationDate).getTime() - new Date(a.date).getTime())[0];
   // all articles
   const { articleList, setArticleList } = useArticleList();
 
-  const dateNow = new Date();
-  console.log('datenow', dateNow);
+  // const dateNow = new Date();
+  // console.log('datenow', dateNow);
 
   //find the newest series
-  //not finding the latest, yet.
-  const newestSeries = seriesList.find((s) => s.ser_creationDate);
-  console.log('newest series? ', newestSeries?.ser_creationDate);
+  const newestSeries = seriesList[seriesList.length - 1];
 
-  //not finding the latest, yet.
-  const newestArticle = articleList.find((a) => a.art_creationDate);
-  // console.log("newest Article?", newestArticle)
-
+  // gets newest article
+  const newestArticle = articleList[articleList.length - 1];
+  
   // const latestSeries = seriesList.sort((objA, objB) => objA.ser_creationDate.getTime() - dateNow;
   return (
     <>
@@ -32,7 +28,10 @@ export default function HomePage(props: {}) {
         <Col xs={8}>
           {' '}
           <div className="HeadlineArticle">
-            <h1> HeadlineArticle </h1>
+            <h1> {newestArticle.art_title} </h1>
+            <p>
+              written by:{newestArticle.user_userName}
+            </p>
           </div>{' '}
         </Col>
         <Col>

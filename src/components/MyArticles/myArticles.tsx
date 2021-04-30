@@ -194,7 +194,7 @@ function MyArticles() {
                     {/* <th>State</th> */}
                   </tr>
                 </thead>
-                <tbody className="listArtTitle">
+                <tbody>
                   {myArtList.map((art, index) => (
                     <tr
                       key={index}

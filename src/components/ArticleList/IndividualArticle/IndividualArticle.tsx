@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import MainLayout from '../../../layouts/MainLayout';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
@@ -12,10 +12,10 @@ import Image from 'react-bootstrap/Image';
 import facebook from '../../../data/icon/facebook.png';
 import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
-import paymentInfo from '../../../api/paymentInfo/paymentInfo';
-import user from '../../../api/user';
+// import paymentInfo from '../../../api/paymentInfo/paymentInfo';
+// import user from '../../../api/user';
 import Rating from '../../rating/rating';
-import series from '../../../api/series';
+// import series from '../../../api/series';
 
 const IndividualArticle = () => {
   //articles without id
@@ -46,23 +46,22 @@ const IndividualArticle = () => {
   function oneClickPurchase() {
     if (!userPInfo) {
       alert("You don't have any payment information");
-    } else {
-      if (article != undefined) {
+    } 
+  
+      // if (article != undefined) {
         let objectToSend = {
           user_id: Number(localStorage.getItem('user_id')),
-          art_id: article.art_id,
+          art_id: article?.art_id,
         };
         api.purchaseArticle.post(objectToSend);
         alert('You have bought this article!');
-        history.push(`/articles/${article.art_title}`);
-      }
-
-      return;
-    }
+        history.push(`/articles/${article?.art_title}`);
+      // }
   }
 
   function checkArticleType() {
     let checkUserOwnerShip = articleOwnership.some(ch => ch.user_id == userIdNonObject)
+    console.log(articleOwnership)
     console.log(checkUserOwnerShip)
     // console.log(articleOwnership)
     if (article?.artype_id !== 2) {
@@ -71,13 +70,13 @@ const IndividualArticle = () => {
 
     if (!checkUserOwnerShip) {
       return (
-        <div>
+        <div className="artBodyParent">
           <p>
-            This Article is not free, The contents of the article have been
+            This Article is not free, The main body of the article has been
             hidden.
             <p>
               If you wish to view this article, please support the author by
-              purchasing the article
+              purchasing the article.
             </p>
           </p>
           <button onClick={oneClickPurchase}> Buy Article </button>

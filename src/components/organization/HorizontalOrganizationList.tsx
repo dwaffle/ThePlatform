@@ -50,8 +50,6 @@ export default function HorizontalOrganizationList(props: {}) {
     };
   }
 
-
-
   function showCreateOrgButton() {
     const id = window.localStorage.getItem('user_type');
     if (Number(id) !== 2 && id != null) {
