@@ -3,7 +3,7 @@ import { OrganizationModel, IOrgModificationRequest } from '../../models/organiz
 
 export async function change( app:any ){
 
-    app.patch("/organizations", async ( request:any, response:any ) => {
+    app.patch("/organizationUserChange", async ( request:any, response:any ) => {
         // read payload from post body
         const payload:IOrgModificationRequest = request.body;
         OrganizationModel.changeUserRole(payload);

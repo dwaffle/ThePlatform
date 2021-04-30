@@ -50,6 +50,8 @@ export default function HorizontalOrganizationList(props: {}) {
     };
   }
 
+
+
   function showCreateOrgButton() {
     const id = window.localStorage.getItem('user_type');
     if (Number(id) !== 2 && id != null) {
@@ -118,7 +120,7 @@ export default function HorizontalOrganizationList(props: {}) {
       <Row>
         <Col>
           <div className="trending-organization">
-            <h3>Newest organizations</h3>
+            <h3>Your Organizations</h3>
             <Table striped bordered hover variant="info">
               <thead>
                 <tr>

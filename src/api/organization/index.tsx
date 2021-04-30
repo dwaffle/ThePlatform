@@ -19,7 +19,7 @@ export default {
   },
 
   patch: async (body: any) => {
-    return axios.patch(`${HOSTNAME}/organizations/`, body, {
+    return axios.patch(`${HOSTNAME}/organizationUserChange/`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },

@@ -90,7 +90,6 @@ const IndividualOrg = () => {
           addUser: false
         }
         api.orgs.patch(request)
-        alert("Success")
         history.push("/organization")
       }
     };
@@ -175,6 +174,7 @@ function demoteUser(id:number){
             <Button
               className="joinbutton"
               id="joinbutton"
+              variant="success"
               onClick={joinHandler}
             >
               Join!
@@ -187,6 +187,7 @@ function demoteUser(id:number){
             <Button
               className="leavebutton"
               id="leavebutton"
+              variant="warning"
               onClick={leaveHandler}
             >
               Leave...
