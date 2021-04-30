@@ -63,7 +63,7 @@ export default function MemberSide(props: {}) {
        <Row>
         <Col>
           <h3>Member List List</h3>
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover >
             <thead>
               <th>Full Name</th>
               <th>Date of Profile</th>
@@ -73,7 +73,7 @@ export default function MemberSide(props: {}) {
             <tbody>
             {members?.map((member) => {
               
-              return (<tr 
+              return (<tr className="adminTable"
               
                 key={member.user_id}
                 defaultValue={member.user_id}
@@ -81,7 +81,7 @@ export default function MemberSide(props: {}) {
   
               >
                 <td > { member.user_firstName } { member.user_lastName }</td>
-                <td>{ member.user_creation_date }</td>
+                <td>{ member.user_creation_date.slice(0,10) }</td>
                 <td>{ member.user_userName }</td>
                 <td>{ member.user_status == 1? "active":"band" }</td>
               </tr>);

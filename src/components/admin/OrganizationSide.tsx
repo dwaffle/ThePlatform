@@ -71,7 +71,7 @@ export default function OrganizationSide(props: {}) {
             <tbody>
             {orgs?.map((org) => {
               
-              return (<tr 
+              return (<tr className="adminTable"
               
                 key={org.ord_id}
                 defaultValue={org.ord_id}

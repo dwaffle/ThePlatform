@@ -3,7 +3,7 @@ import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 import Organization from './OrganizationSide';
 import Member from './MemberSide';
 import './style.scss';
-import { LinkContainer } from 'react-router-bootstrap';
+
 
 // Can manage users’ roles.
 
