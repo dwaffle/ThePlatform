@@ -24,9 +24,10 @@
         padding-bottom:15px ;
         text-align: center;
     }
+}
 
-    
-    
+.new-org-button{
+    margin-top: 10px;
 }
 
 .Container {
@@ -47,6 +48,7 @@
 .org-card{
     display:inline-block;
     min-height: 220px;
+    overflow: hidden;
 }
 
 .view-org-button{
@@ -75,7 +77,5 @@
 .removeButton {
     display: inline;
     margin:2px;
-    height: 10%;
     text-rendering: auto;
-    
 }
