@@ -1,7 +1,7 @@
 
 import { OrganizationModel, IOrgModificationRequest } from '../../models/organization';
 
-export async function change( app:any ){
+export async function patch( app:any ){
 
     app.patch("/organizationUserChange", async ( request:any, response:any ) => {
         // read payload from post body
