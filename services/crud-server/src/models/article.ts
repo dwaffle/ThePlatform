@@ -50,6 +50,21 @@ export const ArticleModel = {
             })
     },
 
+    getBytitle: async ( title:string ):Promise<IArticle> => {
+        return new Promise<IArticle>((resolve, reject) => {
+            
+            connection.query(`SELECT * FROM article WHERE art_title = '${title}'`, function(err:any, result: any){
+                if(err){
+                    reject(err);
+                } else {
+                    console.log(result);
+                    resolve(result);
+                }
+            })
+        })
+      
+    },
+
     getById: async ( articleId:number ): Promise<any> => {
         // var connection = await myConnection.getClient()
         return new Promise((resolve, reject) => {
@@ -155,9 +170,16 @@ export const ArticleModel = {
             });
     },
 
-    delete: async ( article:IArticle ) => {
-
-        return;
-    }
+    delete: async (articleID:number) => {
+        return new Promise((resolve, reject) => {
+            connection.query(`DELETE FROM user WHERE user_id = ${articleID}`, function(err:any, result:any){
+                if(err){
+                    reject(err)
+                } else {
+                    resolve(result);
+                }
+            })
+        })
+    },
 
 }

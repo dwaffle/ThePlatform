@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import MainLayout from '../../../layouts/MainLayout';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
@@ -12,10 +12,10 @@ import Image from 'react-bootstrap/Image';
 import facebook from '../../../data/icon/facebook.png';
 import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
-import paymentInfo from '../../../api/paymentInfo/paymentInfo';
-import user from '../../../api/user';
+// import paymentInfo from '../../../api/paymentInfo/paymentInfo';
+// import user from '../../../api/user';
 import Rating from '../../rating/rating';
-import series from '../../../api/series';
+// import series from '../../../api/series';
 
 const IndividualArticle = () => {
   //articles without id
@@ -35,6 +35,25 @@ const IndividualArticle = () => {
   //does the user own the article if required?
   const articleOwnership = useRecoilValue(userOwnsArticle);
 
+  const imagecheck = () => {
+    if (!article?.art_image) {
+      return (
+        <Col md="auto">
+          <img
+            className="mainImg"
+            src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
+          ></img>
+        </Col>
+      );
+    } else {
+      return (
+        <Col md="auto">
+          <img className="mainImg" src={article.art_image}></img>
+        </Col>
+      );
+    }
+  };
+
   //history router
   const history = useHistory();
 
@@ -46,24 +65,25 @@ const IndividualArticle = () => {
   function oneClickPurchase() {
     if (!userPInfo) {
       alert("You don't have any payment information");
-    } else {
-      if (article != undefined) {
-        let objectToSend = {
-          user_id: Number(localStorage.getItem('user_id')),
-          art_id: article.art_id,
-        };
-        api.purchaseArticle.post(objectToSend);
-        alert('You have bought this article!');
-        history.push(`/articles/${article.art_title}`);
-      }
-
-      return;
     }
+
+    // if (article != undefined) {
+    let objectToSend = {
+      user_id: Number(localStorage.getItem('user_id')),
+      art_id: article?.art_id,
+    };
+    api.purchaseArticle.post(objectToSend);
+    alert('You have bought this article!');
+    history.push(`/articles/${article?.art_title}`);
+    // }
   }
 
   function checkArticleType() {
-    let checkUserOwnerShip = articleOwnership.some(ch => ch.user_id == userIdNonObject)
-    console.log(checkUserOwnerShip)
+    let checkUserOwnerShip = articleOwnership.some(
+      (ch) => ch.user_id == userIdNonObject,
+    );
+    console.log(articleOwnership);
+    console.log(checkUserOwnerShip);
     // console.log(articleOwnership)
     if (article?.artype_id !== 2) {
       return <div className="iABody">{article?.art_body}</div>;
@@ -71,24 +91,22 @@ const IndividualArticle = () => {
 
     if (!checkUserOwnerShip) {
       return (
-        <div>
+        <div className="artBodyParent">
           <p>
-            This Article is not free, The contents of the article have been
+            This Article is not free, The main body of the article has been
             hidden.
             <p>
               If you wish to view this article, please support the author by
-              purchasing the article
+              purchasing the article.
             </p>
           </p>
           <button onClick={oneClickPurchase}> Buy Article </button>
         </div>
       );
-    } 
+    }
 
-    if(checkUserOwnerShip) {
-      return <div className="iABody">
-        {article.art_body}
-      </div>
+    if (checkUserOwnerShip) {
+      return <div className="iABody">{article.art_body}</div>;
     }
   }
 
@@ -114,13 +132,25 @@ const IndividualArticle = () => {
           <p className="iAAuthor">
             {' '}
             <i>written by:</i> {article?.user_userName}
-            <a className="socialMedia" href="https://facebook.com/">
+            <a
+              className="socialMedia"
+              href="{https://facebook.com/}"
+              target="_blank"
+            >
               <img src={facebook} />
             </a>
-            <a className="socialMedia" href="https://www.instagram.com/">
+            <a
+              className="socialMedia"
+              href="https://www.instagram.com/"
+              target="_blank"
+            >
               <Image src={instagram} />
             </a>
-            <a className="socialMedia" href="https://twitter.com/">
+            <a
+              className="socialMedia"
+              href="https://twitter.com/"
+              target="_blank"
+            >
               <Image src={twitter} />
             </a>
           </p>
@@ -144,12 +174,14 @@ const IndividualArticle = () => {
         {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
         {/* {console.log("id+++++" +article?.art_id)} */}
         <Row noGutters>
-          <Col md="auto">
+          {imagecheck()}
+
+          {/* <Col md="auto">
             <img
               className="mainImg"
               src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
             ></img>
-          </Col>
+          </Col> */}
           {/* <Col className="description">{article?.description}</Col> */}
         </Row>
         {checkArticleType()}

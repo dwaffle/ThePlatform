@@ -112,14 +112,14 @@ export default function EditProfilePage(props: {}) {
         return;
     }
     if (
-      password_entry !== password_verify &&
-      (password_entry !== '' || password_verify !== '') ||
+      (password_entry !== password_verify &&
+        (password_entry !== '' || password_verify !== '')) ||
       password_entry === ''
     ) {
       alert('Passwords must match and not be blank to be changed.');
       return;
     }
-    
+
     //If somehow there is no user, do not send a change request.
     if (user_id == null || undefined || 0) {
       return;

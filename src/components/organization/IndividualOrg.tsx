@@ -10,7 +10,6 @@ import { orgListState } from './OrgList';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 
-
 interface IIndividuals {
   user_id: number;
   ord_id: number;
@@ -87,10 +86,10 @@ const IndividualOrg = () => {
         const request = {
           ord_id: params.id,
           user_id: id,
-          addUser: false
-        }
-        api.orgs.patch(request)
-        history.push("/organization")
+          addUser: false,
+        };
+        api.orgs.patch(request);
+        history.push('/organization');
       }
     };
   }
@@ -117,47 +116,45 @@ const IndividualOrg = () => {
     };
   }
 
-
-function promoteUser(id:number){
-  return () => {
-    const request = {
-      ord_id: params.id,
-      user_id: id,
-      user_role: 2
-    }
-    api.organization.patch(request);
-    history.push("/organization");
+  function promoteUser(id: number) {
+    return () => {
+      const request = {
+        ord_id: params.id,
+        user_id: id,
+        user_role: 2,
+      };
+      api.organization.patch(request);
+      history.push('/organization');
+    };
   }
-}
 
-function demoteUser(id:number){
-  return ()  => {
-    const request = {
-      ord_id: params.id,
-      user_id: id,
-      user_role: 3
-    }
-    api.organization.patch(request);
-    history.push("/organization");
+  function demoteUser(id: number) {
+    return () => {
+      const request = {
+        ord_id: params.id,
+        user_id: id,
+        user_role: 3,
+      };
+      api.organization.patch(request);
+      history.push('/organization');
+    };
   }
-}
 
   function displayRole(role: number) {
     switch (role) {
       case 1:
-        return "Creator";
+        return 'Creator';
       case 2:
-        return "Admin";
+        return 'Admin';
       case 3:
-        return "Member";
+        return 'Member';
     }
   }
 
   let artListHeader = {
     header: {
       background: 'rgba(0, 0, 0, 0.5)',
-      backgroundImage:
-        'url(https://i.imgur.com/8KnwPfd.png)',
+      backgroundImage: 'url(https://i.imgur.com/8KnwPfd.png)',
       height: '32vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -174,7 +171,9 @@ function demoteUser(id:number){
 
   return (
     <>
-    <div style={artListHeader.header}><p className="h8tch2">{org?.org_title}'s Page</p></div>
+      <div style={artListHeader.header}>
+        <p className="h8tch2">{org?.org_title}'s Page</p>
+      </div>
       <Card bg="Light" style={{ width: '25rem', margin: 'auto' }}>
         <Card.Header className="text-center p-3">{org?.org_title}</Card.Header>
         <Card.Body>
@@ -182,12 +181,43 @@ function demoteUser(id:number){
           <Card.Text>
             Users:{' '}
             {users?.map((name) => {
-              return <div className="user">{name.user_userName} 
-              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 3)) && <Button variant="info" onClick={promoteUser(name.user_id)} className="removeButton" size="sm">Promote User</Button>}
-              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1) && (name.user_role === 2)) && <Button variant="info" onClick={demoteUser(name.user_id)} className="removeButton" size="sm">Demote User</Button>}
-              {(name.user_id !== Number(currentUser) && (thisUser?.user_role === 1 || thisUser?.user_role === 2)&& name.user_role > thisUser?.user_role) && <div className="removeButton">{showRemoveButton(name.user_id)}</div>}
-              
-              <div className="role">{displayRole(name.user_role)}</div> </div>;
+              return (
+                <div className="user">
+                  {name.user_userName}
+                  {name.user_id !== Number(currentUser) &&
+                    thisUser?.user_role === 1 &&
+                    name.user_role === 3 && (
+                      <Button
+                        variant="info"
+                        onClick={promoteUser(name.user_id)}
+                        className="removeButton"
+                        size="sm"
+                      >
+                        Promote User
+                      </Button>
+                    )}
+                  {name.user_id !== Number(currentUser) &&
+                    thisUser?.user_role === 1 &&
+                    name.user_role === 2 && (
+                      <Button
+                        variant="info"
+                        onClick={demoteUser(name.user_id)}
+                        className="removeButton"
+                        size="sm"
+                      >
+                        Demote User
+                      </Button>
+                    )}
+                  {name.user_id !== Number(currentUser) &&
+                    (thisUser?.user_role === 1 || thisUser?.user_role === 2) &&
+                    name.user_role > thisUser?.user_role && (
+                      <div className="removeButton">
+                        {showRemoveButton(name.user_id)}
+                      </div>
+                    )}
+                  <div className="role">{displayRole(name.user_role)}</div>{' '}
+                </div>
+              );
             })}
             <br />
           </Card.Text>

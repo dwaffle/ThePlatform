@@ -2,14 +2,21 @@
     margin-left: 1vh;
     margin-top: 2vh;
 }
+
 .userArticleList {
     // min-width: 22%;
     // // max-width: 23%;
     // min-height: 100vh;
 
+
+
     .tableParent {
         width: 22vw;
-        min-height: 100vh;
+        // min-height: 100vh;
+
+        td {
+            height: 2vh;
+        }
     }
 
     .seriesCreate {
