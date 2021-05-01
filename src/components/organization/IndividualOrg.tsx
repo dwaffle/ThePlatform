@@ -153,8 +153,28 @@ function demoteUser(id:number){
     }
   }
 
+  let artListHeader = {
+    header: {
+      background: 'rgba(0, 0, 0, 0.5)',
+      backgroundImage:
+        'url(https://i.imgur.com/8KnwPfd.png)',
+      height: '32vh',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      // transparency: '50%'
+    },
+
+    content: {
+      height: '100%',
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+  };
+
   return (
     <>
+    <div style={artListHeader.header}><p className="h8tch2">{org?.org_title}'s Page</p></div>
       <Card bg="Light" style={{ width: '25rem', margin: 'auto' }}>
         <Card.Header className="text-center p-3">{org?.org_title}</Card.Header>
         <Card.Body>
