@@ -31,14 +31,13 @@ export default function HeaderNavigation(props: {}) {
   }
 
   function isLoggedIn() {
-    const user_id = Number(localStorage.getItem('token'));
-    if(!localStorage.getItem('token')) {
+    if (!localStorage.getItem('token')) {
       return (
         <LinkContainer to="/login">
           <Nav.Link>Login</Nav.Link>
         </LinkContainer>
-      )
-    } 
+      );
+    }
     return (
       <LinkContainer to="/profile">
         <Nav.Link>My Profile</Nav.Link>

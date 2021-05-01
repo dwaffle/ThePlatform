@@ -31,7 +31,7 @@ export function CreateNewArticle() {
   const [body, setBody] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [series, setSeries] = useState('');
-  const [image, setImage] = useState<string>('');
+  const [image, setImage] = useState<string>("https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg");
 
   const user_id = Number(localStorage.getItem('user_id'));
   const authorName: string = window.localStorage.getItem('username') || '';
@@ -114,10 +114,6 @@ export function CreateNewArticle() {
     }
   }
 
-  const setImgUrl = () => {
-    //
-  };
-
   return (
     <MainLayout>
       <Switch>
@@ -138,7 +134,7 @@ export function CreateNewArticle() {
             </Form.Group>
           </Form.Row>
           <Form.Row className="FormRowSpacing">
-            <label>Enter an https:// URL:</label>
+            <label>Enter a Custom Photo - https://URL</label>
 
             <input
               type="url"
@@ -154,7 +150,10 @@ export function CreateNewArticle() {
           </Form.Row> */}
           Image Display:
           <div>
-            <img className="img-display-box" src={image}></img>
+            <img 
+            className="img-display-box" 
+            src={image}
+            ></img>
           </div>
           A quick summary of your article:
           <Form.Row className="FormRowSpacing">
