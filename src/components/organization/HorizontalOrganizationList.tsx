@@ -71,8 +71,7 @@ export default function HorizontalOrganizationList(props: {}) {
   let artListHeader = {
     header: {
       background: 'rgba(0, 0, 0, 0.5)',
-      backgroundImage:
-        'url(https://i.imgur.com/8KnwPfd.png)',
+      backgroundImage: 'url(https://i.imgur.com/8KnwPfd.png)',
       height: '32vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -90,7 +89,9 @@ export default function HorizontalOrganizationList(props: {}) {
   return (
     <>
       {' '}
-      <div style={artListHeader.header}><p className="h8tch2">Organizations</p></div>
+      <div style={artListHeader.header}>
+        <p className="h8tch2">Organizations</p>
+      </div>
       <div className="horizontal-organization-list">
         <Form>
           <Row>

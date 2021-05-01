@@ -5,6 +5,7 @@ import userAvatar from '../../data/icon/userAvatar.jpg';
 import './style.scss';
 
 export default function HeaderNavigation(props: {}) {
+  const user_id = Number(localStorage.getItem('user_id'));
   const user_type = Number(window.localStorage.getItem('user_type'));
   //Adds the editor button if the user is an editor or admin according to user_type_lu.  Can change if we want.
   function isEditor() {
@@ -27,6 +28,22 @@ export default function HeaderNavigation(props: {}) {
         </LinkContainer>
       );
     }
+  }
+
+  function isLoggedIn() {
+    const user_id = Number(localStorage.getItem('token'));
+    if(!localStorage.getItem('token')) {
+      return (
+        <LinkContainer to="/login">
+          <Nav.Link>Login</Nav.Link>
+        </LinkContainer>
+      )
+    } 
+    return (
+      <LinkContainer to="/profile">
+        <Nav.Link>My Profile</Nav.Link>
+      </LinkContainer>
+    );
   }
 
   return (
@@ -54,13 +71,14 @@ export default function HeaderNavigation(props: {}) {
           <Nav className="navButtons"></Nav>
           <Nav className="navProfile">
             {isAdmin()}
+            {isLoggedIn()}
 
-            <LinkContainer to="/login">
+            {/* <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
-            </LinkContainer>
+            </LinkContainer> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
