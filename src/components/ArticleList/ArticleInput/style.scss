@@ -1,6 +1,11 @@
 Form {
     padding-top: 25px;
 
+    .noMargin {
+        padding: 0px;
+        margin: 0px;
+    }
+
     img {
         // object-fit: cover;
         // padding: 0px;

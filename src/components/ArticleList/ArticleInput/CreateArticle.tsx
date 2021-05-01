@@ -5,10 +5,12 @@ import MainLayout from '../../../layouts/MainLayout';
 import { useHistory } from 'react-router-dom';
 import api from '../../../api';
 import './style.scss';
-import { options } from './options';
 import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import { seriesListState } from '../articleList';
+import { Editor } from "@tinymce/tinymce-react";
+import dotenv from 'dotenv';
+dotenv.config();
 
 //An enum is a numbered list, starting at 0.
 enum ArticleType {
@@ -31,7 +33,9 @@ export function CreateNewArticle() {
   const [body, setBody] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [series, setSeries] = useState('');
-  const [image, setImage] = useState<string>("https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg");
+  const [image, setImage] = useState<string>(
+    'https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg',
+  );
 
   const user_id = Number(localStorage.getItem('user_id'));
   const authorName: string = window.localStorage.getItem('username') || '';
@@ -140,7 +144,7 @@ export function CreateNewArticle() {
               type="url"
               name="url"
               id="url"
-              placeholder="https://example.com"
+              placeholder="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
               pattern="https://.*"
               onChange={(e) => setImage(e.target.value)}
             />
@@ -149,11 +153,11 @@ export function CreateNewArticle() {
             <input type="file" accept="image/*" onChange={fileHandler} />
           </Form.Row> */}
           Image Display:
+          <p className="noMargin">
+          <small>The default image will be used otherwise</small>
+          </p>
           <div>
-            <img 
-            className="img-display-box" 
-            src={image}
-            ></img>
+            <img className="img-display-box" src={image}></img>
           </div>
           A quick summary of your article:
           <Form.Row className="FormRowSpacing">
@@ -165,6 +169,14 @@ export function CreateNewArticle() {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Row>
+          {/* <Editor
+            // value={this.state.content}
+            init={{
+              height: 200,
+              menubar: false
+            }}
+            // onEditorChange={this.handleChange}
+          /> */}
           The main text of your article:
           <Form.Row className="FormRowSpacing">
             <Form.Control
