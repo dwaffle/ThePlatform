@@ -99,16 +99,17 @@ export default function EditProfilePage(props: {}) {
 
   function onsubmit() {
     const user_id = Number(localStorage.getItem('user_id'));
+    const empty = /^\s+$/;
     if(
-      user_firstName == '' &&
-      user_lastName == '' &&
-      user_email == '' &&
-      user_facebook == '' &&
-      user_instagram == '' &&
-      user_twitter == '' && 
-      (password_entry == '' && password_verify == '')
+      (user_firstName == undefined || user_firstName.match(empty)) &&
+      (user_lastName == undefined || user_lastName.match(empty)) &&
+      (user_email == undefined || user_email.match(empty)) &&
+      (user_facebook == undefined || user_facebook.match(empty)) &&
+      (user_instagram == undefined || user_instagram.match(empty)) &&
+      (user_twitter == undefined|| user_twitter.match(empty))
       ){
         alert('You must have something to change to change your profile.')
+        return;
     }
     if (
       password_entry !== password_verify &&
