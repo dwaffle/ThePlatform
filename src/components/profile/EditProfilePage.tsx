@@ -98,14 +98,27 @@ export default function EditProfilePage(props: {}) {
   }
 
   function onsubmit() {
+    const user_id = Number(localStorage.getItem('user_id'));
+    if(
+      user_firstName == '' &&
+      user_lastName == '' &&
+      user_email == '' &&
+      user_facebook == '' &&
+      user_instagram == '' &&
+      user_twitter == '' && 
+      (password_entry == '' && password_verify == '')
+      ){
+        alert('You must have something to change to change your profile.')
+    }
     if (
       password_entry !== password_verify &&
-      (password_entry !== '' || password_verify !== '')
+      (password_entry !== '' || password_verify !== '') ||
+      password_entry === ''
     ) {
-      alert('Passwords must match to be changed.');
+      alert('Passwords must match and not be blank to be changed.');
       return;
     }
-    const user_id = Number(localStorage.getItem('user_id'));
+    
     //If somehow there is no user, do not send a change request.
     if (user_id == null || undefined || 0) {
       return;
@@ -137,7 +150,7 @@ export default function EditProfilePage(props: {}) {
 
   return (
     <>
-      <h1>Editing page</h1>
+      <h1>Profile Editing Page</h1>
 
       <Row>
         <Col>
