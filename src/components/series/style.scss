@@ -16,6 +16,11 @@ $paddingTop: 15px;
     margin: 0 auto;
 }
 
+.sPCardHeader {
+    text-align: center;
+    background-color: rgb(147, 212, 224)!important;
+}
+
 
 .horizontal-organization-list {
     // padding-top: $paddingTop;
@@ -50,10 +55,6 @@ $paddingTop: 15px;
     margin-right: 40%;
     margin-top: 8px;
     width: 125px;
-}
-
-.new-org-button{
-    float: right;
 }
 
 .org-card{

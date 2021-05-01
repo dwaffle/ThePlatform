@@ -35,6 +35,25 @@ const IndividualArticle = () => {
   //does the user own the article if required?
   const articleOwnership = useRecoilValue(userOwnsArticle);
 
+  const imagecheck = () => {
+    if (!article?.art_image) {
+      return (
+        <Col md="auto">
+          <img
+            className="mainImg"
+            src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
+          ></img>
+        </Col>
+      );
+    } else {
+      return (
+        <Col md="auto">
+          <img className="mainImg" src={article.art_image}></img>
+        </Col>
+      );
+    }
+  };
+
   //history router
   const history = useHistory();
 
@@ -46,23 +65,25 @@ const IndividualArticle = () => {
   function oneClickPurchase() {
     if (!userPInfo) {
       alert("You don't have any payment information");
-    } 
-  
-      // if (article != undefined) {
-        let objectToSend = {
-          user_id: Number(localStorage.getItem('user_id')),
-          art_id: article?.art_id,
-        };
-        api.purchaseArticle.post(objectToSend);
-        alert('You have bought this article!');
-        history.push(`/articles/${article?.art_title}`);
-      // }
+    }
+
+    // if (article != undefined) {
+    let objectToSend = {
+      user_id: Number(localStorage.getItem('user_id')),
+      art_id: article?.art_id,
+    };
+    api.purchaseArticle.post(objectToSend);
+    alert('You have bought this article!');
+    history.push(`/articles/${article?.art_title}`);
+    // }
   }
 
   function checkArticleType() {
-    let checkUserOwnerShip = articleOwnership.some(ch => ch.user_id == userIdNonObject)
-    console.log(articleOwnership)
-    console.log(checkUserOwnerShip)
+    let checkUserOwnerShip = articleOwnership.some(
+      (ch) => ch.user_id == userIdNonObject,
+    );
+    console.log(articleOwnership);
+    console.log(checkUserOwnerShip);
     // console.log(articleOwnership)
     if (article?.artype_id !== 2) {
       return <div className="iABody">{article?.art_body}</div>;
@@ -82,12 +103,10 @@ const IndividualArticle = () => {
           <button onClick={oneClickPurchase}> Buy Article </button>
         </div>
       );
-    } 
+    }
 
-    if(checkUserOwnerShip) {
-      return <div className="iABody">
-        {article.art_body}
-      </div>
+    if (checkUserOwnerShip) {
+      return <div className="iABody">{article.art_body}</div>;
     }
   }
 
@@ -113,13 +132,25 @@ const IndividualArticle = () => {
           <p className="iAAuthor">
             {' '}
             <i>written by:</i> {article?.user_userName}
-            <a className="socialMedia" href="https://facebook.com/">
+            <a
+              className="socialMedia"
+              href="{https://facebook.com/}"
+              target="_blank"
+            >
               <img src={facebook} />
             </a>
-            <a className="socialMedia" href="https://www.instagram.com/">
+            <a
+              className="socialMedia"
+              href="https://www.instagram.com/"
+              target="_blank"
+            >
               <Image src={instagram} />
             </a>
-            <a className="socialMedia" href="https://twitter.com/">
+            <a
+              className="socialMedia"
+              href="https://twitter.com/"
+              target="_blank"
+            >
               <Image src={twitter} />
             </a>
           </p>
@@ -143,12 +174,14 @@ const IndividualArticle = () => {
         {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
         {/* {console.log("id+++++" +article?.art_id)} */}
         <Row noGutters>
-          <Col md="auto">
+          {imagecheck()}
+
+          {/* <Col md="auto">
             <img
               className="mainImg"
               src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
             ></img>
-          </Col>
+          </Col> */}
           {/* <Col className="description">{article?.description}</Col> */}
         </Row>
         {checkArticleType()}

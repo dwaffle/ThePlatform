@@ -31,6 +31,7 @@ export function CreateNewArticle() {
   const [body, setBody] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [series, setSeries] = useState('');
+  const [image, setImage] = useState<string>('');
 
   const user_id = Number(localStorage.getItem('user_id'));
   const authorName: string = window.localStorage.getItem('username') || '';
@@ -113,10 +114,8 @@ export function CreateNewArticle() {
     }
   }
 
-  //doesn't work
-  const [image, setImage] = useState<string>('');
-  const fileHandler = (event: any) => {
-    setImage(URL.createObjectURL(event.target.files[0]));
+  const setImgUrl = () => {
+    //
   };
 
   return (
@@ -133,13 +132,26 @@ export function CreateNewArticle() {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
+
             <Form.Group className="FormRowSpacing">
               <Form.Control type="Author" readOnly value={authorName} />
             </Form.Group>
           </Form.Row>
           <Form.Row className="FormRowSpacing">
-            <input type="file" accept="image/*" onChange={fileHandler} />
+            <label>Enter an https:// URL:</label>
+
+            <input
+              type="url"
+              name="url"
+              id="url"
+              placeholder="https://example.com"
+              pattern="https://.*"
+              onChange={(e) => setImage(e.target.value)}
+            />
           </Form.Row>
+          {/* <Form.Row className="FormRowSpacing">
+            <input type="file" accept="image/*" onChange={fileHandler} />
+          </Form.Row> */}
           Image Display:
           <div>
             <img className="img-display-box" src={image}></img>

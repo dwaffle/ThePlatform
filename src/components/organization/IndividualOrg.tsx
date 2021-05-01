@@ -99,6 +99,7 @@ const IndividualOrg = () => {
       <Button
         variant="warning"
         className="removeButton"
+        size="sm"
         onClick={removeUser(id)}
       >
         Remove User
@@ -168,6 +169,8 @@ const IndividualOrg = () => {
                       <Button
                         variant="info"
                         onClick={promoteUser(name.user_id)}
+                        className="removeButton"
+                        size="sm"
                       >
                         Promote User
                       </Button>
@@ -175,7 +178,12 @@ const IndividualOrg = () => {
                   {name.user_id !== Number(currentUser) &&
                     thisUser?.user_role === 1 &&
                     name.user_role === 2 && (
-                      <Button variant="info" onClick={demoteUser(name.user_id)}>
+                      <Button
+                        variant="info"
+                        onClick={demoteUser(name.user_id)}
+                        className="removeButton"
+                        size="sm"
+                      >
                         Demote User
                       </Button>
                     )}

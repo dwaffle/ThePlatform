@@ -25,7 +25,7 @@ export default function HomePage(props: {}) {
   const newestArticle = articleList.find((a) => a.art_creationDate);
   // // console.log("newest Article?", newestArticle)
   // const last artID
-  
+
   // const latestSeries = seriesList.sort((objA, objB) => objA.ser_creationDate.getTime() - dateNow;
   return (
     <>

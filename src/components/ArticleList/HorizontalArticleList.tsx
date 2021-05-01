@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import './style.scss';
-import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useArticleList } from './articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';

@@ -36,11 +36,18 @@ const responsive = {
 
 export default function HorizontalOrganizationList(props: {}) {
   const [allOrgs, setAllOrgs] = useState<IOrganization[]>();
+  const [orgsWithUsers, setOrgsWithUsers] = useState<IOrganization[]>();
   const history = useHistory();
+  const thisUser = window.localStorage.getItem('user_id');
 
   useEffect(() => {
     api.organization.get().then((response) => {
       setAllOrgs(response.data);
+    });
+    const user = Number(window.localStorage.getItem('user_id'));
+    api.orgs.post(user).then((response) => {
+      setOrgsWithUsers(response.data);
+      console.log(response.data);
     });
   }, []);
 
@@ -54,11 +61,7 @@ export default function HorizontalOrganizationList(props: {}) {
     const id = window.localStorage.getItem('user_type');
     if (Number(id) !== 2 && id != null) {
       return (
-        <Button
-          href="/NewOrganizationPage"
-          className="new-org-button"
-          variant="success"
-        >
+        <Button href="/NewOrganizationPage" className="new-org-button">
           Create New
         </Button>
       );
@@ -126,13 +129,14 @@ export default function HorizontalOrganizationList(props: {}) {
                 </tr>
               </thead>
               <tbody>
-                {allOrgs ? (
-                  allOrgs?.map((data) => {
-                    return (
-                      <tr onClick={onClickHandler(data.ord_id)}>
-                        <td>{data.org_title}</td>
-                      </tr>
-                    );
+                {orgsWithUsers ? (
+                  orgsWithUsers?.map((data) => {
+                    if (data.user_id === Number(thisUser))
+                      return (
+                        <tr onClick={onClickHandler(data.ord_id)}>
+                          <td>{data.org_title}</td>
+                        </tr>
+                      );
                   })
                 ) : (
                   <tr>

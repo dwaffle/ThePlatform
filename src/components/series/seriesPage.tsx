@@ -22,6 +22,16 @@ export default function SeriesPage(props: { rows?: number }) {
   const [searchFilter, setSearchFilter] = useState<ISearchFilter>({});
   const history = useHistory();
 
+  let isAuthor = (e: any) => {
+    e.preventDefault();
+    let userType = Number(localStorage.getItem('user_type'));
+    if (userType != 4 || !userType) {
+      alert('You must be an author to create an article');
+    } else {
+      return history.push('/newArticle');
+    }
+  };
+
   function seriesLink() {
     return history.push('/seriesCreation');
   }
@@ -117,7 +127,7 @@ export default function SeriesPage(props: { rows?: number }) {
                       className="org-card"
                       style={{ width: '18rem' }}
                     >
-                      <Card.Header className="text-center p-3">
+                      <Card.Header className="sPCardHeader">
                         {data.series_title}
                       </Card.Header>
 
