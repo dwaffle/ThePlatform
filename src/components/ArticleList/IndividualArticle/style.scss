@@ -7,6 +7,11 @@
     margin-bottom: 0px;
 }
 
+.artBodyParent {
+    margin-top: 8vh;
+    text-align: center;
+}
+
 
 section {
     width: 70%;
@@ -78,8 +83,6 @@ section {
 
     }
 
-    
-
     .articleDetails {
         font-size: 2vh;
     }
@@ -114,7 +117,7 @@ section {
     height: 100vh;
     top: 0;
     left: 0;
-  }
+}
 
 .box {
     position: fixed;

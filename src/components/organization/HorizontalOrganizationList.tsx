@@ -38,18 +38,17 @@ export default function HorizontalOrganizationList(props: {}) {
   const [allOrgs, setAllOrgs] = useState<IOrganization[]>();
   const [orgsWithUsers, setOrgsWithUsers] = useState<IOrganization[]>();
   const history = useHistory();
-  const thisUser = window.localStorage.getItem("user_id");
+  const thisUser = window.localStorage.getItem('user_id');
 
   useEffect(() => {
     api.organization.get().then((response) => {
       setAllOrgs(response.data);
     });
-    const user = Number(window.localStorage.getItem("user_id"))
+    const user = Number(window.localStorage.getItem('user_id'));
     api.orgs.post(user).then((response) => {
       setOrgsWithUsers(response.data);
       console.log(response.data);
-    })
-    
+    });
   }, []);
 
   function onClickHandler(id: number) {
@@ -58,25 +57,41 @@ export default function HorizontalOrganizationList(props: {}) {
     };
   }
 
-
-
   function showCreateOrgButton() {
     const id = window.localStorage.getItem('user_type');
     if (Number(id) !== 2 && id != null) {
       return (
-        <Button
-          href="/NewOrganizationPage"
-          className="new-org-button"
-        >
+        <Button href="/NewOrganizationPage" className="new-org-button">
           Create New
         </Button>
       );
     }
   }
 
+  let artListHeader = {
+    header: {
+      background: 'rgba(0, 0, 0, 0.5)',
+      backgroundImage: 'url(https://i.imgur.com/8KnwPfd.png)',
+      height: '32vh',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      // transparency: '50%'
+    },
+
+    content: {
+      height: '100%',
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+  };
+
   return (
     <>
       {' '}
+      <div style={artListHeader.header}>
+        <p className="h8tch2">Organizations</p>
+      </div>
       <div className="horizontal-organization-list">
         <Form>
           <Row>
@@ -137,12 +152,12 @@ export default function HorizontalOrganizationList(props: {}) {
               <tbody>
                 {orgsWithUsers ? (
                   orgsWithUsers?.map((data) => {
-                    if(data.user_id === Number(thisUser))
-                    return (
-                      <tr onClick={onClickHandler(data.ord_id)}>
-                        <td>{data.org_title}</td>
-                      </tr>
-                    );
+                    if (data.user_id === Number(thisUser))
+                      return (
+                        <tr onClick={onClickHandler(data.ord_id)}>
+                          <td>{data.org_title}</td>
+                        </tr>
+                      );
                   })
                 ) : (
                   <tr>
