@@ -49,19 +49,19 @@ function IndividualSeries() {
           <Col>By: {singleSeries?.series_owner}</Col> 
           
         </Row> */}
-        <p className="iSAuthor"> By: {singleSeries?.series_owner} </p>
-        <h3>{singleSeries?.series_desc}</h3>
+        <p className="iSAuthor"> By: {singleSeries?.user_userName} </p>
+        <p className="iSDescription">{singleSeries?.series_desc}</p>
       </div>
 
       <div className="iAList">
-        All the articles in this series:
+        {/* All the articles in this series: */}
         {artInSeries.map((art) => (
-          <Card className="iCard">
-            <Card.Title className="iaTitle">
+          <Card className="iSCard">
+            <Card.Header className="iaTitle">
               <Link className="titleLink" to={`/articles/${art.art_title}`}>
                 {art.art_title}
               </Link>
-            </Card.Title>
+            </Card.Header>
             <Card.Body className="iaDesc">{art.description}</Card.Body>
             <Card.Footer className="iaFooter">
               <Badge className={`tag-${art.art_category}`}>

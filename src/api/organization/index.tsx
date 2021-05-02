@@ -18,8 +18,8 @@ export default {
     });
   },
 
-  patch: async (id: string, body: any) => {
-    return axios.patch(`${HOSTNAME}/Organizations/${id}`, body, {
+  patch: async (body: any) => {
+    return axios.patch(`${HOSTNAME}/organizationUserChange/`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -27,7 +27,7 @@ export default {
   },
 
   put: async (body: any) => {
-    return axios.put(`${HOSTNAME}/organization`, body,{
+    return axios.put(`${HOSTNAME}/organization`, body, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },

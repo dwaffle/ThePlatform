@@ -20,12 +20,11 @@ export default function HeaderNavigation(props: {}) {
 
   //show Amin page for admins only
   function isAdmin() {
-    if (user_type === 1 ) {
+    if (user_type === 1) {
       return (
         <LinkContainer to="/admin">
           <Nav.Link>Admin</Nav.Link>
         </LinkContainer>
-
       );
     }
   }
@@ -52,11 +51,10 @@ export default function HeaderNavigation(props: {}) {
             {isEditor()}
           </Nav>
 
-     
           <Nav className="navButtons"></Nav>
           <Nav className="navProfile">
-              { isAdmin() }
-           
+            {isAdmin()}
+
             <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
@@ -69,4 +67,3 @@ export default function HeaderNavigation(props: {}) {
     </>
   );
 }
-

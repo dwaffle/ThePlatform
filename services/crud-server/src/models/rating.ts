@@ -37,7 +37,7 @@ export const RatingModel = {
 
             _sql = `SELECT  * FROM rating`;
 
-            console.log("Im here getRating")
+            // console.log("Im here getRating")
             connection.query(_sql, function(err:any, result: any){
                 if(err){
                     reject(err);

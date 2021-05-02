@@ -83,8 +83,8 @@ function CreateSeries() {
                   <option value="Sci-Fi"> Sci-Fi </option>
                   <option value="Science"> Science </option>
                   <option value="Beauty"> Beauty </option>
-                  <option value="Beauty"> Humour </option>
-                  <option value="Beauty"> Religion </option>
+                  <option value="Humour"> Humour </option>
+                  <option value="Religion"> Religion </option>
                 </Form.Control>
                 <Button onClick={submitButton}>Submit</Button>
               </Form.Group>

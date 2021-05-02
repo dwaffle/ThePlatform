@@ -6,6 +6,7 @@ export function post(app:any){
         try {
         const article:IArticle = request.body;
         ArticleModel.create({
+            art_id: article.art_id,
             art_price: article.art_price,
             artype_id: article.artype_id,
             art_title: article.art_title,

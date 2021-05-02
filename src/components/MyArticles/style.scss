@@ -1,9 +1,16 @@
 .pageSize {
     margin-left: 1vh;
+    margin-top: 2vh;
 }
 .userArticleList {
-    min-width: 22%;
-    min-height: 100vh;
+    // min-width: 22%;
+    // // max-width: 23%;
+    // min-height: 100vh;
+
+    .tableParent {
+        width: 22vw;
+        min-height: 100vh;
+    }
 
     .seriesCreate {
         color: blue;
@@ -13,6 +20,14 @@
         margin: 0px;
     }
 
+    // .listArtTitle {
+    //     overflow-x: scroll;
+    // }
+
+}
+
+@media screen {
+    
 }
 
 .userArticleListCol {
@@ -39,8 +54,9 @@
 // }
 
 .description {
-    min-height: 15vh;
+    min-height: 18vh;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .body {

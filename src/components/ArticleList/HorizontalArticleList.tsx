@@ -55,11 +55,36 @@ export default function HorizontalArticles(props: { rows: number }) {
     setArticleCol(col);
   }, [props.rows, ASearchFilter]);
 
+  let artListHeader = {
+    header: {
+      background: 'rgba(0, 0, 0, 0.5)',
+      backgroundImage:
+        'url(https://thatsmypark.org/wp-content/uploads/2020/04/sunset-wide.jpg)',
+      height: '32vh',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      // transparency: '50%'
+    },
+
+    content: {
+      height: '100%',
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+  };
+
   return (
     <MainLayout>
+      <div style={artListHeader.header}>
+        <p className="h8tch2">Articles</p>
+      </div>
       <Button onClick={isAuthor}>Create New </Button>
 
-      {<ArticleFilter aSearchDispatch={setASearchFilter} />}
+      <div className="searchFeature">
+        {<ArticleFilter aSearchDispatch={setASearchFilter} />}
+      </div>
+
       {articleCol.map((col) => {
         return (
           <div>
@@ -73,8 +98,7 @@ export default function HorizontalArticles(props: { rows: number }) {
                     </Link>
                     <div>
                       {' '}
-                      Author: {art.user_firstName} {''}
-                      {art.user_lastName}{' '}
+                      Author: {art.user_userName} {''}
                     </div>
                   </Card.Header>
 
@@ -83,6 +107,9 @@ export default function HorizontalArticles(props: { rows: number }) {
                       {art.description}
                     </Card.Text>
                   </Card.Body>
+                  <Card.Footer className="IACardFooter">
+                    {art.art_category}
+                  </Card.Footer>
                 </Card>
               </div>
             ))}

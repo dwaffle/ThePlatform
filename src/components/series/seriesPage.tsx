@@ -1,22 +1,14 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Carousel from 'react-multi-carousel';
-import {
-  Card,
-  CardDeck,
-  Col,
-  Form,
-  Row,
-  Button,
-  ListGroup,
-} from 'react-bootstrap';
-import unnamed from '../../data/icon/unnamed.jpg';
-import { Link, useHistory } from 'react-router-dom';
+import { Card, Col, Form, Row, Button } from 'react-bootstrap';
+// import unnamed from '../../data/icon/unnamed.jpg';
+import { useHistory } from 'react-router-dom';
 import './style.scss';
 import { seriesListState } from '../ArticleList/articleList';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import SeriesFilter from './searchFilter/SeriesFilter';
-import { sCategoriesState } from './searchFilter/series.recoil';
+// import { sCategoriesState } from './searchFilter/series.recoil';
 
 export interface ISearchFilter {
   name?: string;
@@ -39,7 +31,7 @@ export default function SeriesPage(props: { rows?: number }) {
       background: 'rgba(0, 0, 0, 0.5)',
       backgroundImage:
         'url(https://www.wholelifechallenge.com/wp-content/uploads/2018/06/e-book-header.jpg)',
-      height: '35vh',
+      height: '32vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
@@ -130,16 +122,17 @@ export default function SeriesPage(props: { rows?: number }) {
                       </Card.Header>
 
                       <Card.Body>
-                        <Card.Text>
+                        <Card.Text className="sPDesc">
                           {data.series_desc}
-                          <br />
-                          <Button
-                            className="view-org-button"
-                            onClick={onClickHandler(data.series_title)}
-                          >
-                            View Series
-                          </Button>
+                          {/* <br /> */}
                         </Card.Text>
+
+                        <Button
+                          className="view-org-button"
+                          onClick={onClickHandler(data.series_title)}
+                        >
+                          View Series
+                        </Button>
                       </Card.Body>
                     </Card>
                     //     ))}
