@@ -11,12 +11,15 @@ $paddingTop: 15px;
     // text-align: center;
 }
 
+
 .searchFilter {
     width: 73%;
     margin: 0 auto;
 }
 
 .sPCardHeader {
+    height: 7vh;
+    overflow: auto;
     text-align: center;
     background-color: rgb(147, 212, 224)!important;
 }
@@ -62,9 +65,10 @@ $paddingTop: 15px;
     min-height: 220px;
 
     .sPDesc {
-        max-height: 10vh;
+        max-height: 13vh;
         overflow-y: scroll;
         scrollbar-width: none;
+        margin: 0px;
     }
 
     .view-org-button{

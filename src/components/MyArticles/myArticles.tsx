@@ -171,7 +171,7 @@ function MyArticles() {
   let newSeries = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem('user_type'));
-    if (userType != 4 || !userType) {
+    if (userType != 1 || !userType) {
       alert('You must be an author to create a new Series');
     } else {
       return history.push('/seriesCreation');
@@ -189,6 +189,11 @@ function MyArticles() {
           {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
+            Have too many articles? Click
+          <button className="seriesCreate" onClick={newSeries}>
+            here
+          </button>
+          to form a new Series!
               <Table
                 className="tableParent"
                 striped
@@ -220,11 +225,6 @@ function MyArticles() {
               </Table>
             </Col>
           </Row>
-          Have too many articles? Click
-          <button className="seriesCreate" onClick={newSeries}>
-            here
-          </button>
-          to form a new Series!
         </div>
 
         <Col className="selectedArticle">
@@ -245,14 +245,17 @@ function MyArticles() {
                   as="select"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="Null"> Select Category.. </option>
+                <option value="null"> Select Category.. </option>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
-                  <option value="Science"> Science </option>
-                  <option value="Sci-Fi"> Sci-Fi </option>
-                  <option value="Fiction"> Fiction </option>
-                  <option value="Non-Fiction"> Non-Fiction </option>
                   <option value="Beauty"> Beauty </option>
+                  <option value="Science"> Science </option>
+                  <option value="Reality"> Reality </option>
+                  <option value="Fiction"> Fiction </option>
+                  <option value="NonFiction"> Non-Fiction </option>
+                  <option value="Conspiracy"> Conspiracy </option>
+                  <option value="Nature"> Nature</option>
+                  <option value="Animals"> Animals </option>
                   <option value="Humour"> Humour </option>
                   <option value="Religion"> Religion </option>
                 </Form.Control>

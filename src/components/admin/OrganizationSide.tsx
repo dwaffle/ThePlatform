@@ -90,7 +90,7 @@ export default function OrganizationSide(props: {}) {
             name="statusOrg"
             onClick={approvedOrRejected}
           >
-            Band Organisation
+            Ban Organization
           </Button>
 
           <Button
@@ -100,7 +100,7 @@ export default function OrganizationSide(props: {}) {
             name="statusOrg"
             onClick={approvedOrRejected}
           >
-            Approved Organisation
+            unBan Organization
           </Button>
         </Col>
 

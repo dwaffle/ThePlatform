@@ -21,6 +21,11 @@ export default function HorizontalArticles(props: { rows: number }) {
   const [articleCol, setArticleCol] = useState<Array<IArticle[]>>([]);
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
+  // shuffle the list of approved articles for display
+  let shuffledList = [...approvedArticle].sort(() => Math.random() - 0.5)
+  // console.log(shuffledList)
+
+
   // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
     e.preventDefault();
@@ -33,7 +38,7 @@ export default function HorizontalArticles(props: { rows: number }) {
   };
 
   useEffect(() => {
-    const innerProductList = [...approvedArticle].filter((articles) => {
+    const innerProductList = [...shuffledList].filter((articles) => {
       let found = true;
 
       if (ASearchFilter?.name) {
