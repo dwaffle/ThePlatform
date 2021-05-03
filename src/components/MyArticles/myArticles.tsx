@@ -171,7 +171,7 @@ function MyArticles() {
   let newSeries = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem('user_type'));
-    if (userType != 1 || !userType) {
+    if (userType != 4 || !userType) {
       alert('You must be an author to create a new Series');
     } else {
       return history.push('/seriesCreation');

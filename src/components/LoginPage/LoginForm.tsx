@@ -26,7 +26,7 @@ function LoginForm() {
   return (
     <>
       <Row>
-        <Col />
+        {/* <Col /> */}
         <Col>
           <div className="Container">
             <Form className="FormLogin">
@@ -77,7 +77,7 @@ function LoginForm() {
             </Form>
           </div>
         </Col>
-        <Col />
+        {/* <Col /> */}
       </Row>
     </>
   );
