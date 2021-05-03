@@ -1,69 +1,56 @@
+import { useEffect, useState } from "react";
 import { Media } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { IArticle } from "../../../services/crud-server/src/models/article";
+import api from "../../api";
 
 export default function PopularArticle (){
 
+
+    const [articles, setArticles] = useState<IArticle[]>([]);
+   
+    
+
+    useEffect(() => {
+        api.article.get().then((response) => {
+          setArticles(response.data);
+        });
+      }, []);
+    
 
     return (<>
 
         <div className="HeadlineArticle">           
             <h1> Popular Article </h1>
 
-        <div>
-            <Media>
-                <img
-                width={90}
-                height={90}
-                className="align-self-start mr-3"
-                src="https://picsum.photos/200/300?random=1"
-                alt="Generic placeholder"
-                />
-                <Media.Body>
-                <h5>Media Heading</h5>
-                <p>
-                    Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                    leo. Cum sociis
-                </p>
-                </Media.Body>
-            </Media>
-        </div>
+            { articles.slice(4, 7).map((_article) => {
 
-        <div>
-            <Media>
-                <img
-                width={90}
-                height={90}
-                className="align-self-start mr-3"
-                src="https://picsum.photos/200/300?random=2"
-                alt="Generic placeholder"
-                />
-                <Media.Body>
-                <h5>Media Heading</h5>
-                <p>
-                    Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                    leo. Cum sociis
-                </p>
-                </Media.Body>
-            </Media>
-        </div>
+                return(
+                    <div>
+                        <Link to={`/articles/${_article.art_title}`}>
+              
+                    
+                        <Media>
+                            <img
+                            width={90}
+                            height={90}
+                            className="align-self-start mr-3"
+                            src={_article.art_image}
+                            alt="Generic placeholder"
+                            />
+                            <Media.Body>
+                            <h6>{ _article.art_title }</h6>
+                            <p>
+                                { (_article.description).slice(0,60) }
+                            </p>
+                            </Media.Body>
+                        </Media>
+                        </Link>
+                    </div>
+                )
 
-        <div>
-            <Media>
-                <img
-                width={90}
-                height={90}
-                className="align-self-start mr-3"
-                src="https://picsum.photos/200/300?random=3"
-                alt="Generic placeholder"
-                />
-                <Media.Body>
-                <h5>Media Heading</h5>
-                <p>
-                    Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                    leo. Cum sociis
-                </p>
-                </Media.Body>
-            </Media>
-        </div>
+            })}
+        
 
            
         </div>

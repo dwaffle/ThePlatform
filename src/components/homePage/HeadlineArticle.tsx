@@ -1,9 +1,27 @@
-import { Button, Card, CardDeck, Col, Container, Image, Jumbotron, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Media } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import { IArticle } from "../../../services/crud-server/src/models/article";
+import api from "../../api";
 
 
 export default function HeadlineArticle(props: {}){
 
+    const [articles, setArticles] = useState<IArticle[]>([]);
+    const history = useHistory();
    
+    function onclickart(title :string) {
+        return function () {
+            history.push(`/articles/${title}`);
+        };
+      }
+
+    useEffect(() => {
+        api.article.get().then((response) => {
+          setArticles(response.data);
+        });
+      }, []);
+    
    
     return ( <>
 
@@ -11,49 +29,36 @@ export default function HeadlineArticle(props: {}){
         <div className="HeadlineArticle">
             <h1> HeadlineArticle </h1>
           
-            <div className = "divStyle">
+                { articles.slice(8, 10).map((_article) => {
+
+                   return (
+                    <div className = "divStyle">
+
+                    <div>
+                    <p>
+                        <img
+                            width={90}
+                            height={90}
+                            className="imgStyle rounded-circle"
+                            src= {_article.art_image}
+                            alt="Generic placeholder"
+                            />
+                        
+                        <h2>{ _article.art_title }</h2>
+
+                        { (_article.description).slice(0,60) }
+
+                        <br/><Button variant="outline-primary" onClick = {onclickart(_article.art_title)}>See More</Button>
+                    </p>
+                </div>
+                </div>
+                   )
+
+
+
+                })}
                 
-                <div>
-                    <p>
-                        <img
-                            width={90}
-                            height={90}
-                            className="imgStyle rounded-circle"
-                            src="https://picsum.photos/200/300?random=4"
-                            alt="Generic placeholder"
-                            />
-                        
-                        <h2>Float Right</h2>
-                        
-                    
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, 
-                        nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget,
-                        auctor vitae massa. Fusce luctus vestibulum augue ut aliquet.
-                        <br/><Button variant="outline-primary " >See More</Button>
-                    </p>
-                </div>
-
-                <div>
-                    <p>
-                        <img
-                            width={90}
-                            height={90}
-                            className="imgStyle rounded-circle"
-                            src="https://picsum.photos/200/300?random=5"
-                            alt="Generic placeholder"
-                            />
-                        
-                        <h2>Float Right</h2>
-                        
-                    
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, 
-                        nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget,
-                        auctor vitae massa. Fusce luctus vestibulum augue ut aliquet.
-                        <br/><Button variant="outline-primary " >See More</Button>
-                    </p>
-                </div>
-
-            </div>
+          
 
                
         </div>

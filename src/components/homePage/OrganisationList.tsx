@@ -1,56 +1,46 @@
+import { useEffect, useState } from "react";
 import { Card, CardDeck } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { IOrganization } from "../../../services/crud-server/src/models/organization";
+import api from "../../api";
 
 export default function OrganisationList (){
+
+    const [orgs, setOrgs] = useState<IOrganization[]>([]);
+   
+    useEffect(() => {
+        api.organization.get().then((response) => {
+          setOrgs(response.data);
+        });
+      }, []);
+    
 
     return(<>
 
         <div className = "orgDiv">
-        <div>
-                <CardDeck>
+        <CardDeck>
+          { orgs.slice(0, 4).map((_org) => {
+
+                return(
+                   
                     <Card bg="Light" style={{ width: '18rem' }}>
-                    <Card.Header className="text-center p-3">
-                        Organization Name
-                    </Card.Header>
-                    <Card.Body>
-                        {/* <Card.Title>Primary Card Title</Card.Title> */}
-                        <Card.Text>
-                        Some quick example text to build on the card title and make
-                        up the bulk of the card's content.
-                        <br />
-                        <a href=""> See more </a>
-                        </Card.Text>
-                    </Card.Body>
-                    </Card>
-                    <Card bg="Light" style={{ width: '18rem' }}>
-                    <Card.Header className="text-center p-3">
-                        Organization Name
-                    </Card.Header>
-                    <Card.Body>
-                        {/* <Card.Title>Primary Card Title</Card.Title> */}
-                        <Card.Text>
-                        Some quick example text to build on the card title and make
-                        up the bulk of the card's content.
-                        <br />
-                        <a href=""> See more </a>
-                        </Card.Text>
-                    </Card.Body>
-                    </Card>
-                    <Card bg="Light" style={{ width: '18rem' }}>
-                    <Card.Header className="text-center p-3">
-                        Organization Name
-                    </Card.Header>
-                    <Card.Body>
-                        {/* <Card.Title>Primary Card Title</Card.Title> */}
-                        <Card.Text>
-                        Some quick example text to build on the card title and make
-                        up the bulk of the card's content.
-                        <br />
-                        <a href=""> See more </a>
-                        </Card.Text>
-                    </Card.Body>
-                    </Card>
-                </CardDeck>
-            </div>
+                        <Card.Header className="text-center p-3">
+                        { _org?.org_title }
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                { _org?.org_desc }
+                                <br />
+                                <Link to={`/IndividualOrganizationPage/${_org.ord_id}`}>
+                                See more 
+                                </Link>
+                         
+                            </Card.Text>
+                        </Card.Body>
+                        </Card>
+                );
+                })}   
+                 </CardDeck>
         </div>
 
     </>);
