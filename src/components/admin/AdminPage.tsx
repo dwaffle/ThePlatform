@@ -17,7 +17,9 @@ export default function AdminPage(props: {}) {
     if (user_type === 1) {
       return (
         <>
-          <h1>Admin page</h1>
+        <div className = "styleHeader">
+        <p className="h8tch2">Admin page</p>
+      </div>
           <Row>
             <Col>
               <Organization />
