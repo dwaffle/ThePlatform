@@ -10,3 +10,13 @@ export function get( app:any ){
 
     });
 }
+
+// export function getNewOrgsList( app:any ){
+
+//     app.get("/organization", authenticateToken, async( request:any, response:any ) => {
+
+//         const orgs = await OrganizationModel.getNewOrgsList();
+//         response.status(200).send(orgs);
+
+//     });
+// }

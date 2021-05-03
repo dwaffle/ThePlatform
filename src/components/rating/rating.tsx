@@ -6,7 +6,7 @@ import { Rating } from '@material-ui/lab';
 import { ratingListState, useRatingList } from './ratingList';
 import './style.scss';
 import { Button } from 'react-bootstrap';
-import { useRecoilValue } from 'recoil';
+
 
 export default function RatingArticles(props: { article_id: any }) {
   const articleID = props.article_id;
@@ -32,7 +32,7 @@ export default function RatingArticles(props: { article_id: any }) {
   };
 
   function calculateRating(rating: number[]) {
-    // guard for zero
+    // guard for zero 
     if (rating.length === 0) {
       return 0;
     }
@@ -52,25 +52,26 @@ export default function RatingArticles(props: { article_id: any }) {
   }
 
   return (
-    <div className="rating ">
+    <div className="rating border rounded">
       <h2>Customer Ratings</h2>
 
-      <h1>
-        {ratingArticle}{' '}
-        <Rating
+      <Rating
           name="half-rating"
           defaultValue={rating}
           readOnly={readonly}
           precision={1}
         />{' '}
-      </h1>
+      <h3 className="starStyle">
+        ( {ratingArticle}{' '} )
+        
+      </h3>
       <p>
         Averge rating based on ( <strong> {nbrReviews} </strong>)
       </p>
 
       {/* {console.log('...', rate)} */}
       <Button variant="warning" onClick={writeRating} onChange={onChangeRating}>
-        <strong>See More</strong>
+        <strong>Add your rating </strong>
       </Button>
     </div>
   );

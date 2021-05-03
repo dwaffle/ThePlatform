@@ -4,6 +4,9 @@
 }
 
 .userArticleList {
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
     // min-width: 22%;
     // // max-width: 23%;
     // min-height: 100vh;
@@ -12,6 +15,7 @@
 
     .tableParent {
         width: 22vw;
+        height: 20%;
         // min-height: 100vh;
 
         td {

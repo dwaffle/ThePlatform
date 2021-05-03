@@ -8,7 +8,7 @@ import './style.scss';
 import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import { seriesListState } from '../articleList';
-import { Editor } from "@tinymce/tinymce-react";
+import { Editor } from '@tinymce/tinymce-react';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -154,7 +154,7 @@ export function CreateNewArticle() {
           </Form.Row> */}
           Image Display:
           <p className="noMargin">
-          <small>The default image will be used otherwise</small>
+            <small>The default image will be used otherwise</small>
           </p>
           <div>
             <img className="img-display-box" src={image}></img>
@@ -229,17 +229,21 @@ export function CreateNewArticle() {
                 as="select"
                 onChange={changeCategory}
                 value={category}
+                required
               >
-                <option>Categories</option>
+                <option value="null"> Select Category.. </option>
                 <option value="Tech"> Tech </option>
-                <option value="Sports"> Sports </option>
-                <option value="Religion"> Religion </option>
                 <option value="Health"> Health </option>
-                <option value="Sci-Fi"> Sci-Fi </option>
-                <option value="Fiction"> Fiction </option>
-                <option value="Non-Fiction"> Non-Fiction </option>
-                <option value="Science"> Science </option>
                 <option value="Beauty"> Beauty </option>
+                <option value="Science"> Science </option>
+                <option value="Reality"> Reality </option>
+                <option value="Fiction"> Fiction </option>
+                <option value="NonFiction"> Non-Fiction </option>
+                <option value="Conspiracy"> Conspiracy </option>
+                <option value="Nature"> Nature</option>
+                <option value="Animals"> Animals </option>
+                <option value="Humour"> Humour </option>
+                <option value="Religion"> Religion </option>
               </Form.Control>
             </Form.Group>
             <Form.Group className="FormRowSpacing">

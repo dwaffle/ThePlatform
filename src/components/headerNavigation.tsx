@@ -72,10 +72,10 @@ export default function HeaderNavigation(props: {}) {
             {isAdmin()}
             {isLoggedIn()}
 
-            {/* <LinkContainer to="/login">
+            <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/profile">
+            {/* <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer> */}
           </Nav>

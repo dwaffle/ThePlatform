@@ -3,7 +3,7 @@ import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 import Organization from './OrganizationSide';
 import Member from './MemberSide';
 import './style.scss';
-import { LinkContainer } from 'react-router-bootstrap';
+
 
 // Can manage users’ roles.
 
@@ -17,7 +17,9 @@ export default function AdminPage(props: {}) {
     if (user_type === 1) {
       return (
         <>
-          <h1>Admin page</h1>
+        <div className = "styleHeader">
+        <p className="h8tch2">Admin page</p>
+      </div>
           <Row>
             <Col>
               <Organization />
