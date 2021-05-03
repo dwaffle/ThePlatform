@@ -65,7 +65,7 @@ export default function WriteRating(props: {}) {
 
   return (
     <MainLayout>
-      <div className="writeRating w-50 mx-auto">
+      <div className="writeRating w-50 mx-auto ">
         <h3>Your Ratings</h3>
         <Rating onChange={onChangeRating} /> <br />
         <Form method="Post">

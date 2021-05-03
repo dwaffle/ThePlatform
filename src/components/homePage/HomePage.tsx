@@ -3,6 +3,11 @@ import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import { seriesListState, useArticleList } from '../ArticleList/articleList';
+
+import  Headline  from './HeadlineArticle';
+import Popular from './PopularArticle';
+import Organisation from './OrganisationList';
+
 //import Faq from '../components/OrganizationPage';
 import './style.scss';
 
@@ -31,78 +36,17 @@ export default function HomePage(props: {}) {
     <>
       <Row>
         <Col xs={8}>
-          {' '}
-          <div className="HeadlineArticle">
-            <h1> HeadlineArticle </h1>
-          </div>{' '}
+         <Headline/>
         </Col>
         <Col>
-          <div className="MostPopularArticle">
-            <h2> Most Popular Article </h2>
-          </div>
+          <Popular/>
         </Col>
       </Row>
 
       <div>
         <Row>
           <Col>
-            <CardDeck>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  {newestSeries?.series_title}
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    {newestSeries?.series_desc}
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  Organization Name
-                </Card.Header>
-                <Card.Body>
-                  {/* <Card.Title>Primary Card Title</Card.Title> */}
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                    <br />
-                    <a href=""> See more </a>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </CardDeck>
+            <Organisation/>
           </Col>
         </Row>
       </div>
