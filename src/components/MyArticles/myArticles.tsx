@@ -189,11 +189,11 @@ function MyArticles() {
           {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
-            Have too many articles? Click
-          <button className="seriesCreate" onClick={newSeries}>
-            here
-          </button>
-          to form a new Series!
+              Have too many articles? Click
+              <button className="seriesCreate" onClick={newSeries}>
+                here
+              </button>
+              to form a new Series!
               <Table
                 className="tableParent"
                 striped
@@ -245,7 +245,7 @@ function MyArticles() {
                   as="select"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                <option value="null"> Select Category.. </option>
+                  <option value="null"> Select Category.. </option>
                   <option value="Tech"> Tech </option>
                   <option value="Health"> Health </option>
                   <option value="Beauty"> Beauty </option>

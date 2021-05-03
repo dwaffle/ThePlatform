@@ -22,9 +22,8 @@ export default function HorizontalArticles(props: { rows: number }) {
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
   // shuffle the list of approved articles for display
-  let shuffledList = [...approvedArticle].sort(() => Math.random() - 0.5)
+  let shuffledList = [...approvedArticle].sort(() => Math.random() - 0.5);
   // console.log(shuffledList)
-
 
   // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
