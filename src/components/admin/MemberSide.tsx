@@ -89,7 +89,7 @@ export default function MemberSide(props: {}) {
             name="statusMember"
             onClick={approvedOrRejected}
           >
-            Band Member
+            Ban Member
           </Button>
 
           <Button
@@ -99,7 +99,7 @@ export default function MemberSide(props: {}) {
             name="statusMember"
             onClick={approvedOrRejected}
           >
-            Approved Member
+            unBan Member
           </Button>
         </Col>
 
