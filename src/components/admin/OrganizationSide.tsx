@@ -62,21 +62,21 @@ export default function OrganizationSide(props: {}) {
               <th>Status</th>
             </thead>
             <tbody>
-            {orgs?.map((org) => {
-              
-              return (<tr className="adminTable"
-              
-                key={org.ord_id}
-                defaultValue={org.ord_id}
-                onClick={onClick(org)}
-  
-              >
-                <td > { org.org_title }</td>
-                <td>{ org.org_desc }</td>
-                <td>{ org.org_price }</td>
-                <td>{ org.org_status == 1? "active":"band" }</td>
-              </tr>);
-            })}  
+              {orgs?.map((org) => {
+                return (
+                  <tr
+                    className="adminTable"
+                    key={org.ord_id}
+                    defaultValue={org.ord_id}
+                    onClick={onClick(org)}
+                  >
+                    <td> {org.org_title}</td>
+                    <td>{org.org_desc}</td>
+                    <td>{org.org_price}</td>
+                    <td>{org.org_status == 1 ? 'active' : 'band'}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Col>

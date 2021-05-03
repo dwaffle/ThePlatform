@@ -7,7 +7,6 @@ import { ratingListState, useRatingList } from './ratingList';
 import './style.scss';
 import { Button } from 'react-bootstrap';
 
-
 export default function RatingArticles(props: { article_id: any }) {
   const articleID = props.article_id;
 
@@ -32,8 +31,8 @@ export default function RatingArticles(props: { article_id: any }) {
   };
 
   function calculateRating(rating: number[]) {
-    // guard for zero 
-    if (rating.length === 0) {
+    // guard for zero
+    if (rating && rating.length === 0) {
       return 0;
     }
 
@@ -54,21 +53,16 @@ export default function RatingArticles(props: { article_id: any }) {
   return (
     <div className="rating border rounded">
       <h2>Customer Ratings</h2>
-
       <Rating
-          name="half-rating"
-          defaultValue={rating}
-          readOnly={readonly}
-          precision={1}
-        />{' '}
-      <h3 className="starStyle">
-        ( {ratingArticle}{' '} )
-        
-      </h3>
+        name="half-rating"
+        defaultValue={rating}
+        readOnly={readonly}
+        precision={1}
+      />{' '}
+      <h3 className="starStyle">( {ratingArticle} )</h3>
       <p>
         Averge rating based on ( <strong> {nbrReviews} </strong>)
       </p>
-
       {/* {console.log('...', rate)} */}
       <Button variant="warning" onClick={writeRating} onChange={onChangeRating}>
         <strong>Add your rating </strong>

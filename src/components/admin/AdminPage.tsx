@@ -4,7 +4,6 @@ import Organization from './OrganizationSide';
 import Member from './MemberSide';
 import './style.scss';
 
-
 // Can manage users’ roles.
 
 // Add users to role by adding to list by email / username from currently signed up members
@@ -17,9 +16,9 @@ export default function AdminPage(props: {}) {
     if (user_type === 1) {
       return (
         <>
-        <div className = "styleHeader">
-        <p className="h8tch2">Admin page</p>
-      </div>
+          <div className="styleHeader">
+            <p className="h8tch2">Admin page</p>
+          </div>
           <Row>
             <Col>
               <Organization />

@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import { seriesListState, useArticleList } from '../ArticleList/articleList';
 
-import  Headline  from './HeadlineArticle';
+import Headline from './HeadlineArticle';
 import Popular from './PopularArticle';
 import Organisation from './OrganisationList';
 
@@ -36,17 +36,17 @@ export default function HomePage(props: {}) {
     <>
       <Row>
         <Col xs={8}>
-         <Headline/>
+          <Headline />
         </Col>
         <Col>
-          <Popular/>
+          <Popular />
         </Col>
       </Row>
 
       <div>
         <Row>
           <Col>
-            <Organisation/>
+            <Organisation />
           </Col>
         </Row>
       </div>

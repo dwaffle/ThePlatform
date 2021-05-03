@@ -32,7 +32,7 @@ export default function WriteRating(props: {}) {
     user_user_id: user_id,
     rating_review: review,
     rating_value: ratingValue,
-    article_art_id: id,
+    article_art_id: Number(id),
   };
 
   const onChangeTitle = (e: any) => {
