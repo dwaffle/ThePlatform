@@ -1,7 +1,10 @@
 import dotenv from 'dotenv';
 
+//get the connection parameters
 dotenv.config();
 
+//Connection to the database 
+// Using default parameters from dotenv.config
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: process.env.MYSQL_CONNECTION_STRING,
@@ -11,8 +14,10 @@ var connection = mysql.createConnection({
 })
 
 
+//sql blank variable
 let _sql: string = "";
 
+//the rating interface
 export interface IRating {
     rating_id?: number;
     rating_title: string;
@@ -24,20 +29,20 @@ export interface IRating {
   
 }
 
-
+//the rating model 
+// getRating, getById, newRate
 export const RatingModel = {
 
-
+    // get all the articles 
     getRating: async (  ): Promise<IRating[]> => {
-        // const myConnection =  await connection
+
+        //waiting for data base return
         return new Promise((resolve, reject) => {
 
-            // _sql = `SELECT  * FROM rating rat INNER JOIN article art ON rat.article_art_id = art.art_id JOIN user usr ON rat.user_user_id = usr.user_id
-            // WHERE art.art_id = ${rateId}`;
-
+            //Prepare the sql
             _sql = `SELECT  * FROM rating`;
 
-            // console.log("Im here getRating")
+            //get article rating from database or throw error
             connection.query(_sql, function(err:any, result: any){
                 if(err){
                     reject(err);
@@ -48,13 +53,16 @@ export const RatingModel = {
         })
     },
 
-
+    // get rating depending on rating article id
     getById: async ( articleId:number ): Promise<any> => {
-        // var connection = await myConnection.getClient()
+    
+        //waiting for data base return
         return new Promise((resolve, reject) => {
 
+            //Prepare the sql to parse
             _sql = `SELECT  * FROM rating WHERE article_art_id = ${articleId}`;
 
+            //get article rating from database or throw error
             connection.query(_sql, function(err:any, result: any){
                 if(err){
                     reject(err);
@@ -65,24 +73,28 @@ export const RatingModel = {
         })
     },
 
-
+    //Parse new rating to data base or throw error
     newRate: async( newRate:IRating) => {
 
+         //Prepare the sql
         _sql = `INSERT INTO rating 
                 ( rating_title, rating_date, user_user_id, article_art_id, rating_value, rating_review ) 
                 VALUES 
-                ('${newRate.rating_title}', SYSDATE(),
-                '${newRate.user_user_id}', '${newRate.article_art_id}',
-                '${newRate.rating_value}', '${newRate.rating_review}')`
-        // console.log(_sql)
+                ( ?, SYSDATE(), ?, ?, ?, ?)`
 
-        connection.query(_sql,function(err:any, result:any){
-            if(err)
-            {
-                throw err;
-            } else {
-                result;
-            }
-        });
+        //Post article rating in database or throw error      
+        connection.query(_sql, [newRate.rating_title, 
+                                newRate.user_user_id, 
+                                newRate.article_art_id,
+                                newRate.rating_value,
+                                newRate.rating_review ] 
+                        , function(err:any, result:any){
+                            if(err)
+                            {
+                                throw err;
+                            } else {
+                                result;
+                            }
+                        });
     },
 }

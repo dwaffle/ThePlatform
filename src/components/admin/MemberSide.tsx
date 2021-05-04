@@ -51,8 +51,8 @@ export default function MemberSide(props: {}) {
     <>
       <Row>
         <Col>
-          <h3>Member List List</h3>
-          <Table striped bordered hover >
+          <h3>Member List </h3>
+          <Table striped bordered hover>
             <thead>
               <th>Full Name</th>
               <th>Date of Profile</th>
@@ -60,21 +60,24 @@ export default function MemberSide(props: {}) {
               <th>Status</th>
             </thead>
             <tbody>
-            {members?.map((member) => {
-              
-              return (<tr className="adminTable"
-              
-                key={member.user_id}
-                defaultValue={member.user_id}
-                onClick={onClick(member)}
-  
-              >
-                <td > { member.user_firstName } { member.user_lastName }</td>
-                <td>{ member.user_creation_date.slice(0,10) }</td>
-                <td>{ member.user_userName }</td>
-                <td>{ member.user_status == 1? "active":"Banned" }</td>
-              </tr>);
-            })}  
+              {members?.map((member) => {
+                return (
+                  <tr
+                    className="adminTable"
+                    key={member.user_id}
+                    defaultValue={member.user_id}
+                    onClick={onClick(member)}
+                  >
+                    <td>
+                      {' '}
+                      {member.user_firstName} {member.user_lastName}
+                    </td>
+                    <td>{member.user_creation_date.slice(0, 10)}</td>
+                    <td>{member.user_userName}</td>
+                    <td>{member.user_status == 1 ? 'active' : 'band'}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Col>
