@@ -89,7 +89,7 @@ exports.UserModel = {
     }),
     getByUsername: (username) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM user WHERE user_userName = '?'`, [username], function (err, result) {
+            connection.query(`SELECT * FROM user WHERE user_userName = ?`, [username], function (err, result) {
                 if (err) {
                     reject(err);
                 }
