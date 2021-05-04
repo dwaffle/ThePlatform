@@ -46,6 +46,9 @@ export default function EditorPage() {
 
   return (
     <MainLayout>
+      <div className="styleEditor">
+        <p className="h8tch2">Editor page</p>
+      </div>
       <Row>
         <Col>
           <div className="PendingArticle">

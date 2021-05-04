@@ -20,3 +20,14 @@ img {
 .user_real_name{
     font-size-adjust: 0.45;
 }
+
+.HeadlineProfile{
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url(https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/11/AS6_1683-77.jpg?ssl=1);
+    height: 32vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 15px;
+    // transparency: '50%'
+}

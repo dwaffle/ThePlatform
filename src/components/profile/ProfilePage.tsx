@@ -76,7 +76,9 @@ export default function ProfilePage(props: {}) {
 
   return (
     <>
-      <h1>Profile page</h1>
+      <div className="HeadlineProfile">
+        <p className="h8tch2">Profile page</p>
+      </div>
 
       <Row>
         <Col>

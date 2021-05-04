@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import userAvatar from '../../data/icon/userAvatar.jpg';
 import './style.scss';
@@ -23,15 +23,25 @@ export default function HeaderNavigation(props: {}) {
   function isAdmin() {
     if (user_type === 1) {
       return (
-        <LinkContainer to="/admin">
-          <Nav.Link>Admin</Nav.Link>
-        </LinkContainer>
+        <NavDropdown.Item href="/admin">My Admin</NavDropdown.Item>
+        // <LinkContainer to="/admin">
+        //   <Nav.Link>Admin</Nav.Link>
+        // </LinkContainer>
       );
     }
   }
 
-  function logoutHandler(){
+  function logoutHandler() {
     localStorage.clear();
+  }
+
+  function displayFirstName() {
+    const firstName = localStorage.getItem('first_name');
+    if (firstName) {
+      return firstName;
+    } else {
+      return;
+    }
   }
 
   function isLoggedIn() {
@@ -41,16 +51,23 @@ export default function HeaderNavigation(props: {}) {
           <Nav.Link>Login</Nav.Link>
         </LinkContainer>
       );
-    }else {
-    return (
-      <>
-        <LinkContainer to="/profile">
+    } else {
+      return (
+        <>
+          {/* <LinkContainer to="/profile">
           <Nav.Link>My Profile</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to="/">
+        </LinkContainer> */}
+          {/* <LinkContainer to="/">
           <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
-        </LinkContainer>
-      </>
+        </LinkContainer> */}
+
+          <NavDropdown title={displayFirstName()} id="collasible-nav-dropdown">
+            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+            {isAdmin()}
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+          </NavDropdown>
+        </>
       );
     }
   }
@@ -76,16 +93,8 @@ export default function HeaderNavigation(props: {}) {
 
             {isEditor()}
           </Nav>
-
-          <Nav className="navButtons"></Nav>
-          <Nav className="navProfile">
-            {isAdmin()}
-            {isLoggedIn()}
-            {/* <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
-            </LinkContainer> */}
-          </Nav>
         </Navbar.Collapse>
+        <Nav className="navProfile">{isLoggedIn()}</Nav>
       </Navbar>
     </>
   );

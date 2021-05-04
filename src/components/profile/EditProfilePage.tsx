@@ -151,7 +151,9 @@ export default function EditProfilePage(props: {}) {
 
   return (
     <>
-      <h1>Profile Editing Page</h1>
+      <div className="HeadlineProfile">
+        <p className="h8tch2">Profile Editing Page</p>
+      </div>
 
       <Row>
         <Col>
