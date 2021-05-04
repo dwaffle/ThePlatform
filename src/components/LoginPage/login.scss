@@ -1,11 +1,15 @@
 .Container {
-    position: relative;
+    // position: relative;
+    display:flex;
+    // justify-content: center;
+    align-items: center;
+
 
     Form {
         border: 1px solid #d47501;
         background-color: #e9e8e8;
         width: 50vh;
-        min-height: 50vh;
+        // min-height: 50vh;
         font-size: 2.2rem;
         font-family:Georgia, 'Times New Roman', Times, serif;
         padding: 10px;
@@ -25,9 +29,10 @@ h1 {
     font-size: 1rem;
 }
 
-// .ButtonSubmit {
-//     color:white;
-//     background-color: rgb(36, 36, 36);
-//     border: none;
-//     margin-left: 240px;
-// }
+.ButtonSubmit {
+    color:white;
+    background-color: rgb(36, 36, 36);
+    border: none;
+    margin-left: 5px;
+    // margin-left: 240px;
+}
