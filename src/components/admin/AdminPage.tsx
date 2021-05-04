@@ -1,5 +1,5 @@
-import React from 'react';
-import { Row, Col, CardDeck, Card } from 'react-bootstrap';
+// import React from 'react';
+import { Row, Col } from 'react-bootstrap';
 import Organization from './OrganizationSide';
 import Member from './MemberSide';
 import './style.scss';

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useRecoilState } from 'recoil';
+import { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+// import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router';
 import api from '../../api';
 // import data from '../../data/icon'

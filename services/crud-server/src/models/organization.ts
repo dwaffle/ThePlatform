@@ -66,17 +66,6 @@ export const OrganizationModel = {
     })
     },
 
-    // getNewOrgsList: ():Promise<IOrganization[]> => {
-    //     return new Promise((resolve, reject) => {connection.query('select * from organization ORDER BY ORDER BY RANDOM () LIMIT 4', function(err:any, result:any){
-    //         if(err){
-    //             reject(err);
-    //         } else {
-    //             resolve(result);
-    //         }
-    //     })
-    // })
-    // },
-
     getById: async ( organizationId:number ): Promise<IOrganization[]> => {
         return new Promise((resolve, reject) => {
             

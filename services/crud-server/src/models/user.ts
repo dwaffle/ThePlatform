@@ -98,7 +98,7 @@ export const UserModel = {
     },
 
     setAll: async (user:IUser) => {
-        //Because I know I have some parameters in the query, the commas can come before the optinal paramaters.
+        //Because I know I have some parameters in the query, the commas can come before the optional paramaters.
         let extraParams = ""
         let extraValues = ""
         if(user.user_twitter){
@@ -168,6 +168,7 @@ export const UserModel = {
 
     patch: async(userInfo:IprofileChangeRequest) => {
         let queryParams = "";
+        let queryValues = [];
         //Double check that a user id has come in with the user info.
         if(!userInfo.user_id){
             console.log("No user id")
@@ -175,29 +176,36 @@ export const UserModel = {
         }
         //Need to figure out which items, and therefore how to structure the query.
         if(userInfo.user_email){
-            queryParams += `user_email = '${userInfo.user_email}', `
+            queryParams += `user_email = ?, `
+            queryValues.push(userInfo.user_email)
         }
         if(userInfo.user_firstName){
-            queryParams += `user_firstName = '${userInfo.user_firstName}', ` 
+            queryParams += `user_firstName = ?, `
+            queryValues.push(userInfo.user_firstName) 
         }
         if(userInfo.user_lastName){
-            queryParams += `user_lastName = '${userInfo.user_lastName}', `
+            queryParams += `user_lastName = ?, `
+            queryValues.push(userInfo.user_lastName);
         }
         if(userInfo.user_password){
-            queryParams += `user_password = '${userInfo.user_password}', `
+            queryParams += `user_password = ?, `
+            queryValues.push(userInfo.user_password)
         }
         if(userInfo.user_twitter){
-            queryParams += `user_twitter = '${userInfo.user_twitter}', `
+            queryParams += `user_twitter = ?, `
+            queryValues.push(userInfo.user_twitter)
         }
         if(userInfo.user_facebook){
-            queryParams += `user_facebook = '${userInfo.user_facebook}', `
+            queryParams += `user_facebook = ?, `
+            queryValues.push(userInfo.user_facebook)
         }
         if(userInfo.user_instagram){
-            queryParams += `user_instagram = '${userInfo.user_instagram}', `
+            queryParams += `user_instagram = ?, ` 
+            queryValues.push(userInfo.user_instagram)
         }
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-        connection.query(`UPDATE user SET ? WHERE user_id = ?`, [queryParams, userInfo.user_id], function(err:any, result:any){
+        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ?`, [...queryValues, userInfo.user_id], function(err:any, result:any){
             if(err){
                 reject(err);
             }

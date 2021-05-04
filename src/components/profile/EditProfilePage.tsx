@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-//import Faq from '../components/OrganizationPage';
 import './style.scss';
 import api from '../../api';
 import { useHistory } from 'react-router';

@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { selector } from 'recoil';
 
 import { articleListState } from '../../ArticleList/articleList';
 

@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { selector } from 'recoil';
 // import { ISeries } from '../../../../services/crud-server/src/models/series';
 import { seriesListState } from '../../ArticleList/articleList';
 

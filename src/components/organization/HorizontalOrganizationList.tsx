@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Col, Button, Form, Card, Table } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import api from '../../api';
-
 import { useHistory } from 'react-router-dom';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
 import 'react-multi-carousel/lib/styles.css';
-//import Faq from '../components/OrganizationPage';
 import './style.scss';
 
 // export interface IOrganization {

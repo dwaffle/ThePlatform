@@ -4,7 +4,7 @@ import MainLayout from '../../../layouts/MainLayout';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../../api';
 import { useParams } from 'react-router';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import './style.scss';
 import { articleListState, userOwnsArticle } from '../articleList';
 import { useHistory, Link } from 'react-router-dom';

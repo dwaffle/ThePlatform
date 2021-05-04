@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Col, CardDeck, Card, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-//import Faq from '../components/OrganizationPage';
 import './style.scss';
 import api from '../../api';
 import { useHistory } from 'react-router';
@@ -74,6 +73,18 @@ export default function ProfilePage(props: {}) {
     return history.push('/MyArticles');
   }
 
+  const isAuthor = () => {
+    let userType = Number(localStorage.getItem('user_type'));
+
+    let myArt = () => {
+      return history.push('/myArticles');
+    };
+
+    if (userType == 1 || userType == 4) {
+      return <Button onClick={myArt}> My Articles </Button>;
+    }
+  };
+
   return (
     <>
       <div className="HeadlineProfile">
@@ -108,9 +119,7 @@ export default function ProfilePage(props: {}) {
         {' '}
         Log Out
       </Button>
-      <Button variant="primary" onClick={myArticles}>
-        My Articles
-      </Button>
+      {isAuthor()}
     </>
   );
 }

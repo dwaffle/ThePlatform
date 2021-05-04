@@ -17,23 +17,35 @@ export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
   // Only allows published/approved articles to be displayed
   const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
-  console.log('approved', approvedArticle);
+  // console.log('approved', approvedArticle);
   const history = useHistory();
   const [articleCol, setArticleCol] = useState<Array<IArticle[]>>([]);
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
   // shuffle the list of approved articles for display
   let shuffledList = [...approvedArticle].sort(() => Math.random() - 0.5);
-  console.log('should be shuffled', shuffledList);
+  // console.log('should be shuffled', shuffledList);
 
   // Allows only users that are authors in the database to create a new article
-  let isAuthor = (e: any) => {
-    e.preventDefault();
+  // let isAuthor = (e: any) => {
+  //   e.preventDefault();
+  //   let userType = Number(localStorage.getItem('user_type'));
+  //   if ((userType != 1 && userType != 4) || !userType) {
+  //     alert('You must be an author to create an article');
+  //   } else {
+  //     return history.push('/newArticle');
+  //   }
+  // };
+
+  const isAuthor = () => {
     let userType = Number(localStorage.getItem('user_type'));
-    if ((userType != 1 && userType != 4) || !userType) {
-      alert('You must be an author to create an article');
-    } else {
+
+    let newArt = () => {
       return history.push('/newArticle');
+    };
+
+    if (userType == 1 || userType == 4) {
+      return <Button onClick={newArt}>Create New </Button>;
     }
   };
 
@@ -84,7 +96,8 @@ export default function HorizontalArticles(props: { rows: number }) {
       <div style={artListHeader.header}>
         <p className="h8tch2">Articles</p>
       </div>
-      <Button onClick={isAuthor}>Create New </Button>
+      {isAuthor()}
+      {/* {<Button onClick={isAuthor}>Create New </Button>} */}
 
       <div className="searchFeature">
         {<ArticleFilter aSearchDispatch={setASearchFilter} />}

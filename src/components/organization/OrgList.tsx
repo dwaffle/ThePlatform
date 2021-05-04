@@ -1,4 +1,4 @@
-import { atom, useRecoilState, selector } from 'recoil';
+import { atom, useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
 import { IUser } from '../../../services/crud-server/src/models/user';
