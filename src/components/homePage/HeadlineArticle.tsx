@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Button, Media } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import api from '../../api';
 

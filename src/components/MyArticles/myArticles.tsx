@@ -146,7 +146,7 @@ function MyArticles() {
         art_body: article?.art_body,
         art_category: article?.art_category,
         series_id: article?.series_id,
-        art_image: article?.art_image
+        art_image: article?.art_image,
       };
       // console.log(articlePatch);
       //Send object.

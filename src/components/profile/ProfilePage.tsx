@@ -74,6 +74,20 @@ export default function ProfilePage(props: {}) {
     return history.push('/MyArticles');
   }
 
+  const isAuthor = () => {
+    let userType = Number(localStorage.getItem('user_type'));
+
+    let myArt = () => {
+      return history.push('/myArticles')
+    } 
+
+    if (userType == 1 || userType == 4) {
+      return (
+        <Button onClick={myArt}> My Articles </Button>
+      )
+    }
+  }
+
   return (
     <>
       <h1>Profile page</h1>
@@ -106,9 +120,7 @@ export default function ProfilePage(props: {}) {
         {' '}
         Log Out
       </Button>
-      <Button variant="primary" onClick={myArticles}>
-        My Articles
-      </Button>
+      {isAuthor()}
     </>
   );
 }

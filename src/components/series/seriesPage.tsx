@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Carousel from 'react-multi-carousel';
-import { Card, Col, Form, Row, Button } from 'react-bootstrap';
+import { Card, Col, Row, Button } from 'react-bootstrap';
 // import unnamed from '../../data/icon/unnamed.jpg';
 import { useHistory } from 'react-router-dom';
 import './style.scss';

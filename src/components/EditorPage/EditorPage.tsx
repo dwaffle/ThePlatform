@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { articleListState } from '../ArticleList/articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import { useRecoilValue } from 'recoil';
@@ -38,6 +38,9 @@ export default function EditorPage() {
       art_is_approved: Number(artState),
       art_id: article?.art_id,
     };
+
+    console.log(updatedArticle.art_is_approved);
+
     console.log('patch', updatedArticle);
     api.article.patch(updatedArticle);
     history.push('/editor');

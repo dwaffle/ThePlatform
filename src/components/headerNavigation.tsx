@@ -30,7 +30,7 @@ export default function HeaderNavigation(props: {}) {
     }
   }
 
-  function logoutHandler(){
+  function logoutHandler() {
     localStorage.clear();
   }
 
@@ -41,16 +41,16 @@ export default function HeaderNavigation(props: {}) {
           <Nav.Link>Login</Nav.Link>
         </LinkContainer>
       );
-    }else {
-    return (
-      <>
-        <LinkContainer to="/profile">
-          <Nav.Link>My Profile</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to="/">
-          <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
-        </LinkContainer>
-      </>
+    } else {
+      return (
+        <>
+          <LinkContainer to="/profile">
+            <Nav.Link>My Profile</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/">
+            <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+          </LinkContainer>
+        </>
       );
     }
   }

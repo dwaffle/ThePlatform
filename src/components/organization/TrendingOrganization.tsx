@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
-import api from '../../api';
+// import api from '../../api';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
 import './style.scss';
 import { useHistory } from 'react-router-dom';

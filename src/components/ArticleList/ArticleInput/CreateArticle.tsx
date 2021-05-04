@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Switch } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import MainLayout from '../../../layouts/MainLayout';
@@ -8,7 +8,7 @@ import './style.scss';
 import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import { seriesListState } from '../articleList';
-import { Editor } from '@tinymce/tinymce-react';
+// import { Editor } from '@tinymce/tinymce-react';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -42,7 +42,7 @@ export function CreateNewArticle() {
 
   // list of all series
   const seriesList = useRecoilValue<ISeries[]>(seriesListState);
-  let userOwnsSeries = seriesList.filter((s) => s.series_owner == user_id);
+  let userOwnsSeries = seriesList.filter((s) => s.series_owner === user_id);
 
   function onChangeSeries(e: any) {
     setSeries(e.target.value);
@@ -86,7 +86,7 @@ export function CreateNewArticle() {
     e.preventDefault();
     //Give error if it's a priced article with no price, or priced with a price less than 0 dollars.
     if (
-      (price == undefined && hasPrice === ArticleType.PURCHASED) ||
+      (price === undefined && hasPrice === ArticleType.PURCHASED) ||
       (price != undefined && price < 0)
     ) {
       alert('A valid price must be a number greater than 0');

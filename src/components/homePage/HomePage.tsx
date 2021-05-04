@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Row, Col, CardDeck, Card } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import { seriesListState, useArticleList } from '../ArticleList/articleList';

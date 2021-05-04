@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 // import Image from "react-bootstrap/Image";
 //import Faq from '../components/OrganizationPage';

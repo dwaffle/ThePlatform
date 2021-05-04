@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
-import React from 'react';
+import { useState } from 'react';
+import { useHistory } from 'react-router';
+// import React from 'react';
 import { Rating } from '@material-ui/lab';
 // import Rating from "react-rating";
 import { ratingListState, useRatingList } from './ratingList';
