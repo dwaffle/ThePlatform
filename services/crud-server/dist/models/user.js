@@ -126,33 +126,41 @@ exports.UserModel = {
     }),
     patch: (userInfo) => __awaiter(void 0, void 0, void 0, function* () {
         let queryParams = "";
+        let queryValues = [];
         if (!userInfo.user_id) {
             console.log("No user id");
             return;
         }
         if (userInfo.user_email) {
-            queryParams += `user_email = '${userInfo.user_email}', `;
+            queryParams += `user_email = ?, `;
+            queryValues.push(userInfo.user_email);
         }
         if (userInfo.user_firstName) {
-            queryParams += `user_firstName = '${userInfo.user_firstName}', `;
+            queryParams += `user_firstName = ?, `;
+            queryValues.push(userInfo.user_firstName);
         }
         if (userInfo.user_lastName) {
-            queryParams += `user_lastName = '${userInfo.user_lastName}', `;
+            queryParams += `user_lastName = ?, `;
+            queryValues.push(userInfo.user_lastName);
         }
         if (userInfo.user_password) {
-            queryParams += `user_password = '${userInfo.user_password}', `;
+            queryParams += `user_password = ?, `;
+            queryValues.push(userInfo.user_password);
         }
         if (userInfo.user_twitter) {
-            queryParams += `user_twitter = '${userInfo.user_twitter}', `;
+            queryParams += `user_twitter = ?, `;
+            queryValues.push(userInfo.user_twitter);
         }
         if (userInfo.user_facebook) {
-            queryParams += `user_facebook = '${userInfo.user_facebook}', `;
+            queryParams += `user_facebook = ?, `;
+            queryValues.push(userInfo.user_facebook);
         }
         if (userInfo.user_instagram) {
-            queryParams += `user_instagram = '${userInfo.user_instagram}', `;
+            queryParams += `user_instagram = ?, `;
+            queryValues.push(userInfo.user_instagram);
         }
         queryParams = queryParams.slice(0, -2);
-        connection.query(`UPDATE user SET ? WHERE user_id = ?`, [queryParams, userInfo.user_id], function (err, result) {
+        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ?`, [...queryValues, userInfo.user_id], function (err, result) {
             if (err) {
                 lodash_1.reject(err);
             }

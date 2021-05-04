@@ -1,15 +1,15 @@
 import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import userAvatar from '../../data/icon/userAvatar.jpg';
+import {useHistory} from 'react-router';
 import './style.scss';
 
 export default function HeaderNavigation(props: {}) {
   const user_id = Number(localStorage.getItem('user_id'));
   const user_type = Number(window.localStorage.getItem('user_type'));
+  const history = useHistory();
   //Adds the editor button if the user is an editor or admin according to user_type_lu.  Can change if we want.
   function isEditor() {
-    // const user_type = Number(window.localStorage.getItem('user_type'));
     if (user_type === 1 || user_type === 5) {
       return (
         <LinkContainer to="/editor">
@@ -32,6 +32,7 @@ export default function HeaderNavigation(props: {}) {
 
   function logoutHandler(){
     localStorage.clear();
+    history.push("/");
   }
 
   function isLoggedIn() {
@@ -81,9 +82,6 @@ export default function HeaderNavigation(props: {}) {
           <Nav className="navProfile">
             {isAdmin()}
             {isLoggedIn()}
-            {/* <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
-            </LinkContainer> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
