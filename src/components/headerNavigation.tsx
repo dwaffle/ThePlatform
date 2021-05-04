@@ -30,6 +30,10 @@ export default function HeaderNavigation(props: {}) {
     }
   }
 
+  function logoutHandler(){
+    localStorage.clear();
+  }
+
   function isLoggedIn() {
     if (!localStorage.getItem('token')) {
       return (
@@ -37,12 +41,18 @@ export default function HeaderNavigation(props: {}) {
           <Nav.Link>Login</Nav.Link>
         </LinkContainer>
       );
-    }
+    }else {
     return (
-      <LinkContainer to="/profile">
-        <Nav.Link>My Profile</Nav.Link>
-      </LinkContainer>
-    );
+      <>
+        <LinkContainer to="/profile">
+          <Nav.Link>My Profile</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/">
+          <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+        </LinkContainer>
+      </>
+      );
+    }
   }
 
   return (
@@ -71,10 +81,6 @@ export default function HeaderNavigation(props: {}) {
           <Nav className="navProfile">
             {isAdmin()}
             {isLoggedIn()}
-
-            <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
             {/* <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer> */}
