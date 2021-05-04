@@ -41,15 +41,13 @@ export default function HorizontalArticles(props: { rows: number }) {
     let userType = Number(localStorage.getItem('user_type'));
 
     let newArt = () => {
-      return history.push('/newArticle')
-    } 
+      return history.push('/newArticle');
+    };
 
     if (userType == 1 || userType == 4) {
-      return (
-        <Button onClick={newArt}>Create New </Button>
-      )
+      return <Button onClick={newArt}>Create New </Button>;
     }
-  }
+  };
 
   useEffect(() => {
     const innerProductList = [...shuffledList].filter((articles) => {
@@ -92,8 +90,6 @@ export default function HorizontalArticles(props: { rows: number }) {
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
   };
-
-
 
   return (
     <MainLayout>

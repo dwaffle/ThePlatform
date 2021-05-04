@@ -78,15 +78,13 @@ export default function ProfilePage(props: {}) {
     let userType = Number(localStorage.getItem('user_type'));
 
     let myArt = () => {
-      return history.push('/myArticles')
-    } 
+      return history.push('/myArticles');
+    };
 
     if (userType == 1 || userType == 4) {
-      return (
-        <Button onClick={myArt}> My Articles </Button>
-      )
+      return <Button onClick={myArt}> My Articles </Button>;
     }
-  }
+  };
 
   return (
     <>
