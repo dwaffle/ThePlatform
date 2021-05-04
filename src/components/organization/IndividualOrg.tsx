@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Button, Form, Card, CardDeck } from 'react-bootstrap';
+import {Button, Card } from 'react-bootstrap';
 import api from '../../api';
-import { IUser } from '../../../services/crud-server/src/models/user';
 import { useParams } from 'react-router';
-import { useRecoilValue } from 'recoil';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
-import { orgListState } from './OrgList';
-//import Faq from '../components/OrganizationPage';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 
