@@ -31,8 +31,9 @@ function IndividualSeries() {
   // list of all the articles, to be used to find articles in a series
   const articles = useRecoilValue<IArticle[]>(articleListState);
   // const user_ID = Number(localStorage.getItem('user_id'));
+  const approvedArticles = articles.filter((a) => a.art_is_approved === 1);
 
-  const artInSeries = articles.filter(
+  const artInSeries = approvedArticles.filter(
     (o) => o.series_id == singleSeries?.series_id,
   );
 

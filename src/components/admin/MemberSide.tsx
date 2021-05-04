@@ -36,14 +36,14 @@ export default function MemberSide(props: {}) {
       status == selectedMember?.user_status &&
       selectedMember?.user_status == 0
     ) {
-      alert('pls, chose another member, you cant band a member twice.');
+      alert('This User is already Banned.');
     } else if (
       status == selectedMember?.user_status &&
       selectedMember?.user_status == 1
     ) {
-      alert('pls, chose another member, he/she Approved member.');
+      alert('This User is not Banned.');
     } else {
-      alert('pls, you didnt select any memeber, chose one to go ');
+      alert('You didnt select any member, choose one to proceed');
     }
   };
 
@@ -72,7 +72,7 @@ export default function MemberSide(props: {}) {
                 <td > { member.user_firstName } { member.user_lastName }</td>
                 <td>{ member.user_creation_date.slice(0,10) }</td>
                 <td>{ member.user_userName }</td>
-                <td>{ member.user_status == 1? "active":"band" }</td>
+                <td>{ member.user_status == 1? "active":"Banned" }</td>
               </tr>);
             })}  
             </tbody>
