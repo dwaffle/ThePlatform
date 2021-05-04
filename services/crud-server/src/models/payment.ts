@@ -9,7 +9,6 @@ var connection = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 })
 
-//Remember to parse out the spaces in a card number before sending it.
 export interface IPaymentInfo {
     user_id:number,
     first_name:string,

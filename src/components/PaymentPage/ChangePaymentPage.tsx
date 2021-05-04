@@ -1,12 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
-// import Image from "react-bootstrap/Image";
-//import Faq from '../components/OrganizationPage';
 import './style.scss';
 import api from '../../api';
 import { useHistory } from 'react-router';
-// import userAvatar from "../../data/icon/userAvatar.jpg";
-
 interface IPaymentInformationChangeRequest {
   user_id: number;
   cardholder_firstame?: string;
@@ -23,6 +19,7 @@ export default function ChangePaymentPage(props: {}) {
   const [card_no, setCardNo] = useState<string>();
   const [card_cvv, setCardCvv] = useState<string>();
   const [card_expiry, setCardExpiry] = useState<string>();
+  const expiryFormat = /\d\d\/\d\d/
 
   function onClickLogOut() {
     localStorage.clear();
@@ -63,6 +60,16 @@ export default function ChangePaymentPage(props: {}) {
           Cvvs are three digits on the back of your card.
         </div>
       );
+    }
+  }
+
+  function checkExpiry(){
+    if(!card_expiry?.match(expiryFormat)){
+      return (
+        <div className="expiry-hint">
+          Format: mm/dd
+        </div>
+      )
     }
   }
 
@@ -123,6 +130,7 @@ export default function ChangePaymentPage(props: {}) {
             <div className="form-narrow">
               <Form.Control onChange={(e) => setCardExpiry(e.target.value)} />
             </div>
+            {checkExpiry()}
           </Col>
         </Row>
         <Row>

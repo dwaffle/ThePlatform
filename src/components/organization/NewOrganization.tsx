@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import api from '../../api';
+<<<<<<< HEAD
 // import { IOrganization } from '../../../services/crud-server/src/models/organization';
 //import Faq from '../components/OrganizationPage';
+=======
+>>>>>>> 250986856bdb175eacc038dbd1953211362d04ed
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 

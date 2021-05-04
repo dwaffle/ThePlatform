@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Col, CardDeck, Card, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-//import Faq from '../components/OrganizationPage';
 import './style.scss';
 import api from '../../api';
 import { useHistory } from 'react-router';

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import api from '../../api';
@@ -7,6 +8,13 @@ import { useParams } from 'react-router';
 import { IOrganization } from '../../../services/crud-server/src/models/organization';
 // import { orgListState } from './OrgList';
 //import Faq from '../components/OrganizationPage';
+=======
+import React, { useState, useEffect } from 'react';
+import {Button, Card } from 'react-bootstrap';
+import api from '../../api';
+import { useParams } from 'react-router';
+import { IOrganization } from '../../../services/crud-server/src/models/organization';
+>>>>>>> 250986856bdb175eacc038dbd1953211362d04ed
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 
