@@ -1,5 +1,5 @@
 import MainLayout from '../../layouts/MainLayout';
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { seriesListState, useArticleList } from '../ArticleList/articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import { Row, Col, Table, Button } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import api from '../../api';
 import './style.scss';
-import { constSelector, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 
 enum ArticleType {
@@ -146,6 +146,7 @@ function MyArticles() {
         art_body: article?.art_body,
         art_category: article?.art_category,
         series_id: article?.series_id,
+        art_image: article?.art_image
       };
       // console.log(articlePatch);
       //Send object.

@@ -145,7 +145,11 @@ export const ArticleModel = {
         }
 
         if (article.series_id){
-            patchedArticle += `series_id = ${article.series_id}, `
+            patchedArticle += `series_id = ${article.series_id || null}, `
+        }
+
+        if (article.art_image){
+            patchedArticle += `art_image = ${article.art_image}, `
         }
 
         //Take out the final ", " before actually sending the query
