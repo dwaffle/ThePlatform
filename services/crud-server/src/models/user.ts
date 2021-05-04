@@ -126,7 +126,7 @@ export const UserModel = {
     getByUsername: async ( username:string ):Promise<IUser> => {
         return new Promise<IUser>((resolve, reject) => {
             
-            connection.query(`SELECT * FROM user WHERE user_userName = '?'`, [username], function(err:any, result: any){
+            connection.query(`SELECT * FROM user WHERE user_userName = ?`, [username], function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
