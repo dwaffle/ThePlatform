@@ -11,8 +11,6 @@
     // // max-width: 23%;
     // min-height: 100vh;
 
-
-
     .tableParent {
         width: 22vw;
         height: 20%;
@@ -53,6 +51,20 @@
 
     .FormLabels {
         font-size: 1.3rem;
+    }
+
+    img {
+
+        object-fit:cover;
+        padding: 0px;
+        min-width: 68vw;
+        // margin: 0 auto;
+        min-height: 30vh;
+        margin-top: 1vh;
+
+        // @media screen and (min-width:100vh) {
+        //     body { color:#555; }
+        // }
     }
     
 }
