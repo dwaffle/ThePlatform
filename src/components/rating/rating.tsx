@@ -7,11 +7,9 @@ import { ratingListState, useRatingList } from './ratingList';
 import './style.scss';
 import { Button } from 'react-bootstrap';
 
-
 //get the artilce rating depending on the article id
 export default function RatingArticles(props: { article_id: any }) {
-
-  //get article id 
+  //get article id
   const articleID = props.article_id;
 
   //get all my rating
@@ -36,7 +34,7 @@ export default function RatingArticles(props: { article_id: any }) {
   //rating value use state
   const [rating, setRating] = useState(ratingArticle);
 
-  //disactive or active my rating system in the browser depending on the page 
+  //disactive or active my rating system in the browser depending on the page
   // ( active for writing page and disactive for rating page)
   let readonly = true;
 
@@ -62,7 +60,7 @@ export default function RatingArticles(props: { article_id: any }) {
     }
   }
 
-  //Go to write rating page and submit new rating 
+  //Go to write rating page and submit new rating
   function writeRating() {
     return history.push(`/rating/${articleID}`);
   }
@@ -77,11 +75,10 @@ export default function RatingArticles(props: { article_id: any }) {
         readOnly={readonly}
         precision={1}
       />{' '}
-
       <h3 className="starStyle">( {ratingArticle} )</h3>
-
-      <p>Averge rating based on ( <strong> {nbrReviews} </strong>) </p>
-    
+      <p>
+        Averge rating based on ( <strong> {nbrReviews} </strong>){' '}
+      </p>
       <Button variant="warning" onClick={writeRating} onChange={onChangeRating}>
         <strong>Add your rating </strong>
       </Button>

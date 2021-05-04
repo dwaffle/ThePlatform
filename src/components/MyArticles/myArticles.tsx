@@ -36,6 +36,8 @@ function MyArticles() {
     history.push('/myArticles');
   };
 
+  console.log('article', article);
+
   const history = useHistory();
   const setTitle = (value: string) => {
     setArticle({
@@ -48,6 +50,13 @@ function MyArticles() {
     setArticle({
       ...(article as IArticle),
       description: value,
+    });
+  };
+
+  const setImage = (value: string) => {
+    setArticle({
+      ...(article as IArticle),
+      art_image: value,
     });
   };
 
@@ -171,7 +180,7 @@ function MyArticles() {
   let newSeries = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem('user_type'));
-    if (userType != 1 || !userType) {
+    if (userType != 4 || !userType) {
       alert('You must be an author to create a new Series');
     } else {
       return history.push('/seriesCreation');
@@ -311,6 +320,25 @@ function MyArticles() {
               </Form.Group>
             </Col>
           </Row>
+          <Form.Row className="FormRowSpacing">
+            <label>Enter a Custom Photo - https://URL</label>
+
+            <input
+              type="url"
+              name="url"
+              id="url"
+              placeholder="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
+              pattern="https://.*"
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </Form.Row>
+          Image Display:
+          <p className="noMargin">
+            <small>The default image will be used otherwise</small>
+          </p>
+          <div>
+            <img src={article?.art_image}></img>
+          </div>
           <Form.Group>
             <Form.Label className="FormLabels">Article Description</Form.Label>
             <Form.Control
@@ -331,7 +359,6 @@ function MyArticles() {
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-
           <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit

@@ -113,7 +113,7 @@ export const UserModel = {
             extraParams += ", user_instagram"
             extraValues += `, '${user.user_instagram}'`
         }
-        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE() ${extraValues})`),
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, ?, ?, ?, ?, ?, SYSDATE() ${extraValues})`, [user.user_userName, user.user_firstName, user.user_lastName, user.user_password, user.user_email]), 
         function(err:any, result:any){
             if(err){
                 reject(err)
@@ -126,7 +126,7 @@ export const UserModel = {
     getByUsername: async ( username:string ):Promise<IUser> => {
         return new Promise<IUser>((resolve, reject) => {
             
-            connection.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function(err:any, result: any){
+            connection.query(`SELECT * FROM user WHERE user_userName = ?`, [username], function(err:any, result: any){
                 if(err){
                     reject(err);
                 } else {
@@ -140,7 +140,7 @@ export const UserModel = {
 
     delete: async (userId:number) => {
         return new Promise((resolve, reject) => {
-            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function(err:any, result:any){
+            connection.query(`DELETE FROM user WHERE user_id = ?`, [userId], function(err:any, result:any){
                 if(err){
                     reject(err)
                 } else {
@@ -154,8 +154,7 @@ export const UserModel = {
 
         // var connection = await myConnection.getClient()
         return new Promise<any>((resolve, reject) => {
-            console.log(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`)
-            connection.query(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`, 
+            connection.query(`UPDATE user SET user_status = ? WHERE user_id = ?`, [Member.user_status, Member.user_id], 
             function(err:any, result:any){
                 if(err){
                     throw err
@@ -198,10 +197,10 @@ export const UserModel = {
         }
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
-        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function(err:any, result:any){
-                if(err){
-                    reject(err);
-                }
-            })
+        connection.query(`UPDATE user SET ? WHERE user_id = ?`, [queryParams, userInfo.user_id], function(err:any, result:any){
+            if(err){
+                reject(err);
+            }
+        })
     }
 }

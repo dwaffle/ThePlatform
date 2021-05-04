@@ -24,6 +24,8 @@ export default function WriteRating(props: {}) {
   //get the user Id from the browser
   const user_id = Number(window.localStorage.getItem("user_id"))
 
+  
+
 
   //get page history
   const history = useHistory();
@@ -78,50 +80,76 @@ export default function WriteRating(props: {}) {
     }
    
   }
+
+  function isRating(){
+  
+      if(user_id > 1) {
+
+        return(<> 
+
+          <h3>Your Ratings </h3>
+            
+            <Rating onChange ={ onChangeRating }/> <br/>
+  
+           
+            <Form method="Post">
+              <Form.Row>
+                <Form.Group className="FormRowSpacing">
+                  <Form.Control
+                    // type="title"
+                    placeholder="Rating Title"
+                    
+                    onChange={onChangeTitle}
+                  />
+                </Form.Group>
+              </Form.Row>
+  
+              <Form.Row>
+                <Form.Group className="FormRowSpacing">
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Rating review"
+                    rows={3}
+                  
+                    onChange={onChangeReview}
+                  />
+                </Form.Group>
+              </Form.Row>
+  
+                <Button
+                    variant="warning"
+                    onClick={submitRating}
+                    >
+                    <strong>submit</strong>
+                </Button>
+            </Form>
+        
+  
+      </>)
+      }
+      else {
+        return(<>
+
+                <br/>
+                <h3> login to rate the article </h3>
+                <div>
+                  Please <a href="/login">log in</a> or{' '}
+                  <a href="/signup">sign up</a> so you can rate any article
+                </div>
+
+        </>)
+      }
+  }
  
   // Render the page on the browser
     return (
       <MainLayout>
         <div className ="writeRating w-50 mx-auto">
-          <h3>Your Ratings</h3>
+
+          {isRating()}
           
-          <Rating onChange ={ onChangeRating }/> <br/>
-
-         
-          <Form method="Post">
-            <Form.Row>
-              <Form.Group className="FormRowSpacing">
-                <Form.Control
-                  // type="title"
-                  placeholder="Rating Title"
-                  
-                  onChange={onChangeTitle}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Row>
-              <Form.Group className="FormRowSpacing">
-                <Form.Control
-                  as="textarea"
-                  placeholder="Rating review"
-                  rows={3}
-                
-                  onChange={onChangeReview}
-                />
-              </Form.Group>
-            </Form.Row>
-
-              <Button
-                  variant="warning"
-                  onClick={submitRating}
-                  >
-                  <strong>submit</strong>
-              </Button>
-          </Form>
         <hr/>
-        
-        
+
         {  myRate.map((_rat)=> {
           return (
             <div  >
@@ -143,6 +171,9 @@ export default function WriteRating(props: {}) {
         )
       })}
       
+        
+        
+       
 
      
         </div>

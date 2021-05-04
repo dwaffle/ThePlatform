@@ -19,12 +19,12 @@ export default function HomePage(props: {}) {
   const { articleList, setArticleList } = useArticleList();
 
   const dateNow = new Date();
-  console.log('datenow', dateNow);
+  // console.log('datenow', dateNow);
 
   //find the newest series
   //not finding the latest, yet.
   const newestSeries = seriesList.find((s) => s.ser_creationDate);
-  console.log('newest series? ', newestSeries?.ser_creationDate);
+  // console.log('newest series? ', newestSeries?.ser_creationDate);
 
   //not finding the latest, yet.
   const newestArticle = articleList.find((a) => a.art_creationDate);

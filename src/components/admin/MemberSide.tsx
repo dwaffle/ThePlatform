@@ -36,14 +36,14 @@ export default function MemberSide(props: {}) {
       status == selectedMember?.user_status &&
       selectedMember?.user_status == 0
     ) {
-      alert('pls, chose another member, you cant band a member twice.');
+      alert('This User is already Banned.');
     } else if (
       status == selectedMember?.user_status &&
       selectedMember?.user_status == 1
     ) {
-      alert('pls, chose another member, he/she Approved member.');
+      alert('This User is not Banned.');
     } else {
-      alert('pls, you didnt select any memeber, chose one to go ');
+      alert('You didnt select any member, choose one to proceed');
     }
   };
 

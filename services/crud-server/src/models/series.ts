@@ -25,8 +25,11 @@ export interface ISeries{
 
 export const SeriesModel = {
     createSeries: async( seriesToCreate:ISeries) => {
-        connection.query(`INSERT INTO series (series_id, series_owner, series_title, series_desc, series_price, series_category, ser_creationDate) 
-        VALUES ('${seriesToCreate.series_id}', '${seriesToCreate.series_owner}', '${seriesToCreate.series_title}', '${seriesToCreate.series_desc}', '${seriesToCreate.series_price}', '${seriesToCreate.series_category}', SYSDATE() )`,
+        connection.query(`INSERT INTO series (series_id, series_owner, series_title, 
+            series_desc, series_price, series_category, ser_creationDate) 
+        VALUES (( ?, ?, ?, ?, ?, ?, SYSDATE() )`, 
+            [seriesToCreate.series_id, seriesToCreate.series_owner, seriesToCreate.series_title, 
+            seriesToCreate.series_desc, seriesToCreate.series_price, seriesToCreate.series_category ],
         function(err:any, result:any){
             if(err)
             {
