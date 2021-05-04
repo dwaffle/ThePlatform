@@ -125,7 +125,7 @@ export default function SeriesPage(props: { rows?: number }) {
                     <Card
                       bg="Light"
                       className="org-card"
-                      style={{ width: '18rem' }}
+                      style={{ width: '14rem' }}
                     >
                       <Card.Header className="sPCardHeader">
                         {data.series_title}
