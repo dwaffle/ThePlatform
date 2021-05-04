@@ -1,5 +1,4 @@
 import {ArticleModel} from '../../../models/article'
-import {authenticateToken} from '../../../middleware/authenticator'
 
 export function get(app:any){
     app.get('/articles/:articleId', async(request:any, response: any) => {
