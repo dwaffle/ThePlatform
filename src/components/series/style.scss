@@ -62,10 +62,11 @@ $paddingTop: 15px;
 
 .org-card{
     display:inline-block;
-    min-height: 220px;
+    height: 300px;
+    // max-height: 220px;
 
     .sPDesc {
-        max-height: 8pvh;
+        max-height: 70%;
         overflow-y: scroll;
         scrollbar-width: none;
         margin: 0px;

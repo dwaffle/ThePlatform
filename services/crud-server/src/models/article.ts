@@ -159,15 +159,32 @@ export const ArticleModel = {
     },
 
     create: async( articleToCreate:IArticle) => {
-            connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category, series_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}', ${articleToCreate.series_id || null})`,
-            function(err:any, result:any){
-                if(err)
-                {
-                    throw err;
-                } else {
-                    result;
-                }
-            });
+            
+        let _postArt = `INSERT INTO article (art_title, user_author, 
+            art_creationDate, art_price, description, art_body, artype_id,
+            art_image, art_category, series_id) 
+        VALUES 
+        ( ?, ?, SYSDATE(), ?, ?, ?, ?, ?, ?, ?)`
+
+        connection.query(_postArt, [articleToCreate.art_title, 
+                        articleToCreate.user_author, 
+                        articleToCreate.art_creationDate,
+                        articleToCreate.art_price,
+                        articleToCreate.description,
+                        articleToCreate.art_body,
+                        articleToCreate.artype_id,
+                        articleToCreate.art_image,
+                        articleToCreate.art_category,
+                        articleToCreate.series_id || null
+                    ] 
+                , function(err:any, result:any){
+                    if(err)
+                    {
+                        throw err;
+                    } else {
+                        result;
+                    }
+                });
     },
 
     delete: async (articleID:number) => {
