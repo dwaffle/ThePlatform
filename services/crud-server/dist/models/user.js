@@ -77,7 +77,7 @@ exports.UserModel = {
             extraParams += ", user_instagram";
             extraValues += `, '${user.user_instagram}'`;
         }
-        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, '${user.user_userName}', '${user.user_firstName}', '${user.user_lastName}', '${user.user_password}', '${user.user_email}', SYSDATE() ${extraValues})`),
+        connection.query(`INSERT INTO user (user_type, user_userName, user_firstName, user_lastName, user_password, user_email, user_creation_date ${extraParams} )VALUES (2, ?, ?, ?, ?, ?, SYSDATE() ${extraValues})`, [user.user_userName, user.user_firstName, user.user_lastName, user.user_password, user.user_email]),
             function (err, result) {
                 if (err) {
                     lodash_1.reject(err);
@@ -89,7 +89,7 @@ exports.UserModel = {
     }),
     getByUsername: (username) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM user WHERE user_userName = '${username}'`, function (err, result) {
+            connection.query(`SELECT * FROM user WHERE user_userName = '?'`, [username], function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -102,7 +102,7 @@ exports.UserModel = {
     }),
     delete: (userId) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            connection.query(`DELETE FROM user WHERE user_id = ${userId}`, function (err, result) {
+            connection.query(`DELETE FROM user WHERE user_id = ?`, [userId], function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -114,8 +114,7 @@ exports.UserModel = {
     }),
     update: (Member) => __awaiter(void 0, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            console.log(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`);
-            connection.query(`UPDATE user SET user_status = ${Member.user_status} WHERE user_id = ${Member.user_id}`, function (err, result) {
+            connection.query(`UPDATE user SET user_status = ? WHERE user_id = ?`, [Member.user_status, Member.user_id], function (err, result) {
                 if (err) {
                     throw err;
                 }
@@ -153,7 +152,7 @@ exports.UserModel = {
             queryParams += `user_instagram = '${userInfo.user_instagram}', `;
         }
         queryParams = queryParams.slice(0, -2);
-        connection.query(`UPDATE user SET ${queryParams} WHERE user_id = ${userInfo.user_id}`, function (err, result) {
+        connection.query(`UPDATE user SET ? WHERE user_id = ?`, [queryParams, userInfo.user_id], function (err, result) {
             if (err) {
                 lodash_1.reject(err);
             }

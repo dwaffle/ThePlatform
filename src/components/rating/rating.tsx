@@ -33,7 +33,7 @@ export default function RatingArticles(props: { article_id: any }) {
 
   function calculateRating(rating: number[]) {
     // guard for zero 
-    if (rating.length === 0) {
+    if (rating && rating.length === 0) {
       return 0;
     }
 
