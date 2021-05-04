@@ -198,9 +198,9 @@ export const UserModel = {
         //Take out the final ", " before actually sending the query
         queryParams = queryParams.slice(0, -2)
         connection.query(`UPDATE user SET ? WHERE user_id = ?`, [queryParams, userInfo.user_id], function(err:any, result:any){
-                if(err){
-                    reject(err);
-                }
-            })
+            if(err){
+                reject(err);
+            }
+        })
     }
 }

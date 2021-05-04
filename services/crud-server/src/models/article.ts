@@ -150,46 +150,46 @@ export const ArticleModel = {
 
         //Take out the final ", " before actually sending the query
         patchedArticle = patchedArticle.slice(0, -2)
-        console.log(patchedArticle)
-        connection.query(`UPDATE article SET ${patchedArticle} WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+        // console.log(patchedArticle)
+        // connection.query(`UPDATE article SET ${patchedArticle} WHERE art_id = ${article.art_id}`, function(err:any, result:any){
+        //     if(err){
+        //         reject(err);
+        //     }
+        // })
+        connection.query(`UPDATE article SET ? WHERE user_id = ?`, [patchedArticle, article.art_id], function(err:any, result:any){
             if(err){
                 reject(err);
+            } else {
+                result
             }
         })
     },
 
     create: async( articleToCreate:IArticle) => {
-            
-        let _postArt = `INSERT INTO article (art_title, user_author, 
+
+        // connection.query(`INSERT INTO article (art_title, user_author, art_creationDate, art_price, description, art_body, artype_id, art_image, art_category, series_id) VALUES ('${articleToCreate.art_title}', '${articleToCreate.user_author}', SYSDATE(), '${articleToCreate.art_price}', '${articleToCreate.description}', '${articleToCreate.art_body}', '${articleToCreate.artype_id}', '${articleToCreate.art_image}', '${articleToCreate.art_category}', ${articleToCreate.series_id || null})`,
+
+        connection.query(`INSERT INTO article (art_title, user_author, 
             art_creationDate, art_price, description, art_body, artype_id,
             art_image, art_category, series_id) 
         VALUES 
-        ( ?, ?, SYSDATE(), ?, ?, ?, ?, ?, ?, ?)`
-
-        connection.query(_postArt, [articleToCreate.art_title, 
-                        articleToCreate.user_author, 
-                        articleToCreate.art_creationDate,
-                        articleToCreate.art_price,
-                        articleToCreate.description,
-                        articleToCreate.art_body,
-                        articleToCreate.artype_id,
-                        articleToCreate.art_image,
-                        articleToCreate.art_category,
-                        articleToCreate.series_id || null
-                    ] 
-                , function(err:any, result:any){
-                    if(err)
-                    {
-                        throw err;
-                    } else {
-                        result;
-                    }
-                });
+        ( ?, ?, SYSDATE(), ?, ?, ?, ?, ?, ?, ?)`, 
+            [articleToCreate.art_title, articleToCreate.user_author, 
+            articleToCreate.art_price, articleToCreate.description,
+            articleToCreate.art_body, articleToCreate.artype_id, articleToCreate.art_image, 
+            articleToCreate.art_category, articleToCreate.series_id || null]), 
+        function(err:any, result:any){
+            if(err){
+                reject(err)
+            } else {
+                result
+            }
+        }
     },
 
     delete: async (articleID:number) => {
         return new Promise((resolve, reject) => {
-            connection.query(`DELETE FROM user WHERE user_id = ${articleID}`, function(err:any, result:any){
+            connection.query(`DELETE FROM article WHERE user_id = ${articleID}`, function(err:any, result:any){
                 if(err){
                     reject(err)
                 } else {
