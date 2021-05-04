@@ -16,7 +16,7 @@ import './style.scss';
 export default function RejectArticleList() {
   return (
     <>
-      <div className="RejectArticle">
+      <div>
         <h5>Reject Articles Box</h5>
       </div>
     </>

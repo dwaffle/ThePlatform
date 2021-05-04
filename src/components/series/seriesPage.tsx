@@ -22,6 +22,9 @@ export default function SeriesPage(props: { rows?: number }) {
   const [searchFilter, setSearchFilter] = useState<ISearchFilter>({});
   const history = useHistory();
 
+  //get the user Id from the browser
+  const user_id = Number(window.localStorage.getItem('user_id'));
+
   let isAuthor = (e: any) => {
     e.preventDefault();
     let userType = Number(localStorage.getItem('user_type'));
@@ -103,64 +106,61 @@ export default function SeriesPage(props: { rows?: number }) {
     },
   };
 
-  return (
-    <>
-      <div style={test.header}>
-        <p className="h8tch2">Series</p>
-      </div>
-
-      <div className="searchFilter">
-        {<SeriesFilter searchDispatch={setSearchFilter} />}
-      </div>
-
-      <div className="search-filter">
-        <Row>
-          <Col>
-            <Carousel responsive={responsive}>
-              {seriesList ? (
-                seriesList.map((data) => {
-                  return (
-                    //   <>
-                    //     {data.map((series, index) => (
-                    <Card
-                      bg="Light"
-                      className="org-card"
-                      style={{ width: '14rem' }}
-                    >
-                      <Card.Header className="sPCardHeader">
-                        {data.series_title}
-                      </Card.Header>
-
-                      <Card.Body>
-                        <Card.Text className="sPDesc">
-                          {data.series_desc}
-                          {/* <br /> */}
-                        </Card.Text>
-
-                        <Button
-                          className="view-org-button"
-                          onClick={onClickHandler(data.series_title)}
+  function isMember() {
+    if (user_id > 1) {
+      return (
+        <>
+          <div className="searchFilter">
+            {<SeriesFilter searchDispatch={setSearchFilter} />}
+          </div>
+          <div className="search-filter">
+            <Row>
+              <Col>
+                <Carousel responsive={responsive}>
+                  {seriesList ? (
+                    seriesList.map((data) => {
+                      return (
+                        //   <>
+                        //     {data.map((series, index) => (
+                        <Card
+                          bg="Light"
+                          className="org-card"
+                          style={{ width: '14rem' }}
                         >
-                          View Series
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                    //     ))}
-                    // //   </>
-                  );
-                })
-              ) : (
-                <div>
-                  Please <a href="/login">log in</a> or{' '}
-                  <a href="/signup">sign up</a> to see organizations.
-                </div>
-              )}
-            </Carousel>
-          </Col>
-        </Row>
-      </div>
+                          <Card.Header className="sPCardHeader">
+                            {data.series_title}
+                          </Card.Header>
 
-      {/* <div className="seriesBody">
+                          <Card.Body>
+                            <Card.Text className="sPDesc">
+                              {data.series_desc}
+                              {/* <br /> */}
+                            </Card.Text>
+
+                            <Button
+                              className="view-org-button"
+                              onClick={onClickHandler(data.series_title)}
+                            >
+                              View Series
+                            </Button>
+                          </Card.Body>
+                        </Card>
+                        //     ))}
+                        // //   </>
+                      );
+                    })
+                  ) : (
+                    <div>
+                      Please <a href="/login">log in</a> or{' '}
+                      <a href="/signup">sign up</a> to see organizations.
+                    </div>
+                  )}
+                </Carousel>
+              </Col>
+            </Row>
+          </div>
+
+          {/* <div className="seriesBody">
         {seriesRows.map((row) => {
           return (
             <div className="scCardDeck">
@@ -199,6 +199,29 @@ export default function SeriesPage(props: { rows?: number }) {
  
         <Row></Row>
       </div> */}
+        </>
+      );
+    } else {
+      return (
+        <>
+          <br />
+          <h3> login for series </h3>
+          <div>
+            Please <a href="/login">log in</a> or <a href="/signup">sign up</a>{' '}
+            so you can read series
+          </div>
+        </>
+      );
+    }
+  }
+
+  return (
+    <>
+      <div style={test.header}>
+        <p className="h8tch2">Series</p>
+      </div>
+
+      {isMember()}
     </>
   );
 }
