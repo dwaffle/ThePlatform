@@ -98,7 +98,7 @@ export const UserModel = {
     },
 
     setAll: async (user:IUser) => {
-        //Because I know I have some parameters in the query, the commas can come before the optinal paramaters.
+        //Because I know I have some parameters in the query, the commas can come before the optional paramaters.
         let extraParams = ""
         let extraValues = ""
         if(user.user_twitter){
