@@ -17,15 +17,15 @@ export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
   // Only allows published/approved articles to be displayed
   const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
-  console.log("approved", approvedArticle)
+  console.log('approved', approvedArticle);
   const history = useHistory();
   const [articleCol, setArticleCol] = useState<Array<IArticle[]>>([]);
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
   // shuffle the list of approved articles for display
   let shuffledList = [...approvedArticle].sort(() => Math.random() - 0.5);
-  console.log("should be shuffled", shuffledList)
-  
+  console.log('should be shuffled', shuffledList);
+
   // Allows only users that are authors in the database to create a new article
   let isAuthor = (e: any) => {
     e.preventDefault();

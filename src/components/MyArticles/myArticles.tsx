@@ -36,7 +36,7 @@ function MyArticles() {
     history.push('/myArticles');
   };
 
-  console.log("article", article)
+  console.log('article', article);
 
   const history = useHistory();
   const setTitle = (value: string) => {
@@ -53,11 +53,11 @@ function MyArticles() {
     });
   };
 
-  const setImage = (value:string) => {
+  const setImage = (value: string) => {
     setArticle({
       ...(article as IArticle),
       art_image: value,
-    })
+    });
   };
 
   const setBody = (value: string) => {
@@ -320,7 +320,6 @@ function MyArticles() {
               </Form.Group>
             </Col>
           </Row>
-
           <Form.Row className="FormRowSpacing">
             <label>Enter a Custom Photo - https://URL</label>
 
@@ -350,7 +349,6 @@ function MyArticles() {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
-        
           <Form.Group>
             <Form.Label className="FormLabels">Article Body</Form.Label>
             <Form.Control
@@ -361,7 +359,6 @@ function MyArticles() {
               onChange={(e) => setBody(e.target.value)}
             />
           </Form.Group>
-
           <p></p>
           <button type="submit" onClick={onSubmit}>
             Submit

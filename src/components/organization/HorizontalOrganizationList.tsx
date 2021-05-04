@@ -122,7 +122,7 @@ export default function HorizontalOrganizationList(props: {}) {
                             className="view-org-button"
                             onClick={onClickHandler(data.ord_id)}
                           >
-View Org
+                            View Org
                           </Button>
                         </Card.Text>
                       </Card.Body>
