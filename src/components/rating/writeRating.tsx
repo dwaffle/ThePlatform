@@ -75,7 +75,7 @@ export default function WriteRating(props: {}) {
   }
 
   function isRating() {
-    if (user_id > 1) {
+    if (user_id) {
       return (
         <>
           <h3>Your Ratings </h3>

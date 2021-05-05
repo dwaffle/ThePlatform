@@ -131,7 +131,7 @@ export default function SeriesPage(props: { rows?: number }) {
   };
 
   function isMember() {
-    if (user_id > 1) {
+    if (user_id) {
       return (
         <>
           <div className="searchFilter">
