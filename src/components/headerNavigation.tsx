@@ -63,6 +63,7 @@ export default function HeaderNavigation(props: {}) {
         </LinkContainer> */}
 
           <NavDropdown title={displayFirstName()} id="collasible-nav-dropdown">
+            {/* {isEditor()} */}
             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
             {isAdmin()}
             <NavDropdown.Divider />
@@ -91,8 +92,8 @@ export default function HeaderNavigation(props: {}) {
             <LinkContainer to="/series">
               <Nav.Link>Series</Nav.Link>
             </LinkContainer>
-
             {isEditor()}
+
           </Nav>
         </Navbar.Collapse>
         <Nav className="navProfile">{isLoggedIn()}</Nav>

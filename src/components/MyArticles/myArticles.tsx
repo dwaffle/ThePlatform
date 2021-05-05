@@ -121,7 +121,6 @@ function MyArticles() {
       );
     }
   }
-  
 
   function onSubmit(e: any) {
     e.preventDefault();

@@ -9,7 +9,7 @@ export default function HomePage(props: {}) {
   return (
     <>
       <Row>
-        <Col xs={8}>
+        <Col sm={8}>
           <Headline />
         </Col>
         <Col>

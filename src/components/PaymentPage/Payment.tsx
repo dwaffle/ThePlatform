@@ -20,7 +20,7 @@ export default function EditPaymentPage(props: {}) {
   const [card_no, setCardNo] = useState<string>();
   const [card_cvv, setCardCvv] = useState<string>();
   const [card_expiry, setCardExpiry] = useState<string>();
-  const expiryFormat = /\d\d\/\d\d/
+  const expiryFormat = /\d\d\/\d\d/;
 
   function onClickLogOut() {
     localStorage.clear();
@@ -77,13 +77,9 @@ export default function EditPaymentPage(props: {}) {
     }
   }
 
-  function checkExpiry(){
-    if(!card_expiry?.match(expiryFormat)){
-      return (
-        <div className="expiry-hint">
-          Format: mm/dd
-        </div>
-      )
+  function checkExpiry() {
+    if (!card_expiry?.match(expiryFormat)) {
+      return <div className="expiry-hint">Format: mm/dd</div>;
     }
   }
 
