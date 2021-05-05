@@ -91,6 +91,8 @@ export default function HorizontalArticles(props: { rows: number }) {
     },
   };
 
+  console.log("ASearchFilter",ASearchFilter)
+
   return (
     <MainLayout>
       <div style={artListHeader.header}>
