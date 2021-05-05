@@ -15,8 +15,7 @@ export default function OrganisationList() {
 
   return (
     <>
-      <div className="orgDiv">
-        <CardDeck>
+       <CardDeck>
           {orgs.slice(0, 4).map((_org) => {
             return (
               <Card bg="Light" style={{ width: '18rem' }}>
@@ -36,7 +35,6 @@ export default function OrganisationList() {
             );
           })}
         </CardDeck>
-      </div>
     </>
   );
 }
