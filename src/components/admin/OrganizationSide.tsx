@@ -38,14 +38,14 @@ export default function OrganizationSide(props: {}) {
       status == selectedOrg?.org_status &&
       selectedOrg?.org_status == 0
     ) {
-      alert('pls, chose another item, you cant band it again.');
+      alert('Please choose another organization, you can\'t ban it again.');
     } else if (
       status == selectedOrg?.org_status &&
       selectedOrg?.org_status == 1
     ) {
-      alert('pls, chose another item, its Approved organisation');
+      alert('Please choose another organization, this organization is already approved');
     } else {
-      alert('pls, you didnt select any item, chose one to go ');
+      alert('Please choose an organization to start.');
     }
   };
 
@@ -101,7 +101,7 @@ export default function OrganizationSide(props: {}) {
             name="statusOrg"
             onClick={approvedOrRejected}
           >
-            unBan Organization
+            Unban Organization
           </Button>
         </Col>
 
