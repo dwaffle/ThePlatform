@@ -77,7 +77,7 @@ export default function RatingArticles(props: { article_id: any }) {
       />{' '}
       <h3 className="starStyle">( {ratingArticle} )</h3>
       <p>
-        Rating based on ( <strong> {nbrReviews} </strong>) review{nbrReviews > 1 ? "s" : ""}.{' '}
+        Rating based on ( <strong> {nbrReviews} </strong>) review{nbrReviews !== 1 ? "s" : ""}.{' '}
       </p>
       <Button variant="warning" onClick={writeRating} onChange={onChangeRating}>
         <strong>Add your rating </strong>
