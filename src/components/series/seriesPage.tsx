@@ -229,7 +229,7 @@ export default function SeriesPage(props: { rows?: number }) {
       return (
         <>
           <br />
-          <h3> login for series </h3>
+          <h3>Login for series </h3>
           <div>
             Please <a href="/login">log in</a> or <a href="/signup">sign up</a>{' '}
             so you can read series

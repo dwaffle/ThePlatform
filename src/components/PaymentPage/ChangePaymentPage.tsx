@@ -99,7 +99,7 @@ export default function ChangePaymentPage(props: {}) {
   return (
     <>
       <h1>Change Payment Information page for {displayUserName()}</h1>
-      <h3>Fields are optional when changing payment information.</h3>
+      <h3>All fields are optional when changing payment information.</h3>
       <Form>
         <Row>
           <Col md={3}>

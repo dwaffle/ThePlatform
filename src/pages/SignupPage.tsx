@@ -77,7 +77,7 @@ export default function SignupPage(props: {}) {
               Please fill in the form to sign up. Fields marked with a * are
               manditory
             </div>
-            <div className="form-narrow">
+            <div className="form-signup">
             <Form.Group className="name">
               <Row>
                 <Col>

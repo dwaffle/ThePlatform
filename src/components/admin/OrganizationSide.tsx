@@ -108,7 +108,7 @@ export default function OrganizationSide(props: {}) {
         <Col xs={8}>
           <CardDeck>
             <Card bg="Light" style={{ width: '18rem' }}>
-              <Card.Header>Selected Organistion </Card.Header>
+              <Card.Header>Selected Organization </Card.Header>
               <Card.Body>
                 <Card.Title>{selectedOrg?.org_title} </Card.Title>
                 <Card.Text>{selectedOrg?.org_desc} </Card.Text>

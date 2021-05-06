@@ -25,9 +25,6 @@ function LoginForm() {
 
   return (
     <>
-      {/* <Row> */}
-      {/* <Col /> */}
-      {/* <Col> */}
       <div className="Container">
         <Form className="FormLogin">
           <h1 className="LoginLabel">User Login</h1>
@@ -76,9 +73,6 @@ function LoginForm() {
           </Button>
         </Form>
       </div>
-      {/* </Col> */}
-      {/* <Col /> */}
-      {/* </Row> */}
     </>
   );
 }
