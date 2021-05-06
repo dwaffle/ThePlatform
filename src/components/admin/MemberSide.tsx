@@ -117,7 +117,7 @@ export default function MemberSide(props: {}) {
                 </Card.Title>
                 <Card.Text>
                   {' '}
-                  User name: {selectedMember?.user_userName}{' '}
+                  Username: {selectedMember?.user_userName}{' '}
                 </Card.Text>
               </Card.Body>
             </Card>

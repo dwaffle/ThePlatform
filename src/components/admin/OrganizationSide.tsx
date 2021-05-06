@@ -73,7 +73,7 @@ export default function OrganizationSide(props: {}) {
                     <td> {org.org_title}</td>
                     <td>{org.org_desc}</td>
                     <td>{org.org_price}</td>
-                    <td>{org.org_status == 1 ? 'active' : 'band'}</td>
+                    <td>{org.org_status === 1 ? 'active' : 'banned'}</td>
                   </tr>
                 );
               })}
@@ -81,7 +81,6 @@ export default function OrganizationSide(props: {}) {
           </Table>
         </Col>
       </Row>
-
       <Row>
         <Col xs={4}>
           <Button
