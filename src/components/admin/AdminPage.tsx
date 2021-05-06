@@ -34,7 +34,7 @@ export default function AdminPage(props: {}) {
         <>
           <Row>
             <Col>
-              <h1>You are not authorised to navigate here, </h1>
+              <h1>You are not authorised to navigate here</h1>
             </Col>
           </Row>
         </>

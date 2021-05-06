@@ -43,7 +43,7 @@ export default function MemberSide(props: {}) {
     ) {
       alert('This User is not Banned.');
     } else {
-      alert('You didnt select any member, choose one to proceed');
+      alert('You didn\'t select a member, choose one to proceed');
     }
   };
 
@@ -74,7 +74,7 @@ export default function MemberSide(props: {}) {
                     </td>
                     <td>{member.user_creation_date.slice(0, 10)}</td>
                     <td>{member.user_userName}</td>
-                    <td>{member.user_status == 1 ? 'active' : 'band'}</td>
+                    <td>{member.user_status == 1 ? 'active' : 'banned'}</td>
                   </tr>
                 );
               })}
@@ -102,7 +102,7 @@ export default function MemberSide(props: {}) {
             name="statusMember"
             onClick={approvedOrRejected}
           >
-            unBan Member
+            Unban Member
           </Button>
         </Col>
 
