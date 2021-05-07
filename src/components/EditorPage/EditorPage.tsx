@@ -93,7 +93,7 @@ export default function EditorPage() {
               <Card bg="Light" style={{ width: '18rem' }}>
                 <Card.Header>Title: {article?.art_title}</Card.Header>
                 <Card.Body>
-                  <Card.Title>Author: {article?.user_author} </Card.Title>
+                  <Card.Title>Author: {article?.user_userName} </Card.Title>
                   <Card.Text>
                     Description:
                     <div className="SelectedArticleDescription">

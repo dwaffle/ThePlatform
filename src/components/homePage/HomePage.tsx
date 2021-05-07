@@ -16,14 +16,11 @@ export default function HomePage(props: {}) {
           <Popular />
         </Col>
       </Row>
-
-      <div>
-        <Row>
-          <Col>
-            <Organisation />
-          </Col>
-        </Row>
-      </div>
+      <Row>
+        <Col>
+          <Organisation />
+        </Col>
+      </Row>
     </>
   );
 }

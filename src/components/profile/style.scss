@@ -8,18 +8,87 @@ img {
     margin: 0px;
 }
 
-.delete-btn{
-    align-self: auto;
-    float: right
+.containerParent {
+    padding: 5px;
+    border: 1px solid gray;
+    box-shadow: 3px 3px 3px 3px grey;
+
 }
+
+.editProfileParent {
+
+    // border-left: grey 1px solid;
+
+    .EditProfileForms {
+        margin-left: 20px;
+        padding: 0px;
+    }
+
+    .delete-btn{
+        // background-color: red !important;
+        align-self: auto;
+        float: right
+    }
+
+}
+
+.profileEdit {
+
+    .ImageDisplay {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h6 {
+        font-size: 1.7rem;
+        text-align: center;
+    }
+
+    .marginPadding {
+        padding: 0px;
+        margin: 0px;
+        max-width: 10vw;
+
+        border-right: grey solid 1px;
+    }
+
+    .profileDirectory {
+
+        max-width: 25%;
+
+        .detailStyle {
+            font-size: 1.5rem;
+        }
+        
+       Button {
+        vertical-align: bottom;
+        margin-left: 4px;
+
+       };
+    }
+
+    // Button {
+    //     margin-top: 5px;
+    // }
+
+}
+
+.switchEdit {
+    width: 40vw;
+
+    Button {
+
+        margin: 1px;
+    }
+
+}
+
 
 .passwordHint{
     scale: 75%;
 }
 
-.user_real_name{
-    font-size-adjust: 0.45;
-}
 
 .HeadlineProfile{
     background: rgba(0, 0, 0, 0.5);

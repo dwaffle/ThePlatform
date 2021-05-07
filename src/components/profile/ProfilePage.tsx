@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import './style.scss';
@@ -6,6 +6,8 @@ import api from '../../api';
 import { useHistory } from 'react-router';
 import userAvatar from '../../data/icon/userAvatar.jpg';
 import { useArticleList } from '../ArticleList/articleList';
+import EditProfilePage from './EditProfilePage';
+import ChangePaymentPage from '../PaymentPage/ChangePaymentPage';
 
 class Iprofile {
   name: string = '';
@@ -16,6 +18,9 @@ class Iprofile {
 export default function ProfilePage(props: {}) {
   const history = useHistory();
   // Simple Profile Management (name, email, phone)
+  // Sets the open "edit fields"
+  const [page, setPage] = useState('');
+  // console.log('page', page);
 
   function onClickLogOut() {
     localStorage.clear();
@@ -55,9 +60,19 @@ export default function ProfilePage(props: {}) {
       return;
     }
   }
+
+  function displayUserID() {
+    const userID = localStorage.getItem('user_id');
+    if (userID) {
+      return userID;
+    } else {
+      return;
+    }
+  }
   function displayEmail() {
-    if (localStorage.getItem('email')) {
-      return <div>{localStorage.getItem('email')}</div>;
+    const email = localStorage.getItem('email');
+    if (email) {
+      return email;
     } else {
       return;
     }
@@ -91,35 +106,46 @@ export default function ProfilePage(props: {}) {
         <p className="h8tch2">Profile page</p>
       </div>
 
-      <Row>
-        <Col>
-          <h2>{displayUserName()}</h2>
-        </Col>
-        <Col className="user_real_name">
-          <h3>
-            {displayFirstName()} {displayLastName()}
-          </h3>
-        </Col>
-      </Row>
+      <div className="containerParent">
+        <Row className="profileEdit">
+          <Col className="marginPadding">
+            <Image className="ImageDisplay" src={userAvatar} roundedCircle />
+            <h6>{displayUserName()}</h6>
+          </Col>
+          <Col className="profileDirectory">
+            <div className="detailStyle">
+              <p>
+                {displayFirstName()} {displayLastName()}{' '}
+              </p>
+              <p>Email: {displayEmail()}</p>
 
-      <Row>
-        <Col>
-          <h2>{displayEmail()}</h2>
-        </Col>
-      </Row>
+              <p>User ID: {displayUserID()}</p>
+            </div>
 
-      <Row>
-        <Col xs={6} md={4}>
-          <Image src={userAvatar} roundedCircle />
-        </Col>
-      </Row>
-      <Button onClick={paymentInfo}>Payment Info</Button>
-      <Button onClick={checkLogin}>Edit</Button>
-      <Button variant="primary" type="submit" onClick={onClickLogOut}>
-        {' '}
-        Log Out
-      </Button>
-      {isAuthor()}
+            {/* <Button onClick={paymentInfo}>Payment Info</Button>
+          <Button onClick={checkLogin}>Edit</Button> */}
+            {isAuthor()}
+            <Button variant="secondary" onClick={() => setPage('Edit')}>
+              Edit
+            </Button>
+            <Button variant="secondary" onClick={() => setPage('paymentPage')}>
+              Payment Info
+            </Button>
+            <Button variant="primary" type="submit" onClick={onClickLogOut}>
+              {' '}
+              Log Out
+            </Button>
+          </Col>
+
+          <Col>
+            <div>
+              {page === 'Edit' && <EditProfilePage />}
+              {page === 'paymentPage' && <ChangePaymentPage />}
+              {/* {page === "contact" && <Contact />} */}
+            </div>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 }

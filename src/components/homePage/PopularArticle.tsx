@@ -31,8 +31,8 @@ export default function PopularArticle() {
                     alt="Generic placeholder"
                   />
                   <Media.Body>
-                    <h6>{_article.art_title}</h6>
-                    <p>{_article.description.slice(0, 60)}</p>
+                    <h6>{_article.art_title.slice(0, 25)}</h6>
+                    <p>{_article.description.slice(0, 80)}</p>
                   </Media.Body>
                 </Media>
               </Link>

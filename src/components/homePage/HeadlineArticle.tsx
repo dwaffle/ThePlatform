@@ -38,9 +38,9 @@ export default function HeadlineArticle(props: {}) {
                     alt="Generic placeholder"
                   />
 
-                  <h2>{_article.art_title}</h2>
+                  <h2>{_article.art_title.slice(0, 32)}</h2>
 
-                  {_article.description.slice(0, 60)}
+                  {_article.description.slice(0, 144)}
 
                   <br />
                   <Button
