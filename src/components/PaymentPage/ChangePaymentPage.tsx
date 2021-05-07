@@ -96,11 +96,11 @@ export default function ChangePaymentPage(props: {}) {
     <>
       {/* <h1>Change Payment Information page for {displayUserName()}</h1>
       <h3>Fields are optional when changing payment information.</h3> */}
-      <Form>
+      <Form className="FormPayment">
         <Row>
           <Col md={3}>
             Cardholder First Name:{' '}
-            <div className="form-med">
+            <div>
               <Form.Control onChange={(e) => setFirstName(e.target.value)} />
             </div>
           </Col>

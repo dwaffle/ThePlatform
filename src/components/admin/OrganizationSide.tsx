@@ -38,14 +38,14 @@ export default function OrganizationSide(props: {}) {
       status == selectedOrg?.org_status &&
       selectedOrg?.org_status == 0
     ) {
-      alert('pls, chose another item, you cant band it again.');
+      alert('Please choose another organization, you can\'t ban it again.');
     } else if (
       status == selectedOrg?.org_status &&
       selectedOrg?.org_status == 1
     ) {
-      alert('pls, chose another item, its Approved organisation');
+      alert('Please choose another organization, this organization is already approved');
     } else {
-      alert('pls, you didnt select any item, chose one to go ');
+      alert('Please choose an organization to start.');
     }
   };
 
@@ -73,7 +73,7 @@ export default function OrganizationSide(props: {}) {
                     <td> {org.org_title}</td>
                     <td>{org.org_desc}</td>
                     <td>{org.org_price}</td>
-                    <td>{org.org_status == 1 ? 'active' : 'band'}</td>
+                    <td>{org.org_status === 1 ? 'active' : 'banned'}</td>
                   </tr>
                 );
               })}
@@ -81,7 +81,6 @@ export default function OrganizationSide(props: {}) {
           </Table>
         </Col>
       </Row>
-
       <Row>
         <Col xs={4}>
           <Button
@@ -101,14 +100,14 @@ export default function OrganizationSide(props: {}) {
             name="statusOrg"
             onClick={approvedOrRejected}
           >
-            unBan Organization
+            Unban Organization
           </Button>
         </Col>
 
         <Col xs={8}>
           <CardDeck>
             <Card bg="Light" style={{ width: '18rem' }}>
-              <Card.Header>Selected Organistion </Card.Header>
+              <Card.Header>Selected Organization </Card.Header>
               <Card.Body>
                 <Card.Title>{selectedOrg?.org_title} </Card.Title>
                 <Card.Text>{selectedOrg?.org_desc} </Card.Text>

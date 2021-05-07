@@ -49,7 +49,6 @@ export default function NewOrganizationForm(props: {}) {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      // transparency: '50%'
     },
 
     content: {

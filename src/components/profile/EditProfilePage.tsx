@@ -177,7 +177,7 @@ export default function EditProfilePage() {
           <Row>
             <Col md={3}>
               Edit First Name:{' '}
-              <div className="form-med">
+              <div>
                 <Form.Control
                   placeholder={displayFirstName()}
                   onChange={(e) => setFirstName(e.target.value)}
