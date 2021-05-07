@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 // import React from 'react';
 import { Rating } from '@material-ui/lab';
 // import Rating from "react-rating";
-import { ratingListState, useRatingList } from './ratingList';
+import { useRatingList } from './ratingList';
 import './style.scss';
 import { Button } from 'react-bootstrap';
+
 
 //get the artilce rating depending on the article id
 export default function RatingArticles(props: { article_id: any }) {
@@ -15,48 +16,34 @@ export default function RatingArticles(props: { article_id: any }) {
   //get all my rating
   const rate = useRatingList().ratingList;
 
-  //Filter my ratind depending on article id
-  const myRate = rate.filter((_rat) => _rat.article_art_id === articleID);
-
-  //get my reviewrs number
-  const nbrReviews = myRate.length;
-
-  // calculate my rating value
-  let ratingArticle = calculateRating(
-    myRate.map((_rat) => {
-      return Number(_rat.rating_value);
-    }),
-  );
-
   //get my page history
   const history = useHistory();
 
   //rating value use state
-  const [rating, setRating] = useState(ratingArticle);
+  const [rating, setRating] = useState<number | undefined>(0);
+
+  //get my reviewrs number
+  const [nbrReviews, setNbrReviews] = useState(0)
+
 
   //disactive or active my rating system in the browser depending on the page
   // ( active for writing page and disactive for rating page)
   let readonly = true;
 
-  //the event handler to set the rating
-  const onChangeRating = (e: any) => {
-    setRating(e.target.value);
-  };
-
   //Function to calculate the rating value
   function calculateRating(rating: number[]) {
     // guard for zero
-    if (!rating || rating.length <= 0) {
-      return 0;
-    }
-
-    // find average rating
-    else {
+    if (rating && rating.length >= 0) {
       return Number(
         (
           rating.reduce((total, current) => total + current, 0) / rating.length
         ).toFixed(1),
       );
+    }
+
+    // find average rating
+    else {
+      return 0
     }
   }
 
@@ -65,23 +52,47 @@ export default function RatingArticles(props: { article_id: any }) {
     return history.push(`/rating/${articleID}`);
   }
 
+  useEffect(() => {
+
+     //Filter my ratind depending on article id
+    const myRate = rate.filter((_rat) => _rat.article_art_id === articleID);
+
+    //get nbr of reviews
+    const nbrReviews = myRate.length;
+
+     // calculate my rating value
+    let ratingArticle = calculateRating(
+    myRate.map((_rat) => {
+      return Number(_rat.rating_value);
+    }),
+  );
+
+  setNbrReviews(nbrReviews)
+  setRating(ratingArticle)
+    
+  }, [rate.length]);
+
   //Render the page in the the browser
   return (
-    <div className="rating border rounded">
-      <h2>Customer Ratings</h2>
+
+    <div className="rating">
+ 
       <Rating
         name="half-rating"
-        defaultValue={rating}
+        value={rating}
         readOnly={readonly}
         precision={1}
-      />{' '}
-      <h3 className="starStyle">( {ratingArticle} )</h3>
-      <p>
-        Rating based on ( <strong> {nbrReviews} </strong>) review{nbrReviews !== 1 ? "s" : ""}.{' '}
-      </p>
-      <Button variant="warning" onClick={writeRating} onChange={onChangeRating}>
-        <strong>Add your rating </strong>
+        max ={5}
+      /> 
+      
+      <br/>
+      <h6 className="starStyle"> Base on ( <strong> {nbrReviews} </strong>) reviewer(s)</h6>
+      <Button variant="warning" onClick={writeRating}>
+        <strong>Add Rating</strong>
       </Button>
     </div>
   );
+  
 }
+
+     
