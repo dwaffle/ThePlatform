@@ -91,7 +91,10 @@ export default function HorizontalArticles(props: { rows: number }) {
       <div style={artListHeader.header}>
         <p className="h8tch2">Articles</p>
       </div>
-      <Button onClick={isAuthor} variant="success">Create New Article</Button>
+      <div className ="addMargin">
+      <Button  onClick={isAuthor} variant="success">Create New Article</Button>
+      </div>
+      
 
       <div className="searchFeature">
         {<ArticleFilter aSearchDispatch={setASearchFilter} />}

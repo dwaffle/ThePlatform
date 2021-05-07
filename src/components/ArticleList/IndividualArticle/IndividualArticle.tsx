@@ -36,20 +36,20 @@ const IndividualArticle = () => {
   const articleOwnership = useRecoilValue(userOwnsArticle);
 
   const imagecheck = () => {
+   
     if (!article?.art_image) {
       return (
-        <Col md="auto">
-          <img
-            className="mainImg"
-            src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
-          ></img>
-        </Col>
+          <Image 
+          className="mainImg"
+          src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg" 
+          thumbnail   />
       );
     } else {
       return (
-        <Col md="auto">
-          <img className="mainImg" src={article.art_image}></img>
-        </Col>
+          <Image 
+          className="mainImg"
+          src={article.art_image}
+          thumbnail />
       );
     }
   };
@@ -126,12 +126,42 @@ const IndividualArticle = () => {
 
   return (
     <MainLayout>
-      <section>
-        <em className="IAHeadline">{article?.art_title} </em>
-        <div className="iArticleInfo">
-          <p className="iAAuthor">
+        <Row>
+          <Col />
+          <Col xs = {8}>
+        <Row>
+        <div>
+          <p className="IAHeadline">
+            {article?.art_title} {article && <Rating article_id={article.art_id} />}
+          </p>
+            <Row>
+            
+              {imagecheck()}
+            
+            </Row>
+
+            <Row>
+    
+            <Col>
+
+            <p className="pTag">
+            Category: <strong>{article?.art_category}</strong> 
+          </p>
+
+          <div className="pTag">
+            <small>Series:</small>{' '}
+            <Link to={`/series/${article?.series_title}`}>
+              {displaySeriesTitle(article?.series_title) || null}
+            </Link>
+          </div>
+            </Col>
+            <Col>
+
+            <div className ="divWriter">
+              <p className="iAAuthor">
             {' '}
-            <i>written by:</i> {article?.user_userName}
+            <i>written by:</i> <strong>{article?.user_userName}</strong>
+            <br/>
             <a
               className="socialMedia"
               href="{https://facebook.com/}"
@@ -154,54 +184,30 @@ const IndividualArticle = () => {
               <Image src={twitter} />
             </a>
           </p>
-          <p className="pTag">
-            <u>Category: {article?.art_category}</u>
-          </p>
-
-          <p className="pTag">
-            <small>Series:</small>{' '}
-            <Link to={`/series/${article?.series_title}`}>
-              {displaySeriesTitle(article?.series_title) || null}
-            </Link>
-          </p>
-        </div>
-        <Row className="ratingAndDesc">
-          <Col className="ratingArea">
-            {article && <Rating article_id={article.art_id} />}
-          </Col>
-          <Col className="descArea">{article?.description}</Col>
-        </Row>
-        {/* <Rating name="half-rating" defaultValue={2.5} precision={1} /> */}
-        {/* {console.log("id+++++" +article?.art_id)} */}
-        <Row noGutters>
-          {imagecheck()}
-
-          {/* <Col md="auto">
-            <img
-              className="mainImg"
-              src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
-            ></img>
-          </Col> */}
-          {/* <Col className="description">{article?.description}</Col> */}
-        </Row>
+              </div>
+            
+            </Col>
+          </Row>
+      <br/>
+      <Row>
+        
+        <Col  className="justify-content-md-center" >
         {checkArticleType()}
-        {/* <div className="iABody">{article?.art_body}</div> */}
-        {/* <input type="button" value="test" onClick={togglePopup} /> */}
-        {/* {isOpen && (
-          <PurchasePopup
-            content={
-              <>
-                <p>
-                  This Article is not free, If you wish to view it, press "Buy
-                  Article"
-                </p>
-                <button onClick={oneClickPurchase}> Buy Article </button>
-              </>
-            }
-            handleClose={togglePopup}
-          />
-        )} */}
-      </section>
+        </Col>
+       
+      </Row>
+        
+        </div>
+      </Row>
+
+          </Col>
+
+          <Col />
+        </Row>
+      
+  
+     
+      
     </MainLayout>
   );
 };

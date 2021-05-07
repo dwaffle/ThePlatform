@@ -1,103 +1,60 @@
 .IAHeadline {
-    font-size: 5rem;
+    margin-top: 10px;
+    font-size: 48px;
     font-family:Georgia, 'Times New Roman', Times, serif;
     padding: 0px;
-    margin: 0px;
     line-height: 1em;
-    margin-bottom: 0px;
+    text-align: center;
 }
+
+.divWriter{
+    float:right;
+}
+
+
 
 .artBodyParent {
     margin-top: 2vh;
     text-align: center;
 }
 
-
-section {
-    width: 70%;
-    margin: 0 auto;
-
-    .mainImg {
-        object-fit:cover;
-        padding: 0px;
-        min-width: 68vw;
-        // margin: 0 auto;
-        min-height: 30vh;
-        margin-top: 1vh;
-
-        // @media screen and (min-width:100vh) {
-        //     body { color:#555; }
-        // }
-    }
-
-    .description {
-        max-height: 55vh;
-        min-width: 50vh;
-        margin-left: 0px;
-        padding-bottom: 2vh;
-
-        overflow-y: scroll;
-        scrollbar-width: none;
-
-        //not working yet
-        // @media screen and (min-width:90%) {
-        //     body { color:#555; }
-        // }
-    }  
-
-    .iArticleInfo {
-        // margin-top: -20px;
-        margin-left: 2vw;
-
-        .pTag {
-            margin: 0px;
-            font-size: 1.1rem;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .iAAuthor {
-            float:right;
-            margin: 0px;
-            font-size: 1.1rem;
-            // font-style: italic;
-            padding-right: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-    }
-
-    .ratingAndDesc {
-
-        .ratingArea {
-            max-width: 27%;
-        }
-
-        .descArea {
-            height: 20vh;
-            overflow-y: scroll;
-            scrollbar-width:thin;
-            scrollbar-color:#363535 ;
-            white-space: pre-wrap;
-            // direction: rtl;
+.mainImg {
+     margin-bottom: 25px;
+    max-width: 120vh;
+    max-height: 50vh;
+    min-height: 25vh;
+  
     
-        }
+}
 
-    }
+.pTag {
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    .articleDetails {
-        font-size: 2vh;
-    }
+.iAAuthor {
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.descArea {
+    height: 20vh;
+    overflow-y: scroll;
+    scrollbar-width:thin;
+    scrollbar-color:#363535 ;
+    white-space: pre-wrap;
+    // direction: rtl;
+
+}
+
+.articleDetails {
+    font-size: 2vh;
 }
 
 .iABody {
     white-space: pre-wrap;
-}
+    text-align: justify;
 
-@media screen and (max-width:768px) {
-    section {
-        .ratingAndDesc {
-            .descArea { display: flex }
-        }
-    }
 }
 
 .socialMedia {
