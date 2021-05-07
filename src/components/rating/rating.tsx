@@ -70,7 +70,7 @@ export default function RatingArticles(props: { article_id: any }) {
   setNbrReviews(nbrReviews)
   setRating(ratingArticle)
     
-  }, [rating]);
+  }, [rate.length]);
 
   //Render the page in the the browser
   return (
