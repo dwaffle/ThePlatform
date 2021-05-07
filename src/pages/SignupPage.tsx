@@ -77,6 +77,7 @@ export default function SignupPage(props: {}) {
               Please fill in the form to sign up. Fields marked with a * are
               manditory
             </div>
+            <div className="form-signup">
             <Form.Group className="name">
               <Row>
                 <Col>
@@ -99,6 +100,21 @@ export default function SignupPage(props: {}) {
                     onChange={(e) => setLastName(e.target.value)}
                   />
                 </Col>
+                
+              </Row>
+            </Form.Group>
+            <Form.Group>
+              <Row>
+                <Col>
+              <Form.Label>Username*</Form.Label>
+                <Form.Control
+                  className="username"
+                  type="username"
+                  placeholder="Enter Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                </Col>
                 <Col>
                   <Form.Label>Email*</Form.Label>
                   <Form.Control
@@ -108,21 +124,11 @@ export default function SignupPage(props: {}) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </Col>
+                  </Col>
               </Row>
+              
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Username*</Form.Label>
-              <div className="form-narrow">
-                <Form.Control
-                  className="username"
-                  type="username"
-                  placeholder="Enter Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-            </Form.Group>
+            </div>
             <Form.Group>
               <Form.Label>Password*</Form.Label>
               <div className="form-narrow">
@@ -173,7 +179,7 @@ export default function SignupPage(props: {}) {
             </InputGroup>
             {AllFormsFilledOut()}
             <Button
-              variant="primary"
+              variant="success"
               type="submit"
               className="submit-btn"
               onClick={onsubmit}

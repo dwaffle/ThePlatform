@@ -22,13 +22,25 @@ export default function HorizontalArticles(props: { rows: number }) {
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
   // Allows only users that are authors in the database to create a new article
-  let isAuthor = (e: any) => {
-    e.preventDefault();
+  // let isAuthor = (e: any) => {
+  //   e.preventDefault();
+  //   let userType = Number(localStorage.getItem('user_type'));
+  //   if ((userType != 1 && userType != 4) || !userType) {
+  //     alert('You must be an author to create an article');
+  //   } else {
+  //     return history.push('/newArticle');
+  //   }
+  // };
+
+  const isAuthor = () => {
     let userType = Number(localStorage.getItem('user_type'));
-    if ((userType != 1 && userType != 4) || !userType) {
-      alert('You must be an author to create an article');
-    } else {
+
+    let newArt = () => {
       return history.push('/newArticle');
+    };
+
+    if (userType == 1 || userType == 4) {
+      return <Button onClick={newArt}>Create New </Button>;
     }
   };
 
@@ -79,8 +91,10 @@ export default function HorizontalArticles(props: { rows: number }) {
       <div style={artListHeader.header}>
         <p className="h8tch2">Articles</p>
       </div>
-      <br />
-      <Button onClick={isAuthor}>Create New </Button>
+      <div className ="addMargin">
+      <Button  onClick={isAuthor} variant="success">Create New Article</Button>
+      </div>
+      
 
       <div className="searchFeature">
         {<ArticleFilter aSearchDispatch={setASearchFilter} />}

@@ -94,13 +94,13 @@ export default function ChangePaymentPage(props: {}) {
 
   return (
     <>
-      <h1>Change Payment Information page for {displayUserName()}</h1>
-      <h3>Fields are optional when changing payment information.</h3>
-      <Form>
+      {/* <h1>Change Payment Information page for {displayUserName()}</h1>
+      <h3>Fields are optional when changing payment information.</h3> */}
+      <Form className="FormPayment">
         <Row>
           <Col md={3}>
             Cardholder First Name:{' '}
-            <div className="form-med">
+            <div>
               <Form.Control onChange={(e) => setFirstName(e.target.value)} />
             </div>
           </Col>
@@ -139,10 +139,10 @@ export default function ChangePaymentPage(props: {}) {
         </Row>
         {checkCvv()}
       </Form>
-      <Button variant="primary" onClick={onClickGoProfile}>
+      {/* <Button variant="primary" onClick={onClickGoProfile}>
         {' '}
         Back to Profile
-      </Button>
+      </Button> */}
       <Button
         className="sendInfo"
         variant="success"

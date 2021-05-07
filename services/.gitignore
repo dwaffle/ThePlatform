@@ -9,7 +9,7 @@ dist
 # testing
 /coverage
 
-# production
+# pr    oduction
 /apps/web-app/build
 /services/crud-server/dist
 

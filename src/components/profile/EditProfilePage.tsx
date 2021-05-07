@@ -17,7 +17,7 @@ class IprofileChangeRequest {
   user_instagram?: string;
 }
 
-export default function EditProfilePage(props: {}) {
+export default function EditProfilePage() {
   const history = useHistory();
 
   const [user_email, setEmail] = useState<string>();
@@ -150,123 +150,128 @@ export default function EditProfilePage(props: {}) {
 
   return (
     <>
-      <div className="HeadlineProfile">
+      {/* <div className="HeadlineProfile">
         <p className="h8tch2">Profile Editing Page</p>
-      </div>
+      </div> */}
 
-      <Row>
-        <Col>
-          <h2>{displayUserName()}</h2>
-        </Col>
-      </Row>
-      <Form>
-        <Row>
+      <div className="editProfileParent">
+        {/* <Row>
           <Col>
-            Edit Email:{' '}
-            <div className="form-narrow">
-              <Form.Control
-                type="email"
-                placeholder={displayEmail()}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+            <h2>{displayUserName()}</h2>
           </Col>
-        </Row>
+        </Row> */}
+        <Form className="EditProfileForms">
+          <Row>
+            <Col>
+              Edit Email:{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  type="email"
+                  placeholder={displayEmail()}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col md={3}>
-            Edit First Name:{' '}
-            <div className="form-med">
-              <Form.Control
-                placeholder={displayFirstName()}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-          </Col>
-          <Col>
-            Edit Last Name:{' '}
-            <div className="form-narrow">
-              <Form.Control
-                placeholder={displayLastName()}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            Change Facebook{' '}
-            <div className="form-narrow">
-              <Form.Control
-                placeholder={displayFacebook()}
-                onChange={(e) => setUserFacebook(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            Change Instagram{' '}
-            <div className="form-narrow">
-              <Form.Control
-                placeholder={displayInstagram()}
-                onChange={(e) => setUserInstagram(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            Change Twitter{' '}
-            <div className="form-narrow">
-              <Form.Control
-                placeholder={displayTwitter()}
-                onChange={(e) => setUserTwitter(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            Change Password{' '}
-            <div className="form-narrow">
-              <Form.Control
-                type="password"
-                onChange={(e) => setPasswordEntry(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            Re-type New Password{' '}
-            <div className="form-narrow">
-              <Form.Control
-                type="password"
-                onChange={(e) => setPasswordVerify(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>{passwordVerify()}</Col>
-        </Row>
-        <Row>
+          <Row>
+            <Col md={3}>
+              Edit First Name:{' '}
+              <div>
+                <Form.Control
+                  placeholder={displayFirstName()}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+            </Col>
+            <Col>
+              Edit Last Name:{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  placeholder={displayLastName()}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              Change Facebook{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  placeholder={displayFacebook()}
+                  onChange={(e) => setUserFacebook(e.target.value)}
+                ></Form.Control>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              Change Instagram{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  placeholder={displayInstagram()}
+                  onChange={(e) => setUserInstagram(e.target.value)}
+                ></Form.Control>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              Change Twitter{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  placeholder={displayTwitter()}
+                  onChange={(e) => setUserTwitter(e.target.value)}
+                ></Form.Control>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              Change Password{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  type="password"
+                  onChange={(e) => setPasswordEntry(e.target.value)}
+                ></Form.Control>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              Re-type New Password{' '}
+              <div className="form-narrow">
+                <Form.Control
+                  type="password"
+                  onChange={(e) => setPasswordVerify(e.target.value)}
+                ></Form.Control>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>{passwordVerify()}</Col>
+          </Row>
+          {/* <Row>
           <Col xs={6} md={4}>
             <Image src={userAvatar} roundedCircle />
           </Col>
-        </Row>
-      </Form>
-      <Button variant="primary" onClick={onClickLogOut}>
-        {' '}
-        Log Out
-      </Button>
-      <Button variant="primary" type="submit" onClick={onsubmit}>
-        Approve Changes
-      </Button>
-      <Button variant="danger" className="delete-btn" onClick={deleteAccount}>
-        Delete Account
-      </Button>
+        </Row> */}
+
+          <Button variant="primary" type="submit" onClick={onsubmit}>
+            Approve Changes
+          </Button>
+          <Button
+            variant="danger"
+            className="delete-btn"
+            onClick={deleteAccount}
+          >
+            Delete Account
+          </Button>
+        </Form>
+      </div>
+
+      {/*  */}
     </>
   );
 }

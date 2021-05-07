@@ -35,10 +35,13 @@
 
     .iSCard {
         min-height: 10vh;
-        margin-bottom: 7px;
+        margin-bottom: 15px;
+        
+        border: 1px solid gray;
+        box-shadow: 2px 2px 2px 2px rgb(202, 202, 202);
 
         .iaTitle {
-            background: rgb(202, 202, 202);
+            background: rgb(147, 212, 224);
             padding-left: 10px;
             
             .titleLink {

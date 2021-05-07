@@ -114,7 +114,7 @@ export default function SeriesPage(props: { rows?: number }) {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1320 },
-      items: 4,
+      items: 5,
     },
     tablet: {
       breakpoint: { max: 1319, min: 1004 },
@@ -131,7 +131,7 @@ export default function SeriesPage(props: { rows?: number }) {
   };
 
   function isMember() {
-    if (user_id > 1) {
+    if (user_id) {
       return (
         <>
           <div className="searchFilter">
@@ -229,7 +229,7 @@ export default function SeriesPage(props: { rows?: number }) {
       return (
         <>
           <br />
-          <h3> login for series </h3>
+          <h3>Login for series </h3>
           <div>
             Please <a href="/login">log in</a> or <a href="/signup">sign up</a>{' '}
             so you can read series

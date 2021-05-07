@@ -334,9 +334,6 @@ function MyArticles() {
             />
           </Form.Row>
           Image Display:
-          <p className="noMargin">
-            <small>The default image will be used otherwise</small>
-          </p>
           <div>
             <img src={article?.art_image}></img>
           </div>
