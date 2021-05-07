@@ -67,18 +67,17 @@ export default function RatingArticles(props: { article_id: any }) {
 
   //Render the page in the the browser
   return (
-    <div className="rating border rounded">
-      <h2>Customer Ratings</h2>
+    <div className="rating">
+      {/* <h2>Customer Ratings</h2> */}
       <Rating
         name="half-rating"
         defaultValue={rating}
         readOnly={readonly}
         precision={1}
       />{' '}
-      <h3 className="starStyle">( {ratingArticle} )</h3>
-      <p>
-        Averge rating based on ( <strong> {nbrReviews} </strong>){' '}
-      </p>
+      {/* <h3 className="starStyle">( {ratingArticle} )</h3> */}
+      <h6 className="starStyle">( <strong> {nbrReviews}</strong>) reviewer</h6>
+     
       <Button variant="warning" onClick={writeRating} onChange={onChangeRating}>
         <strong>Add your rating </strong>
       </Button>

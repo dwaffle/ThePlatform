@@ -26,7 +26,6 @@ export default function HeadlineArticle(props: {}) {
         <h1> HeadlineArticle </h1>
 
         {articles.slice(10, 12).map((_article) => {
-          
           return (
             <div className="divStyle">
               <div>

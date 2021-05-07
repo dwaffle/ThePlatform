@@ -79,7 +79,7 @@ export default function HorizontalArticles(props: { rows: number }) {
       <div style={artListHeader.header}>
         <p className="h8tch2">Articles</p>
       </div>
-      <br/>
+      <br />
       <Button onClick={isAuthor}>Create New </Button>
 
       <div className="searchFeature">

@@ -15,26 +15,26 @@ export default function OrganisationList() {
 
   return (
     <>
-       <CardDeck>
-          {orgs.slice(0, 4).map((_org) => {
-            return (
-              <Card bg="Light" style={{ width: '18rem' }}>
-                <Card.Header className="text-center p-3">
-                  {_org?.org_title}
-                </Card.Header>
-                <Card.Body>
-                  <Card.Text>
-                    {_org?.org_desc}
-                    <br />
-                    <Link to={`/IndividualOrganizationPage/${_org.ord_id}`}>
-                      See more
-                    </Link>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardDeck>
+      <CardDeck>
+        {orgs.slice(0, 4).map((_org) => {
+          return (
+            <Card bg="Light" style={{ width: '18rem' }}>
+              <Card.Header className="text-center p-3">
+                {_org?.org_title}
+              </Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  {_org?.org_desc}
+                  <br />
+                  <Link to={`/IndividualOrganizationPage/${_org.ord_id}`}>
+                    See more
+                  </Link>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </CardDeck>
     </>
   );
 }

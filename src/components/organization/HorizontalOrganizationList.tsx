@@ -104,9 +104,7 @@ export default function HorizontalOrganizationList(props: {}) {
       <div className="search-filter">
         <Row>
           <Col>
-            <Carousel responsive={responsive}
-            
-            >
+            <Carousel responsive={responsive}>
               {allOrgs ? (
                 allOrgs.map((data) => {
                   return (

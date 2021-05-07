@@ -1,6 +1,6 @@
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import {useHistory} from 'react-router';
+import { useHistory } from 'react-router';
 import './style.scss';
 
 export default function HeaderNavigation(props: {}) {
@@ -34,7 +34,7 @@ export default function HeaderNavigation(props: {}) {
 
   function logoutHandler() {
     localStorage.clear();
-    history.push("/");
+    history.push('/');
   }
 
   function displayFirstName() {
@@ -64,7 +64,6 @@ export default function HeaderNavigation(props: {}) {
         </LinkContainer> */}
 
           <NavDropdown title={displayFirstName()} id="collasible-nav-dropdown">
-          
             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
             {isAdmin()}
             <NavDropdown.Divider />
@@ -77,8 +76,7 @@ export default function HeaderNavigation(props: {}) {
 
   return (
     <>
-
-{/* <Navbar className="navbarBG" collapseOnSelect expand="md" bg="dark" variant="dark">
+      {/* <Navbar className="navbarBG" collapseOnSelect expand="md" bg="dark" variant="dark">
   <Navbar.Brand href="/">The Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
@@ -92,8 +90,6 @@ export default function HeaderNavigation(props: {}) {
     </Nav>
   </Navbar.Collapse>
 </Navbar> */}
-
-
 
       <Navbar variant="dark" className="navbarBG" collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -111,9 +107,8 @@ export default function HeaderNavigation(props: {}) {
             <LinkContainer to="/series">
               <Nav.Link>Series</Nav.Link>
             </LinkContainer>
-            
+
             {isEditor()}
-                    
           </Nav>
         </Navbar.Collapse>
         <Nav className="navProfile">{isLoggedIn()}</Nav>
