@@ -36,21 +36,16 @@ const IndividualArticle = () => {
   const articleOwnership = useRecoilValue(userOwnsArticle);
 
   const imagecheck = () => {
-   
     if (!article?.art_image) {
       return (
-          <Image 
+        <Image
           className="mainImg"
-          src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg" 
-          thumbnail   />
+          src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
+          thumbnail
+        />
       );
     } else {
-      return (
-          <Image 
-          className="mainImg"
-          src={article.art_image}
-          thumbnail />
-      );
+      return <Image className="mainImg" src={article.art_image} thumbnail />;
     }
   };
 
@@ -126,88 +121,74 @@ const IndividualArticle = () => {
 
   return (
     <MainLayout>
-        <Row>
-          <Col />
-          <Col xs = {8}>
-        <Row>
-        <div>
-          <p className="IAHeadline">
-            {article?.art_title} {article && <Rating article_id={article.art_id} />}
-          </p>
-            <Row>
-            
-              {imagecheck()}
-            
-            </Row>
-
-            <Row>
-    
-            <Col>
-
-            <p className="pTag">
-            Category: <strong>{article?.art_category}</strong> 
-          </p>
-
-          <div className="pTag">
-            <small>Series:</small>{' '}
-            <Link to={`/series/${article?.series_title}`}>
-              {displaySeriesTitle(article?.series_title) || null}
-            </Link>
-          </div>
-            </Col>
-            <Col>
-
-            <div className ="divWriter">
-              <p className="iAAuthor">
-            {' '}
-            <i>written by:</i> <strong>{article?.user_userName}</strong>
-            <br/>
-            <a
-              className="socialMedia"
-              href="{https://facebook.com/}"
-              target="_blank"
-            >
-              <img src={facebook} />
-            </a>
-            <a
-              className="socialMedia"
-              href="https://www.instagram.com/"
-              target="_blank"
-            >
-              <Image src={instagram} />
-            </a>
-            <a
-              className="socialMedia"
-              href="https://twitter.com/"
-              target="_blank"
-            >
-              <Image src={twitter} />
-            </a>
-          </p>
-              </div>
-            
-            </Col>
-          </Row>
-      <br/>
       <Row>
-        
-        <Col  className="justify-content-md-center" >
-        {checkArticleType()}
+        <Col />
+        <Col xs={8}>
+          <Row>
+            <div>
+              <p className="IAHeadline">
+                {article?.art_title}{' '}
+                {article && <Rating article_id={article.art_id} />}
+              </p>
+              <Row>{imagecheck()}</Row>
+
+              <Row>
+                <Col>
+                  <p className="pTag">
+                    Category: <strong>{article?.art_category}</strong>
+                  </p>
+
+                  <div className="pTag">
+                    <small>Series:</small>{' '}
+                    <Link to={`/series/${article?.series_title}`}>
+                      {displaySeriesTitle(article?.series_title) || null}
+                    </Link>
+                  </div>
+                </Col>
+                <Col>
+                  <div className="divWriter">
+                    <p className="iAAuthor">
+                      {' '}
+                      <i>written by:</i>{' '}
+                      <strong>{article?.user_userName}</strong>
+                      <br />
+                      <a
+                        className="socialMedia"
+                        href="{https://facebook.com/}"
+                        target="_blank"
+                      >
+                        <img src={facebook} />
+                      </a>
+                      <a
+                        className="socialMedia"
+                        href="https://www.instagram.com/"
+                        target="_blank"
+                      >
+                        <Image src={instagram} />
+                      </a>
+                      <a
+                        className="socialMedia"
+                        href="https://twitter.com/"
+                        target="_blank"
+                      >
+                        <Image src={twitter} />
+                      </a>
+                    </p>
+                  </div>
+                </Col>
+              </Row>
+              <br />
+              <Row>
+                <Col className="justify-content-md-center">
+                  {checkArticleType()}
+                </Col>
+              </Row>
+            </div>
+          </Row>
         </Col>
-       
-      </Row>
-        
-        </div>
-      </Row>
 
-          </Col>
-
-          <Col />
-        </Row>
-      
-  
-     
-      
+        <Col />
+      </Row>
     </MainLayout>
   );
 };

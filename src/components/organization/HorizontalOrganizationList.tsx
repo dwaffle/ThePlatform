@@ -63,7 +63,11 @@ export default function HorizontalOrganizationList(props: {}) {
     const id = window.localStorage.getItem('user_type');
     if (Number(id) !== 2 && id != null) {
       return (
-        <Button href="/NewOrganizationPage" className="new-org-button" variant="success">
+        <Button
+          href="/NewOrganizationPage"
+          className="new-org-button"
+          variant="success"
+        >
           Create New Organization
         </Button>
       );

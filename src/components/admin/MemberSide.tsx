@@ -43,7 +43,7 @@ export default function MemberSide(props: {}) {
     ) {
       alert('This User is not Banned.');
     } else {
-      alert('You didn\'t select a member, choose one to proceed');
+      alert("You didn't select a member, choose one to proceed");
     }
   };
 
