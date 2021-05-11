@@ -111,6 +111,8 @@ export default function HorizontalArticles(props: { rows: number }) {
                     <Link to={`/articles/${art.art_title}`}>
                       {art.art_title}
                     </Link>
+                    {(art.art_price !== 0) ? <div className="isPremium">Price: ${art.art_price}</div>:<div></div>}
+                    {(art.artype_id === 3) ? <div className="isPremium">Premium Members</div>:<div></div>}
                     <div>
                       {' '}
                       Author: {art.user_userName} {''}
