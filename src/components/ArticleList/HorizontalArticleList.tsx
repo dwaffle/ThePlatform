@@ -9,7 +9,7 @@ import ArticleFilter from './ArticleFilter.ts/articleFilter';
 
 export interface IASearchFilter {
   name?: string;
-  author?: string;
+  author?: any;
   category?: string;
 }
 
@@ -54,6 +54,10 @@ export default function HorizontalArticles(props: { rows: number }) {
 
       if (ASearchFilter?.category) {
         found = found && articles.art_category.includes(ASearchFilter.category);
+      }
+
+      if (ASearchFilter?.author) {
+        found = articles.user_userName.includes(ASearchFilter.author);
       }
 
       return found;
@@ -107,7 +111,8 @@ export default function HorizontalArticles(props: { rows: number }) {
             {col.map((art, index) => (
               <div key={index}>
                 <Card className="CardArt">
-                  <Card.Header className="CardHeader">
+          
+              
                     {' '}
                     <Link to={`/articles/${art.art_title}`}>
                       {art.art_title}
@@ -116,7 +121,7 @@ export default function HorizontalArticles(props: { rows: number }) {
                       {' '}
                       Author: {art.user_userName} {''}
                     </div>
-                  </Card.Header>
+                
 
                   <Card.Body className="CardBody">
                     <Card.Text className="CardText">
