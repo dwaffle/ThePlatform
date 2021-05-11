@@ -20,7 +20,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1320 },
-    items: 4,
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1319, min: 1004 },
