@@ -52,10 +52,9 @@ export default function ArticleFilter(props: {
 
           <Col>
             <Form.Control
-            placeholder="Search by Author..."
-            value={searchAuthor}
-            onChange={onChangeAuthor}
-              
+              placeholder="Search by Author..."
+              value={searchAuthor}
+              onChange={onChangeAuthor}
             />
           </Col>
 

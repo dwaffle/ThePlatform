@@ -46,6 +46,16 @@ export default function HeaderNavigation(props: {}) {
     }
   }
 
+  const isUserAuthor = () => {
+    if (user_type == 1 || user_type == 4) {
+      return (
+        <LinkContainer to="/newArticle">
+          <Nav.Link>Create New Article</Nav.Link>
+        </LinkContainer>
+      )
+    }
+  };
+
   function isLoggedIn() {
     if (!localStorage.getItem('token')) {
       return (
@@ -111,6 +121,7 @@ export default function HeaderNavigation(props: {}) {
             {isEditor()}
           </Nav>
         </Navbar.Collapse>
+        <Nav> {isUserAuthor()} </Nav>
         <Nav className="navProfile">{isLoggedIn()}</Nav>
       </Navbar>
     </>

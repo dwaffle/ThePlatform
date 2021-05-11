@@ -40,7 +40,7 @@ export default function HorizontalArticles(props: { rows: number }) {
     };
 
     if (userType == 1 || userType == 4) {
-      return <Button onClick={newArt}>Create New </Button>;
+      return <Button onClick={newArt}>Create New Article</Button>;
     }
   };
 
@@ -75,7 +75,7 @@ export default function HorizontalArticles(props: { rows: number }) {
     header: {
       background: 'rgba(0, 0, 0, 0.5)',
       backgroundImage:
-        'url(https://thatsmypark.org/wp-content/uploads/2020/04/sunset-wide.jpg)',
+        'url(https://techcrunch.com/wp-content/uploads/2014/11/shutterstock_55915930-e1415052560114.jpg)',
       height: '32vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -93,17 +93,15 @@ export default function HorizontalArticles(props: { rows: number }) {
   return (
     <MainLayout>
       <div style={artListHeader.header}>
-        <p className="h8tch2">Articles</p>
-      </div>
-      <div className="addMargin">
-        <Button onClick={isAuthor} variant="success">
-          Create New Article
-        </Button>
+        {/* <p className="h8tch2">Articles</p> */}
       </div>
 
+      {/* {isAuthor()} */}
+
       <div className="searchFeature">
-        {<ArticleFilter aSearchDispatch={setASearchFilter} />}
+        {<ArticleFilter aSearchDispatch={setASearchFilter}/>}
       </div>
+      
 
       {articleCol.map((col) => {
         return (
@@ -111,27 +109,34 @@ export default function HorizontalArticles(props: { rows: number }) {
             {col.map((art, index) => (
               <div key={index}>
                 <Card className="CardArt">
-          
-              
+                  <Card.Header className="CardHeader">
                     {' '}
                     <Link to={`/articles/${art.art_title}`}>
                       {art.art_title}
                     </Link>
-                    {(art.art_price !== 0) ? <div className="isPremium">Price: ${art.art_price}</div>:<div></div>}
-                    {(art.artype_id === 3) ? <div className="isPremium">Premium Members</div>:<div></div>}
+                    {/* {(art.artype_id === 1) ? <div className="isPremium">Free!</div>:<div></div>} */}
+                    {art.art_price !== 0 ? (
+                      <div className="isPremium">Price: ${art.art_price}</div>
+                    ) : (
+                      <div></div>
+                    )}
+                    {art.artype_id === 3 ? (
+                      <div className="isPremium">Premium Members</div>
+                    ) : (
+                      <div></div>
+                    )}
                     <div>
                       {' '}
-                      Author: {art.user_userName} {''}
+                      <small>Written by: {art.user_userName}</small>
                     </div>
-                
-
+                  </Card.Header>
                   <Card.Body className="CardBody">
                     <Card.Text className="CardText">
                       {art.description}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer className="IACardFooter">
-                    {art.art_category}
+                    <i className={`tag-${art.art_category}`}> {art.art_category} </i>
                   </Card.Footer>
                 </Card>
               </div>
