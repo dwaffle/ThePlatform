@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
 export interface IArticle {
     art_id: number,
     art_price: number,
-    user_userName: string,
+    user_userName?: string,
     user_author: number,
     user_firstName?: string,
     user_lastName?: string,
