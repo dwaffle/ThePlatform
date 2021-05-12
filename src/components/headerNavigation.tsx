@@ -52,7 +52,7 @@ export default function HeaderNavigation(props: {}) {
         <LinkContainer to="/newArticle">
           <Nav.Link>Create New Article</Nav.Link>
         </LinkContainer>
-      )
+      );
     }
   };
 

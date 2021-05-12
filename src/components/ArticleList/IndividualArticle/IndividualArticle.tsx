@@ -133,10 +133,8 @@ const IndividualArticle = () => {
               <Row>{imagecheck()}</Row>
 
               <Row>
-              <Col className="justify-content-md-center">
-                  <div className="article-main">
-                    {checkArticleType()}
-                  </div>
+                <Col className="justify-content-md-center">
+                  <div className="article-main">{checkArticleType()}</div>
                 </Col>
                 <Col className="author-info">
                   <p className="pTag">
@@ -182,8 +180,7 @@ const IndividualArticle = () => {
                     {article && <Rating article_id={article.art_id} />} 
                   </div>
                 </Col>
-              <br />
-               
+                <br />
               </Row>
             </div>
           </Row>

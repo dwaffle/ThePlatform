@@ -9,66 +9,104 @@
     margin: auto;
 }
 
-.CardArt {
+.CardParent {
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-width: 70%;
     margin-top: 25px;
     border-radius: 7px;
-    box-shadow: 5px 4px 4px 4px rgb(172, 171, 171);
+    box-shadow: 3px 3px 3px 3px rgb(156, 165, 163);
 
-    input {
-        padding: 0px;
-        border: 0;
-        background-color: inherit;
-        color: blue;
+    .CardTitleLink {
+        padding: 0px 0px 0px 10px;
+        margin: -1px;
+        font-size: 1.2rem;
+        border-bottom:  rgb(156, 165, 163) solid 1px;
+        width: 100.2%;
     }
 
-    .CardHeader {
-        background: #ffffff !important;
-        padding:4px 10px 4px 10px;
+    p {
+        margin: 0px;
+        padding-top: 10px;
         line-height: 1;
     }
 
-    .CardBody {
-        padding: 0px;   
-        margin: 0px;
-        
-        .CardText {
-            margin: 0px 0px 5px 0px;
-            padding: 10px;
-            overflow-y: scroll;
-            max-height: 12vh;
-            font-family: Noto Serif;
+    // .pDate {
+    //     position:absolute;
+    //     right: 0;
+    // }
+
+    .CardColData {
+        padding: 0px 0px 0px 25px;
+        margin-right: 10px;
+        max-width: 200px;
+    }
+
+    .CardColDesc {
+        max-height: 13.5vh;
+        box-sizing: border-box;
+        overflow: auto;
+        padding: 5px 5px 5px 5px;
+        scrollbar-width: none;
+        font-family: PT Serif;
+    }
+
+    .CardColImg {
+        max-width: 225px;
+        // margin: 0px;
+        padding: 3px 16px 1px 5px;
+    }
+
+    img {
+        min-height: 130px;
+        min-width: 200px;
+        padding: 4px 2px 3px 3px;
+    }
+
+    .CardNIA {
+        text-align: center;
+        align-items: middle;
+    }
+
+    .CardCategory {
+        position: absolute;
+
+        bottom: 20px
+    }
+
+    .isPremium{
+        position: absolute;
+        bottom: 0;
+        // right: 0;
+    }
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .CardParent {
+        height: 50vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+
+        .CardColDesc {
+            max-height: 30vh;
+            // box-sizing: border-box;
+            overflow: hidden;
+            padding: 5px 5px 5px 5px;
+            font-family: PT Serif;
         }
 
+        .CardColImg {
+            display: none;
+        }
+
+
+        // img {
+        //     display: none;
+        // }
     }
 
-    .IACardFooter {
-        background: rgb(255, 255, 255);
-        padding: 0px 0px 0px 10px;
-        // max-height: 3vh;
-        // padding-left: 1vw;
-        display:flex;
-        align-items: center;
-    }
-}
-
-.filter {
-    max-width: 65%;
-    margin-left: 5%;
-}
-
-
-@media screen and (max-width:700px){
-    .CardFeatured {
-        display: none;
-        color: green;
-    } 
-}
-
-
-.isPremium{
-    float:right
-}
+  }
