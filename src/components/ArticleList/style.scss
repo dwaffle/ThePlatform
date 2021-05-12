@@ -1,3 +1,5 @@
+
+
 .addMargin{
     margin-top: 10px;
 }
@@ -13,8 +15,6 @@
     margin-right: auto;
     max-width: 70%;
     margin-top: 25px;
-    // margin-left: 5%;
-    // border: 1px solid rgb(128, 124, 124);
     border-radius: 7px;
     box-shadow: 5px 4px 4px 4px rgb(172, 171, 171);
 
@@ -59,21 +59,6 @@
     max-width: 65%;
     margin-left: 5%;
 }
-
-// .tag {
-//     &-Beauty {
-//         color: rgb(130, 183, 200)
-//     }
-
-//     &-Health {
-//         // border: 1px black
-//         color: rgb(86, 163, 22)
-//     }
-
-//     &-Sci-Fi {
-//         color: darkblue
-//     }
-// }
 
 
 @media screen and (max-width:700px){
