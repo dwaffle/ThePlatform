@@ -7,83 +7,82 @@
     margin: auto;
 }
 
-.CardArt {
+.CardParent {
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-width: 70%;
     margin-top: 25px;
-    // margin-left: 5%;
-    // border: 1px solid rgb(128, 124, 124);
     border-radius: 7px;
-    box-shadow: 5px 4px 4px 4px rgb(172, 171, 171);
+    box-shadow: 3px 3px 3px 3px rgb(156, 165, 163);
 
-    input {
-        padding: 0px;
-        border: 0;
-        background-color: inherit;
-        color: blue;
+    .CardTitleLink {
+        font-size: 1.2rem;
     }
 
-    .CardHeader {
-        background: #ffffff !important;
-        padding:4px 10px 4px 10px;
-        line-height: 1;
-    }
-
-    .CardBody {
-        padding: 0px;   
+    p {
         margin: 0px;
+        padding: 0px;
+    }
+
+
+    .CardColImg {
+        max-width: 225px;
+        // margin: 0px;
+        padding: 3px;
+    }
+
+    .CardColData {
+        padding: 0px 0px 0px 17px;
+        margin: 10px;
+        max-width: 325px;
+    }
+
+    .CardColDesc {
+        height: 100%;
+        margin: 7px;
+        padding: 0px 0px 0px 0px;
+        overflow-y: scroll;
+        scrollbar-color: #807f7f rgb(197, 197, 195);
+        scrollbar-width: thin;
+        max-height: 14vh;
+        font-family: PT Serif;
         
-        .CardText {
-            margin: 0px 0px 5px 0px;
-            padding: 10px;
-            overflow-y: scroll;
-            max-height: 12vh;
-            font-family: Noto Serif;
-        }
-
+       
     }
 
-    .IACardFooter {
-        background: rgb(255, 255, 255);
-        padding: 0px 0px 0px 10px;
-        // max-height: 3vh;
-        // padding-left: 1vw;
-        display:flex;
-        align-items: center;
+    img {
+        min-height: 150px;
+        min-width: 200px;
     }
+
+    .CardCategory {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .CardNIA {
+        text-align: center;
+        align-items: middle;
+    }
+
+    .isPremium{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    
 }
 
-.filter {
-    max-width: 65%;
-    margin-left: 5%;
-}
+@media only screen and (max-width: 400px) {
+    .CardParent {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
 
-// .tag {
-//     &-Beauty {
-//         color: rgb(130, 183, 200)
-//     }
-
-//     &-Health {
-//         // border: 1px black
-//         color: rgb(86, 163, 22)
-//     }
-
-//     &-Sci-Fi {
-//         color: darkblue
-//     }
-// }
-
-
-@media screen and (max-width:700px){
-    .CardFeatured {
-        display: none;
-        color: green;
-    } 
-}
-
-
-.isPremium{
-    float:right
-}
+    // .CardColDesc {
+    //     height: 100%;
+    // }
+  }

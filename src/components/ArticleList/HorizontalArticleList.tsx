@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useArticleList } from './articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import ArticleFilter from './ArticleFilter.ts/articleFilter';
+import { indexOf } from 'lodash';
 
 export interface IASearchFilter {
   name?: string;
@@ -22,16 +23,6 @@ export default function HorizontalArticles(props: { rows: number }) {
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
   // Allows only users that are authors in the database to create a new article
-  // let isAuthor = (e: any) => {
-  //   e.preventDefault();
-  //   let userType = Number(localStorage.getItem('user_type'));
-  //   if ((userType != 1 && userType != 4) || !userType) {
-  //     alert('You must be an author to create an article');
-  //   } else {
-  //     return history.push('/newArticle');
-  //   }
-  // };
-
   const isAuthor = () => {
     let userType = Number(localStorage.getItem('user_type'));
 
@@ -71,6 +62,13 @@ export default function HorizontalArticles(props: { rows: number }) {
     setArticleCol(col);
   }, [props.rows, ASearchFilter]);
 
+  function defaultImage(image:any) {
+    if (image) {
+      return <img src={image}></img>;
+    } else return 
+    <img src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"></img>
+  }
+
   let artListHeader = {
     header: {
       background: 'rgba(0, 0, 0, 0.5)',
@@ -99,23 +97,71 @@ export default function HorizontalArticles(props: { rows: number }) {
       {/* {isAuthor()} */}
 
       <div className="searchFeature">
-        {<ArticleFilter aSearchDispatch={setASearchFilter}/>}
+        {<ArticleFilter aSearchDispatch={setASearchFilter} />}
       </div>
-      
 
       {articleCol.map((col) => {
         return (
           <div>
             {col.map((art, index) => (
               <div key={index}>
-                <Card className="CardArt">
+                <Card className="CardParent">
+                  <Row>
+                    <Col className="CardColData">
+                      <Link
+                        className="CardTitleLink"
+                        to={`/articles/${art.art_title}`}
+                      >
+                        {art.art_title}
+                      </Link>
+                      <p>Written by: {art.user_userName}</p>
+                      {/* <p>Written On: {art.art_creationDate}</p> */}
+
+
+
+                      <div className="CardCategory">
+                        {art.art_category}
+                      </div>
+
+
+                      {art.art_price !== 0 ? (
+                        <div className="isPremium">Price: ${art.art_price}</div>
+                      ) : (
+                        art.artype_id !== 3 && (
+                          <div className="isPremium">Free Article</div>
+                        )
+                      )}
+                      {art.artype_id === 3 ? (
+                        <div className="isPremium">Premium Members</div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </Col>
+
+                    <Col className="CardColDesc">{art.description}</Col>
+
+                    <Col className="CardColImg">
+                      {art.art_image ? <img src={art.art_image} /> : <img src="http://ultravires.ca/wp/wp-content/uploads/2018/03/Then-and-Now_-no-image-found.jpg" />}
+                    </Col>
+                  </Row>
+                </Card>
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </MainLayout>
+  );
+}
+
+/* <Card className="CardArt">
                   <Card.Header className="CardHeader">
                     {' '}
                     <Link to={`/articles/${art.art_title}`}>
                       {art.art_title}
                     </Link>
-                    {/* {(art.artype_id === 1) ? <div className="isPremium">Free!</div>:<div></div>} */}
-                    {art.art_price !== 0 ? (
+                    {/* {(art.artype_id === 1) ? <div className="isPremium">Free!</div>:<div></div>} }
+                     /*{art.art_price !== 0 ? (
                       <div className="isPremium">Price: ${art.art_price}</div>
                     ) : (
                       <div></div>
@@ -129,6 +175,7 @@ export default function HorizontalArticles(props: { rows: number }) {
                       {' '}
                       <small>Written by: {art.user_userName}</small>
                     </div>
+              
                   </Card.Header>
                   <Card.Body className="CardBody">
                     <Card.Text className="CardText">
@@ -136,14 +183,9 @@ export default function HorizontalArticles(props: { rows: number }) {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer className="IACardFooter">
-                    <i className={`tag-${art.art_category}`}> {art.art_category} </i>
+                    <i className={`tag-${art.art_category}`}>
+                      {' '}
+                      {art.art_category}{' '}
+                    </i>
                   </Card.Footer>
-                </Card>
-              </div>
-            ))}
-          </div>
-        );
-      })}
-    </MainLayout>
-  );
-}
+                </Card> */
