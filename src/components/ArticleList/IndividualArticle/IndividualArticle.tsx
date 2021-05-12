@@ -134,10 +134,8 @@ const IndividualArticle = () => {
               <Row>{imagecheck()}</Row>
 
               <Row>
-              <Col className="justify-content-md-center">
-                  <div className="article-main">
-                    {checkArticleType()}
-                  </div>
+                <Col className="justify-content-md-center">
+                  <div className="article-main">{checkArticleType()}</div>
                 </Col>
                 <Col className="author-info">
                   <p className="pTag">
@@ -146,14 +144,16 @@ const IndividualArticle = () => {
 
                   <div className="series-container">
                     <p className="pTag">
-                      
-                    Series:
-                      <Link to={`/series/${article?.series_title}`} className="series-link">
+                      Series:
+                      <Link
+                        to={`/series/${article?.series_title}`}
+                        className="series-link"
+                      >
                         {displaySeriesTitle(article?.series_title) || null}
                       </Link>
                     </p>
                   </div>
-              
+
                   <div>
                     <p className="iAAuthor">
                       {' '}
@@ -184,8 +184,7 @@ const IndividualArticle = () => {
                     </p>
                   </div>
                 </Col>
-              <br />
-               
+                <br />
               </Row>
             </div>
           </Row>

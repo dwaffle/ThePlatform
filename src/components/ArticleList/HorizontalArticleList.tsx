@@ -6,7 +6,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { useArticleList } from './articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import ArticleFilter from './ArticleFilter.ts/articleFilter';
-import { indexOf } from 'lodash';
 
 export interface IASearchFilter {
   name?: string;
@@ -17,10 +16,25 @@ export interface IASearchFilter {
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
   // Only allows published/approved articles to be displayed
-  const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
+  // shuffles them!
+  const approvedArticle = knuthShuffle(
+    articleList.filter((a) => a.art_is_approved === 1),
+  );
   const history = useHistory();
   const [articleCol, setArticleCol] = useState<Array<IArticle[]>>([]);
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
+
+  function knuthShuffle(arr: any) {
+    var rand, temp, i;
+
+    for (i = arr.length - 1; i > 0; i -= 1) {
+      rand = Math.floor((i + 1) * Math.random()); //get random between zero and i (inclusive)
+      temp = arr[rand]; //swap i and the zero-indexed number
+      arr[rand] = arr[i];
+      arr[i] = temp;
+    }
+    return arr;
+  }
 
   // Allows only users that are authors in the database to create a new article
   const isAuthor = () => {
@@ -48,7 +62,7 @@ export default function HorizontalArticles(props: { rows: number }) {
       }
 
       if (ASearchFilter?.author) {
-        found = articles.user_userName .includes(ASearchFilter.author);
+        found = articles.user_userName.includes(ASearchFilter.author);
       }
 
       return found;
@@ -62,11 +76,8 @@ export default function HorizontalArticles(props: { rows: number }) {
     setArticleCol(col);
   }, [props.rows, ASearchFilter]);
 
-  function defaultImage(image:any) {
-    if (image) {
-      return <img src={image}></img>;
-    } else return 
-    <img src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"></img>
+  function dateFix(date: any) {
+    return date.split('T')[0];
   }
 
   let artListHeader = {
@@ -106,23 +117,21 @@ export default function HorizontalArticles(props: { rows: number }) {
             {col.map((art, index) => (
               <div key={index}>
                 <Card className="CardParent">
+                  <Link
+                    className="CardTitleLink"
+                    to={`/articles/${art.art_title}`}
+                  >
+                    {art.art_title}
+                  </Link>
+
                   <Row>
                     <Col className="CardColData">
-                      <Link
-                        className="CardTitleLink"
-                        to={`/articles/${art.art_title}`}
-                      >
-                        {art.art_title}
-                      </Link>
                       <p>Written by: {art.user_userName}</p>
-                      {/* <p>Written On: {art.art_creationDate}</p> */}
+                      <i className="pDate">
+                        On: {dateFix(art.art_creationDate)}
+                      </i>
 
-
-
-                      <div className="CardCategory">
-                        {art.art_category}
-                      </div>
-
+                      <div className="CardCategory">{art.art_category}</div>
 
                       {art.art_price !== 0 ? (
                         <div className="isPremium">Price: ${art.art_price}</div>
@@ -141,7 +150,11 @@ export default function HorizontalArticles(props: { rows: number }) {
                     <Col className="CardColDesc">{art.description}</Col>
 
                     <Col className="CardColImg">
-                      {art.art_image ? <img src={art.art_image} /> : <img src="http://ultravires.ca/wp/wp-content/uploads/2018/03/Then-and-Now_-no-image-found.jpg" />}
+                      {art.art_image ? (
+                        <img src={art.art_image} />
+                      ) : (
+                        <img src="http://ultravires.ca/wp/wp-content/uploads/2018/03/Then-and-Now_-no-image-found.jpg" />
+                      )}
                     </Col>
                   </Row>
                 </Card>
@@ -153,4 +166,3 @@ export default function HorizontalArticles(props: { rows: number }) {
     </MainLayout>
   );
 }
-

@@ -19,48 +19,49 @@
     box-shadow: 3px 3px 3px 3px rgb(156, 165, 163);
 
     .CardTitleLink {
+        padding: 0px 0px 0px 10px;
+        margin: -1px;
         font-size: 1.2rem;
+        border-bottom:  rgb(156, 165, 163) solid 1px;
+        width: 100.2%;
     }
 
     p {
         margin: 0px;
-        padding: 0px;
+        padding-top: 10px;
+        line-height: 1;
     }
 
+    // .pDate {
+    //     position:absolute;
+    //     right: 0;
+    // }
+
+    .CardColData {
+        padding: 0px 0px 0px 25px;
+        margin-right: 10px;
+        max-width: 200px;
+    }
+
+    .CardColDesc {
+        max-height: 13.5vh;
+        box-sizing: border-box;
+        overflow: auto;
+        padding: 5px 5px 5px 5px;
+        scrollbar-width: none;
+        font-family: PT Serif;
+    }
 
     .CardColImg {
         max-width: 225px;
         // margin: 0px;
-        padding: 3px;
-    }
-
-    .CardColData {
-        padding: 0px 0px 0px 17px;
-        margin: 10px;
-        max-width: 325px;
-    }
-
-    .CardColDesc {
-        height: 100%;
-        margin: 7px;
-        padding: 0px 0px 0px 0px;
-        overflow-y: scroll;
-        scrollbar-color: #807f7f rgb(197, 197, 195);
-        scrollbar-width: thin;
-        max-height: 14vh;
-        font-family: PT Serif;
-        
-       
+        padding: 3px 16px 1px 5px;
     }
 
     img {
-        min-height: 150px;
+        min-height: 130px;
         min-width: 200px;
-    }
-
-    .CardCategory {
-        position: absolute;
-        bottom: 0;
+        padding: 4px 2px 3px 3px;
     }
 
     .CardNIA {
@@ -68,23 +69,44 @@
         align-items: middle;
     }
 
+    .CardCategory {
+        position: absolute;
+
+        bottom: 20px
+    }
+
     .isPremium{
         position: absolute;
         bottom: 0;
-        right: 0;
+        // right: 0;
     }
     
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
     .CardParent {
+        height: 50vh;
         display: block;
         margin-left: auto;
         margin-right: auto;
         max-width: 100%;
+
+        .CardColDesc {
+            max-height: 30vh;
+            // box-sizing: border-box;
+            overflow: hidden;
+            padding: 5px 5px 5px 5px;
+            font-family: PT Serif;
+        }
+
+        .CardColImg {
+            display: none;
+        }
+
+
+        // img {
+        //     display: none;
+        // }
     }
 
-    // .CardColDesc {
-    //     height: 100%;
-    // }
   }
