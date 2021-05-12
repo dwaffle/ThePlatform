@@ -110,15 +110,13 @@ export default function HorizontalArticles(props: { rows: number }) {
               <div key={index}>
                 <Card className="CardArt">
                   <Card.Header className="CardHeader">
-                    {' '}
                     <Link to={`/articles/${art.art_title}`}>
                       {art.art_title}
                     </Link>
-                    {/* {(art.artype_id === 1) ? <div className="isPremium">Free!</div>:<div></div>} */}
                     {art.art_price !== 0 ? (
                       <div className="isPremium">Price: ${art.art_price}</div>
-                    ) : (
-                      <div></div>
+                    ) : (art.artype_id !== 3) && (
+                      <div className="isPremium">Free Article</div>
                     )}
                     {art.artype_id === 3 ? (
                       <div className="isPremium">Premium Members</div>
@@ -126,7 +124,6 @@ export default function HorizontalArticles(props: { rows: number }) {
                       <div></div>
                     )}
                     <div>
-                      {' '}
                       <small>Written by: {art.user_userName}</small>
                     </div>
                   </Card.Header>

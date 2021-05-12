@@ -113,6 +113,7 @@ const IndividualArticle = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
+
   function displaySeriesTitle(seriesTitle: any) {
     if (seriesTitle) {
       return seriesTitle;
@@ -133,20 +134,27 @@ const IndividualArticle = () => {
               <Row>{imagecheck()}</Row>
 
               <Row>
-                <Col>
+              <Col className="justify-content-md-center">
+                  <div className="article-main">
+                    {checkArticleType()}
+                  </div>
+                </Col>
+                <Col className="author-info">
                   <p className="pTag">
                     Category: <strong>{article?.art_category}</strong>
                   </p>
 
-                  <div className="pTag">
-                    <small>Series:</small>{' '}
-                    <Link to={`/series/${article?.series_title}`}>
-                      {displaySeriesTitle(article?.series_title) || null}
-                    </Link>
+                  <div className="series-container">
+                    <p className="pTag">
+                      
+                    Series:
+                      <Link to={`/series/${article?.series_title}`} className="series-link">
+                        {displaySeriesTitle(article?.series_title) || null}
+                      </Link>
+                    </p>
                   </div>
-                </Col>
-                <Col>
-                  <div className="divWriter">
+              
+                  <div>
                     <p className="iAAuthor">
                       {' '}
                       <i>written by:</i>{' '}
@@ -176,12 +184,8 @@ const IndividualArticle = () => {
                     </p>
                   </div>
                 </Col>
-              </Row>
               <br />
-              <Row>
-                <Col className="justify-content-md-center">
-                  {checkArticleType()}
-                </Col>
+               
               </Row>
             </div>
           </Row>
