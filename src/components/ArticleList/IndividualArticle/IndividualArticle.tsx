@@ -129,7 +129,6 @@ const IndividualArticle = () => {
             <div>
               <p className="IAHeadline">
                 {article?.art_title}{' '}
-                {article && <Rating article_id={article.art_id} />}
               </p>
               <Row>{imagecheck()}</Row>
 
@@ -144,20 +143,15 @@ const IndividualArticle = () => {
 
                   <div className="series-container">
                     <p className="pTag">
-                      Series:
-                      <Link
-                        to={`/series/${article?.series_title}`}
-                        className="series-link"
-                      >
+                    Series:
+                    {article?.series_title ? <Link to={`/series/${article?.series_title}`} className="series-link">
                         {displaySeriesTitle(article?.series_title) || null}
-                      </Link>
+                      </Link> : " Uncategorized"} 
                     </p>
                   </div>
-
                   <div>
                     <p className="iAAuthor">
-                      {' '}
-                      <i>written by:</i>{' '}
+                      <i>Written by:</i>
                       <strong>{article?.user_userName}</strong>
                       <br />
                       <a
@@ -182,6 +176,8 @@ const IndividualArticle = () => {
                         <Image src={twitter} />
                       </a>
                     </p>
+                    
+                    {article && <Rating article_id={article.art_id} />} 
                   </div>
                 </Col>
                 <br />

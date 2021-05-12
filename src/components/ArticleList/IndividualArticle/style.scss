@@ -112,9 +112,13 @@
 }
 
 .article-main{
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
     justify-content:center;
     float:left;
     font-size:22px;
+    width: 90%;
 
     &::first-letter{
         font-size:35px;
@@ -122,6 +126,7 @@
 }
 
 .author-info{
+    align-items:right;
     padding-bottom:10px;
     padding-left: 50px;
     width:20%;
