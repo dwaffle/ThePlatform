@@ -47,9 +47,9 @@ export default function HorizontalArticles(props: { rows: number }) {
         found = found && articles.art_category.includes(ASearchFilter.category);
       }
 
-      // if (ASearchFilter?.author) {
-      //   found = articles.user_userName .includes(ASearchFilter.author);
-      // }
+      if (ASearchFilter?.author) {
+        found = articles.user_userName .includes(ASearchFilter.author);
+      }
 
       return found;
     });
@@ -154,38 +154,3 @@ export default function HorizontalArticles(props: { rows: number }) {
   );
 }
 
-/* <Card className="CardArt">
-                  <Card.Header className="CardHeader">
-                    {' '}
-                    <Link to={`/articles/${art.art_title}`}>
-                      {art.art_title}
-                    </Link>
-                    {/* {(art.artype_id === 1) ? <div className="isPremium">Free!</div>:<div></div>} }
-                     /*{art.art_price !== 0 ? (
-                      <div className="isPremium">Price: ${art.art_price}</div>
-                    ) : (
-                      <div></div>
-                    )}
-                    {art.artype_id === 3 ? (
-                      <div className="isPremium">Premium Members</div>
-                    ) : (
-                      <div></div>
-                    )}
-                    <div>
-                      {' '}
-                      <small>Written by: {art.user_userName}</small>
-                    </div>
-              
-                  </Card.Header>
-                  <Card.Body className="CardBody">
-                    <Card.Text className="CardText">
-                      {art.description}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer className="IACardFooter">
-                    <i className={`tag-${art.art_category}`}>
-                      {' '}
-                      {art.art_category}{' '}
-                    </i>
-                  </Card.Footer>
-                </Card> */

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader&display=swap');
+
 .IAHeadline {
     margin-top: 10px;
     font-size: 48px;
@@ -44,8 +46,6 @@
     scrollbar-width:thin;
     scrollbar-color:#363535 ;
     white-space: pre-wrap;
-    // direction: rtl;
-
 }
 
 .articleDetails {
@@ -55,7 +55,7 @@
 .iABody {
     white-space: pre-wrap;
     text-align: justify;
-
+    font-family: "Newsreader";
 }
 
 .socialMedia {
@@ -104,4 +104,31 @@
     text-align: center;
     border: 1px solid #999;
     font-size: 20px;
+}
+
+.series-link{
+    width:20%;
+    overflow-wrap:break-word
+}
+
+.article-main{
+    justify-content:center;
+    float:left;
+    font-size:22px;
+
+    &::first-letter{
+        font-size:35px;
+    }
+}
+
+.author-info{
+    padding-bottom:10px;
+    padding-left: 50px;
+    width:20%;
+    font-weight:bold;
+    font-size:22px;
+}
+
+.series-container{
+    width:60%;
 }
