@@ -56,9 +56,9 @@ export default function HorizontalArticles(props: { rows: number }) {
         found = found && articles.art_category.includes(ASearchFilter.category);
       }
 
-      if (ASearchFilter?.author) {
-        found = articles.user_userName.includes(ASearchFilter.author);
-      }
+      // if (ASearchFilter?.author) {
+      //   found = articles.user_userName .includes(ASearchFilter.author);
+      // }
 
       return found;
     });
