@@ -4,6 +4,7 @@ import { IArticle } from '../../../services/crud-server/src/models/article';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import api from '../../api';
 import { articlePurchase } from '../../../services/crud-server/src/models/purchaseArticle';
+import { IUser } from '../../../services/crud-server/src/models/user';
 
 export const articleListState = atom({
   key: 'articleList',
@@ -19,6 +20,11 @@ export const userOwnsArticle = atom({
   key: 'userWithArticles',
   default: [] as articlePurchase[],
 });
+
+export const usersListState = atom({
+  key: 'usersList',
+  default: [] as IUser[],
+});
 // Main function that pulls all the articles out of the database
 // Is used in many differen't files
 export function useArticleList() {
@@ -32,6 +38,8 @@ export function useArticleList() {
   const [usersWithArticles, setUsersWithArticles] = useRecoilState(
     userOwnsArticle,
   );
+
+  const [allUsers, setallUsers] = useRecoilState(usersListState);
 
   useEffect(() => {
     api.article
@@ -60,7 +68,17 @@ export function useArticleList() {
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
 
+  useEffect(() => {
+    api.user
+      .get()
+      .then((response) => {
+        setallUsers(response.data);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  }, []);
+
   return {
+    allUsers,
     articleList,
     setArticleList,
     seriesList,
