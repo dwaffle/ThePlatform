@@ -79,7 +79,7 @@ const IndividualArticle = () => {
     );
     console.log(articleOwnership);
     console.log(checkUserOwnerShip);
-    // console.log(articleOwnership)
+
     if (article?.artype_id !== 2) {
       return <div className="iABody">{article?.art_body}</div>;
     }
@@ -88,14 +88,15 @@ const IndividualArticle = () => {
       return (
         <div className="artBodyParent">
           <p>
-            This Article is not free, The main body of the article has been
+            This Article is not free.<br />
+            The main body of the article has been
             hidden.
             <p>
               If you wish to view this article, please support the author by
               purchasing the article.
             </p>
           </p>
-          <button onClick={oneClickPurchase}> Buy Article </button>
+          <button onClick={oneClickPurchase} className="purchase-button"> Buy Article </button>
         </div>
       );
     }

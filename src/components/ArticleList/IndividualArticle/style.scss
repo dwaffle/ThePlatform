@@ -137,3 +137,10 @@
 .series-container{
     width:60%;
 }
+
+.purchase-button{
+        &:hover {
+            color: #FFF;
+            background-color: #000;
+          }
+}

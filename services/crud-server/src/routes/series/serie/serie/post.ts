@@ -18,7 +18,7 @@ export function post(app:any){
     } catch {
         response.send(400).send({
             error: 400,
-            message: "There is a syntax error in your article formation."
+            message: "There is a syntax error in your series formation."
         })
     }
     })
