@@ -86,7 +86,7 @@ export default function RatingArticles(props: { article_id: any }) {
       /> 
       
       <br/>
-      <h6 className="starStyle"> Base on ( <strong> {nbrReviews} </strong>) reviewer(s)</h6>
+      <h6 className="starStyle"> Based on ( <strong> {nbrReviews} </strong>) reviewer(s)</h6>
       <Button variant="warning" onClick={writeRating}>
         <strong>Add Rating</strong>
       </Button>
