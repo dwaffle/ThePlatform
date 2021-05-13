@@ -78,56 +78,54 @@ export default function SignupPage(props: {}) {
               manditory
             </div>
             <div className="form-signup">
-            <Form.Group className="name">
-              <Row>
-                <Col>
-                  <Form.Label>First Name*</Form.Label>
-                  <Form.Control
-                    className="firstname"
-                    type="firstname"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </Col>
-                <Col>
-                  <Form.Label>Last Name*</Form.Label>
-                  <Form.Control
-                    className="lastname"
-                    type="lastname"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </Col>
-                
-              </Row>
-            </Form.Group>
-            <Form.Group>
-              <Row>
-                <Col>
-              <Form.Label>Username*</Form.Label>
-                <Form.Control
-                  className="username"
-                  type="username"
-                  placeholder="Enter Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                </Col>
-                <Col>
-                  <Form.Label>Email*</Form.Label>
-                  <Form.Control
-                    className="email"
-                    type="email"
-                    placeholder="Email@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+              <Form.Group className="name">
+                <Row>
+                  <Col>
+                    <Form.Label>First Name*</Form.Label>
+                    <Form.Control
+                      className="firstname"
+                      type="firstname"
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
                   </Col>
-              </Row>
-              
-            </Form.Group>
+                  <Col>
+                    <Form.Label>Last Name*</Form.Label>
+                    <Form.Control
+                      className="lastname"
+                      type="lastname"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  </Col>
+                </Row>
+              </Form.Group>
+              <Form.Group>
+                <Row>
+                  <Col>
+                    <Form.Label>Username*</Form.Label>
+                    <Form.Control
+                      className="username"
+                      type="username"
+                      placeholder="Enter Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <Form.Label>Email*</Form.Label>
+                    <Form.Control
+                      className="email"
+                      type="email"
+                      placeholder="Email@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Col>
+                </Row>
+              </Form.Group>
             </div>
             <Form.Group>
               <Form.Label>Password*</Form.Label>

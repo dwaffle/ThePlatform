@@ -13,7 +13,7 @@ export default function ArticleFilter(props: {
 
   // local state
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [searchBrand, setSearchBrand] = useState<string>('');
+  const [searchAuthor, setSearchAuthor] = useState<string>('');
   const [searchCategory, setSearchCategory] = useState<string>('');
 
   // events
@@ -21,8 +21,8 @@ export default function ArticleFilter(props: {
     setSearchTerm(e.target.value);
   };
 
-  const onChangeBrand = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSearchBrand(e.target.value);
+  const onChangeAuthor = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSearchAuthor(e.target.value);
   };
 
   const onChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -33,21 +33,31 @@ export default function ArticleFilter(props: {
   useEffect(() => {
     props.aSearchDispatch({
       name: searchTerm,
-      // brand: searchBrand,
+      author: searchAuthor,
       category: searchCategory,
     });
-  }, [searchTerm, searchCategory, searchBrand]);
+  }, [searchTerm, searchCategory, searchAuthor]);
 
   return (
     <>
       <Form>
         <Row>
-          {/* <Col>
-                    <Form.Control as="select" defaultValue="Choose..." value={searchBrand} onChange={onChangeBrand}>
-                        <option value="">Show All...</option>
-                        { brands.map(( brand:string ) => <option value={brand}>{brand}</option> )}
-                    </Form.Control>
-                </Col> */}
+          <Col>
+            <Form.Control
+              placeholder="Search Article Name..."
+              value={searchTerm}
+              onChange={onChangeSearchTerm}
+            />
+          </Col>
+
+          <Col>
+            <Form.Control
+              placeholder="Search by Author..."
+              value={searchAuthor}
+              onChange={onChangeAuthor}
+            />
+          </Col>
+
           <Col>
             <Form.Control
               as="select"
@@ -55,18 +65,11 @@ export default function ArticleFilter(props: {
               value={searchCategory}
               onChange={onChangeCategory}
             >
-              <option value="">Show All...</option>
+              <option value="">All Categories...</option>
               {categories.map((category: string) => (
                 <option value={category}>{category}</option>
               ))}
             </Form.Control>
-          </Col>
-          <Col>
-            <Form.Control
-              placeholder="Search Article Name..."
-              value={searchTerm}
-              onChange={onChangeSearchTerm}
-            />
           </Col>
         </Row>
       </Form>

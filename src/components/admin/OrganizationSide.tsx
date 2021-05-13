@@ -38,12 +38,14 @@ export default function OrganizationSide(props: {}) {
       status == selectedOrg?.org_status &&
       selectedOrg?.org_status == 0
     ) {
-      alert('Please choose another organization, you can\'t ban it again.');
+      alert("Please choose another organization, you can't ban it again.");
     } else if (
       status == selectedOrg?.org_status &&
       selectedOrg?.org_status == 1
     ) {
-      alert('Please choose another organization, this organization is already approved');
+      alert(
+        'Please choose another organization, this organization is already approved',
+      );
     } else {
       alert('Please choose an organization to start.');
     }

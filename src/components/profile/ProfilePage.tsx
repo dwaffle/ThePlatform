@@ -20,7 +20,21 @@ export default function ProfilePage(props: {}) {
   // Simple Profile Management (name, email, phone)
   // Sets the open "edit fields"
   const [page, setPage] = useState('');
-  // console.log('page', page);
+
+  const userIDfromStorage = Number(localStorage.getItem('user_id'));
+
+  const { allUsers } = useArticleList();
+  // console.log("all", allUsers)
+
+  const loggedInUser = allUsers.find((a) => a.user_id == userIDfromStorage);
+
+  function dateFix() {
+    if (!loggedInUser?.user_creation_date) {
+      return loggedInUser?.user_creation_date.split('T')[0];
+    }
+
+    return loggedInUser?.user_creation_date.split('T')[0];
+  }
 
   function onClickLogOut() {
     localStorage.clear();
@@ -82,11 +96,31 @@ export default function ProfilePage(props: {}) {
     history.push('/EditPaymentPage');
   }
 
-  const { articleList, setArticleList } = useArticleList();
-
   function myArticles() {
     return history.push('/MyArticles');
   }
+
+  const userType = (typeID: any) => {
+    console.log(typeID);
+    if (typeID === 1) {
+      return 'Admin';
+    }
+    if (typeID === 2) {
+      return 'Free Member';
+    }
+
+    if (typeID === 3) {
+      return 'Editor';
+    }
+
+    if (typeID === 4) {
+      return 'Author';
+    }
+
+    if (typeID == 5) {
+      return 'Premium Members';
+    }
+  };
 
   const isAuthor = () => {
     let userType = Number(localStorage.getItem('user_type'));
@@ -106,37 +140,43 @@ export default function ProfilePage(props: {}) {
         <p className="h8tch2">Profile page</p>
       </div>
 
-      <div className="containerParent">
-        <Row className="profileEdit">
-          <Col className="marginPadding">
-            <Image className="ImageDisplay" src={userAvatar} roundedCircle />
-            <h6>{displayUserName()}</h6>
+      <div className="ProfPageParent">
+        <Row>
+          <Image className="ImageDisplay" src={userAvatar} roundedCircle />
+
+          <Col className="userDataCol">
+            <h2>{loggedInUser?.user_userName}</h2>
+            <p>
+              <small>User ID: #{loggedInUser?.user_id}</small>
+            </p>
+
+            <p> User Type: {userType(loggedInUser?.user_type)}</p>
+            <p>{loggedInUser?.user_email}</p>
+            <p>Created On: {dateFix()}</p>
           </Col>
-          <Col className="profileDirectory">
-            <div className="detailStyle">
-              <p>
-                {displayFirstName()} {displayLastName()}{' '}
-              </p>
-              <p>Email: {displayEmail()}</p>
+        </Row>
 
-              <p>User ID: {displayUserID()}</p>
-            </div>
-
+        <Row className="ProfButtons">
+          <div>
             {/* <Button onClick={paymentInfo}>Payment Info</Button>
           <Button onClick={checkLogin}>Edit</Button> */}
             {isAuthor()}
-            <Button variant="secondary" onClick={() => setPage('Edit')}>
-              Edit
-            </Button>
-            <Button variant="secondary" onClick={() => setPage('paymentPage')}>
-              Payment Info
-            </Button>
-            <Button variant="primary" type="submit" onClick={onClickLogOut}>
-              {' '}
-              Log Out
-            </Button>
-          </Col>
+            <Button onClick={() => setPage('Edit')}>Edit</Button>
+            <Button onClick={() => setPage('paymentPage')}>Payment Info</Button>
+            
+          </div>
+        </Row>
+      </div>
 
+      <div className="EditParent">
+        {/* <div className="logout">
+          <Button variant="primary" type="submit" onClick={onClickLogOut}>
+            {' '}
+            Log Out
+          </Button>
+        </div> */}
+
+        <Row>
           <Col>
             <div>
               {page === 'Edit' && <EditProfilePage />}

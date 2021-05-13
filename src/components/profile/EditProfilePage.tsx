@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import './style.scss';
 import api from '../../api';
 import { useHistory } from 'react-router';
-import userAvatar from '../../data/icon/userAvatar.jpg';
 
 class IprofileChangeRequest {
   user_id: number = 0;
@@ -19,7 +18,6 @@ class IprofileChangeRequest {
 
 export default function EditProfilePage() {
   const history = useHistory();
-
   const [user_email, setEmail] = useState<string>();
   const [user_firstName, setFirstName] = useState<string>();
   const [user_lastName, setLastName] = useState<string>();

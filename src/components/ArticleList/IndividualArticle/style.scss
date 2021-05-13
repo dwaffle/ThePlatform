@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader&display=swap');
+
 .IAHeadline {
     margin-top: 10px;
     font-size: 48px;
@@ -19,7 +21,8 @@
 }
 
 .mainImg {
-     margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 25px;
     width: 100%;
     max-height: 50vh;
     min-height: 25vh;
@@ -43,8 +46,6 @@
     scrollbar-width:thin;
     scrollbar-color:#363535 ;
     white-space: pre-wrap;
-    // direction: rtl;
-
 }
 
 .articleDetails {
@@ -54,7 +55,7 @@
 .iABody {
     white-space: pre-wrap;
     text-align: justify;
-
+    font-family: "Newsreader";
 }
 
 .socialMedia {
@@ -103,4 +104,43 @@
     text-align: center;
     border: 1px solid #999;
     font-size: 20px;
+}
+
+.series-link{
+    width:20%;
+    overflow-wrap:break-word
+}
+
+.article-main{
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
+    justify-content:center;
+    float:left;
+    font-size:22px;
+    width: 90%;
+
+    &::first-letter{
+        font-size:35px;
+    }
+}
+
+.author-info{
+    align-items:right;
+    padding-bottom:10px;
+    padding-left: 50px;
+    width:20%;
+    font-weight:bold;
+    font-size:22px;
+}
+
+.series-container{
+    width:60%;
+}
+
+.purchase-button{
+        &:hover {
+            color: #FFF;
+            background-color: #000;
+          }
 }

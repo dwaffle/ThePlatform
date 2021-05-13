@@ -36,21 +36,16 @@ const IndividualArticle = () => {
   const articleOwnership = useRecoilValue(userOwnsArticle);
 
   const imagecheck = () => {
-   
     if (!article?.art_image) {
       return (
-          <Image 
+        <Image
           className="mainImg"
-          src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg" 
-          thumbnail   />
+          src="https://honokeana.net/wp-content/uploads/2014/10/sunset-wide-Daane_Honokeana-10-431x1600-1024x276.jpg"
+          thumbnail
+        />
       );
     } else {
-      return (
-          <Image 
-          className="mainImg"
-          src={article.art_image}
-          thumbnail />
-      );
+      return <Image className="mainImg" src={article.art_image} thumbnail />;
     }
   };
 
@@ -84,7 +79,7 @@ const IndividualArticle = () => {
     );
     console.log(articleOwnership);
     console.log(checkUserOwnerShip);
-    // console.log(articleOwnership)
+
     if (article?.artype_id !== 2) {
       return <div className="iABody">{article?.art_body}</div>;
     }
@@ -93,14 +88,15 @@ const IndividualArticle = () => {
       return (
         <div className="artBodyParent">
           <p>
-            This Article is not free, The main body of the article has been
+            This Article is not free.<br />
+            The main body of the article has been
             hidden.
             <p>
               If you wish to view this article, please support the author by
               purchasing the article.
             </p>
           </p>
-          <button onClick={oneClickPurchase}> Buy Article </button>
+          <button onClick={oneClickPurchase} className="purchase-button"> Buy Article </button>
         </div>
       );
     }
@@ -118,6 +114,7 @@ const IndividualArticle = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
+
   function displaySeriesTitle(seriesTitle: any) {
     if (seriesTitle) {
       return seriesTitle;
@@ -126,88 +123,77 @@ const IndividualArticle = () => {
 
   return (
     <MainLayout>
-        <Row>
-          <Col />
-          <Col xs = {8}>
-        <Row>
-        <div>
-          <p className="IAHeadline">
-            {article?.art_title} {article && <Rating article_id={article.art_id} />}
-          </p>
-            <Row>
-            
-              {imagecheck()}
-            
-            </Row>
-
-            <Row>
-    
-            <Col>
-
-            <p className="pTag">
-            Category: <strong>{article?.art_category}</strong> 
-          </p>
-
-          <div className="pTag">
-            <small>Series:</small>{' '}
-            <Link to={`/series/${article?.series_title}`}>
-              {displaySeriesTitle(article?.series_title) || null}
-            </Link>
-          </div>
-            </Col>
-            <Col>
-
-            <div className ="divWriter">
-              <p className="iAAuthor">
-            {' '}
-            <i>written by:</i> <strong>{article?.user_userName}</strong>
-            <br/>
-            <a
-              className="socialMedia"
-              href="{https://facebook.com/}"
-              target="_blank"
-            >
-              <img src={facebook} />
-            </a>
-            <a
-              className="socialMedia"
-              href="https://www.instagram.com/"
-              target="_blank"
-            >
-              <Image src={instagram} />
-            </a>
-            <a
-              className="socialMedia"
-              href="https://twitter.com/"
-              target="_blank"
-            >
-              <Image src={twitter} />
-            </a>
-          </p>
-              </div>
-            
-            </Col>
-          </Row>
-      <br/>
       <Row>
-        
-        <Col  className="justify-content-md-center" >
-        {checkArticleType()}
+        <Col />
+        <Col xs={8}>
+          <Row>
+            <div>
+              <p className="IAHeadline">{article?.art_title} </p>
+              <Row>{imagecheck()}</Row>
+
+              <Row>
+                <Col className="justify-content-md-center">
+                  <div className="article-main">{checkArticleType()}</div>
+                </Col>
+                <Col className="author-info">
+                  <p className="pTag">
+                    Category: <strong>{article?.art_category}</strong>
+                  </p>
+
+                  <div className="series-container">
+                    <p className="pTag">
+                      Series:
+                      {article?.series_title ? (
+                        <Link
+                          to={`/series/${article?.series_title}`}
+                          className="series-link"
+                        >
+                          {displaySeriesTitle(article?.series_title) || null}
+                        </Link>
+                      ) : (
+                        ' Uncategorized'
+                      )}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="iAAuthor">
+                      <i>Written by:</i>
+                      <strong>{article?.user_userName}</strong>
+                      <br />
+                      <a
+                        className="socialMedia"
+                        href="{https://facebook.com/}"
+                        target="_blank"
+                      >
+                        <img src={facebook} />
+                      </a>
+                      <a
+                        className="socialMedia"
+                        href="https://www.instagram.com/"
+                        target="_blank"
+                      >
+                        <Image src={instagram} />
+                      </a>
+                      <a
+                        className="socialMedia"
+                        href="https://twitter.com/"
+                        target="_blank"
+                      >
+                        <Image src={twitter} />
+                      </a>
+                    </p>
+
+                    {article && <Rating article_id={article.art_id} />}
+                  </div>
+                </Col>
+                <br />
+              </Row>
+            </div>
+          </Row>
         </Col>
-       
-      </Row>
-        
-        </div>
-      </Row>
 
-          </Col>
-
-          <Col />
-        </Row>
-      
-  
-     
-      
+        <Col />
+      </Row>
     </MainLayout>
   );
 };

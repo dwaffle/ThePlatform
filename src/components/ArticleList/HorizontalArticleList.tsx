@@ -9,42 +9,35 @@ import ArticleFilter from './ArticleFilter.ts/articleFilter';
 
 export interface IASearchFilter {
   name?: string;
-  author?: string;
+  author?: any;
   category?: string;
 }
 
 export default function HorizontalArticles(props: { rows: number }) {
   const { articleList, setArticleList } = useArticleList();
   // Only allows published/approved articles to be displayed
-  const approvedArticle = articleList.filter((a) => a.art_is_approved === 1);
+  // shuffles them!
+  const approvedArticle = knuthShuffle(
+    articleList.filter((a) => a.art_is_approved === 1),
+  );
   const history = useHistory();
   const [articleCol, setArticleCol] = useState<Array<IArticle[]>>([]);
   const [ASearchFilter, setASearchFilter] = useState<IASearchFilter>({});
 
-  
-  // Allows only users that are authors in the database to create a new article
-  let isAuthor = (e: any) => {
-    e.preventDefault();
-    let userType = Number(localStorage.getItem('user_type'));
-    if ((userType != 1 && userType != 4) || !userType) {
-      alert('You must be an author to create an article');
-    } else {
-      return history.push('/newArticle');
+  function knuthShuffle(arr: any) {
+    var rand, temp, i;
+
+    for (i = arr.length - 1; i > 0; i -= 1) {
+      rand = Math.floor((i + 1) * Math.random()); //get random between zero and i (inclusive)
+      temp = arr[rand]; //swap i and the zero-indexed number
+      arr[rand] = arr[i];
+      arr[i] = temp;
     }
-  };
+    return arr;
+  }
 
-  // const isAuthor = () => {
-  //   let userType = Number(localStorage.getItem('user_type'));
-
-  //   let newArt = () => {
-  //     return history.push('/newArticle');
-  //   };
-
-  //   if (userType == 1 || userType == 4) {
-  //     return <Button onClick={newArt}>Create New </Button>;
-  //   }
-  // };
-
+  // Allows only users that are authors in the database to create a new article
+ 
   useEffect(() => {
     const innerProductList = [...approvedArticle].filter((articles) => {
       let found = true;
@@ -55,6 +48,10 @@ export default function HorizontalArticles(props: { rows: number }) {
 
       if (ASearchFilter?.category) {
         found = found && articles.art_category.includes(ASearchFilter.category);
+      }
+
+      if (ASearchFilter?.author) {
+        found = articles.user_userName.includes(ASearchFilter.author);
       }
 
       return found;
@@ -68,11 +65,15 @@ export default function HorizontalArticles(props: { rows: number }) {
     setArticleCol(col);
   }, [props.rows, ASearchFilter]);
 
+  function dateFix(date: any) {
+    return date.split('T')[0];
+  }
+
   let artListHeader = {
     header: {
       background: 'rgba(0, 0, 0, 0.5)',
       backgroundImage:
-        'url(https://thatsmypark.org/wp-content/uploads/2020/04/sunset-wide.jpg)',
+        'url(https://techcrunch.com/wp-content/uploads/2014/11/shutterstock_55915930-e1415052560114.jpg)',
       height: '32vh',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -90,12 +91,10 @@ export default function HorizontalArticles(props: { rows: number }) {
   return (
     <MainLayout>
       <div style={artListHeader.header}>
-        <p className="h8tch2">Articles</p>
+        {/* <p className="h8tch2">Articles</p> */}
       </div>
-      <div className ="addMargin">
-      <Button  onClick={isAuthor} variant="success">Create New Article</Button>
-      </div>
-      
+
+      {/* {isAuthor()} */}
 
       <div className="searchFeature">
         {<ArticleFilter aSearchDispatch={setASearchFilter} />}
@@ -106,26 +105,47 @@ export default function HorizontalArticles(props: { rows: number }) {
           <div>
             {col.map((art, index) => (
               <div key={index}>
-                <Card className="CardArt">
-                  <Card.Header className="CardHeader">
-                    {' '}
-                    <Link to={`/articles/${art.art_title}`}>
-                      {art.art_title}
-                    </Link>
-                    <div>
-                      {' '}
-                      Author: {art.user_userName} {''}
-                    </div>
-                  </Card.Header>
+                <Card className="CardParent">
+                  <Link
+                    className="CardTitleLink"
+                    to={`/articles/${art.art_title}`}
+                  >
+                    {art.art_title}
+                  </Link>
 
-                  <Card.Body className="CardBody">
-                    <Card.Text className="CardText">
-                      {art.description}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer className="IACardFooter">
-                    {art.art_category}
-                  </Card.Footer>
+                  <Row>
+                    <Col className="CardColData">
+                      <p>Written by: {art.user_userName}</p>
+                      <i className="pDate">
+                        On: {dateFix(art.art_creationDate)}
+                      </i>
+
+                      <div className="CardCategory">{art.art_category}</div>
+
+                      {art.art_price !== 0 ? (
+                        <div className="isPremium">Price: ${art.art_price}</div>
+                      ) : (
+                        art.artype_id !== 3 && (
+                          <div className="isPremium">Free Article</div>
+                        )
+                      )}
+                      {art.artype_id === 3 ? (
+                        <div className="isPremium">Premium Members</div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </Col>
+
+                    <Col className="CardColDesc">{art.description}</Col>
+
+                    <Col className="CardColImg">
+                      {art.art_image ? (
+                        <img src={art.art_image} />
+                      ) : (
+                        <img src="http://ultravires.ca/wp/wp-content/uploads/2018/03/Then-and-Now_-no-image-found.jpg" />
+                      )}
+                    </Col>
+                  </Row>
                 </Card>
               </div>
             ))}

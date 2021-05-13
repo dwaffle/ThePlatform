@@ -46,6 +46,16 @@ export default function HeaderNavigation(props: {}) {
     }
   }
 
+  const isUserAuthor = () => {
+    if (user_type == 1 || user_type == 4) {
+      return (
+        <LinkContainer to="/newArticle">
+          <Nav.Link>Create New Article</Nav.Link>
+        </LinkContainer>
+      );
+    }
+  };
+
   function isLoggedIn() {
     if (!localStorage.getItem('token')) {
       return (
@@ -91,7 +101,7 @@ export default function HeaderNavigation(props: {}) {
   </Navbar.Collapse>
 </Navbar> */}
 
-      <Navbar variant="dark" className="navbarBG" collapseOnSelect expand="md">
+      <Navbar variant="dark"  className="navbarBG" collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="navFont">
@@ -111,6 +121,7 @@ export default function HeaderNavigation(props: {}) {
             {isEditor()}
           </Nav>
         </Navbar.Collapse>
+        <Nav> {isUserAuthor()} </Nav>
         <Nav className="navProfile">{isLoggedIn()}</Nav>
       </Navbar>
     </>
