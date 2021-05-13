@@ -1,5 +1,23 @@
 Using the CRUD server:
 
+## Users
+
+Intended for getting users as groups.
+
+PATCH: Allows users to change their information.
+Requests look like {
+    user_id: number,
+    user_firstName?: string
+    user_lastName?: string
+    user_email?: string
+    user_password?: string
+    user_twitter?:string
+    user_facebook?:string
+    user_instagram?:string
+}
+
+Only the user_id is required, as a user may want to only change one item.
+
 ## User
 
 GET: Sending to /users gets all the users.
