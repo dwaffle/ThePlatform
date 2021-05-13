@@ -101,7 +101,7 @@ export default function HeaderNavigation(props: {}) {
   </Navbar.Collapse>
 </Navbar> */}
 
-      <Navbar variant="dark" className="navbarBG" collapseOnSelect expand="md">
+      <Navbar variant="dark"  className="navbarBG" collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="navFont">

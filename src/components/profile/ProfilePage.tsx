@@ -28,9 +28,13 @@ export default function ProfilePage(props: {}) {
 
   const loggedInUser = allUsers.find((a) => a.user_id == userIDfromStorage);
 
-  // function dateFix(date: any) {
-  //   return date.split('T')[0];
-  // }
+  function dateFix() {
+    if (!loggedInUser?.user_creation_date) {
+      return loggedInUser?.user_creation_date.split('T')[0];
+    }
+
+    return loggedInUser?.user_creation_date.split('T')[0];
+  }
 
   function onClickLogOut() {
     localStorage.clear();
@@ -148,7 +152,7 @@ export default function ProfilePage(props: {}) {
 
             <p> User Type: {userType(loggedInUser?.user_type)}</p>
             <p>{loggedInUser?.user_email}</p>
-            {/* <p>Created On: {dateFix(loggedInUser?.user_creation_date)}</p> */}
+            <p>Created On: {dateFix()}</p>
           </Col>
         </Row>
 
