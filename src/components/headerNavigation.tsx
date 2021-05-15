@@ -4,6 +4,11 @@ import { useHistory } from 'react-router';
 import './style.scss';
 import { useState } from 'react';
 
+import { ImUser , ImExit, ImEnter, ImPlus, ImCog, ImPaintFormat, ImTree, ImFlag, ImNewspaper} from "react-icons/im";
+
+
+
+
 export default function HeaderNavigation(props: {}) {
 
   const user_id = Number(localStorage.getItem('user_id'));
@@ -19,7 +24,7 @@ export default function HeaderNavigation(props: {}) {
       return (
         // <NavDropdown.Item href="/editor">Editor</NavDropdown.Item>
         <LinkContainer to="/editor">
-          <Nav.Link>Editor</Nav.Link>
+          <Nav.Link>Editor <ImPaintFormat/></Nav.Link>
         </LinkContainer>
       );
     }
@@ -29,7 +34,7 @@ export default function HeaderNavigation(props: {}) {
   function isAdmin() {
     if (user_type === 1) {
       return (
-        <NavDropdown.Item href="/admin">My Admin</NavDropdown.Item>
+        <NavDropdown.Item href="/admin"><ImCog/> Admin  </NavDropdown.Item>
         // <LinkContainer to="/admin">
         //   <Nav.Link>Admin</Nav.Link>
         // </LinkContainer>
@@ -45,18 +50,19 @@ export default function HeaderNavigation(props: {}) {
   function displayFirstName() {
     const firstName = localStorage.getItem('first_name');
     if (firstName) {
-      return firstName;
+      return firstName.toLocaleUpperCase();
     } else {
       return;
     }
   }
 
-  const isUserAuthor = () => {
+  const isAuthor = () => {
     if (user_type == 1 || user_type == 4) {
       return (
-        <LinkContainer to="/newArticle">
-          <Nav.Link>Create New Article</Nav.Link>
-        </LinkContainer>
+        <NavDropdown.Item href="/newArticle"><ImPlus/> Add Article </NavDropdown.Item>
+        // <LinkContainer to="/newArticle">
+        //   <Nav.Link>Create New Article</Nav.Link>
+        // </LinkContainer>
       );
     }
   };
@@ -65,7 +71,7 @@ export default function HeaderNavigation(props: {}) {
     if (!localStorage.getItem('token')) {
       return (
         <LinkContainer to="/login">
-          <Nav.Link>Login</Nav.Link>
+          <Nav.Link><ImEnter/> Login </Nav.Link>
         </LinkContainer>
       );
     } else {
@@ -78,11 +84,16 @@ export default function HeaderNavigation(props: {}) {
           <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
         </LinkContainer> */}
 
-          <NavDropdown title={displayFirstName()} id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+          <NavDropdown title= {<ImUser/>} id="collasible-nav-dropdown">
+            <NavDropdown.Item href="/profile">
+              <h4> {displayFirstName()}</h4>See your profile
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
             {isAdmin()}
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+            {isAuthor()} 
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={logoutHandler}><ImExit/> Logout </NavDropdown.Item>
           </NavDropdown>
         </>
       );
@@ -118,27 +129,27 @@ window.addEventListener('scroll',changeBackground);
   </Navbar.Collapse>
 </Navbar> */}
 
-      <Navbar sticky="top"  bg= {backGround?"primary":"dark"} variant="dark" className="navbarBG" collapseOnSelect expand="md">
+      <Navbar sticky="top"  bg= {backGround?"primary":"dark"} className="navbarBG" variant="dark"  collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="navFont">
+          <Nav>
             <LinkContainer exact to="/">
               <Nav.Link>The Platform</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/articles">
-              <Nav.Link>Articles</Nav.Link>
+              <Nav.Link>Articles <ImNewspaper/></Nav.Link>
             </LinkContainer>
             <LinkContainer to="/organization">
-              <Nav.Link>Organizations</Nav.Link>
+              <Nav.Link>Organizations <ImFlag/></Nav.Link>
             </LinkContainer>
             <LinkContainer to="/series">
-              <Nav.Link>Series</Nav.Link>
+              <Nav.Link>Series <ImTree/></Nav.Link>
             </LinkContainer>
 
             {isEditor()}
           </Nav>
         </Navbar.Collapse>
-        <Nav> {isUserAuthor()} </Nav>
+        {/* <Nav> {isUserAuthor()} </Nav> */}
         <Nav className="navProfile">{isLoggedIn()}</Nav>
       </Navbar>
     </>
