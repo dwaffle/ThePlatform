@@ -20,56 +20,26 @@ export default function LandingPage(){
     }
 
 
-    return(
-        <>
-      
-        {/* <Row>
-        <Col>
-                    
-                    <FeatureCarousel/> 
-            
-                
-                </Col>  
-                
-        </Row>
-        */}
-        
-
+    return(<>
         <div className = "landing-section">
             <Row>   
-        
-                
                 <div className = "landing-info">    
                          
-                        <Col >  
-                            <h2>Where good Articles find you</h2>
-                            <br/>
-                            <h4>Read, add your Article on just about any topic. Everyone’s welcome.</h4>
-                            <br/>  
-                                <Button onClick = {getStarted()} variant="outline-danger"> Get Started</Button>
-                                <Button onClick = {getArticles()} variant="outline-danger"> Articles List</Button>  
-                        </Col>  
-                        
-                        </div> 
+                    <Col >  
+                        <h2>Where good Articles find you</h2>
+                        <br/>
+                        <h4>Read, add your Article on just about any topic. Everyone’s welcome.</h4>
+                        <br/>  
+                            <Button onClick = {getStarted()} variant="outline-danger"> Get Started</Button>
+                            <Button onClick = {getArticles()} variant="outline-danger"> Articles List</Button>  
+                    </Col>         
+                </div> 
 
-                        <Col>
-                    
-                            <FeatureCarousel/> 
-                      
-                        </Col>  
-
-                          
-           
-
-                </Row>    
-               
-                
-            </div>
-
-
-                        
-        
-        </>
-    );
+                    <Col>
+                        <FeatureCarousel/> 
+                    </Col>  
+             </Row>    
+        </div>
+    </>);
 
 }

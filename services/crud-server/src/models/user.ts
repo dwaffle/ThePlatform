@@ -1,4 +1,3 @@
-import fs from 'fs';
 import dotenv from 'dotenv';
 import { reject } from 'lodash';
 import { resolve } from 'path';
@@ -27,7 +26,9 @@ export interface IUser {
     user_creation_date:string,
     user_facebook?:string,
     user_twitter?:string,
-    user_instagram?:string
+    user_instagram?:string,
+    code:string,
+    user_status:number
 }
 
 export interface IUserNoPassword {
@@ -38,17 +39,19 @@ export interface IUserNoPassword {
     user_firstName:string,
     user_lastName:string,
     user_email:string,
-    user_creation_date:string
+    user_creation_date:string,
 }
 
-export interface IUserAdmin {
-    user_id:number,
-    user_userName:string,
-    user_firstName:string,
-    user_lastName:string,
-    user_creation_date:string
-    user_status:number
-}
+// export interface IUserAdmin {
+//     user_id:number,
+//     user_userName:string,
+//     user_firstName:string,
+//     user_lastName:string,
+//     user_creation_date:string
+//     user_status:number
+//     user_type:number,
+//     user_code:string,
+// }
 
 
 var mysql = require('mysql');
@@ -64,7 +67,7 @@ var connection = mysql.createConnection({
 export const UserModel = {
 
     getAll: ():Promise<IUser[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user ORDER BY user_status DESC, user_firstName ASC', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user join user_type_lu where user.user_type = user_type_lu.lu_id  ORDER BY user_status DESC, user_firstName ASC', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -75,7 +78,7 @@ export const UserModel = {
     },
 
     getAllAdmin: ():Promise<IUser[]> => {
-        return new Promise((resolve, reject) => {connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date, user_status FROM user', function(err:any, result:any){
+        return new Promise((resolve, reject) => {connection.query('SELECT * FROM user join user_type_lu where user.user_type = user_type_lu.lu_id', function(err:any, result:any){
             if(err){
                 reject(err);
             } else {
@@ -150,7 +153,7 @@ export const UserModel = {
         })
     },
 
-    update: async ( Member:IUserAdmin) => {
+    update: async ( Member:IUser) => {
 
         // var connection = await myConnection.getClient()
         return new Promise<any>((resolve, reject) => {
