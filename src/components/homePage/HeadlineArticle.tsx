@@ -22,7 +22,7 @@ export default function HeadlineArticle(props: {}) {
 
   return (
     <>
-      <div className="HeadlineArticle">
+      <div>
         <h1> Headline Article </h1>
 
         {articles.slice(10, 12).map((_article) => {

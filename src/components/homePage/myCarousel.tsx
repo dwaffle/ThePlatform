@@ -2,51 +2,60 @@ import { Carousel, Image } from "react-bootstrap";
 import article from '../../data/carousel/article.jpg'
 import series from '../../data/carousel/series.jpg'
 import organisation from '../../data/carousel/organisation.jpg'
+import { useHistory } from "react-router";
 
 export default function MyCarousel (){
 
+    const history = useHistory();
+
+
+    function onClickGo(selected:any) {
+
+        return history.push(`/${selected}`)
+        
+      }
    
     return (<>
 
         <div className = "myCarsoul">
             <Carousel fade>
-                <Carousel.Item>
+                <Carousel.Item onClick ={ () => {onClickGo("articles")}}>
                     <Image 
                    
                     src={article}
                     //   src="holder.js/800x400?text=First slide&bg=373940"
-                    alt="First slide"
+                    alt="article"
                     thumbnail
                     />
                     <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>Read articles</h3>
+                        <p>Try reading our free article collections.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item onClick ={ () => {onClickGo("series")}}>
                     <Image 
                    
                     src={series}
                     //   src="holder.js/800x400?text=First slide&bg=373940"
-                    alt="First slide"
+                    alt="series"
                     thumbnail
                     />
                     <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>Check our series</h3>
+                        <p>Enjoy our published series of articles.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item onClick ={ () => {onClickGo("organization")}}>
                     <Image 
                    
                     src={organisation}
                     //   src="holder.js/800x400?text=First slide&bg=373940"
-                    alt="First slide"
+                    alt="organisation"
                     thumbnail
                     />
                     <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>Find similar interests</h3>
+                        <p>Join your favorite organisations.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>

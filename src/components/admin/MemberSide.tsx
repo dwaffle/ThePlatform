@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Row, Col, Table, Button, CardDeck, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import { IUserAdmin } from '../../../services/crud-server/src/models/user';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { IUser } from '../../../services/crud-server/src/models/user';
 import api from '../../api';
 
 export default function MemberSide(props: {}) {
+  // const usersState = useRecoilValue(usersListState)
   const history = useHistory();
-  const [members, setMembers] = useState<IUserAdmin[]>([]);
-  const [selectedMember, setSelectedMember] = useState<IUserAdmin>();
+  const [members, setMembers] = useState<IUser[]>([]);
+  const [selectedMember, setSelectedMember] = useState<IUser>();
 
-  function onClick(selected: IUserAdmin) {
+  function onClick(selected: IUser) {
     return function () {
       setSelectedMember(selected);
     };
@@ -18,6 +20,7 @@ export default function MemberSide(props: {}) {
   useEffect(() => {
     api.user.get().then((response) => {
       setMembers(response.data);
+      console.log("user*****" ,response.data)
     });
   }, []);
 
@@ -54,28 +57,35 @@ export default function MemberSide(props: {}) {
           <h3>Member List </h3>
           <Table striped bordered hover>
             <thead>
-              <th>Full Name</th>
-              <th>Date of Profile</th>
               <th>User Name</th>
-              <th>Status</th>
+              <th>Date of Profile</th>
+              <th>Full Name</th>
+              <th>Type</th>
+              <th> Status </th>
             </thead>
             <tbody>
+              
               {members?.map((member) => {
+                       
                 return (
-                  <tr
-                    className="adminTable"
-                    key={member.user_id}
-                    defaultValue={member.user_id}
-                    onClick={onClick(member)}
-                  >
-                    <td>
-                      {' '}
-                      {member.user_firstName} {member.user_lastName}
-                    </td>
-                    <td>{member.user_creation_date.slice(0, 10)}</td>
-                    <td>{member.user_userName}</td>
-                    <td>{member.user_status == 1 ? 'active' : 'banned'}</td>
-                  </tr>
+              
+                  member.user_type != 1 ? <tr
+                  className="adminTable"
+                  key={member.user_id}
+                  defaultValue={member.user_id}
+                  onClick={onClick(member)}
+                >
+                  <td>{member.user_userName}</td>
+                  <td>{member.user_creation_date.slice(0, 10)}</td>
+                  <td>
+                    {' '}
+                    {member.user_firstName} {member.user_lastName}
+                  </td>
+                  <td>{member.code}</td>
+                  <td>{member.user_status == 1 ? '  active' : 'inactive'}</td>
+                </tr>
+                :
+                <div></div>
                 );
               })}
             </tbody>
@@ -92,7 +102,7 @@ export default function MemberSide(props: {}) {
             name="statusMember"
             onClick={approvedOrRejected}
           >
-            Ban Member
+            Deactivate Member
           </Button>
 
           <Button
@@ -102,7 +112,7 @@ export default function MemberSide(props: {}) {
             name="statusMember"
             onClick={approvedOrRejected}
           >
-            Unban Member
+            Activate Member
           </Button>
         </Col>
 

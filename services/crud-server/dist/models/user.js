@@ -27,7 +27,7 @@ var connection = mysql.createConnection({
 exports.UserModel = {
     getAll: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM user ORDER BY user_status DESC, user_firstName ASC', function (err, result) {
+            connection.query('SELECT * FROM user join user_type_lu where user.user_type = user_type_lu.lu_id  ORDER BY user_status DESC, user_firstName ASC', function (err, result) {
                 if (err) {
                     reject(err);
                 }
@@ -39,7 +39,7 @@ exports.UserModel = {
     },
     getAllAdmin: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT user_id, user_userName, user_firstName, user_lastName, user_creation_date, user_status FROM user', function (err, result) {
+            connection.query('SELECT * FROM user join user_type_lu where user.user_type = user_type_lu.lu_id', function (err, result) {
                 if (err) {
                     reject(err);
                 }
