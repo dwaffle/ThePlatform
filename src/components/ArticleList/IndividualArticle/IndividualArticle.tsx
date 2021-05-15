@@ -74,17 +74,20 @@ const IndividualArticle = () => {
   }
 
   function checkArticleType() {
-    let checkUserOwnerShip = articleOwnership.some(
-      (ch) => ch.user_id == userIdNonObject,
-    );
-    console.log(articleOwnership);
-    console.log(checkUserOwnerShip);
+    let checkUserOwnerShip = false;
+    //Cycle through all a user's bought articles to see if they've already bought it.
+    for(let i = 0; i < articleOwnership.length; i++){
+        if(articleOwnership[i]?.art_id == article?.art_id){
+          checkUserOwnerShip = true;
+          break;
+        }
+    }
 
     if (article?.artype_id !== 2) {
       return <div className="iABody">{article?.art_body}</div>;
     }
-
-    if (!checkUserOwnerShip) {
+    //If they haven't bought it and it's a paid article, show the message.
+    if (!checkUserOwnerShip && article.artype_id === 2) {
       return (
         <div className="artBodyParent">
           <p>
@@ -100,7 +103,7 @@ const IndividualArticle = () => {
         </div>
       );
     }
-
+    //Otherwise, they own it, show the article.
     if (checkUserOwnerShip) {
       return <div className="iABody">{article.art_body}</div>;
     }
