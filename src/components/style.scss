@@ -1,5 +1,5 @@
-// @import "node_modules/bootstrap/scss/bootstrap.scss";
-
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+ 
 // .footer{
 //     position: fixed;
 //     margin-top: 1rem;
@@ -10,60 +10,13 @@
 //     width: 100%;
 //     color:white;
 //   }
-
-// .navbarBG{
-//   height: 9vh;
-//   background-color: #363535;
-//   border: 0px solid #d47501;
-//   font-size: 1.3rem;
-//   color: lightgray;
-//   // margin-bottom: 1rem;
-  
-//   .navButtons {
-//     margin: 0 auto;
-//     display: flex;
-//     justify-content: center;
-//   }
-
-// }
-
-// .navFont {
-//   color: lightgray;
-//   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-// }
-
-// .form-narrow{
-//   width:25%;
-// }
-
-// .form-med{
-//   width:300px;
-// }
-
-// .navProfile{
-//   margin-right: 48px ;
-
-// }
-
-@import "node_modules/bootstrap/scss/bootstrap.scss";
- 
-.footer{
-    position: fixed;
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: #363535;
-    border: 2px solid #d47501;
-    bottom: 0;
-    width: 100%;
-    color:white;
-  }
  
 .navbarBG{
 
-  // background-color: #363535;
+  background-color: #363535;
   // border: 0px solid #d47501;
   font-size: 1.1rem;
-  // color: lightgray;
+  // color: black !important;
   margin-bottom: 1rem;
   
   .navButtons {
