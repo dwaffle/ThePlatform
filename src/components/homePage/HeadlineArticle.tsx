@@ -14,6 +14,13 @@ export default function HeadlineArticle(props: {}) {
     };
   }
 
+  // to trim the string to last complete word 
+  function trimMyString(str:string){
+   
+    return str.slice(0,str.lastIndexOf(" "))
+
+  }
+
   useEffect(() => {
     api.article.get().then((response) => {
       setArticles(response.data);
@@ -22,7 +29,7 @@ export default function HeadlineArticle(props: {}) {
 
   return (
     <>
-      <div className="HeadlineArticle">
+      <div>
         <h1> Headline Article </h1>
 
         {articles.slice(10, 12).map((_article) => {
@@ -38,10 +45,14 @@ export default function HeadlineArticle(props: {}) {
                     alt="Generic placeholder"
                   />
 
-                  <h2>{_article.art_title.slice(0, 32)}</h2>
+                  <h2>{
+                  _article.art_title
+                  }</h2>
 
-                  {_article.description.slice(0, 144)}
-
+                  {
+                     trimMyString(_article.description.slice(0, 144))
+                  }
+                   .....
                   <br />
                   <Button
                     variant="outline-primary"

@@ -37,18 +37,7 @@ export default function HorizontalArticles(props: { rows: number }) {
   }
 
   // Allows only users that are authors in the database to create a new article
-  const isAuthor = () => {
-    let userType = Number(localStorage.getItem('user_type'));
-
-    let newArt = () => {
-      return history.push('/newArticle');
-    };
-
-    if (userType == 1 || userType == 4) {
-      return <Button onClick={newArt}>Create New Article</Button>;
-    }
-  };
-
+ 
   useEffect(() => {
     const innerProductList = [...approvedArticle].filter((articles) => {
       let found = true;

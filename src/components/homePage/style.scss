@@ -1,14 +1,22 @@
 
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
-.HeadlineArticle {    
-    margin-top: 0px;
-    // bottom: 0;
-}
+body, h1,.h1 {
+    font-family: Arial, Helvetica, sans-serif !important; 
+    // font-size: 20px;
+  }
+
 
 
 .h5, h5{
     padding-top: 0.3rem;
+}
+
+.h1, h1 {
+    // background-color: slategrey !important;
+    border: none !important;
+    margin-top: 5px !important;
+    border-radius: 10px;
 }
 
 .imgStyle {
@@ -22,3 +30,119 @@
     margin-left:10px;
     padding: 10px;
 }
+
+/* ========================================================== */
+/* 			                                        */
+/* ========================================================== */
+
+.landing-section {
+	// position: relative;
+     margin-bottom: 10px;
+     margin-top: 0px;
+    // margin-left: -5px;
+    // // margin-bottom: 10px;
+    // // height: 395px;
+	// z-index: 999;
+  	// // padding-top: 140px;
+  	// // padding-bottom: 110px;
+  	// // background: url(../../data/background/landing2.jpg) top right no-repeat;
+	// background-size: cover;
+    border-radius: 10px;
+    // // border : red 3px solid;
+    // color: white;
+    // //  opacity: 10%;
+    background-image: linear-gradient(to bottom right, #0052b0, #b340b3); 
+    
+}
+
+.landing-info{
+    margin-left: 15px;
+    margin-right: 15px;
+    
+    padding: 80px;
+    padding-right: 0px;
+    // padding-left: 80px;
+
+    font-weight:bold;
+    // opacity: 100%;
+
+    color: white;
+    // background-color: blue; 
+    
+    -webkit-text-stroke: 0.3px black;
+
+        // border : darkblue 1px solid;
+        // border-radius: 10px;
+        
+        h2{
+            -webkit-text-stroke: 0.5px black;
+        }
+
+    Button{
+        background-color: white;
+        margin-right: 10px;
+        color: black;
+        font-weight:bold;
+        // border-radius: 5px;
+        border-color:black;
+        -webkit-text-stroke: 0px;
+
+    }
+
+    
+}
+
+.myCarsoul{
+   
+    // position: relative;
+    padding: 25px;
+    margin:0px;
+    // border:blanchedalmond 2px solid;
+
+    width:100%;
+    height: 100%;
+    cursor: pointer;
+
+    .carousel {
+        // position:fixed;
+        // top:0;
+        // left:0;
+        height: 100%;
+        
+    }
+    
+
+    img{
+        padding: 0px;
+        // margin: 100px;
+        height: 100%;
+        width: 40%;
+        // object-fit: fill;  
+        
+        // border: black 2px solid  ;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    .carousel-item{
+        height: 300px;
+        
+        
+    }
+
+    .carousel-caption{
+        
+        // border: black 2px solid;
+        padding: 5px;
+        // margin: 0px;
+        // height: 100%;
+        // width: 100%;
+        // position: relative;
+    }
+
+  
+}
+
+

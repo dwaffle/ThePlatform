@@ -75,7 +75,7 @@ export default function OrganizationSide(props: {}) {
                     <td> {org.org_title}</td>
                     <td>{org.org_desc}</td>
                     <td>{org.org_price}</td>
-                    <td>{org.org_status === 1 ? 'active' : 'banned'}</td>
+                    <td>{org.org_status === 1 ? 'active' : 'inactive'}</td>
                   </tr>
                 );
               })}
@@ -92,7 +92,7 @@ export default function OrganizationSide(props: {}) {
             name="statusOrg"
             onClick={approvedOrRejected}
           >
-            Ban Organization
+            Deactivate Organization
           </Button>
 
           <Button
@@ -102,7 +102,7 @@ export default function OrganizationSide(props: {}) {
             name="statusOrg"
             onClick={approvedOrRejected}
           >
-            Unban Organization
+            Activate Organization
           </Button>
         </Col>
 
