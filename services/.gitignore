@@ -8,6 +8,9 @@ dist
 
 # testing
 /coverage
+/.nyc_output
+.nyc_output/.
+
 
 # pr    oduction
 /apps/web-app/build
