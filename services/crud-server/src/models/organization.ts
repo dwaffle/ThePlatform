@@ -4,7 +4,6 @@
 import {IUser} from './user'
 
 import dotenv from 'dotenv';
-import { resolve } from 'path';
 dotenv.config();
 
 var mysql = require('mysql');
