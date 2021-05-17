@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 var mysql = require('mysql');
 
+var mysql = require('mysql');
+
 export class DBConnection {
 
     private static instance:DBConnection|null;
