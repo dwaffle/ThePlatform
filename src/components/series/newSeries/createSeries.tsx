@@ -1,21 +1,16 @@
 import MainLayout from '../../../layouts/MainLayout';
 import './style.scss';
-// import { Container } from 'react-bootstrap';
-// import unnamed from '../../../data/icon/unnamed.jpg';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import api from '../../../api';
-// import user from '../../../api/user';
 
 function CreateSeries() {
-  // let authorName: string = window.localStorage.getItem('username') || '';
 
   const history = useHistory();
 
   const [title, setTitle] = useState<string>('');
   const [desc, setDesc] = useState<string>('');
-  // const [price, setPrice] = useState<string>('');
   const [category, setCategory] = useState<string>('');
 
   const changeCategory = (e: any) => {
@@ -33,7 +28,6 @@ function CreateSeries() {
     console.log(newSeriesCreation);
     //Send object.
     api.series.post(newSeriesCreation);
-    // alert('Success!');
     history.push('/');
     return;
   }
@@ -54,13 +48,6 @@ function CreateSeries() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-                {/* <Form.Label>Price</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Price"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                /> */}
 
                 <Form.Label>Description</Form.Label>
                 <Form.Control

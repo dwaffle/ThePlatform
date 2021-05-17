@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
-import Image from 'react-bootstrap/Image';
 import './style.scss';
 import api from '../../api';
 import { useHistory } from 'react-router';
@@ -148,16 +147,8 @@ export default function EditProfilePage() {
 
   return (
     <>
-      {/* <div className="HeadlineProfile">
-        <p className="h8tch2">Profile Editing Page</p>
-      </div> */}
 
       <div className="editProfileParent">
-        {/* <Row>
-          <Col>
-            <h2>{displayUserName()}</h2>
-          </Col>
-        </Row> */}
         <Form className="EditProfileForms">
           <Row>
             <Col>
@@ -194,7 +185,7 @@ export default function EditProfilePage() {
           </Row>
           <Row>
             <Col>
-              Change Facebook{' '}
+              Change Facebook
               <div className="form-narrow">
                 <Form.Control
                   placeholder={displayFacebook()}
@@ -205,7 +196,7 @@ export default function EditProfilePage() {
           </Row>
           <Row>
             <Col>
-              Change Instagram{' '}
+              Change Instagram
               <div className="form-narrow">
                 <Form.Control
                   placeholder={displayInstagram()}
@@ -216,7 +207,7 @@ export default function EditProfilePage() {
           </Row>
           <Row>
             <Col>
-              Change Twitter{' '}
+              Change Twitter
               <div className="form-narrow">
                 <Form.Control
                   placeholder={displayTwitter()}
@@ -227,7 +218,7 @@ export default function EditProfilePage() {
           </Row>
           <Row>
             <Col>
-              Change Password{' '}
+              Change Password
               <div className="form-narrow">
                 <Form.Control
                   type="password"
@@ -238,7 +229,7 @@ export default function EditProfilePage() {
           </Row>
           <Row>
             <Col>
-              Re-type New Password{' '}
+              Re-type New Password
               <div className="form-narrow">
                 <Form.Control
                   type="password"
@@ -250,11 +241,6 @@ export default function EditProfilePage() {
           <Row>
             <Col>{passwordVerify()}</Col>
           </Row>
-          {/* <Row>
-          <Col xs={6} md={4}>
-            <Image src={userAvatar} roundedCircle />
-          </Col>
-        </Row> */}
 
           <Button variant="primary" type="submit" onClick={onsubmit}>
             Approve Changes
@@ -268,8 +254,6 @@ export default function EditProfilePage() {
           </Button>
         </Form>
       </div>
-
-      {/*  */}
     </>
   );
 }

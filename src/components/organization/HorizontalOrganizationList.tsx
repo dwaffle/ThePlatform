@@ -7,10 +7,6 @@ import { IOrganization } from '../../../services/crud-server/src/models/organiza
 import 'react-multi-carousel/lib/styles.css';
 import './style.scss';
 
-// export interface IOrganization {
-//     name: string;
-//     description: string;
-// }
 
 const responsive = {
   superLargeDesktop: {

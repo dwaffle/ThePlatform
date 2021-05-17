@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ChangePaymentPage from '../components/PaymentPage/ChangePaymentPage';
 import MainLayout from '../layouts/MainLayout';
 

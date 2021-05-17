@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Card, CardDeck, Form } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router';
 import MainLayout from '../../layouts/MainLayout';
-// import Rating from "react-rating"
 import { Rating } from '@material-ui/lab';
 import './style.scss';
 import api from '../../api';

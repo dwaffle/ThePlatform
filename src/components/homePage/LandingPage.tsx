@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 
 import FeatureCarousel from './myCarousel'

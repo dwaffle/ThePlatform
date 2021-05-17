@@ -8,7 +8,6 @@ import './style.scss';
 import { useRecoilValue } from 'recoil';
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import { seriesListState } from '../articleList';
-// import { Editor } from '@tinymce/tinymce-react';
 import dotenv from 'dotenv';
 dotenv.config();
 

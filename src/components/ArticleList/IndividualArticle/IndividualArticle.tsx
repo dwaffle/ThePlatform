@@ -12,10 +12,7 @@ import Image from 'react-bootstrap/Image';
 import facebook from '../../../data/icon/facebook.png';
 import instagram from '../../../data/icon/instagram.png';
 import twitter from '../../..//data/icon/twitter.png';
-// import paymentInfo from '../../../api/paymentInfo/paymentInfo';
-// import user from '../../../api/user';
 import Rating from '../../rating/rating';
-// import series from '../../../api/series';
 
 const IndividualArticle = () => {
   //articles without id

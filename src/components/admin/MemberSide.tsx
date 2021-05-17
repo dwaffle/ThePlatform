@@ -6,7 +6,6 @@ import { IUser } from '../../../services/crud-server/src/models/user';
 import api from '../../api';
 
 export default function MemberSide(props: {}) {
-  // const usersState = useRecoilValue(usersListState)
   const history = useHistory();
   const [members, setMembers] = useState<IUser[]>([]);
   const [selectedMember, setSelectedMember] = useState<IUser>();
@@ -20,7 +19,6 @@ export default function MemberSide(props: {}) {
   useEffect(() => {
     api.user.get().then((response) => {
       setMembers(response.data);
-      console.log("user*****" ,response.data)
     });
   }, []);
 

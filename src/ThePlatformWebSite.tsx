@@ -16,7 +16,6 @@ import EditProfilePage from './pages/EditProfilePage';
 import EditorPage from './components/EditorPage/EditorPage';
 import IndividualArticle from './components/ArticleList/IndividualArticle/IndividualArticle';
 import writeRating from './components/rating/writeRating';
-// import getRating from './components/rating/rating'
 import EditPaymentPage from './pages/EditPaymentInfo';
 import MyArticles from './components/MyArticles/myArticles';
 import CreateSeries from './components/series/newSeries/createSeries';
@@ -24,12 +23,6 @@ import IndividualSeries from './components/series/individualSeries/IndividualSer
 import IndividualOrganizationPage from './pages/Organization/IndividualOrgPage';
 
 export default function ThePlatformWebsite(props: {}) {
-  // const requireAuth = () => {
-  //   if (!localStorage.getItem("token")) {
-  //     return <Route path="/" component={LoginPage} />;
-  //   }
-  //   return <Route path="/" component={HomePage} />;
-  // };
 
   return (
     <BrowserRouter>

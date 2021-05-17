@@ -22,7 +22,6 @@ export default function HeaderNavigation(props: {}) {
   function isEditor() {
     if (user_type === 1 || user_type === 5) {
       return (
-        // <NavDropdown.Item href="/editor">Editor</NavDropdown.Item>
         <LinkContainer to="/editor">
           <Nav.Link>Editor <ImPaintFormat/></Nav.Link>
         </LinkContainer>
@@ -35,9 +34,6 @@ export default function HeaderNavigation(props: {}) {
     if (user_type === 1) {
       return (
         <NavDropdown.Item href="/admin"><ImCog/> Admin  </NavDropdown.Item>
-        // <LinkContainer to="/admin">
-        //   <Nav.Link>Admin</Nav.Link>
-        // </LinkContainer>
       );
     }
   }
@@ -60,9 +56,6 @@ export default function HeaderNavigation(props: {}) {
     if (user_type == 1 || user_type == 4) {
       return (
         <NavDropdown.Item href="/newArticle"><ImPlus/> Add Article </NavDropdown.Item>
-        // <LinkContainer to="/newArticle">
-        //   <Nav.Link>Create New Article</Nav.Link>
-        // </LinkContainer>
       );
     }
   };
@@ -77,12 +70,6 @@ export default function HeaderNavigation(props: {}) {
     } else {
       return ( 
         <>
-          {/* <LinkContainer to="/profile">
-          <Nav.Link>My Profile</Nav.Link>
-        </LinkContainer> */}
-          {/* <LinkContainer to="/">
-          <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
-        </LinkContainer> */}
 
           <NavDropdown title= {<ImUser/>} id="collasible-nav-dropdown">
             <NavDropdown.Item href="/profile">
@@ -114,21 +101,6 @@ window.addEventListener('scroll',changeBackground);
 
   return (
     <>
-      {/* <Navbar className="navbarBG" collapseOnSelect expand="md" bg="dark" variant="dark">
-  <Navbar.Brand href="/">The Platform</Navbar.Brand>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="/articles">Articles</Nav.Link>
-      <Nav.Link href="/organization">Organizations</Nav.Link>
-      <Nav.Link href="/series">Series</Nav.Link>
-    </Nav>
-    <Nav>
-    <Nav className="navProfile">{isLoggedIn()}</Nav>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar> */}
-
       <Navbar sticky="top"  bg= {backGround?"primary":"dark"} className="navbarBG" variant="dark"  collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

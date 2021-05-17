@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import './style.scss';
-import api from '../../api';
 import { useHistory } from 'react-router';
 import userAvatar from '../../data/icon/userAvatar.jpg';
 import { useArticleList } from '../ArticleList/articleList';
@@ -24,7 +23,6 @@ export default function ProfilePage(props: {}) {
   const userIDfromStorage = Number(localStorage.getItem('user_id'));
 
   const { allUsers } = useArticleList();
-  // console.log("all", allUsers)
 
   const loggedInUser = allUsers.find((a) => a.user_id == userIDfromStorage);
 
@@ -158,8 +156,6 @@ export default function ProfilePage(props: {}) {
 
         <Row className="ProfButtons">
           <div>
-            {/* <Button onClick={paymentInfo}>Payment Info</Button>
-          <Button onClick={checkLogin}>Edit</Button> */}
             {isAuthor()}
             <Button onClick={() => setPage('Edit')}>Edit</Button>
             <Button onClick={() => setPage('paymentPage')}>Payment Info</Button>
@@ -169,19 +165,12 @@ export default function ProfilePage(props: {}) {
       </div>
 
       <div className="EditParent">
-        {/* <div className="logout">
-          <Button variant="primary" type="submit" onClick={onClickLogOut}>
-            {' '}
-            Log Out
-          </Button>
-        </div> */}
 
         <Row>
           <Col>
             <div>
               {page === 'Edit' && <EditProfilePage />}
               {page === 'paymentPage' && <ChangePaymentPage />}
-              {/* {page === "contact" && <Contact />} */}
             </div>
           </Col>
         </Row>

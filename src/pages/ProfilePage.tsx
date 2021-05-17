@@ -1,4 +1,3 @@
-import React from 'react';
 import ProfilePageScaffolding from '../components/profile/ProfilePage';
 import MainLayout from '../layouts/MainLayout';
 

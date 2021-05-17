@@ -1,4 +1,3 @@
-import {authenticateToken} from '../../middleware/authenticator'
 import { UserModel } from '../../models/user';
 
 export function post( app:any ){
