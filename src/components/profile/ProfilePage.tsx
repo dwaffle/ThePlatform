@@ -163,7 +163,6 @@ export default function ProfilePage(props: {}) {
             {isAuthor()}
             <Button onClick={() => setPage('Edit')}>Edit</Button>
             <Button onClick={() => setPage('paymentPage')}>Payment Info</Button>
-            
           </div>
         </Row>
       </div>

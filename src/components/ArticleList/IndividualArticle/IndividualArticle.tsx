@@ -76,11 +76,11 @@ const IndividualArticle = () => {
   function checkArticleType() {
     let checkUserOwnerShip = false;
     //Cycle through all a user's bought articles to see if they've already bought it.
-    for(let i = 0; i < articleOwnership.length; i++){
-        if(articleOwnership[i]?.art_id == article?.art_id){
-          checkUserOwnerShip = true;
-          break;
-        }
+    for (let i = 0; i < articleOwnership.length; i++) {
+      if (articleOwnership[i]?.art_id == article?.art_id) {
+        checkUserOwnerShip = true;
+        break;
+      }
     }
 
     if (article?.artype_id !== 2) {
@@ -91,15 +91,18 @@ const IndividualArticle = () => {
       return (
         <div className="artBodyParent">
           <p>
-            This Article is not free.<br />
-            The main body of the article has been
-            hidden.
+            This Article is not free.
+            <br />
+            The main body of the article has been hidden.
             <p>
               If you wish to view this article, please support the author by
               purchasing the article.
             </p>
           </p>
-          <button onClick={oneClickPurchase} className="purchase-button"> Buy Article </button>
+          <button onClick={oneClickPurchase} className="purchase-button">
+            {' '}
+            Buy Article{' '}
+          </button>
         </div>
       );
     }
