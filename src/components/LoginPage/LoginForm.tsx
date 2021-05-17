@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-// import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router';
 import api from '../../api';
-// import data from '../../data/icon'
 import './login.scss';
 
 function LoginForm() {
