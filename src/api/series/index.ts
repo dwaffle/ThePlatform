@@ -17,20 +17,4 @@ export default {
       },
     });
   },
-
-  //   patch: async (body?: any) => {
-  //     return axios.patch(`${HOSTNAME}/series`, body, {
-  //       headers: {
-  //         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
-  //       },
-  //     });
-  //   },
-
-  //   delete: async (id: string) => {
-  //     return axios.delete(`${HOSTNAME}/series/${id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
-  //       },
-  //     });
-  //   },
 };

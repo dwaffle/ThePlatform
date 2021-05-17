@@ -6,12 +6,6 @@ import { ISeries } from '../../../../services/crud-server/src/models/series';
 import MainLayout from '../../../layouts/MainLayout';
 import {
   Card,
-  CardDeck,
-  Col,
-  Form,
-  Row,
-  Button,
-  ListGroup,
   Badge,
 } from 'react-bootstrap';
 import {
@@ -45,11 +39,6 @@ function IndividualSeries() {
     <MainLayout>
       <div className="iSeriesHeader">
         <h1>{singleSeries?.series_title}</h1>
-        {/* <Row> 
-          <Col> Rating </Col>
-          <Col>By: {singleSeries?.series_owner}</Col> 
-          
-        </Row> */}
         <p className="iSAuthor"> By: {singleSeries?.user_userName} </p>
         <p className="iSDescription">{singleSeries?.series_desc}</p>
       </div>

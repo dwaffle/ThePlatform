@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import Carousel from 'react-multi-carousel';
 import { Card, Col, Row, Button } from 'react-bootstrap';
-// import unnamed from '../../data/icon/unnamed.jpg';
 import { useHistory } from 'react-router-dom';
 import './style.scss';
 import { seriesListState } from '../ArticleList/articleList';
 import { ISeries } from '../../../services/crud-server/src/models/series';
 import SeriesFilter from './searchFilter/SeriesFilter';
-// import { sCategoriesState } from './searchFilter/series.recoil';
 
 export interface ISearchFilter {
   name?: string;
@@ -85,26 +83,6 @@ export default function SeriesPage(props: { rows?: number }) {
       history.push(`/series/${id}`);
     };
   }
-
-  // const responsive = {
-  //   superLargeDesktop: {
-  //     // the naming can be any, depends on you.
-  //     breakpoint: { max: 4000, min: 3000 },
-  //     items: 6,
-  //   },
-  //   desktop: {
-  //     breakpoint: { max: 3000, min: 1024 },
-  //     items: 6,
-  //   },
-  //   tablet: {
-  //     breakpoint: { max: 1024, min: 464 },
-  //     items: 4,
-  //   },
-  //   mobile: {
-  //     breakpoint: { max: 464, min: 0 },
-  //     items: 3,
-  //   },
-  // };
 
   const responsive = {
     superLargeDesktop: {

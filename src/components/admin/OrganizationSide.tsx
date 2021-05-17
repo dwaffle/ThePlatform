@@ -6,7 +6,6 @@ import api from '../../api';
 
 export default function OrganizationSide(props: {}) {
   const history = useHistory();
-  // cost get_orgList = orgList
   const [orgs, setOrgs] = useState<IOrganization[]>([]);
 
   const [selectedOrg, setSelectedOrg] = useState<IOrganization>();

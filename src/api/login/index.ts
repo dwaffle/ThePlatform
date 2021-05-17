@@ -7,7 +7,8 @@ export default {
     axios.post(`${HOSTNAME}/user`, body).then((response) => {
       let data = JSON.parse(JSON.stringify(response.data));
       console.log(data);
-      if (data[0] !== undefined) {
+      if(data[0] !== undefined){
+        //If there is a user, add the info to the localstorage. 
         localStorage.setItem('user_id', data[0].user_id);
         localStorage.setItem('user_type', data[0].user_type);
         localStorage.setItem('username', data[0].user_userName);
@@ -18,7 +19,8 @@ export default {
         localStorage.setItem('user_facebook', data[0].user_facebook);
         localStorage.setItem('user_twitter', data[0].user_twitter);
       } else {
-        alert('There is no user with that information.');
+        //Otherwise show an error
+        alert("There is no user with that information.");
       }
     });
   },

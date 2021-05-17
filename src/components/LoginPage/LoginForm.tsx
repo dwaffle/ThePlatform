@@ -56,7 +56,6 @@ function LoginForm() {
             type="submit"
             onClick={handleLogin}
           >
-            {' '}
             Submit
           </Button>
           <label> Not on the Platform yet?</label>

@@ -28,7 +28,6 @@ export default function HeaderNavigation(props: {}) {
   function isEditor() {
     if (user_type === 1 || user_type === 5) {
       return (
-        // <NavDropdown.Item href="/editor">Editor</NavDropdown.Item>
         <LinkContainer to="/editor">
           <Nav.Link>
             Editor <ImPaintFormat />

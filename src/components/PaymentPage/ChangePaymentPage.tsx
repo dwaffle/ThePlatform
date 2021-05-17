@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import './style.scss';
 import api from '../../api';
@@ -139,10 +139,6 @@ export default function ChangePaymentPage(props: {}) {
         </Row>
         {checkCvv()}
       </Form>
-      {/* <Button variant="primary" onClick={onClickGoProfile}>
-        {' '}
-        Back to Profile
-      </Button> */}
       <Button
         className="sendInfo"
         variant="success"

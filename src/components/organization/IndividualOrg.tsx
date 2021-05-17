@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import api from '../../api';
 import { useParams } from 'react-router';

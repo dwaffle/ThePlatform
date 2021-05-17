@@ -1,15 +1,3 @@
-// import React from 'react';
-// import {
-//   Container,
-//   Row,
-//   Col,
-//   Table,
-//   Button,
-//   Form,
-//   Card,
-//   CardDeck,
-// } from 'react-bootstrap';
-
 import './style.scss';
 
 //unused

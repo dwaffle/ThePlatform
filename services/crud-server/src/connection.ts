@@ -1,4 +1,3 @@
-//To be replaced with the code for retriving an article.
 import dotenv from 'dotenv';
 dotenv.config();
 
