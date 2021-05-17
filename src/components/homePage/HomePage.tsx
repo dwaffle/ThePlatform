@@ -10,7 +10,7 @@ export default function HomePage(props: {}) {
     <>
       <Row>
         <Col>
-          <Landing/>
+          <Landing />
         </Col>
       </Row>
       <Row>

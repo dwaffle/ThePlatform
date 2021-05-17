@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import HeaderNavigation from '../components/headerNavigation';
-import GoUpButton from '../components/topButton/topButton'
+import GoUpButton from '../components/topButton/topButton';
 import { Col, Container, Row } from 'react-bootstrap';
 import './style.scss';
 

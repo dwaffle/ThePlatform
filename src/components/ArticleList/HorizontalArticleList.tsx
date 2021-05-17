@@ -37,7 +37,7 @@ export default function HorizontalArticles(props: { rows: number }) {
   }
 
   // Allows only users that are authors in the database to create a new article
- 
+
   useEffect(() => {
     const innerProductList = [...approvedArticle].filter((articles) => {
       let found = true;

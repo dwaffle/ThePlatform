@@ -4,18 +4,24 @@ import { useHistory } from 'react-router';
 import './style.scss';
 import { useState } from 'react';
 
-import { ImUser , ImExit, ImEnter, ImPlus, ImCog, ImPaintFormat, ImTree, ImFlag, ImNewspaper} from "react-icons/im";
-
-
-
+import {
+  ImUser,
+  ImExit,
+  ImEnter,
+  ImPlus,
+  ImCog,
+  ImPaintFormat,
+  ImTree,
+  ImFlag,
+  ImNewspaper,
+} from 'react-icons/im';
 
 export default function HeaderNavigation(props: {}) {
-
-  const user_id = Number(localStorage.getItem('user_id'));
+  //Retrieves the user type from local storage
   const user_type = Number(window.localStorage.getItem('user_type'));
 
-  const [backGround,setBackGround] = useState(false);
-  
+  const [backGround, setBackGround] = useState(false);
+
   const history = useHistory();
 
   //Adds the editor button if the user is an editor or admin according to user_type_lu.  Can change if we want.
@@ -23,7 +29,9 @@ export default function HeaderNavigation(props: {}) {
     if (user_type === 1 || user_type === 5) {
       return (
         <LinkContainer to="/editor">
-          <Nav.Link>Editor <ImPaintFormat/></Nav.Link>
+          <Nav.Link>
+            Editor <ImPaintFormat />
+          </Nav.Link>
         </LinkContainer>
       );
     }
@@ -33,7 +41,9 @@ export default function HeaderNavigation(props: {}) {
   function isAdmin() {
     if (user_type === 1) {
       return (
-        <NavDropdown.Item href="/admin"><ImCog/> Admin  </NavDropdown.Item>
+        <NavDropdown.Item href="/admin">
+          <ImCog /> Admin{' '}
+        </NavDropdown.Item>
       );
     }
   }
@@ -55,7 +65,9 @@ export default function HeaderNavigation(props: {}) {
   const isAuthor = () => {
     if (user_type == 1 || user_type == 4) {
       return (
-        <NavDropdown.Item href="/newArticle"><ImPlus/> Add Article </NavDropdown.Item>
+        <NavDropdown.Item href="/newArticle">
+          <ImPlus /> Add Article{' '}
+        </NavDropdown.Item>
       );
     }
   };
@@ -64,23 +76,26 @@ export default function HeaderNavigation(props: {}) {
     if (!localStorage.getItem('token')) {
       return (
         <LinkContainer to="/login">
-          <Nav.Link><ImEnter/> Login </Nav.Link>
+          <Nav.Link>
+            <ImEnter /> Login{' '}
+          </Nav.Link>
         </LinkContainer>
       );
     } else {
-      return ( 
+      return (
         <>
-
-          <NavDropdown title= {<ImUser/>} id="collasible-nav-dropdown">
+          <NavDropdown title={<ImUser />} id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/profile">
               <h4> {displayFirstName()}</h4>See your profile
             </NavDropdown.Item>
             <NavDropdown.Divider />
             {isAdmin()}
             <NavDropdown.Divider />
-            {isAuthor()} 
+            {isAuthor()}
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={logoutHandler}><ImExit/> Logout </NavDropdown.Item>
+            <NavDropdown.Item onClick={logoutHandler}>
+              <ImExit /> Logout{' '}
+            </NavDropdown.Item>
           </NavDropdown>
         </>
       );
@@ -88,20 +103,25 @@ export default function HeaderNavigation(props: {}) {
   }
 
   const changeBackground = () => {
-
-    if(window.scrollY >= 20) { 
+    if (window.scrollY >= 20) {
       setBackGround(true);
+    } else {
+      setBackGround(false);
     }
-    else {
-      setBackGround(false)
-    }
-  }
+  };
 
-window.addEventListener('scroll',changeBackground);
+  window.addEventListener('scroll', changeBackground);
 
   return (
     <>
-      <Navbar sticky="top"  bg= {backGround?"primary":"dark"} className="navbarBG" variant="dark"  collapseOnSelect expand="md">
+      <Navbar
+        sticky="top"
+        bg={backGround ? 'primary' : 'dark'}
+        className="navbarBG"
+        variant="dark"
+        collapseOnSelect
+        expand="md"
+      >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
@@ -109,13 +129,19 @@ window.addEventListener('scroll',changeBackground);
               <Nav.Link>The Platform</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/articles">
-              <Nav.Link>Articles <ImNewspaper/></Nav.Link>
+              <Nav.Link>
+                Articles <ImNewspaper />
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/organization">
-              <Nav.Link>Organizations <ImFlag/></Nav.Link>
+              <Nav.Link>
+                Organizations <ImFlag />
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/series">
-              <Nav.Link>Series <ImTree/></Nav.Link>
+              <Nav.Link>
+                Series <ImTree />
+              </Nav.Link>
             </LinkContainer>
 
             {isEditor()}
