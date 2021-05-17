@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 // import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router';
 import api from '../../api';
@@ -25,15 +25,21 @@ function LoginForm() {
 
   return (
     <>
-      <div className="Container">
-        <Form className="FormLogin">
-          <h1 className="LoginLabel">User Login</h1>
+   <div className = "bacGround">
+
+  <Row> 
+    <Col/>
+      <Col >
+      
+        <Form className="form-group">
+          <h3 >User Login</h3>
+          <br/>
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Username"
+              placeholder=" Enter Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -43,17 +49,20 @@ function LoginForm() {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Password"
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
-          <label className="RememberMe">
-            <input type="checkbox" id="vehicle1" /> Remember me
-          </label>
+          <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="vehicle1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                    </div>
+          </div>
           <Button
-            className="ButtonSubmit"
+            className="btn btn-primary btn-block"
             variant="primary"
             type="submit"
             onClick={handleLogin}
@@ -61,18 +70,20 @@ function LoginForm() {
             {' '}
             Submit
           </Button>
-          <label> Not on the Platform yet?</label>
-          <Button
-            className="ButtonSubmit"
-            variant="primary"
-            type="submit"
-            onClick={directToSignUp}
-          >
-            {' '}
-            Sign up
-          </Button>
-        </Form>
-      </div>
+
+          <p className="forgot-password text-right">
+              <a href = '/signup' >Sign up?</a>
+          </p> 
+     </Form>
+     
+    </Col>
+      
+      <Col/>
+    </Row>
+
+  </div>
+    
+      
     </>
   );
 }
