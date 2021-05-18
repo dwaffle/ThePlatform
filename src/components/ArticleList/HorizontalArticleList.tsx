@@ -88,6 +88,11 @@ export default function HorizontalArticles(props: { rows: number }) {
     },
   };
 
+  // to trim the string to last complete word 
+  function trimMyString(str: string) {
+    return str.slice(0, str.lastIndexOf(' '));
+  }
+
   return (
     <MainLayout>
       <div style={artListHeader.header}>
@@ -136,7 +141,16 @@ export default function HorizontalArticles(props: { rows: number }) {
                       )}
                     </Col>
 
-                    <Col className="CardColDesc">{art.description}</Col>
+                    <Col className="CardColDesc">
+                      {trimMyString(art.description.slice(0,250))} ,  ...
+                       <Link
+                          className="CardTitleLink"
+                          to={`/articles/${art.art_title}`}
+                        >
+                          read more
+                        </Link>
+                    
+                    </Col>
 
                     <Col className="CardColImg">
                       {art.art_image ? (
