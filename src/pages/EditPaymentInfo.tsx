@@ -1,4 +1,3 @@
-import React from 'react';
 import EditPaymentPage from '../components/PaymentPage/Payment';
 import MainLayout from '../layouts/MainLayout';
 

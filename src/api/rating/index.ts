@@ -17,13 +17,4 @@ export default {
       },
     });
   },
-
-  // getRatingByArticleId: async (artId: number) => {
-  //   console.log(`${HOSTNAME}/rating/${artId}`);
-  //   return axios.get(`${HOSTNAME}/rating/${artId}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-  //     },
-  //   });
-  // },
 };

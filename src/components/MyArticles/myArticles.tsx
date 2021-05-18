@@ -2,7 +2,7 @@ import MainLayout from '../../layouts/MainLayout';
 import { useState } from 'react';
 import { seriesListState, useArticleList } from '../ArticleList/articleList';
 import { IArticle } from '../../../services/crud-server/src/models/article';
-import { Row, Col, Table, Button } from 'react-bootstrap';
+import { Row, Col, Table} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useHistory } from 'react-router-dom';
 import api from '../../api';
@@ -30,8 +30,7 @@ function MyArticles() {
   const [article, setArticle] = useState<IArticle>();
 
   const ShowArticleOnClick = (id: number) => {
-    // setArticle(myArtList[e.currentTarget.rowIndex - 1]); //Arrays start at 0.  Row indexes start at 1.
-    setArticle(myArtList.find((article) => article.art_id === id)); //Arrays start at 0.  Row indexes start at 1.
+    setArticle(myArtList.find((article) => article.art_id === id));
 
     history.push('/myArticles');
   };
@@ -80,11 +79,6 @@ function MyArticles() {
       art_category: value,
     });
   };
-  // const [title, setTitle] = useState<string>('');
-  // const [category, setCategory] = useState();
-  // const [series, setSeries] = useState();
-  // const [description, setDescription] = useState<string>('');
-  // const [body, setBody] = useState<string>('');
 
   const [hasPrice, setChecked] = useState<ArticleType>();
 
@@ -188,15 +182,10 @@ function MyArticles() {
     }
   };
 
-  // function newSeries() {
-  //   return history.push('/seriesCreation');
-  // }
-
   return (
     <MainLayout>
       <Row className="pageSize">
         <div className="userArticleList">
-          {/* <h5> My Articles </h5> */}
           <Row>
             <Col>
               Have too many articles? Click

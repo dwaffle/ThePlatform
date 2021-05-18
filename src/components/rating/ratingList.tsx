@@ -13,9 +13,6 @@ export function useRatingList() {
     ratingListState,
   );
 
-  // const ratingArticle = 3 ;
-  // const nbrReviews = ratingList.length;
-
   useEffect(() => {
     api.rating
       .get()
@@ -24,11 +21,8 @@ export function useRatingList() {
       })
       .catch((error) => console.error(`Error: ${error}`));
   }, []);
-  // console.log('*****', ratingList);
   return {
     ratingList,
     setRatingList,
-    // ratingArticle,
-    // nbrReviews
   };
 }

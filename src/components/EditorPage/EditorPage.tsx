@@ -75,8 +75,6 @@ export default function EditorPage() {
                       >
                         <td>{art.art_title}</td>
                         <td>{art.user_userName}</td>
-                        {/* <td> State</td> */}
-                        {/* <td> <Link to="/articles/:articleId">{art.art_title}</Link></td> */}
                       </tr>
                     ))}
                   </tbody>

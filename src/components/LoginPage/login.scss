@@ -27,7 +27,7 @@
     
 }
 
-Form {
+.Form {
     border: 2px solid black;
     background-color: #e9e8e8;
     width: 55vh;
@@ -37,7 +37,7 @@ Form {
     padding: 30px 30px 20px 30px;
     // padding-top: 30px;
     border-radius: 5px;
-    background-image: url("../../data/background/summeReading.jpg");
+    // background-image: url("../../data/background/summeReading.jpg");
     margin-top: 20%;
  
    
@@ -52,7 +52,7 @@ Form {
 //     transform: translateY(-50%);
 //   }
 
-h3 {
+.h3Div {
     border-bottom: 1px solid black;
     background-color: #363535;
     color:white;

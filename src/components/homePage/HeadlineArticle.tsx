@@ -14,11 +14,9 @@ export default function HeadlineArticle(props: {}) {
     };
   }
 
-  // to trim the string to last complete word 
-  function trimMyString(str:string){
-   
-    return str.slice(0,str.lastIndexOf(" "))
-
+  // to trim the string to last complete word
+  function trimMyString(str: string) {
+    return str.slice(0, str.lastIndexOf(' '));
   }
 
   useEffect(() => {
@@ -44,15 +42,9 @@ export default function HeadlineArticle(props: {}) {
                     src={_article.art_image}
                     alt="Generic placeholder"
                   />
-
-                  <h2>{
-                  _article.art_title
-                  }</h2>
-
-                  {
-                     trimMyString(_article.description.slice(0, 144))
-                  }
-                   .....
+                  <h2>{_article.art_title}</h2>
+                  {trimMyString(_article.description.slice(0, 144))}
+                  .....
                   <br />
                   <Button
                     variant="outline-primary"

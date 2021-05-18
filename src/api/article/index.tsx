@@ -1,6 +1,4 @@
 import axios from 'axios';
-// import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
-// import { IArticle } from "../../../services/crud-server/src/models/article";
 import { HOSTNAME } from '../config';
 
 export default {
@@ -21,7 +19,6 @@ export default {
   },
 
   getSingleArticle: async (artId: number) => {
-    // console.log(`${HOSTNAME}/articles/${artId}`);
     return axios.get(`${HOSTNAME}/articles/${artId}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-// import React from 'react';
 import { Rating } from '@material-ui/lab';
-// import Rating from "react-rating";
 import { useRatingList } from './ratingList';
 import './style.scss';
 import { Button } from 'react-bootstrap';

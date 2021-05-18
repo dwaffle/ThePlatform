@@ -3,7 +3,6 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 // import { useRecoilState } from 'recoil';
 import { useHistory } from 'react-router';
 import api from '../../api';
-// import data from '../../data/icon'
 import './login.scss';
 
 function LoginForm() {
@@ -19,9 +18,9 @@ function LoginForm() {
     history.push('/articles');
   }
 
-  function directToSignUp() {
-    history.push('/signup');
-  }
+  // function directToSignUp() {
+  //   history.push('/signup');
+  // }
 
   return (
     <>
@@ -31,8 +30,8 @@ function LoginForm() {
     <Col/>
       <Col >
       
-        <Form className="form-group">
-          <h3 >User Login</h3>
+        <Form className="Form form-group">
+          <h3 className = "h3Div">User Login</h3>
           <br/>
 
           <Form.Group controlId="formBasicEmail">
@@ -67,7 +66,6 @@ function LoginForm() {
             type="submit"
             onClick={handleLogin}
           >
-            {' '}
             Submit
           </Button>
 
