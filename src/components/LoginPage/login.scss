@@ -20,9 +20,10 @@
     align-items: center;
     justify-content: center;
     background-image: url("../../data/background/summeReading.jpg") ;
-    // background-repeat: no-repeat;
-    background-size: auto;
-    height:140%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:120%;
     margin-top: -17px;
     
 }
