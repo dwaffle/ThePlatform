@@ -1,23 +1,19 @@
 import React, { PropsWithChildren } from 'react';
 import HeaderNavigation from '../components/headerNavigation';
-import {  Col, Container, Row, Button } from 'react-bootstrap';
-// import Footer from '../components/Footer/Footer'
+import GoUpButton from '../components/topButton/topButton';
+import { Col, Container, Row } from 'react-bootstrap';
+import './style.scss';
 
-
-  
-
-export default function MainLayout (props:PropsWithChildren <{}>){
-
-    return (
+export default function MainLayout(props: PropsWithChildren<{}>) {
+  return (
     <>
-
-        <Container>        
-            <HeaderNavigation />
-            <Row> 
-                <Col>  { props.children }</Col>
-            </Row>     
-        </Container>
-
+      <Container className="container">
+        <HeaderNavigation />
+        <Row>
+          <Col> {props.children}</Col>
+        </Row>
+        <GoUpButton />
+      </Container>
     </>
-    );
+  );
 }

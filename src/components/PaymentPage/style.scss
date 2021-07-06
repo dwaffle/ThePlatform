@@ -1,0 +1,32 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+img {
+    max-width: 150px;
+    max-height: 150px;
+    // object-fit: cover;
+    padding: 10px;
+    margin: 0px;
+}
+
+.FormPayment {
+    padding-top: 26px;
+    padding-left: 15px;
+}
+
+.delete-btn{
+    align-self: auto;
+    float: right
+}
+
+.passwordHint{
+    scale: 75%;
+}
+
+.lastName{
+    float:left;
+}
+
+.sendInfo {
+    margin-bottom: 20px;
+}
+

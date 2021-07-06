@@ -1,0 +1,183 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+$paddingTop: 15px;
+
+.h8tch2 {
+    font-size: 4.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    // text-align: center;
+}
+
+
+.searchFilter {
+    width: 73%;
+    margin: 0 auto;
+}
+
+.sPCardHeader {
+    height: 7vh;
+    overflow: auto;
+    text-align: center;
+    background-color: rgb(147, 212, 224)!important;
+    
+}
+
+
+.horizontal-organization-list {
+    // padding-top: $paddingTop;
+    Form {
+        padding-top: 0px;
+    }
+}
+
+.trending-organization {
+    // border: 2px solid red;
+    padding-top: $paddingTop;
+    table {
+        margin-bottom: 0;
+    }
+
+    h3 {
+        padding-bottom:15px ;
+        text-align: center;
+    }    
+}
+
+.Container {
+    margin-left: 40%;
+    margin-right: 40%;
+    display: inline-block;
+    text-align: center;
+}
+
+.view-org-button{
+    display:inline-block;
+    margin-left: 25%;
+    margin-right: 40%;
+    margin-top: 8px;
+    width: 125px;
+}
+
+.org-card{
+    display:inline-block;
+    // border: 1px solid gray;
+    //     box-shadow: 2px 1px 1px 1px grey;
+    height: 300px;
+    // max-height: 220px;
+
+    .sPDesc {
+        max-height: 70%;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        margin: 0px;
+    }
+
+    .view-org-button{
+        position: absolute;
+        bottom: 10px;
+    }
+    
+}
+
+
+
+@media screen and (max-width: 400px){
+
+    .scCardDeck {
+        min-width: 50%;
+        color: yellow;
+    }
+    
+   
+}
+
+
+// .scCardDeck {
+    
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     .scIndex {
+//         padding: 0px;
+//         margin: 0px;;
+//     }
+
+//     .sCards {
+//         margin-top: 15px;
+//         padding: 0px;
+//         min-width: 13vw;
+//         // max-width: 12vw;
+//         // max-height: 35vh;
+//         min-height: 35vh;
+//         border: 1px black solid;
+
+      
+    
+//         .card-image-top {
+//             min-width: 100%;
+//             padding: 0px;
+//         }
+    
+//         .scTitle {
+//             font-size: 1.5rem;
+//             text-align: center;
+//         }
+        
+    
+//         .scBody {
+//             padding: 0px;
+//             margin: 0px;
+//             background: rgb(231, 230, 230);
+//             text-align: center;
+//         }
+    
+//         .scText {
+//             margin: 0px;
+//             overflow-y: hidden;
+//         }
+    
+        
+    
+//         .scCategory {
+//             background: inherit;
+    
+//             padding: 0px;
+//             border: none;
+//         }
+      
+    
+//         .scFooter {
+//             padding: 0;
+//             position:absolute;
+//             width: 100%;
+//             bottom: 0px;
+//             text-align: center;
+//             margin-top: 1px;
+//         }
+    
+//     }
+
+
+// }
+
+// .seriesBody {
+//     width: 90%;
+//     margin: 0 auto;
+
+//     .filter {
+//         margin: 0 auto;
+//         margin-bottom: 20px;
+//     }
+
+//     .scPagin {
+//         margin-top: 5px;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//     }
+
+// }

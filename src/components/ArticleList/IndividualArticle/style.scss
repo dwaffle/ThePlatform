@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader&display=swap');
+
+.IAHeadline {
+    margin-top: 10px;
+    font-size: 48px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding: 0px;
+    line-height: 1em;
+    text-align: center;
+}
+
+.divWriter{
+    float:right;
+}
+
+
+
+.artBodyParent {
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.mainImg {
+    text-align: center;
+    margin-bottom: 25px;
+    width: 100%;
+    max-height: 50vh;
+    min-height: 25vh;
+  
+    
+}
+
+.pTag {
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.iAAuthor {
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.descArea {
+    height: 20vh;
+    overflow-y: scroll;
+    scrollbar-width:thin;
+    scrollbar-color:#363535 ;
+    white-space: pre-wrap;
+}
+
+.articleDetails {
+    font-size: 2vh;
+}
+
+.iABody {
+    white-space: pre-wrap;
+    text-align: justify;
+    font-family: "Newsreader";
+}
+
+.socialMedia {
+
+    img {
+        width: 25px;
+        height: 25px;
+        padding: 0px;
+        margin-left: 1px;
+    }
+}  
+
+.popup-box {
+
+    background: #ffffff2a;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.box {
+    position: fixed;
+    bottom: 0;
+    width: 70%;
+    margin: 0 auto;
+    height: 20%;
+    max-height: 70vh;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 40px;
+    border: 1px solid #999;
+}
+
+.close-icon {
+    content: 'x';
+    cursor: pointer;
+    position: fixed;
+    right: calc(34.5% - 30px);
+    top: calc(100vh - 15vh - 33px);
+    background: #d3d3d3;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+}
+
+.series-link{
+    width:20%;
+    overflow-wrap:break-word
+}
+
+.article-main{
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
+    justify-content:center;
+    float:left;
+    font-size:22px;
+    width: 90%;
+
+    &::first-letter{
+        font-size:35px;
+    }
+}
+
+.author-info{
+    align-items:right;
+    padding-bottom:10px;
+    padding-left: 50px;
+    width:20%;
+    font-weight:bold;
+    font-size:22px;
+}
+
+.series-container{
+    width:60%;
+}
+
+.purchase-button{
+        &:hover {
+            color: #FFF;
+            background-color: #000;
+          }
+}

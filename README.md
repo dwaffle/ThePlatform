@@ -1,44 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## <b>Welcome to The Platform!</b>
 
-## Available Scripts
+The Platform is an article website, intended for users to read and write articles.  On the front page, you can find the headlines and popular articles.  
 
-In the project directory, you can run:
+Users have roles in this site.  Users without an account may read free articles only.  Free users can read any article and join any organization.  Premium members can also create organizations, and gain premium status by buying an article from The Platform.  Authors are able to write articles.  Editors are in charge of saying yes or no to article submissions.  Site administrators are in charge of the entire site, and can access all of the features of the other user types.  They can ban or unban members and organizations.
 
-### `npm start`
+Users sign up through a sign in page, then they have a profile in the system that they may edit from their profile page.  In this page, you will find a form for credit card information.  This information is used to process payments.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In the articles tab, there is a list of all of the articles. Clicking on an article's title takes you to that article's page.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Going into an individual article takes you to that page.  If it's free or you've previously purchased it, you will be able to read it.  Information such as the author, ratings and links to the author's social media will show up on the right.
 
-### `npm test`
+Organizations are a way to gather users with similar interests.  Creating an organization is not available to free members, but any member may join any organization.  The creator of an organization may promote or demote people from organizational administrators, who can remove people from the organization.  The organization creator may also choose to disband the organization.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Authors can write articles and choose if they're free, available to premium members, or they have a price.  Once written, an article goes into a pending queue to be approved by an editor.  The author may also create a Series to group their similar articles together.
 
-### `npm run build`
+Editors have access to the pending articles queue, where they can choose to approve or reject articles.  Once approved, an article will show up in the Articles list.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Administrators have access to the organization and member list, and from there they may choose to ban or unban both organizations and individual members.

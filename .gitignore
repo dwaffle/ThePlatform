@@ -2,11 +2,15 @@
 
 # dependencies
 /node_modules
+/dist
 /.pnp
 .pnp.js
+.eslintcache
+package-lock.json
 
 # testing
 /coverage
+debug.log
 
 # production
 /build
@@ -22,6 +26,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.eslintcache*
 
 # ide's
 .idea

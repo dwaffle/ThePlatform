@@ -1,0 +1,45 @@
+      <div className="HeadlineProfile">
+        <p className="h8tch2">Profile page</p>
+      </div>
+
+      <div className="containerParent">
+        <Row className="profileEdit">
+          <Col className="marginPadding">
+            <Image className="ImageDisplay" src={userAvatar} roundedCircle />
+            <h6>{displayUserName()}</h6>
+          </Col>
+          <Col className="profileDirectory">
+            <div className="detailStyle">
+              <p>
+                {displayFirstName()} {displayLastName()}{' '}
+              </p>
+              <p>Email: {displayEmail()}</p>
+
+              <p>User ID: {displayUserID()}</p>
+            </div>
+
+            {/* <Button onClick={paymentInfo}>Payment Info</Button>
+          <Button onClick={checkLogin}>Edit</Button> */}
+            {isAuthor()}
+            <Button variant="secondary" onClick={() => setPage('Edit')}>
+              Edit
+            </Button>
+            <Button variant="secondary" onClick={() => setPage('paymentPage')}>
+              Payment Info
+            </Button>
+            <Button variant="primary" type="submit" onClick={onClickLogOut}>
+              {' '}
+              Log Out
+            </Button>
+          </Col>
+
+          <Col>
+            <div>
+              {page === 'Edit' && <EditProfilePage />}
+              {page === 'paymentPage' && <ChangePaymentPage />}
+              {/* {page === "contact" && <Contact />} */}
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </>

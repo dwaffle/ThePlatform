@@ -1,0 +1,91 @@
+.pageSize {
+    margin-left: 1vh;
+    margin-top: 2vh;
+}
+
+.userArticleList {
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // min-width: 22%;
+    // // max-width: 23%;
+    // min-height: 100vh;
+
+    .tableParent {
+        width: 22vw;
+        height: 20%;
+        // min-height: 100vh;
+
+        td {
+            height: 2vh;
+        }
+    }
+
+    .seriesCreate {
+        color: blue;
+        background: none;
+        border: hidden;
+        padding: 4px;
+        margin: 0px;
+    }
+
+    // .listArtTitle {
+    //     overflow-x: scroll;
+    // }
+
+}
+
+@media screen {
+    
+}
+
+.userArticleListCol {
+    width: 0px;
+}
+
+.selectedArticle {
+    width: 80%;
+    margin: 1vw;
+    margin-top: 0px;
+    height: 20%;
+
+    .FormLabels {
+        font-size: 1.3rem;
+    }
+
+    img {
+
+        object-fit:cover;
+        padding: 0px;
+        min-width: 68vw;
+        // margin: 0 auto;
+        min-height: 30vh;
+        margin-top: 1vh;
+
+        // @media screen and (min-width:100vh) {
+        //     body { color:#555; }
+        // }
+    }
+    
+}
+
+
+// .radioButtons {
+//    border: 1px solid lightgray;
+//    border-radius: 5px;
+
+// }
+
+.description {
+    min-height: 18vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.body {
+    min-height: 40vh;
+    // max-width: 100%;
+    // overflow-x:scroll;
+
+}
+   

@@ -1,0 +1,96 @@
+
+
+.iSeriesHeader {
+    h1 {
+        font-size: 3.4rem;
+        font-family:'Times New Roman', Times, serif;
+        background: white;
+        color: black;
+        border: hidden;
+        background-color:inherit;
+        margin-bottom: 0px;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .iSAuthor {
+        text-align: center;
+        
+    }
+
+    .iSDescription {
+        // white-space: pre-line;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 80%;
+        margin: auto;
+    }
+}
+
+.iAList {
+    width: 80%;
+    margin: auto;
+
+    .iSCard {
+        min-height: 10vh;
+        margin-bottom: 15px;
+        
+        border: 1px solid gray;
+        box-shadow: 2px 2px 2px 2px rgb(202, 202, 202);
+
+        .iaTitle {
+            background: rgb(147, 212, 224);
+            padding-left: 10px;
+            
+            .titleLink {
+                padding-left: 0px;
+            }
+    
+        }
+    
+        .iaDesc {
+            overflow-y: scroll;
+            padding-left: 10px;
+        }
+    
+        .iaFooter {
+            background: rgb(255, 255, 255);
+            max-height: 3vh;
+            padding-left: 10px;
+            display:flex;
+            align-items: center;
+        }
+    }
+}
+
+
+.tag {
+    &-Beauty {
+        color: rgb(130, 183, 200)
+    }
+
+    &-Sci-Fi {
+        color: darkblue
+    }
+
+
+}
+
+
+// .CardArt {
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+//     max-width: 80%;
+//     margin-top: 15px;
+//     // margin-left: 5%;
+
+//     input {
+//         padding: 0px;
+//         border: 0;
+//         background-color: inherit;
+//         color: blue;
+//     }
+// }

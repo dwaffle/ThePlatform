@@ -1,0 +1,115 @@
+
+
+.addMargin{
+    margin-top: 10px;
+}
+
+.searchFeature {
+    width: 70%;
+    margin: auto;
+}
+
+.CardParent {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70%;
+    margin-top: 25px;
+    border-radius: 7px;
+    box-shadow: 3px 3px 3px 3px rgb(156, 165, 163);
+
+    .CardTitleLink {
+        padding: 0px 0px 0px 10px;
+        margin: -1px;
+        font-size: 1.2rem;
+        border-bottom:  rgb(156, 165, 163) solid 1px;
+        width: 100.2%;
+    }
+
+    p {
+        margin: 0px;
+        padding-top: 10px;
+        line-height: 1;
+    }
+
+    // .pDate {
+    //     position:absolute;
+    //     right: 0;
+    // }
+
+    .CardColData {
+        padding: 0px 0px 0px 25px;
+        margin-right: 10px;
+        max-width: 200px;
+    }
+
+    .CardColDesc {
+        // max-height: 13.5vh;
+        box-sizing: border-box;
+        // overflow: auto;
+        padding: 5px 5px 5px 5px;
+        // scrollbar-width: none;
+        font-family: PT Serif;
+    }
+
+    .CardColImg {
+        max-width: 225px;
+        padding: 3px 16px 1px 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img {
+        min-height: 130px;
+        min-width: 200px;
+        padding: 4px 2px 3px 3px;
+    }
+
+    .CardNIA {
+        text-align: center;
+        align-items: middle;
+    }
+
+    .CardCategory {
+        position: absolute;
+
+        bottom: 20px
+    }
+
+    .isPremium{
+        position: absolute;
+        bottom: 0;
+        // right: 0;
+    }
+    
+}
+
+@media only screen and (max-width: 1000px) {
+    .CardParent {
+        height: 50vh;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+
+        .CardColDesc {
+            max-height: 30vh;
+            // box-sizing: border-box;
+            overflow: hidden;
+            padding: 5px 5px 5px 5px;
+            font-family: PT Serif;
+        }
+
+        .CardColImg {
+            display: none;
+        }
+
+
+        // img {
+        //     display: none;
+        // }
+    }
+
+  }

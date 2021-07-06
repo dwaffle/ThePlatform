@@ -1,0 +1,81 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+ $paddingTop: 15px;
+
+.horizontal-organization-list {
+    // padding-top: $paddingTop;
+    Form {
+        padding-top: 0px;
+    }
+}
+
+.search-filter {
+    padding-top: $paddingTop;
+}
+
+.trending-organization {
+    // border: 2px solid red;
+    padding-top: $paddingTop;
+    table {
+        margin-bottom: 0;
+    }
+
+    h3 {
+        padding-bottom:15px ;
+        text-align: center;
+    }
+}
+
+.new-org-button{
+    margin-top: 10px;
+}
+
+.Container {
+    margin-left: 40%;
+    margin-right: 40%;
+    display: inline-block;
+    text-align: center;
+}
+
+.view-org-button{
+    display:inline-block;
+    margin-left: 30%;
+    margin-right: 40%;
+    margin-top: 8px;
+    width: 100px;
+}
+
+.org-card{
+    display:inline-block;
+    min-height: 220px;
+    overflow: hidden;
+}
+
+.view-org-button{
+    position: absolute;
+    bottom: 10px;
+}
+
+.trending-organization{
+    width: 50%;
+}
+
+.text-center{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.role {
+    float: right;
+}
+
+.disband{
+    float: right;
+}
+
+.removeButton {
+    display: inline;
+    margin:2px;
+    text-rendering: auto;
+}

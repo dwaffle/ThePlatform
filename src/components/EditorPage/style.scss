@@ -1,0 +1,51 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+
+.PendingArticle {
+    margin-top: 2vh;
+    border: black 2px solid;
+    min-height: 500px;
+    margin-left:5%;
+}
+
+.SelectedArticle {
+    margin-top: 2vh;
+    margin-right: 5%!important;
+    // border: red 1px solid; 
+    min-height: 500px;
+
+    .SelectedArticleDescription{
+        max-height: 10vh;
+        overflow-y: scroll;
+        border: 1px black solid;
+    }
+    
+    .SelectedArticleBody{
+        min-height: 20vh;
+        max-height: 23vh;
+        overflow-y: scroll;
+        border: 1px black solid;
+
+    }
+}
+
+.RejectArticle {
+    // border: red 1px solid; 
+    min-height: 150px;
+    margin-top: 10px;
+    margin-right: 5%!important;
+}
+
+
+
+
+.styleEditor{
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url(https://amymhaddad.s3.amazonaws.com/oriental-tiles.png);
+    height: 32vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 15px;
+    // transparency: '50%'
+}

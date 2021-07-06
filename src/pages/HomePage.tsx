@@ -1,13 +1,10 @@
-import React from 'react';
-//import Faq from '../components/OrganizationPage';
+import Home from '../components/homePage/HomePage';
 import MainLayout from '../layouts/MainLayout';
 
-export default function HomePage( props:{} ){
-
-    return <MainLayout>
-        
-        <h1> HomePage </h1>
-        
-    </MainLayout>;
-
+export default function HomePage(props: {}) {
+  return (
+    <MainLayout>
+      <Home />
+    </MainLayout>
+  );
 }

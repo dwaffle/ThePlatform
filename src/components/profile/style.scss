@@ -1,0 +1,125 @@
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+.EditParent {
+    width: 70%;
+    margin: auto;
+    padding: 0px;
+
+    .logout {
+        float:right;
+        margin-bottom: 20px
+    }
+}
+
+
+.ProfPageParent {
+    width: 70%;
+    margin: auto;
+    padding: 0px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px grey;
+
+    // .ImageDisp {
+
+    // }
+
+    img{
+        max-width: 150px;
+        max-height: 150px;
+        // object-fit: cover;
+        padding: 0px;
+        margin: 7px -5px 10px 23px ;
+    }
+
+    .userDataCol {
+        h2 {
+            margin: 0px;
+            padding: 0px;
+            line-height: 1;
+        }
+    }
+
+    .ProfButtons {
+        border-top: 1px solid black;
+        background-color: rgb(198, 212, 210);
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+
+        Button {
+            padding: 0px;
+            text-align: center;
+            margin-left: 17px;
+            height: 40px;
+            width: 100px;
+            border: none;
+            background-color: inherit;
+            color: black;
+        }
+
+        // Button:focus {
+        //     background-color: rgb(43, 149, 43);
+        // }
+        
+        Button:active {
+            background-color: none;
+        }
+
+        Button:hover {
+            background-color: rgb(137, 155, 152);
+        }
+    }
+    
+    .Edir {
+        float:right;
+    }
+}
+
+
+.editProfileParent {
+
+    padding-top: 5px;
+    margin-bottom: 20px;
+    // border-left: grey 1px solid;
+
+    .EditProfileForms {
+        margin-left: 20px;
+        // padding: 20px;
+    }
+
+    .delete-btn{
+        // background-color: red !important;
+        align-self: auto;
+        float: right
+    }
+
+}
+
+
+.switchEdit {
+    width: 40vw;
+
+    Button {
+
+        margin: 1px;
+    }
+
+}
+
+
+.passwordHint{
+    scale: 75%;
+}
+
+
+.HeadlineProfile{
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url(https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/11/AS6_1683-77.jpg?ssl=1);
+    height: 32vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 15px;
+    // transparency: '50%'
+}
